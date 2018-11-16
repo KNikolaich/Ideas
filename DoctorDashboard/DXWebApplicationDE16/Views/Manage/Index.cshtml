@@ -1,0 +1,73 @@
+@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+
+@model DXWebApplicationDE16.Models.IndexViewModel 
+@{ 
+    ViewBag.Title = "Manage"; 
+} 
+ 
+<p>@ViewBag.StatusMessage</p>
+<div class="accountHeader">
+    <h2>Change your account settings</h2>
+</div>
+<ul>
+    <li>
+        Password:
+ 
+        [
+        @if (Model.HasPassword) { 
+            @Html.ActionLink("Change your password", "ChangePassword", "Account") 
+        } else { 
+            @Html.ActionLink("Create", "SetPassword") 
+        } 
+        ]
+ 
+    </li>
+    <li>
+        External Logins: @Model.Logins.Count 
+ 
+        [@Html.ActionLink("Manage", "ManageLogins")]
+ 
+    </li>
+    @* 
+        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+        See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+        Uncomment the following blocks after you have set up two-factor authentication
+    *@ 
+    @* 
+    <li>
+        Phone Number:
+ 
+        @(Model.PhoneNumber ?? "None") 
+        @if (Model.PhoneNumber != null) { 
+            @: [
+            @Html.ActionLink("Change", "AddPhoneNumber") 
+            @: ] [
+            @Html.ActionLink("Remove", "RemovePhoneNumber") 
+            @: ] 
+        } else { 
+            @: [
+            @Html.ActionLink("Add", "AddPhoneNumber") 
+            @: ]
+        } 
+ 
+    </li> 
+    *@ 
+    <li>
+        Two-Factor Authentication:
+        There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+        for details on setting up this ASP.NET application to support two-factor authentication.
+ 
+        @* 
+        @using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage")) {  
+            @Html.AntiForgeryToken() 
+            if (Model.TwoFactor) { 
+              @: Enabled <input type="submit" name="Disable" value="Disable" />
+            } else { 
+              @: Disabled <input type="submit" name="Enable" value="Enable" />
+            } 
+        } 
+        *@ 
+ 
+    </li>
+</ul>

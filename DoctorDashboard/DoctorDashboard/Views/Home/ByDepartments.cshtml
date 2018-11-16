@@ -1,0 +1,63 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Отделения стационара";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="accordion">
+    @(Html.DevExtreme().Accordion()
+        .ID("accordion-container")
+        .DataSource(d => d.Mvc().Controller("Home").LoadAction("GetResults").Key("ID"))
+        .AnimationDuration(600)
+        .Collapsible(true)
+        .Multiple(true)
+        
+        //.OnSelectionChanged("accordion_selectionChanged")
+        .ItemTitleTemplate(@<text><h1><%= Name %></h1></text>)
+        .ItemTemplate(@<text>
+                          <div class="tabpanel-item">
+                              <table>
+                                <tr><td>Выписано: <b><%= Discharged %></b></td></tr>
+                                <tr><td> Переведено в другие стационары: <b><%= Transferred %></b></td></tr>
+                                <tr><td> Умерло: <b><%= Death %></b></td></tr>
+                              </table>
+                          </div>
+        </text>)
+    )
+
+    @*<div class="selected-data">
+        <span class="caption">Selected Items</span>
+        @(Html.DevExtreme().TagBox()
+            .ID("tagbox")
+            .DisplayExpr("Name")
+            .ValueExpr("ID")
+            .Value(new[] { 1 })
+            .DataSource(d => d.Mvc().Controller("Home").LoadAction("GetResults").Key("ID"))
+            .Disabled(true)
+            .OnValueChanged("tagBox_valueChanged")
+        )
+    </div>*@
+
+</div>
+
+<script>
+
+    //function getAccordionInstance() {
+    //    return $("#accordion-container").dxAccordion("instance");
+    //}
+
+    //function getTagBoxInstance() {
+    //    return $("#tagbox").dxTagBox("instance");
+    //}
+
+    //function tagBox_valueChanged(e) {
+    //    getAccordionInstance().option("selectedItemKeys", e.value);
+    //}
+
+    //function accordion_selectionChanged(e) {
+    //    getTagBoxInstance().option("value", e.component.option("selectedItemKeys"));
+    //}
+
+    
+</script>

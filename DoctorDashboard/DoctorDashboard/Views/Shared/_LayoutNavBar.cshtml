@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DevExtreme Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <script src="https://cdn3.devexpress.com/jslib/17.1.6/js/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/17.1.6/css/dx.spa.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/17.1.6/css/dx.common.css" />
+    <link rel="dx-theme" data-theme="android5.light" href="https://cdn3.devexpress.com/jslib/17.1.6/css/dx.android5.light.css" />
+    <script src="https://cdn3.devexpress.com/jslib/17.1.6/js/dx.all.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/17.1.6/js/underscore-1.5.1.min.js"></script>
+    
+    @Styles.Render("~/Content/styles.css")
+    @Styles.Render("~/Content/navBarStyles.css")
+    @Styles.Render("~/Content/generic.light.custom.css")
+    @Styles.Render("~/Content/bundle")
+    @Styles.Render("~/Content/DevExtremeBundle")
+    @Scripts.Render("~/Scripts/bundle")
+    
+    <script src="~/Scripts/data.js"></script>
+    <script src="~/Scripts/index.js"></script>
+</head>
+<div class="container">
+    @RenderBody()
+</div>
+</html>

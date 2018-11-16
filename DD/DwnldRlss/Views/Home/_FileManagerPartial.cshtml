@@ -1,0 +1,14 @@
+@model string
+
+@Html.DevExpress().FileManager(settings => {
+    settings.Name = "FileManager";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "FileManagerPartial" };
+
+        settings.DownloadRouteValues = new { Controller = "Home", Action = "FileManagerPartialDownload" };
+    settings.SettingsEditing.AllowDownload = true;
+
+    settings.Settings.ThumbnailFolder = Url.Content("~/Content/FileManager/Thumbnails");
+
+
+    settings.SettingsFileList.View = DevExpress.Web.FileListView.Details;
+}).BindToFolder(Model).GetHtml()

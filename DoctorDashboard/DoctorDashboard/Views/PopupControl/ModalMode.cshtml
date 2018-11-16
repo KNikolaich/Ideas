@@ -1,0 +1,105 @@
+﻿@using AnimationType = DevExpress.Web.AnimationType
+@model string
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Вход</title>
+</head>
+<body>
+@Html.ActionLink("Click this link to invoke the MVC Popup Extension in modal mode", "", null, new { href = "javascript:pcModalMode.Show();" })
+@Html.DevExpress().PopupControl(
+    settings =>
+    {
+        settings.Name = "pcModalMode";
+        settings.Width = 100;
+        settings.AllowDragging = true;
+        settings.CloseAction = CloseAction.CloseButton;
+        settings.CloseOnEscape = true;
+        settings.PopupAnimationType = AnimationType.None;
+        settings.HeaderText = "Login";
+        settings.Modal = true;
+        settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+        settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+        settings.SetContent(() =>
+        {
+            using (Html.BeginForm("ModalMode", "PopupControl", FormMethod.Post, new { id = "popupForm", @class = "edit_form", @style = "width: 300px" }))
+            {
+                Html.Hidden("ProductID");
+                ViewContext.Writer.Write("<div class=\"line\">");
+                Html.DevExpress().Label(
+                    labelSettings =>
+                    {
+                        labelSettings.ControlStyle.CssClass = "label";
+                        labelSettings.Text = "Username:";
+                        labelSettings.AssociatedControlName = "Username";
+                    }
+                )
+                .Render();
+                Html.DevExpress().TextBox(
+                    textBoxSettings =>
+                    {
+                        textBoxSettings.Name = "Username";
+                        textBoxSettings.ControlStyle.CssClass = "editor";
+                    }
+                )
+                .Render();
+                ViewContext.Writer.Write("</div><div class=\"line\">");
+                Html.DevExpress().Label(
+                    labelSettings =>
+                    {
+                        labelSettings.ControlStyle.CssClass = "label";
+                        labelSettings.Text = "Password:";
+                        labelSettings.AssociatedControlName = "Password";
+                    }
+                )
+                .Render();
+                Html.DevExpress().TextBox(
+                    textBoxSettings =>
+                    {
+                        textBoxSettings.Name = "Password";
+                        textBoxSettings.ControlStyle.CssClass = "editor";
+                    }
+                )
+                .Render();
+                ViewContext.Writer.Write("</div><div class=\"line\">");
+                Html.DevExpress().Label(
+                    labelSettings =>
+                    {
+                        labelSettings.ControlStyle.CssClass = "label";
+                    }
+                )
+                .Render();
+                Html.DevExpress().Button(
+                    buttonSettings =>
+                    {
+                        buttonSettings.Name = "btnUpdate";
+                        buttonSettings.ControlStyle.CssClass = "button";
+                        buttonSettings.Width = 80;
+                        buttonSettings.Text = "OK";
+                        buttonSettings.UseSubmitBehavior = true;
+                    }
+                )
+                .Render();
+                Html.DevExpress().Button(
+                    buttonSettings =>
+                    {
+                        buttonSettings.Name = "btnCancel";
+                        buttonSettings.ControlStyle.CssClass = "button";
+                        buttonSettings.Width = 80;
+                        buttonSettings.Text = "Cancel";
+                        buttonSettings.ClientSideEvents.Click = "function(s, e){ pcModalMode.Hide(); }";
+                    }
+                )
+                .Render();
+                ViewContext.Writer.Write("</div><b class=\"Clear\"></b>");
+            }
+        });
+
+        settings.ClientSideEvents.CloseUp = "function(s, e){ ASPxClientEdit.ClearEditorsInContainer(null, '', true); }";
+    }).GetHtml()
+</body>
+</html>

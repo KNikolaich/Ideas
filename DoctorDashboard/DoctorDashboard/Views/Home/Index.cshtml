@@ -1,0 +1,38 @@
+﻿
+@using System.Web.UI.WebControls
+@using DoctorDashboard.Controllers
+@using DoctorDashboard.Models
+@model DoctorDashboard.Models.AllInfo
+
+@{
+    ViewBag.Title = "Общие показатели";
+}
+
+@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "FormLayout";
+    settings.Width = Unit.Percentage(100);
+    //settings.ColCount = 2;
+    ViewHelper.GetStationarGroup(settings, Html, ViewContext);
+
+    var groupItemOther = settings.Items.AddGroupItem(groupSettingsOther =>
+    {
+        groupSettingsOther.Caption = "3 подгруппы";
+        groupSettingsOther.ShowCaption = DefaultBoolean.False;
+        groupSettingsOther.GroupBoxDecoration = GroupBoxDecoration.None;
+        groupSettingsOther.Width = Unit.Percentage(100);
+        //groupSettingsOther.ColSpan = 3;
+        groupSettingsOther.ColCount = 4;
+        groupSettingsOther.CssClass = "formLayout";
+    });
+    ViewHelper.GetReanimationGroup(groupItemOther);
+
+    ViewHelper.GetSurgeryesGroup(groupItemOther);
+
+    ViewHelper.GetAmbulanceGroup(groupItemOther);
+
+    ViewHelper.GetMonyesGroup(settings, Html, ViewContext);
+
+}).GetHtml()
+
+

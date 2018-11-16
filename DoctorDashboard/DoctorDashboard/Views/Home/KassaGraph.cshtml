@@ -1,0 +1,69 @@
+﻿@using DoctorDashboard.Models
+
+@{
+    ViewBag.Title = "Касса";
+}
+
+<div id="chart-demo">
+    @(Html.DevExtreme().Chart()
+        .ID("spline-chart")
+        .Palette(VizPalette.HarmonyLight)
+        .CommonSeriesSettings(s => s
+            .ArgumentField("Date")
+            .Type(SeriesType.Spline)
+        )
+        .Margin(m => m.Bottom(20))
+        .ArgumentAxis(a => a
+            .ValueMarginsEnabled(false)
+            .DiscreteAxisDivisionMode(DiscreteAxisDivisionMode.CrossLabels)
+            .Grid(g => g.Visible(true))
+        )
+        .Series(s =>
+        {
+            //s.Add().ValueField("Oms").Name("ОМС");
+            //s.Add().ValueField("Dms").Name("ДМС");
+            s.Add().ValueField("Cach").Name("наличные");
+        })
+        .Legend(l => l
+            .VerticalAlignment(VerticalEdge.Bottom)
+            .HorizontalAlignment(HorizontalAlignment.Center)
+            .ItemTextPosition(Position.Bottom)
+        )
+        .Title(t => t
+            .Text("Доход по кассе")
+            .Subtitle(s => s.Text("(в тысячах рублей)"))
+        )
+        .Export(e => e.Enabled(true))
+        .Tooltip(t => t
+            .Enabled(true)
+            .CustomizeTooltip(@<text>
+                function (arg) {
+                return {
+                text: arg.valueText
+                };
+                }
+            </text>)
+        )
+        .DataSource(MockData.KassaMonth())
+    )
+
+    @*<div class="options">
+        <div class="caption">Options</div>
+        <div class="option">
+            <span>Series Type</span>
+            @(Html.DevExtreme().SelectBox()
+                .DataSource(new[] {
+                    SeriesType.Line,
+                    SeriesType.StackedLine,
+                    SeriesType.FullStackedLine
+                })
+                .Value(SeriesType.Line)
+                .OnValueChanged(@<text>
+                    function (e) {
+                    $("#line-chart").dxChart("option", "commonSeriesSettings.type", e.value);
+                    }
+                </text>)
+            )
+        </div>
+    </div>*@
+</div>    

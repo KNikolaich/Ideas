@@ -1,0 +1,17 @@
+﻿@model DoctorDashBoardDExtreme.Models.AllInfo
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Home</h2>
+
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .ColCount(2)
+    .FormData(Model)
+    .LabelLocation(FormLabelLocation.Top)
+    .MinColWidth(300)
+    .ReadOnly(false)
+    .ShowColonAfterLabel(true)
+)

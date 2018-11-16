@@ -1,0 +1,109 @@
+﻿@using DevExtreme.AspNet.Mvc
+@model DoctorDashBoardDExtreme.Models.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Вход</title>
+</head>
+<body>
+    <div class="long-title"><h3>Personal details</h3></div>
+    <div id="form-container">
+        @(Html.DevExtreme().Form()
+        .ID("form")
+        .ColCount(2)
+        .Items(items =>
+        {
+            items.AddGroup()
+                .Caption("System Information")
+                .Items(groupItems =>
+                {
+                    groupItems.AddSimple()
+                        .DataField("ID")
+                        .IsRequired(false);
+                    groupItems.AddSimple()
+                        .DataField("FirstName");
+                    groupItems.AddSimple()
+                        .DataField("LastName");
+                    groupItems.AddSimple()
+                        .DataField("HireDate")
+                        .IsRequired(false);
+                    groupItems.AddSimple()
+                        .DataField("Position");
+                    groupItems.AddSimple()
+                        .DataField("OfficeNo");
+                });
+            items.AddGroup()
+                .Caption("Personal Data")
+                .Items(groupItems =>
+                {
+                    groupItems.AddSimple()
+                        .DataField("BirthDate")
+                        .IsRequired(false);
+                    groupItems.AddGroup()
+                        .Caption("Home Address")
+
+                        .Items(innerGroupItems =>
+                        {
+                            innerGroupItems.AddSimple()
+                                .DataField("Address");
+                            innerGroupItems.AddSimple()
+                                .DataField("City");
+                            innerGroupItems.AddSimple()
+                                .DataField("State");
+                            innerGroupItems.AddSimple()
+                                .DataField("Zipcode");
+                        });
+                });
+            items.AddGroup()
+                .Caption("Contact Information")
+                .Items(groupItems =>
+                {
+                    groupItems.AddTabbed()
+
+                .TabPanelOptions(o =>
+                {
+                    o.DeferRendering(false);
+                })
+                .Tabs(tabItems =>
+                {
+                    tabItems.Add()
+                        .Title("Phone")
+                        .Items(tabItem =>
+                        {
+                            tabItem.AddSimple()
+                                .DataField("Phone");
+                        });
+                    tabItems.Add()
+                        .Title("Skype")
+                        .Items(tabItem =>
+                        {
+                            tabItem.AddSimple()
+                                .DataField("Skype");
+                        });
+                    tabItems.Add()
+                        .Title("Email")
+                        .Items(tabItem =>
+                        {
+                            tabItem.AddSimple()
+                                .DataField("Email");
+                        });
+                });
+                });
+        })
+        .FormData(Model.FormData)
+        )
+    </div>
+    <script>
+    function notify(data) {
+        var buttonText = data.component.option("text");
+        DevExpress.ui.notify("Логин или пароль указан не верно.");
+    }
+    </script>
+</body>
+</html>
