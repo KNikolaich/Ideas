@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[Nsi_Exchange] ([ID], [Name], [ApiAddress], [ApiKey], [SecretKey]) VALUES (0, N'BinanceCoin', N'wss://stream.binance.com:9443/ws/', N'Vftno1xmdLStiP2bMAVa467a8IeXKJP2klMlSeUYImmWCCL1dksnGHbC63YdFP3y', N'SrjemRHpZ8o9XwRBLGclGtKD3tG8iamev5WEh8ulqtNx8TLOaqAG6TjFE3OC7eNK')

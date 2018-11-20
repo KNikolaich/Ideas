@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataBaseObjectModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="b3637b80-c365-49ec-ba36-6b5f2399544d" dbName="DevExXafTestDb" connectionInfo="77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxEZXZFeHByZXNzWHBvR2VuZXJhdG9yU2V0dGluZ3MgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgcHJvdmlkZXJLZXk9Ik1TU3FsU2VydmVyIj4NCiAgPHBhcmFtZXRlcj4NCiAgICA8Q29ubmVjdGlvblBhZ2VTZXR0aW5nc0l0ZW0gbmFtZT0ic2VydmVyIiB2YWx1ZT0ic2VydmVyXHNxbDIwMTIiIC8+DQogICAgPENvbm5lY3Rpb25QYWdlU2V0dGluZ3NJdGVtIG5hbWU9ImRhdGFiYXNlIiB2YWx1ZT0iRGV2RXhYYWZUZXN0RGIiIC8+DQogICAgPENvbm5lY3Rpb25QYWdlU2V0dGluZ3NJdGVtIG5hbWU9InVzZUludGVncmF0ZWRTZWN1cml0eSIgdmFsdWU9IkZhbHNlIiAvPg0KICAgIDxDb25uZWN0aW9uUGFnZVNldHRpbmdzSXRlbSBuYW1lPSJ1c2VyaWQiIHZhbHVlPSJzYSIgLz4NCiAgICA8Q29ubmVjdGlvblBhZ2VTZXR0aW5nc0l0ZW0gbmFtZT0icGFzc3dvcmQiIHZhbHVlPSJzYSIgLz4NCiAgICA8Q29ubmVjdGlvblBhZ2VTZXR0aW5nc0l0ZW0gbmFtZT0icmVhZCBvbmx5IiB2YWx1ZT0iMSIgLz4NCiAgICA8Q29ubmVjdGlvblBhZ2VTZXR0aW5nc0l0ZW0gbmFtZT0iZ2VuZXJhdGVDb25uZWN0aW9uSGVscGVyIiB2YWx1ZT0idHJ1ZSIgLz4NCiAgPC9wYXJhbWV0ZXI+DQo8L0RldkV4cHJlc3NYcG9HZW5lcmF0b3JTZXR0aW5ncz4=" namespace="Trader" connectionString="XpoProvider=MSSqlServer;data source=server\sql2012;user id=sa;password=sa;initial catalog=DevExXafTestDb;Persist Security Info=true" dataBaseShemaInfo="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" generateConnectionHelper="true" generateStoredProcedures="false" fieldNameCase="Unchanged" generateDefaultConstructors="false" xmlns="http://schemas.microsoft.com/dsltools/ORMDataModel">
+  <classes>
+    <dataBaseObjectModelHasClasses Id="b39a39ac-e549-46c4-befb-f243d18d9231">
+      <xpObject Id="efa2fd52-da4f-4e6b-b369-c2de735bd0dd" name="Candle" baseClass="XPBaseObject" userFileName="Candle" designerFileName="Candle.Designer" className="Candle" virtualBaseClass="XPBaseObject" virtualName="Candle" xMLDocComments="Свеча горела на столе, свеча горела">
+        <fields>
+          <generalXpObjectHasFields Id="b92157ba-04f5-4436-89c6-70fa291dfee6">
+            <field Id="9705cee0-b785-438e-b511-34d8eb146668" name="ID" columnType="Int64" key="true" isIdentity="true" virtualColumnType="Int64" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="b8c26ffe-27be-48db-89f7-c81e1228d7ee">
+            <field Id="32f5a736-0016-454b-aa97-ad0fd3f60f1a" name="PreviousCandle" columnType="Guid" displayName="Предыдущая свеча" virtualColumnType="Candle" logicalType="Candle" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="874a01f9-fe48-4785-a5ce-ed1190a35283">
+            <field Id="b367eced-ed13-43db-a587-7adefe2ada28" name="OpenPrice" columnType="Decimal" displayName="Цена открытия" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="003ed37e-9450-457c-8942-b3b66378b7ad">
+            <field Id="6618458a-29b2-4f4f-9c59-db38c1eb39d0" name="ClosePrice" columnType="Decimal" displayName="Цена открытия" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="ac17c5fd-ff56-4bf8-a028-29341ccfdd50">
+            <field Id="61cdb95f-47ce-4060-98e8-f8c26f5580ef" name="MinPrice" columnType="Decimal" displayName="Минимальная цена" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="fca51231-7b9c-4beb-85af-cc7e67411ead">
+            <field Id="f9fc1ef0-b8b3-4257-9934-adc847620bf1" name="MaxPrice" columnType="Decimal" displayName="Максимальная цена" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="a438091b-3fce-4a33-b9f3-ceac5e65ed03">
+            <field Id="e16ec3e7-8441-4d58-bbff-7d560e2fac02" name="StartDate" columnType="DateTime" displayName="Дата начала" virtualColumnType="DateTime" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="e5a90d14-120f-442f-bacc-5a205911682b">
+            <field Id="8e8d2611-c258-4c22-bea1-a0c0f29dea2c" name="EndDate" columnType="DateTime" displayName="Дата окончания" virtualColumnType="DateTime" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="1f3ce7cf-a6b6-4ec7-bb4b-4af224d21020">
+            <field Id="f5fd25ba-a10c-438f-bedd-ae14135f9e2a" name="Currency" displayName="Валютная пара" virtualColumnType="Nsi_PairCurrency" logicalType="Nsi_PairCurrency" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+        <indexes>
+          <xpObjectHasIndexes Id="ef012d20-6f3c-487c-a558-26cc5d963017">
+            <index Id="7e309f0b-7e57-4ab7-ab80-b639ccb37517" name="IDX_PreviewCandle">
+              <fieldsInIndex>
+                <indexReferencesFields Id="406519a3-9105-439a-8c85-198cf0a88a16">
+                  <fieldMoniker Id="32f5a736-0016-454b-aa97-ad0fd3f60f1a" />
+                </indexReferencesFields>
+              </fieldsInIndex>
+            </index>
+          </xpObjectHasIndexes>
+        </indexes>
+        <saTargets>
+          <simpleAssociation Id="f87153fd-077b-4d6b-ad09-34ec158705e1" sourceCollectionName="Predictions" name="PredictionReferencesCandle" targetFieldName="Candle">
+            <xpObjectMoniker Id="d0e8f54b-bcbe-41f6-876f-5cedb8d819ff" />
+          </simpleAssociation>
+        </saTargets>
+        <aggrTarget>
+          <aggregation Id="f1545dc4-b35e-4376-b9aa-43b411fbaa33" sourceCollectionName="CandleCollection" name="CandleReferencesCandle" targetFieldName="PreviousCandle">
+            <xpObjectMoniker Id="efa2fd52-da4f-4e6b-b369-c2de735bd0dd" />
+          </aggregation>
+        </aggrTarget>
+        <collectionFields>
+          <xpObjectHasCollectionFields Id="8f8cd1af-58f0-458b-9b05-91e28ab776f9">
+            <collectionField Id="190804d3-36eb-45f6-8868-791ba842fa93" name="CandleCollection" />
+          </xpObjectHasCollectionFields>
+          <xpObjectHasCollectionFields Id="63df5953-f171-4ad7-8d8d-b3a5360124cb">
+            <collectionField Id="8ad1b54e-602c-4f4e-a4d5-5f6184890f57" name="Predictions" />
+          </xpObjectHasCollectionFields>
+        </collectionFields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="f5ff2ff7-c0eb-4770-8965-6f53ee51cad7">
+      <xpObject Id="2e852e97-e9ab-438e-80f6-7ab56c532a36" name="Nsi_PairCurrency" baseClass="XPLiteObject" userFileName="PairCurrency" designerFileName="PairCurrency.Designer" className="Nsi_PairCurrency" virtualBaseClass="XPLiteObject" virtualName="Nsi_PairCurrency">
+        <fields>
+          <generalXpObjectHasFields Id="07e17c44-4d0b-40dc-a0bf-b11c2e7dbaec">
+            <field Id="b5fcf853-e025-416b-83e3-bccecd3d2006" name="ID" columnType="Int64" key="true" isIdentity="true" virtualColumnType="Int64" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="dc67eb79-ee25-4a0b-9b82-15d52b632bba">
+            <field Id="5e738856-64de-45e7-a601-51c3f89473b3" name="Name" displayName="Название пары" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="506d504c-6401-4912-a43f-45487b45d86f">
+            <field Id="ab55d9f6-d552-456b-a60f-75427f4a599e" name="Exchange" displayName="Биржа, которой принадлежит пара" virtualColumnType="Nsi_Exchange" logicalType="Nsi_Exchange" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="39b54221-ced8-4d4a-bea0-0a90ffee4338">
+            <field Id="7cd4d236-2b2a-4811-ab0f-6f66665359c5" name="Active" columnType="Boolean" displayName="Активные" virtualColumnType="Boolean" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+        <saTargets>
+          <simpleAssociation Id="26f4f6f3-d1e9-4825-bf8b-e765a1b7bb1d" sourceCollectionName="Candles" name="CandleXpoReferencesPairCurrency" targetFieldName="Currency" noForeignKey="true">
+            <xpObjectMoniker Id="efa2fd52-da4f-4e6b-b369-c2de735bd0dd" />
+          </simpleAssociation>
+        </saTargets>
+        <collectionFields>
+          <xpObjectHasCollectionFields Id="15c83d45-2db1-4a6a-a5a8-826d36a45a6d">
+            <collectionField Id="7c81ad60-a2cb-43c1-87b6-c7c7e3330169" name="Candles" />
+          </xpObjectHasCollectionFields>
+        </collectionFields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="6deecbdd-7535-40cd-9ffe-768da606778e">
+      <xpObject Id="ecc7bcd1-6da9-4eba-aec8-1d8d5744607a" name="Nsi_Advice" baseClass="XPBaseObject" userFileName="Nsi_Advice" designerFileName="Nsi_Advice.Designer" className="Nsi_Advice" virtualBaseClass="XPBaseObject" virtualName="Nsi_Advice" xMLDocComments="Справочник сигналов (советов). Имеет наследников для конкретики сигналов.">
+        <fields>
+          <generalXpObjectHasFields Id="fa93e87c-633c-46c2-9cc1-263af144dfc4">
+            <field Id="d5c25aa1-5e0f-4222-b962-2f18c235f163" name="ID" columnType="Int64" key="true" isIdentity="true" virtualColumnType="Int64" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="b2aa9d8c-4a65-44b2-9f9e-b032cc4570d0">
+            <field Id="4e62b614-7deb-4421-8082-79e42aef7243" name="ModelName" displayName="Наименование модели" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="255" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="1eb6ce03-f1e9-40b7-8426-44da3b46323e">
+            <field Id="96f6bfda-a925-40bd-9854-25a898b1e42f" name="Premise" displayName="Предпосылка" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="500" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="ef121beb-d974-4394-a5f0-a95fffe58965">
+            <field Id="eb836799-6c65-480b-86b2-a7b3aab73460" name="Explanation" displayName="Разъяснения" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="Unlimited" isNullable="true" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="6801f4bd-85fd-4ade-88f6-0f35f6592418">
+            <field Id="a7a2a882-2018-4832-8379-9651dc10ad17" name="Probability" columnType="Int32" displayName="Вероятность" virtualColumnType="Int32" delayedUpdateModifiedOnly="false" xMLDocComments="содержит значение от -90 до +90, по которому можно предполагать , и куда пойдет тренд и с какой вероятностью это произойдет." />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="bffa0496-7b81-4cd2-a818-e3dc5ea62267">
+            <field Id="6240faab-7fac-4cf4-9ce4-36dc5a2748b4" name="Image" columnType="Byte" displayName="Картинка с примером" virtualColumnType="Byte" delayedUpdateModifiedOnly="false" isNullable="true" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="24c1a97f-af9d-4cad-8dc2-3ce2c02c2e72">
+            <field Id="b32278bb-9ec8-41ea-85c9-2c43a82dec99" name="Active" columnType="Boolean" displayName="Активен" virtualColumnType="Boolean" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="d694cc48-cf05-4724-940b-356331b65d51">
+      <xpObject Id="d0e8f54b-bcbe-41f6-876f-5cedb8d819ff" name="Prediction" baseClass="XPBaseObject" userFileName="Prediction" designerFileName="Prediction.Designer" className="Prediction" virtualBaseClass="XPBaseObject" virtualName="Prediction" xMLDocComments="Предсказание. Собирается визитерами по советам и линкуется к свечам">
+        <fields>
+          <generalXpObjectHasFields Id="7a6842df-86ed-4b8f-b4e8-180ef2a7be3f">
+            <field Id="e876a768-ea3c-4dac-9d5e-4ddf542e36ed" name="ID" columnType="Int64" key="true" isIdentity="true" virtualColumnType="Int64" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="dac1e793-9ca9-4636-a4b7-a2d947c4a2f3">
+            <field Id="aeccd50f-d0d1-477b-b644-1f04cdaf3a6b" name="Conclusion" displayName="Заключение" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="500" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="7a2a5d9a-e232-411c-9525-65047d184e08">
+            <field Id="4d45755a-1e5a-4b82-ba45-2ffd84fbca28" name="Interpretation" displayName="Объяснения" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="Unlimited" xMLDocComments="Подробнейшим образом можно собрать объяснения со всех советов и выдавать их сюда, в предстказание" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="fdf778f6-475a-4a59-8f66-6e8e11be3104">
+            <field Id="8d480177-deb7-466f-83e6-651ee84203e3" name="AvgProbability" columnType="Int32" displayName="Средняя вероятность" virtualColumnType="Int32" delayedUpdateModifiedOnly="false" xMLDocComments="По этой вероятности можно рисовать стрелку от +90 до -90 градусов, с предсказанием куда пойдет тренд . Крутость направления дает нам более точную картину, по тому, кто больше правит рынком или быки с медведями вошли в равновесие. " />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="b842889b-904a-4d4d-9c81-741a2d43b889">
+            <field Id="a1940dc9-1668-493f-be89-750e0872d3dd" name="Candle" displayName="Свеча" virtualColumnType="Candle" logicalType="Candle" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="26525ff8-6601-4742-8c82-339c2a5ae315">
+            <field Id="bdfb89ba-798d-455b-b67d-891e8a8e8836" name="Volume" columnType="Decimal" displayName="Значение предсказания" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" isNullable="true" />
+          </generalXpObjectHasFields>
+        </fields>
+        <saTargets>
+          <simpleAssociation Id="dece6c34-59b7-4413-8055-189f5f742057" sourceCollectionName="Balances" name="BalanceReferencesPrediction" targetFieldName="Prediction">
+            <xpObjectMoniker Id="be1fe6c4-97ed-412c-a4e0-3170f3e2bc52" />
+          </simpleAssociation>
+        </saTargets>
+        <collectionFields>
+          <xpObjectHasCollectionFields Id="af174f3f-b5e4-496b-bcdc-c76187527309">
+            <collectionField Id="6478d6e9-6c0d-4665-b205-23b53ca62e5c" name="Balances" />
+          </xpObjectHasCollectionFields>
+        </collectionFields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="d334393c-b8ae-4821-a14c-65c5a655a2ba">
+      <xpObject Id="93e72570-32b9-4b23-ab31-c8e0e770a71f" name="Nsi_Exchange" baseClass="XPLiteObject" userFileName="Nsi_Exchange" designerFileName="Nsi_Exchange.Designer" className="Nsi_Exchange" virtualBaseClass="XPLiteObject" virtualName="Nsi_Exchange" xMLDocComments="Биржа, справочник тех бирж, с которыми умеет работать ПО">
+        <fields>
+          <generalXpObjectHasFields Id="4d4fa5d0-7297-405c-a23f-1111a960d260">
+            <field Id="bb2c8040-cf4b-477e-8162-3967cfa6fa35" name="ID" columnType="Int64" key="true" isIdentity="true" virtualColumnType="Int64" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="725e3dbd-61de-490c-b45d-a318a5b84ab3">
+            <field Id="db3184c0-bde5-48ce-90dd-11753a31da23" name="Name" displayName="Наименование" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="99affd8d-b23b-4f89-bbfa-23735f9269ef">
+            <field Id="c5791297-233b-40bd-a81e-84e6dcf5c955" name="ApiAddress" displayName="Адрес обращения Api" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="255" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="19804c81-5dbc-4e2a-b34a-231bdf77ca0b">
+            <field Id="bf3340bc-2313-444d-a07f-8d0c114a43c7" name="ApiKey" displayName="Приложенья ключ" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="569ff854-374e-429c-994f-86d7f6d0c49e">
+            <field Id="b230d524-544d-42e8-9b79-8034c26b52ec" name="SecretKey" displayName="Секретный ключ" virtualColumnType="String" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+        <saTargets>
+          <simpleAssociation Id="f09228b9-629a-48ff-b4fa-1fc9b7d31eed" sourceCollectionName="Nsi_PairCurrencys" name="Nsi_PairCurrencyReferencesNsi_Exchange" targetFieldName="Exchange">
+            <xpObjectMoniker Id="2e852e97-e9ab-438e-80f6-7ab56c532a36" />
+          </simpleAssociation>
+        </saTargets>
+        <collectionFields>
+          <xpObjectHasCollectionFields Id="f58ebbe1-95d6-4015-a263-4f5fc4f4df4c">
+            <collectionField Id="dec966ff-01c6-43d1-841f-bd99c0bab759" name="Nsi_PairCurrencys" />
+          </xpObjectHasCollectionFields>
+        </collectionFields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="081c7d8c-5c36-4f65-b875-495a22bb7f18">
+      <xpObject Id="ffcda0f0-296b-4be5-9aba-27d9d907295b" name="Nsi_MovingAverage" baseClass="Nsi_Advice" userFileName="Nsi_MovingAvg" designerFileName="Nsi_MovingAvg.Designer" className="Nsi_MovingAverage" virtualBaseClass="Nsi_Advice" virtualName="Nsi_MovingAverage" xMLDocComments="Это наследник совета.&#xD;&#xA;На этот объект ссылается предсказание. которое ссылается на свечу.&#xD;&#xA;Т.е. у свечи всегда есть ссылка More-to-More к справочнику и NSI_Advice&#xD;&#xA;&#xD;&#xA;Они вычисляются в первую очередь после создания цепи свечей.&#xD;&#xA;Вычисляются валидатором по необходимости.&#xD;&#xA;">
+        <fields>
+          <generalXpObjectHasFields Id="cb7dfa4d-dbcf-4111-8aaf-929defcab3dc">
+            <field Id="be3733bc-5839-42e8-addd-f7ea0b74a961" name="Depth" columnType="Int16" displayName="Глубина скольжения" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="7a4cf22b-f566-4e18-af08-cc84e6b7f0d4">
+            <field Id="22378135-aa6f-4f44-b7ea-9ee15e29dcbe" name="MovAvgType" columnType="Int16" displayName="Разновидность скользящей" virtualColumnType="Trader.Model.MovingAverageTypeEnum" logicalType="Trader.Model.MovingAverageTypeEnum" dbType="Trader.Model.MovingAverageTypeEnum" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="e4ad4a4d-48cf-4d57-b2eb-d59b84c09342">
+            <field Id="c17c4853-a80d-44af-b9ae-99a547b2ef1d" name="PriceType" displayName="Тип расчетной цены" virtualColumnType="Trader.Model.PriceTypeEnum" logicalType="Trader.Model.PriceTypeEnum" dbType="Trader.Model.PriceTypeEnum" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+        <superClass>
+          <inheritance Id="3463ef51-6c6f-4bc4-bdfc-b70c57e9be69">
+            <xpObjectMoniker Id="ecc7bcd1-6da9-4eba-aec8-1d8d5744607a" />
+          </inheritance>
+        </superClass>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="7ad9fd6d-cabf-423b-a341-7f52c47f9a7c">
+      <xpObject Id="be1fe6c4-97ed-412c-a4e0-3170f3e2bc52" name="Balance" baseClass="XPBaseObject" userFileName="Balance" designerFileName="Balance.Designer" className="Balance" virtualBaseClass="XPBaseObject" virtualName="Balance">
+        <fields>
+          <generalXpObjectHasFields Id="c29c8f11-7d52-4bca-af5a-9e84950a910d">
+            <field Id="cd94592a-d52c-4c9d-8f29-9359da4da5ae" name="ID" columnType="Int64" key="true" isIdentity="true" virtualColumnType="Int64" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="96a085ed-137d-443d-a44f-01499d40bc7a">
+            <field Id="e06a2fef-f4c0-4a66-8242-8b641640dadc" name="Volume" columnType="Decimal" displayName="Объем" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" xMLDocComments="количество бабок данной величины на балансе" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="3944bd5e-dd16-4280-8336-20dcca168696">
+            <field Id="9574698e-39f6-40d6-a9b3-b8631ff5e661" name="CurrencyName" displayName="имя валюты (кличка)" virtualColumnType="String" delayedUpdateModifiedOnly="false" size="10" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="7308e4e7-856d-4b3c-95f8-b528de162cb5">
+            <field Id="ff144fcd-e097-458e-83fc-3a15ac88b14b" name="Date" columnType="DateTime" displayName="Момент баланса" virtualColumnType="DateTime" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="830a96f3-23cc-42ef-bc5b-2aa6e8f585ac">
+            <field Id="3e1b5400-bd2f-4cf2-b48e-d036c21cfed1" name="IsFake" columnType="Boolean" displayName="Фейковый баланс" virtualColumnType="Boolean" delayedUpdateModifiedOnly="false" xMLDocComments="Признак того, что это баланс мнимого счета." />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="be4c0de4-0027-4cd2-bdd1-f81bae6bda12">
+            <field Id="88da0325-8edf-4696-93e7-696fbe495b6f" name="Prediction" displayName="По предсказанию" virtualColumnType="Prediction" logicalType="Prediction" delayedUpdateModifiedOnly="false" xMLDocComments="Результат обработки данного предсказания" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="efe1b45a-e440-4ad7-a4c6-f48e3cd29b1b">
+            <field Id="399681e7-0080-4ddd-aedc-4e3bf4069cca" name="Price" columnType="Decimal" displayName="Актуальная цена" virtualColumnType="Decimal" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="0d0b47d6-7010-40c6-992c-fd62e0cb52fd">
+      <xpObject Id="d2da02d1-9919-4a99-bf67-149e280cd6a6" name="Nsi_MacD" baseClass="Nsi_Advice" userFileName="Nsi_MacD" designerFileName="Nsi_MacD.Designer" className="Nsi_MacD" virtualBaseClass="Nsi_Advice" virtualName="Nsi_MacD">
+        <fields>
+          <generalXpObjectHasFields Id="b88b10c6-b5b8-42e4-a945-c0a040ffdc09">
+            <field Id="92694ce3-f1d3-47e9-8980-edad2e96eb36" name="ExpPeriodLong" columnType="Int16" displayName="Период экспоненциальной длинной" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" xMLDocComments="Период (глубина) длинной экспоненциальной скользящей средней" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="c3bccdf8-a5ed-4da5-a6e7-dcdd13fa04d5">
+            <field Id="b8f5a374-7c03-4a37-bc1d-0c063838828e" name="ExpPeriodShort" columnType="Int16" displayName="Период экспоненциальной короткой" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" xMLDocComments="Период (глубина) короткой экспоненциальной скользящей средней" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="35e764b2-eb29-4d26-b766-a3af954dfc45">
+            <field Id="e70d8bed-dfa5-41d1-b8e2-3629aec63148" name="SignalPeriod" columnType="Int16" displayName="Период сигнальной SMA" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" xMLDocComments="Период (глубина) сигнальной SMA" />
+          </generalXpObjectHasFields>
+        </fields>
+        <superClass>
+          <inheritance Id="e82974ca-3135-4f6e-9baf-5c68f07bbc3f">
+            <xpObjectMoniker Id="ecc7bcd1-6da9-4eba-aec8-1d8d5744607a" />
+          </inheritance>
+        </superClass>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="fd8a242b-90f6-4ff6-b6ae-50bc5f379482">
+      <xpObject Id="454eb347-3406-4da6-830b-eb1c78d59a0c" name="Nsi_Rsi" baseClass="Nsi_Advice" userFileName="Nsi_Rsi" designerFileName="Nsi_Rsi.Designer" className="Nsi_Rsi" virtualBaseClass="Nsi_Advice" virtualName="Nsi_Rsi">
+        <fields>
+          <generalXpObjectHasFields Id="3f08c563-1987-4a4f-b745-2963cae6497d">
+            <field Id="9805f555-734d-420b-b6f5-c603eec1183e" name="Depth" columnType="Int16" displayName="Глубина расчета" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="4218b6c5-7d1f-488e-afd1-ed61daeb62fb">
+            <field Id="028fd0f7-c7b9-4346-90e8-ad39c9b3cfd9" name="TopLevel" columnType="Int16" displayName="Уровень перекупленности" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="b73447bd-f647-4aea-a732-b32f0bff901e">
+            <field Id="ae366f6e-ce75-4cfa-bb4b-c82a3bed257e" name="ButtomLevel" columnType="Int16" displayName="Уровень перепроданности" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="c2c9566c-80fc-4bb8-9446-7f1699d81ccd">
+            <field Id="3db68653-cdc8-4262-9de0-360f2527a99b" name="SmaTrendLine" columnType="Int16" displayName="SMA Depth" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+        <superClass>
+          <inheritance Id="26c42990-8a2d-4ce5-9c65-5ffc525980f9">
+            <xpObjectMoniker Id="ecc7bcd1-6da9-4eba-aec8-1d8d5744607a" />
+          </inheritance>
+        </superClass>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+    <dataBaseObjectModelHasClasses Id="f8fdadc3-f9ed-4289-baad-e64da76d7332">
+      <xpObject Id="7afe5c00-60c3-4280-ab6d-685990de80e7" name="Nsi_StochRsi" baseClass="Nsi_Advice" userFileName="Nsi_StochRsi" designerFileName="Nsi_StochRsi.Designer" className="Nsi_StochRsi" virtualBaseClass="Nsi_Advice" virtualName="Nsi_StochRsi">
+        <fields>
+          <generalXpObjectHasFields Id="7abf2a80-fc30-4803-bfc8-3f2ee34698d0">
+            <field Id="c810732b-64c2-4663-afb3-99728b580d92" name="RsiDepth" columnType="Int16" displayName="Глубина Rsi" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="e57d184d-eb2f-464b-aeb3-58241c03e51a">
+            <field Id="c32b80c2-5d67-4049-9467-a5786c3086c3" name="StochDepth" columnType="Int16" displayName="Глубина расчета Стохастика" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="92ae2a5c-fb17-4e57-ab58-890b89e10a54">
+            <field Id="299ec6cf-e51f-42ae-833b-b34acc02d4df" name="MaPrima" columnType="Int16" displayName="Глубина первого сглаживания" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+          <generalXpObjectHasFields Id="4d53d17c-989f-4965-bef1-87939bfb56da">
+            <field Id="6f6fe803-8af9-44ac-9db9-d91336463969" name="MaSecond" columnType="Int16" displayName="Второе сглаживание" virtualColumnType="Int16" delayedUpdateModifiedOnly="false" />
+          </generalXpObjectHasFields>
+        </fields>
+        <superClass>
+          <inheritance Id="3f57a0df-aaae-4438-8c56-91cd23865638">
+            <xpObjectMoniker Id="ecc7bcd1-6da9-4eba-aec8-1d8d5744607a" />
+          </inheritance>
+        </superClass>
+      </xpObject>
+    </dataBaseObjectModelHasClasses>
+  </classes>
+  <externalTypes>
+    <dataBaseObjectModelHasExternalTypes Id="64aa977e-dcd9-44f0-90ef-a6870cb0d8e9">
+      <externalType Id="4a1cd025-bd27-430e-b9b9-cb189cf85101" name="MovingAverageTypeEnum" namespace="Trader.Model" />
+    </dataBaseObjectModelHasExternalTypes>
+    <dataBaseObjectModelHasExternalTypes Id="ad82e18b-a229-4eb4-8a76-bad17805b22c">
+      <externalType Id="c829e358-52d9-4424-ab89-5e02d2cf746d" name="PriceTypeEnum" namespace="Trader.Model" />
+    </dataBaseObjectModelHasExternalTypes>
+  </externalTypes>
+  <userComments>
+    <dataBaseObjectModelHasUserComments Id="44d3d1c5-dfb6-45a9-9ff9-ca1dffc7b387">
+      <userComment Id="3e5b2e71-4ce8-4141-ae1b-5409b4145adb" text="Совет" />
+    </dataBaseObjectModelHasUserComments>
+    <dataBaseObjectModelHasUserComments Id="3bb26001-142e-4dd1-80f1-41e647020dbb">
+      <userComment Id="e2762e0b-486c-4b48-8933-589aa2b6a72d" text="Валютная пара" />
+    </dataBaseObjectModelHasUserComments>
+    <dataBaseObjectModelHasUserComments Id="20cbbaca-00ae-40e6-80f1-10fd3ec0474b">
+      <userComment Id="6e71ede7-1c47-44d2-aa27-b1ab075f5d47" text="Свеча" />
+    </dataBaseObjectModelHasUserComments>
+    <dataBaseObjectModelHasUserComments Id="7a481a53-1b90-4e71-b980-c01bd5393825">
+      <userComment Id="073ef864-c455-48ab-b573-0acb1060cc0a" text="Биржа" />
+    </dataBaseObjectModelHasUserComments>
+    <dataBaseObjectModelHasUserComments Id="e77b762f-2934-4345-8c70-669ee63b9f4e">
+      <userComment Id="ce48a5f9-553c-4f3d-bfcd-5adf08abda40" text="Предсказание" />
+    </dataBaseObjectModelHasUserComments>
+    <dataBaseObjectModelHasUserComments Id="42026cc1-7b84-4833-90ee-59f835353de6">
+      <userComment Id="27dfe80b-c02f-4677-950d-aecd20a5ae29" text="Скользящие средние" />
+    </dataBaseObjectModelHasUserComments>
+    <dataBaseObjectModelHasUserComments Id="989b60b2-6368-4d13-b738-e63a257e9907">
+      <userComment Id="c32da27f-5d12-418a-952b-884ae3e5b1f8" text="баланс" />
+    </dataBaseObjectModelHasUserComments>
+  </userComments>
+</dataBaseObjectModel>

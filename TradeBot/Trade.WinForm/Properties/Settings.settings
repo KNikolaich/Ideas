@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WindowsFormApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DepthQueue" Type="System.Int16" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="LogDebugInfo" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PairCurrency" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">btcusdt</Value>
+    </Setting>
+    <Setting Name="StopDate" Type="System.DateTime" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="StopAfterNow" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TimeInterval" Type="Binance.API.Csharp.Client.Models.Enums.TimeInterval" Scope="Application">
+      <Value Profile="(Default)">Minutes_30</Value>
+    </Setting>
+    <Setting Name="StartDate" Type="System.DateTime" Scope="Application">
+      <Value Profile="(Default)">2018-09-17</Value>
+    </Setting>
+    <Setting Name="OnlyViewMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
