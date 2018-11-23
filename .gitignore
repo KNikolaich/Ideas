@@ -1,3 +1,15 @@
 packages
-/TradeBot/Web/WebTrader/bin
-/TradeBot/Web/WebTrader/obj
+
+/*/obj
+/*/bin
+/*/*/obj
+/*/*/bin
+/*/*/*/bin
+/*/*/*/obj
+/*/*/*/*/bin
+/*/*/*/*/obj
+
+/*/.vs
+/*/*/.vs
+/*/*/*/.vs
+/*/*/*/*/.vs
