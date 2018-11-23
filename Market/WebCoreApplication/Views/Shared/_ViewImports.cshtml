@@ -10,14 +10,15 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="css/bundle.min.css" />
     <script src="js/bundle.min.js"></script>
-    
+
 </head>
 <body>
-<hl>Product Information:</hl> 
-<div id="mainDiv"> @RenderBody() </div>
+    <hl>Product Information:</hl>
+    <div id="mainDiv"> @RenderBody() </div>
+    <div>
+        <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
+    </div>
 </body>
 
-<footer>
-    <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
-</footer>
+
 </html> 

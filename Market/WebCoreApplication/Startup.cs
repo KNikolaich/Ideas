@@ -26,6 +26,7 @@ namespace WebCoreApplication
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
                 app.UseStatusCodePages();
                 app.UseStaticFiles();
                 app.UseMvcWithDefaultRoute();
