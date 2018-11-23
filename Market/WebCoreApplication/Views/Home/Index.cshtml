@@ -7,8 +7,8 @@
 
 <h2>@ViewBag.Title</h2>
 
-<h3>Продукты</h3>
-<table>
+<h3 class="text-center">Продукты</h3>
+<table class="table table-bordered table-striped">
     <thead style="color: mediumslateblue;text-transform: uppercase; font-weight: bold; text-decoration:underline"><tr><td>Name</td><td>Price</td></tr>
     </thead>
     <tbody>
@@ -22,3 +22,6 @@
 
     </tbody>
 </table>
+<div class="text-center">
+    @Html.ActionLink("Добавить продукт", "AddProduct", "Home",null,  new { @class = "btn btn-primary" })
+</div>
