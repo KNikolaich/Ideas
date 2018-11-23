@@ -22,9 +22,10 @@ namespace WindowsFormApp
 {
     static class Program
     {
-#pragma warning disable CS0414 // The field 'Program.isConsole' is assigned but its value is never used
-        private static bool isConsole = true;
-#pragma warning restore CS0414 // The field 'Program.isConsole' is assigned but its value is never used
+/*
+        private static readonly bool IsConsole = true;
+*/
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

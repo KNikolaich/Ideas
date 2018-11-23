@@ -14,4 +14,10 @@
     <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="websocket-sharp">
+      <HintPath>..\..\lib\websocket-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
