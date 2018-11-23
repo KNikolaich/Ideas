@@ -1,0 +1,23 @@
+﻿@using WebCoreApplication.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta name="viewport " content=" width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="css/bundle.min.css" />
+    <script src="js/bundle.min.js"></script>
+    
+</head>
+<body>
+<hl>Product Information:</hl> 
+<div id="mainDiv"> @RenderBody() </div>
+</body>
+
+<footer>
+    <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
+</footer>
+</html> 

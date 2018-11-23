@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebCoreApplication.Models.Product>
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+    Layout = "_ViewImports";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Продукты</h3>
+<table>
+    <thead style="color: mediumslateblue;text-transform: uppercase; font-weight: bold; text-decoration:underline"><tr><td>Name</td><td>Price</td></tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Name</td>
+            <td>@($"{p.Price:C2}")</td>
+        </tr>
+    }
+
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8CAD853A-439E-4BF1-A4C8-6715FBB3C293}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreApplication", "WebCoreApplication\WebCoreApplication.csproj", "{3A59E8A4-1687-4AA0-BAE5-E03890A35685}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreApp.Tests", "Tests\WebCoreApp.Tests\WebCoreApp.Tests.csproj", "{F85803A9-557E-4419-852F-2B94869EFF0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85803A9-557E-4419-852F-2B94869EFF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85803A9-557E-4419-852F-2B94869EFF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85803A9-557E-4419-852F-2B94869EFF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85803A9-557E-4419-852F-2B94869EFF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F85803A9-557E-4419-852F-2B94869EFF0B} = {8CAD853A-439E-4BF1-A4C8-6715FBB3C293}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A66D7E68-C4BB-4335-96D1-54654DCF8DF6}
+	EndGlobalSection
+EndGlobal
