@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebCoreApplication.Models
 {
-    interface IRepository
+    public interface IRepository
     {
         IEnumerable<Product> Products { get; }
 

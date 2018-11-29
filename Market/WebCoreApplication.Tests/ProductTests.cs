@@ -9,26 +9,26 @@ namespace WebCoreApplication.Tests
         [Fact]
         public void CanChangeProductName()
         {
-            // организация
+            // организация Arrange
             var p = new Product { Name = "Test", Price = 1200M };
 
-            //Действие
+            //Действие Act
             p.Name = "New Name";
 
-            //Утверждение
+            //Утверждение Assert
             Assert.Equal("New Name", p.Name);
         }
 
         [Fact]
         public void CanChangeProductPrice()
         {
-            // организация
+            // организация Arrange
             var p = new Product { Name = "Test", Price = 1200M };
 
-            //Действие
+            //Действие Act
             p.Price = 200M;
 
-            //Утверждение
+            //Утверждение Assert
             Assert.Equal(200M, p.Price);
         }
     }

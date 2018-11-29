@@ -9,12 +9,17 @@ namespace WebCoreApplication.Controllers
 {
     public class HomeController : Controller
     {
-        SimpleRepository repository = SimpleRepository.SharedRepository;
+        IRepository _repository;
 
-        public IActionResult Index()
+        public IRepository Repository {
+            get => _repository ?? (_repository = new FakeRepository());
+            set => _repository = value;
+        }
+
+        public ActionResult Index()
         {
             ViewBag.Title = "Приветствую тебя, мой мир!";
-            return View(repository.Products.Where(p=>p.Price>10 && p.Price <100));
+            return View(_repository.Products.OrderBy(p=>p.Name));
         }
 
         [HttpGet]
@@ -23,7 +28,7 @@ namespace WebCoreApplication.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product p)
         {
-            repository.AddProduct(p);
+            _repository.AddProduct(p);
             return RedirectToAction("Index");
         }
 
