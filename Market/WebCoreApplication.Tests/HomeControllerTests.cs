@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 using WebCoreApplication.Models;
+using WebCoreApplication.Tests.FakeAndMock;
 using Xunit;
 
 namespace WebCoreApplication.Tests
@@ -77,6 +79,41 @@ namespace WebCoreApplication.Tests
             // assert
             var comparer = Comparer.Get<Product>(((product1, product2) => product1.Name == product2.Name && product1.Price == product2.Price));
             Assert.Equal(list1, listFromModel, comparer);
+        }
+
+        [Theory]
+        [ClassData(typeof(ProductTestData))]
+        public void IndexActionModelIsCompleteForPricesFromClassData(Product[] products)
+        {
+            // arrange
+            var mock = new Mock<IRepository>();
+            mock.SetupGet(m => m.Products).Returns(products);
+            var controller = new Controllers.HomeController {Repository = mock.Object};
+
+            // act
+            var viewResult = controller.Index() as ViewResult;
+            var listFromModel = (viewResult?.ViewData.Model as IEnumerable<Product>)?.OrderBy(p => p.Name);
+            var list1 = products.OrderBy(p => p.Name);
+
+            // assert
+            var comparer = Comparer.Get<Product>(((product1, product2) => product1.Name == product2.Name && product1.Price == product2.Price));
+            Assert.Equal(list1, listFromModel, comparer);
+        }
+
+        [Fact]
+        public void RepositoryPropertyCallOnce()
+        {
+            // arrange
+            var mock = new Mock<IRepository>();
+            mock.SetupGet(m => m.Products).Returns(new[] {new Product {Name = "P1", Price = 100}});
+
+            var controller = new Controllers.HomeController {Repository = mock.Object};
+
+            // act
+            var viewResult = controller.Index();
+
+            // assert // тут мы проверяем, что к свойству Products было произведено только одно обращение
+            mock.VerifyGet(m=>m.Products, Times.Once);
         }
     }
 }
