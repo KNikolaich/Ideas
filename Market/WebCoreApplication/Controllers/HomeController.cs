@@ -22,7 +22,7 @@ namespace WebCoreApplication.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product p)
         {
-            Repository.AddProduct(p);
+            //Repository.AddProduct(p);
             return RedirectToAction("Index");
         }
 

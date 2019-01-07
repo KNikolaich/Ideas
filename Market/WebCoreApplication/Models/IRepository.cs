@@ -9,6 +9,6 @@ namespace WebCoreApplication.Models
     {
         IEnumerable<Product> Products { get; }
 
-        void AddProduct(Product item);
+        //void AddProduct(Product item);
     }
 }
