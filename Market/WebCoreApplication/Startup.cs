@@ -26,13 +26,12 @@ namespace WebCoreApplication
                 app.UseBrowserLink();
                 app.UseStatusCodePages();
                 app.UseStaticFiles();
-                app.UseMvcWithDefaultRoute();
+                //app.UseMvcWithDefaultRoute();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Здравствуй мир!");
-            });
+            app.UseMvc(routes => routes.MapRoute(
+                name:"default",
+                template:"{controller=Product}/{action=List}/{id?}"));
         }
     }
 }

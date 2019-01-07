@@ -159,7 +159,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
-    <Folder Include="Components\" />
     <Folder Include="Data\" />
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\lib\" />

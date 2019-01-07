@@ -1,0 +1,16 @@
+﻿@model System.Collections.Generic.IEnumerable<WebCoreApplication.Models.Product>
+
+@{
+    ViewBag.Title = "Спортивный магазин";
+    Layout = "_ViewStart";
+}
+
+
+@foreach (var p in Model)
+{
+    <div>
+     <h3>@p.Name</h3>
+        @p.Description
+     <h4>@($"{p.Price:C2}")</h4>
+    </div>
+}
