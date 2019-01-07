@@ -16,8 +16,7 @@ namespace WebCoreApplication.Tests
         public void IndexActionModelIsComplete()
         {
             // arrange
-            var controller = new Controllers.HomeController();
-            controller.Repository = new ModelCompleteFakeRepository();
+            var controller = new Controllers.HomeController {Repository = new ModelCompleteFakeRepository()};
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -35,8 +34,7 @@ namespace WebCoreApplication.Tests
 
             var fakeRepository = new ModelCompleteFakeRepository(p => p.Price < 50m);
 
-            var controller = new Controllers.HomeController();
-            controller.Repository = fakeRepository;
+            var controller = new Controllers.HomeController {Repository = fakeRepository};
 
             // act
             var viewResult = controller.Index() as ViewResult;

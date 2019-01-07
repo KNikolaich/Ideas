@@ -19,7 +19,7 @@ namespace WebCoreApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Приветствую тебя, мой мир!";
-            return View(_repository.Products.OrderBy(p=>p.Name));
+            return View(Repository.Products.OrderBy(p=>p.Name));
         }
 
         [HttpGet]
