@@ -46,14 +46,17 @@ namespace WebCoreApplication
             app.UseMvc(routes => routes.MapRoute(
                 name:"default",
                 template:"{controller=Product}/{action=List}/{id?}"));
-            try
-            {
 
-            }
-            catch
+            InitializeDatabase(app);
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var context = app.ApplicationServices.GetRequiredService<AppDbContext>();
-                SeedData.EnsurePopulated(context);
+                var appDbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                appDbContext.Database.Migrate();
+                SeedData.EnsurePopulated(appDbContext);
             }
         }
     }
