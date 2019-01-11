@@ -10,11 +10,17 @@ namespace WebCoreApplication.Controllers
 {
     public class ProductController : ReposBaseController
     {
+        public int PageSize = 4;
+
         public ProductController(IRepository repo)
         {
             Repository = repo;
         }
 
-        public ViewResult List() => View(Repository.Products);
+        public ViewResult List(int page = 1)
+        {
+            var resultP = Repository.Products.OrderBy(p => p.ProductId).Skip((page - 1) * PageSize).Take(PageSize);
+            return View(resultP);
+        }
     }
 }
