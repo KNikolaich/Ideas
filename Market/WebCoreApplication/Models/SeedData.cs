@@ -9,12 +9,11 @@ namespace WebCoreApplication.Models
 {
     public static class SeedData
     {
-        public static void EnsurePopulated(IApplicationBuilder app)
+        public static void EnsurePopulated(AppDbContext appDbContext)
         {
-            var context = app.ApplicationServices.GetRequiredService<AppDbContext>();
-            if (!context.Products.Any())
+            if (!appDbContext.Products.Any())
             {
-                context.Products.AddRange(
+                appDbContext.Products.AddRange(
                     new Product
                     {
                         Name = "Kayak",
@@ -83,7 +82,7 @@ namespace WebCoreApplication.Models
 
                     }
                 );
-                context.SaveChanges();
+                appDbContext.SaveChanges();
             }
         }
     }

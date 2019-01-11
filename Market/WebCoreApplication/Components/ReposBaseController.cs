@@ -16,7 +16,7 @@ namespace WebCoreApplication.Components
 
         public IRepository Repository
         {
-            get => _repository ?? (_repository = new FakeRepository());
+            get => _repository;
             set => _repository = value;
         }
 

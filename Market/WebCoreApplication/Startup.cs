@@ -38,16 +38,23 @@ namespace WebCoreApplication
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-                app.UseStatusCodePages();
-                app.UseStaticFiles();
                 //app.UseMvcWithDefaultRoute();
             }
 
+            app.UseStatusCodePages();
+            app.UseStaticFiles();
             app.UseMvc(routes => routes.MapRoute(
                 name:"default",
                 template:"{controller=Product}/{action=List}/{id?}"));
+            try
+            {
 
-            SeedData.EnsurePopulated(app);
+            }
+            catch
+            {
+                var context = app.ApplicationServices.GetRequiredService<AppDbContext>();
+                SeedData.EnsurePopulated(context);
+            }
         }
     }
 }
