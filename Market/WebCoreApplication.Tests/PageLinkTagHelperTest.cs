@@ -41,8 +41,8 @@ namespace WebCoreApplication.Tests
             TagHelperOutput output = new TagHelperOutput("div", new TagHelperAttributeList(), (cache, encoder) => Task.FromResult(content.Object));
             //Действие"+
             helper.Process(ctx, output);
-            // Утверждение <а href="Test/Pagel">1</а><а href="Test/Page2">2</а><а href="Test/Page&#x417;">3</а><а href="Test/Pagel">1</а><а href="Test/Page2">2</а><а href="Test/Page&#x417;">3</а><а href="Test/Pagel">1</а><а href="Test/Page2">2</а><а href="Test/Page&#x417;">3</а>
-            Assert.Equal(@"<а href=""Test/Pagel"">1</а><а href=""Test/Page2"">2</а><а href=""Test/Page&#x417;"">3</а>",
+            // Утверждение <a href="Test/Pagel">1</a><a href="Test/Page2">2</a><a href="Test/Page&#x417;">3</a><a href="Test/Pagel">1</a><a href="Test/Page2">2</a><a href="Test/Page&#x417;">3</a><a href="Test/Pagel">1</a><a href="Test/Page2">2</a><a href="Test/Page&#x417;">3</a>
+            Assert.Equal(@"<a href=""Test/Pagel"">1</a><a href=""Test/Page2"">2</a><a href=""Test/Page&#x417;"">3</a>",
                 output.Content.GetContent());
 
         }
