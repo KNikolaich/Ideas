@@ -1,5 +1,8 @@
 ﻿@using WebCoreApplication.Models
+@using WebCoreApplication.Models.ViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper WebCoreApplication.Infrastructure.*, WebCoreApplication
+
 
 <!DOCTYPE html>
 <html>
@@ -16,13 +19,13 @@
 
 </head>
 <body>
-<div class="panel-body">
-    <h2 class="text-center">Product Information:</h2>
-    <div id="mainDiv"> @RenderBody() </div>
-    <div>
-        <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
+    <div class="panel-body">
+        <h2 class="text-center">Product Information:</h2>
+        <div id="mainDiv"> @RenderBody() </div>
+        <div>
+            <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
+        </div>
     </div>
-</div>
 </body>
 
 
