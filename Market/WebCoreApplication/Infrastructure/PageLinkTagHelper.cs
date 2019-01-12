@@ -7,6 +7,7 @@ using WebCoreApplication.Models.ViewModel;
 
 namespace WebCoreApplication.Infrastructure
 {
+    [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
     {
         private IUrlHelperFactory urlHelperFactory;
@@ -30,7 +31,7 @@ namespace WebCoreApplication.Infrastructure
             TagBuilder result = new TagBuilder("div");
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
-                TagBuilder tag = new TagBuilder("а");
+                TagBuilder tag = new TagBuilder("a");
                 tag.Attributes["href"] = urlHelper.Action(PageAction, new
                 {
                     page = i

@@ -1,4 +1,7 @@
-﻿@model System.Collections.Generic.IEnumerable<WebCoreApplication.Models.Product>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper WebCoreApplication.Infrastructure.*, WebCoreApplication
+
+@model WebCoreApplication.Models.ViewModel.ProductsListViewModel
 
 @{
     ViewBag.Title = "Спортивный магазин";
@@ -6,11 +9,14 @@
 }
 
 
-@foreach (var p in Model)
+@foreach (var p in Model.Products)
 {
     <div>
-     <h3>@p.Name</h3>
+        <h3>@p.Name</h3>
         @p.Description
-     <h4>@($"{p.Price:C2}")</h4>
+        <h4>@($"{p.Price:C2}")</h4>
     </div>
 }
+
+<div page-model="@Model.Paginginfo" page-action="List"></div>
+
