@@ -7,21 +7,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport " content="width=device-width" />
 
-
-    <meta name="viewport " content=" width=device-width" />
-    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="css/bundle.min.css" />
-    <link href="~/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
-    <script src="~/js/bundle.min.js"></script>
-
-
+    <link rel="stylesheet"
+          asp-href-include="/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="panel-body">
-        <h2 class="text-center">Product Information:</h2>
-        <div id="mainDiv"> @RenderBody() </div>
+    <div class="navbar navbar-dark" role="navigation">
+        <a class="navbar-brand" href="#">SPORTS STORE</a>
+    </div>
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            Put something useful here later
+        </div>
+        <div class="col-9"> @RenderBody() </div>
         <div>
             <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
         </div>

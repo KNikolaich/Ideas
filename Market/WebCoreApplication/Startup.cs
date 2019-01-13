@@ -11,7 +11,7 @@ namespace WebCoreApplication
 {
     public class Startup
     {
-        IConfigurationRoot Configuration;
+        readonly IConfigurationRoot Configuration;
 
         public Startup(IHostingEnvironment env)
         {

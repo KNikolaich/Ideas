@@ -148,6 +148,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BootstrapMvc.Bootstrap4" Version="1.2.0" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />

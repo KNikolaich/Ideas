@@ -8,15 +8,13 @@
     Layout = "_ViewStart";
 }
 
-
 @foreach (var p in Model.Products)
 {
-    <div>
-        <h3>@p.Name</h3>
-        @p.Description
-        <h4>@($"{p.Price:C2}")</h4>
-    </div>
+    @Html.Partial("ProductSummary", p)
 }
 
-<div page-model="@Model.Paginginfo" page-action="List"></div>
 
+<div page-model="@Model.Paginginfo" page-action="List" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" class="btn-group m-1" style="float: right">
+</div>
