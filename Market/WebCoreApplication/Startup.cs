@@ -44,16 +44,31 @@ namespace WebCoreApplication
             app.UseStatusCodePages();
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: null,
+                    template: "{category}/Page{page:int}",
+                    defaults: new { controller = "Product", action = "List" }
+                );
 
                 routes.MapRoute(
-                    name: "pagination",
-                    template: "Products/Page{page}",
-                    defaults: new {Controller = "Product", action = "List"});
+                    name: null,
+                    template: "Page{page:int}",
+                    defaults: new { controller = "Product", action = "List", page = 1 }
+                );
+
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Product}/{action=List}/{id?}");
+                    name: null,
+                    template: "{category}",
+                    defaults: new { controller = "Product", action = "List", page = 1 }
+                );
+
+                routes.MapRoute(
+                    name: null,
+                    template: "",
+                    defaults: new { controller = "Product", action = "List", page = 1 });
+
+                routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
             });
 
             InitializeDatabase(app);

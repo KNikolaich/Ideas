@@ -1,7 +1,4 @@
-﻿@using WebCoreApplication.Models
-@using WebCoreApplication.Models.ViewModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper WebCoreApplication.Infrastructure.*, WebCoreApplication
+﻿
 
 
 <!DOCTYPE html>
@@ -10,7 +7,6 @@
     <meta name="viewport " content="width=device-width" />
 
     <link rel="stylesheet" href="css/bundle.min.css" />
-
     <link rel="stylesheet"
           asp-href-include="/bootstrap/dist/**/*.min.css"
           asp-href-exclude="**/*-reboot*,**/*-grid*" />
@@ -21,8 +17,8 @@
         <a class="navbar-brand" href="#">SPORTS STORE</a>
     </div>
     <div class="row m-1 p-1">
-        <div id="categories" class="col-3">
-            Put something useful here later
+        <div id="categories" class="col-xs-3">
+            @await Component.InvokeAsync("NavigationMenu")
         </div>
         <div class="col-9"> @RenderBody() </div>
         <div>
@@ -30,6 +26,5 @@
         </div>
     </div>
 </body>
-
 
 </html> 

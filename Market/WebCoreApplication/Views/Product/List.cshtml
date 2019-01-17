@@ -1,6 +1,4 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper WebCoreApplication.Infrastructure.*, WebCoreApplication
-
+﻿
 @model WebCoreApplication.Models.ViewModel.ProductsListViewModel
 
 @{
@@ -16,5 +14,6 @@
 
 <div page-model="@Model.Paginginfo" page-action="List" page-classes-enabled="true"
      page-class="btn" page-class-normal="btn-secondary"
-     page-class-selected="btn-primary" class="btn-group m-1" style="float: right">
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+    class="btn-group m-1" style="float: right">
 </div>

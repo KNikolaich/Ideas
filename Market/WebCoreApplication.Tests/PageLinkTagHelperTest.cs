@@ -42,7 +42,7 @@ namespace WebCoreApplication.Tests
             //Действие"+
             helper.Process(ctx, output);
             // Утверждение <a href="Test/Pagel">1</a><a href="Test/Page2">2</a><a href="Test/Page&#x417;">3</a><a href="Test/Pagel">1</a><a href="Test/Page2">2</a><a href="Test/Page&#x417;">3</a><a href="Test/Pagel">1</a><a href="Test/Page2">2</a><a href="Test/Page&#x417;">3</a>
-            Assert.Equal(@"<a href=""Test/Pagel"">1</a><a href=""Test/Page2"">2</a><a href=""Test/Page&#x417;"">3</a>",
+            Assert.Equal(@"<a href=""Test/Pagel""></a><a href=""Test/Page2""></a><a href=""Test/Page&#x417;""></a>",
                 output.Content.GetContent());
 
         }
