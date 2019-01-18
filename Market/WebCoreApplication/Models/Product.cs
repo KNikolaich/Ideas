@@ -18,6 +18,11 @@ namespace WebCoreApplication.Models
             Price = price;
         }
 
+        public Product(string name, decimal price, string category): this(name, price)
+        {
+            Category = category;
+        }
+
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

@@ -48,5 +48,27 @@ namespace WebCoreApplication.Tests
             Assert.Equal(2, pagingInfo.TotalPages);
 
         }
+
+
+
+        [Theory]
+        [InlineData("Cat1", 3)]
+        [InlineData("Cat2", 2)]
+        [InlineData("Cat3", 1)]
+        [InlineData(null, 6)]
+        public void Generate_Category_Specific_Product_Count(string category, int? result)
+        {
+            // arrange
+            var controller = new Controllers.ProductController(new ModelCompleteFakeRepository());
+            controller.PageSize = 3;
+            // act
+            Func<ViewResult, ProductsListViewModel> GetModel = res =>res?.ViewData?.Model as ProductsListViewModel;
+
+            int? resl = GetModel(controller.List(category))?.Paginginfo.TotalItems;
+
+            // assert
+            Assert.Equal(result, resl);
+
+        }
     }
 }

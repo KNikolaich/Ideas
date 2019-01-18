@@ -1,30 +1,27 @@
-﻿
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport " content="width=device-width" />
-
-    <link rel="stylesheet" href="css/bundle.min.css" />
     <link rel="stylesheet"
           asp-href-include="/bootstrap/dist/**/*.min.css"
           asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" href="css/bundle.css" />
     <title>@ViewBag.Title</title>
 </head>
-<body>
-    <div class="navbar navbar-dark" role="navigation">
-        <a class="navbar-brand" href="#">SPORTS STORE</a>
+<body class="form form-control form-check">
+    <div class="navbar navbar-light" role="navigation">
+        <a class="navbar-dark" href="#">Sport Shop tour</a>
     </div>
     <div class="row m-1 p-1">
-        <div id="categories" class="col-xs-3">
+        <div id="categories" class="col-xs-4">
             @await Component.InvokeAsync("NavigationMenu")
         </div>
-        <div class="col-9"> @RenderBody() </div>
-        <div>
-            <p>Запрос произведен: @DateTime.Now.ToString("F")</p>
-        </div>
+        <div class="col-md-10"> @RenderBody() </div>
     </div>
+    
+    <footer class="card-footer">
+        <p class="align-text-bottom float-sm-right">Запрос произведен: @DateTime.Now.ToString("F")</p>
+    </footer>
 </body>
 
 </html> 
