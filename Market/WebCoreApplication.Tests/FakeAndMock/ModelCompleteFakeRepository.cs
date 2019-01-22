@@ -22,12 +22,12 @@ namespace WebCoreApplication.Tests
         {
             return new List<Product>
             {
-                new Product("Kayak", 275M, "Cat1"),
-                new Product("Lifejacket", 48.95M, "Cat1"),
-                new Product("Soccer nall", 19.5M, "Cat2"),
-                new Product("Cornet flag", 34.95M, "Cat1"),
-                new Product("Clock on wall", 11.5M, "Cat2"),
-                new Product("Lamp on table", 5.75M, "Cat3")
+                new Product(1, "Kayak", 275M, "Cat1"),
+                new Product(2,"Lifejacket", 48.95M, "Cat1"),
+                new Product(3,"Soccer nall", 19.5M, "Cat2"),
+                new Product(4,"Cornet flag", 34.95M, "Cat1"),
+                new Product(5,"Clock on wall", 11.5M, "Cat2"),
+                new Product(6,"Lamp on table", 5.75M, "Cat3")
             }.Where(_func).ToList();
         }
 
