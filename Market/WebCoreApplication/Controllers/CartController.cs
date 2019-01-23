@@ -13,50 +13,38 @@ namespace WebCoreApplication.Controllers
 {
     public class CartController : ReposBaseController
     {
-        public CartController(IRepository repository)
+        private Cart _cart;
+
+        public CartController(IProductRepository repository, Cart cartService)
         {
-            Repository = repository;
+            ProductRepository = repository;
+            _cart = cartService;
         }
 
         public ViewResult Index(string returnUrl)
         {
-            return View(new CartIndexViewModel { Cart = GetCart(), ReturnUrl = returnUrl });
+            return View(new CartIndexViewModel { Cart = _cart, ReturnUrl = returnUrl });
         }
 
         public RedirectToActionResult AddToCart(int productid, string returnUrl)
         {
-            Product product = Repository.Products
+            Product product = ProductRepository.Products
             .FirstOrDefault(p => p.ProductId == productid);
             if (product != null)
             {
-                Cart cart = GetCart();
-                cart.AddItem(product, 1);
-                SaveCart(cart);
+                _cart.AddItem(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
         public RedirectToActionResult RemoveFromCart(int productid, string returnUrl)
         {
-            Product product = Repository.Products.FirstOrDefault(p => p.ProductId == productid);
+            Product product = ProductRepository.Products.FirstOrDefault(p => p.ProductId == productid);
             if (product != null)
             {
-                Cart cart = GetCart();
-                cart.RemoveLine(product);
-                SaveCart(cart);
+                _cart.RemoveLine(product);
             }
             return RedirectToAction("Index", new { returnUrl });
-        }
-
-        private Cart GetCart()
-        {
-            Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
-            return cart;
-        }
-        private void SaveCart(Cart cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
-
         }
     }
 }

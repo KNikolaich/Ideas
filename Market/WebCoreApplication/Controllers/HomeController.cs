@@ -13,7 +13,7 @@ namespace WebCoreApplication.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Приветствую тебя, мой мир!";
-            return View(Repository.Products.OrderBy(p=>p.Name));
+            return View(ProductRepository.Products.OrderBy(p=>p.Name));
         }
 
         [HttpGet]
@@ -22,7 +22,7 @@ namespace WebCoreApplication.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product p)
         {
-            //Repository.AddProduct(p);
+            //ProductRepository.AddProduct(p);
             return RedirectToAction("Index");
         }
 

@@ -27,7 +27,9 @@ namespace WebCoreApplication
         {
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
                 Configuration["Data:SportStoreProduct:ConnectionString"]));
-            services.AddTransient<IRepository, EFRepository>();
+            services.AddTransient<IProductRepository, EFRepository>();
+            services.AddScoped(sp => SessionCart.GetCart(sp)); // глава 10
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();// глава 10
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();

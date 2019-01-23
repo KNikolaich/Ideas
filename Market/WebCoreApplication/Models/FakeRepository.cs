@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebCoreApplication.Models
 {
-    public class FakeRepository : IRepository
+    public class FakeRepository : IProductRepository
     {
         public IEnumerable<Product> Products => new[]
         {

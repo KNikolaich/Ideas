@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebCoreApplication.Models
 {
-    public class SimpleRepository : IRepository
+    public class SimpleRepository : IProductRepository
     {
         private readonly Dictionary<string, Product> _products = new Dictionary<string, Product>();
 

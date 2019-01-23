@@ -11,9 +11,9 @@ namespace WebCoreApplication.Components
     /// </summary>
     public class NavigationMenuViewComponent : ViewComponent
     {
-        private IRepository repository;
+        private IProductRepository repository;
 
-        public NavigationMenuViewComponent(IRepository repo)
+        public NavigationMenuViewComponent(IProductRepository repo)
         {
             repository = repo;
         }

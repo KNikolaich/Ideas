@@ -5,7 +5,7 @@ using WebCoreApplication.Models;
 
 namespace WebCoreApplication.Tests
 {
-    public class ModelCompleteFakeRepository : IRepository
+    public class ModelCompleteFakeRepository : IProductRepository
     {
         private List<Product> _products;
         private static Func<Product, bool> _func = product => true;

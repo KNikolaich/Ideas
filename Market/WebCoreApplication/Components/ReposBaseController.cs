@@ -12,9 +12,9 @@ namespace WebCoreApplication.Components
     /// </summary>
     public abstract class ReposBaseController : Controller
     {
-        IRepository _repository;
+        IProductRepository _repository;
 
-        public IRepository Repository
+        public IProductRepository ProductRepository
         {
             get => _repository;
             set => _repository = value;

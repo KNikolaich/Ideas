@@ -16,7 +16,7 @@ namespace WebCoreApplication.Tests
         public void IndexActionModelIsComplete()
         {
             // arrange
-            var controller = new Controllers.HomeController {Repository = new ModelCompleteFakeRepository()};
+            var controller = new Controllers.HomeController {ProductRepository = new ModelCompleteFakeRepository()};
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -34,7 +34,7 @@ namespace WebCoreApplication.Tests
 
             var fakeRepository = new ModelCompleteFakeRepository(p => p.Price < 50m);
 
-            var controller = new Controllers.HomeController {Repository = fakeRepository};
+            var controller = new Controllers.HomeController {ProductRepository = fakeRepository};
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -65,7 +65,7 @@ namespace WebCoreApplication.Tests
             
             var controller = new Controllers.HomeController
             {
-                Repository = fakeRepository
+                ProductRepository = fakeRepository
             };
 
 
@@ -84,9 +84,9 @@ namespace WebCoreApplication.Tests
         public void IndexActionModelIsCompleteForPricesFromClassData(Product[] products)
         {
             // arrange
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.SetupGet(m => m.Products).Returns(products);
-            var controller = new Controllers.HomeController {Repository = mock.Object};
+            var controller = new Controllers.HomeController {ProductRepository = mock.Object};
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -102,10 +102,10 @@ namespace WebCoreApplication.Tests
         public void RepositoryPropertyCallOnce()
         {
             // arrange
-            var mock = new Mock<IRepository>();
+            var mock = new Mock<IProductRepository>();
             mock.SetupGet(m => m.Products).Returns(new[] {new Product {Name = "P1", Price = 100}});
 
-            var controller = new Controllers.HomeController {Repository = mock.Object};
+            var controller = new Controllers.HomeController {ProductRepository = mock.Object};
 
             // act
             var viewResult = controller.Index();

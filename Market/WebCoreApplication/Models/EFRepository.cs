@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebCoreApplication.Models
 {
-    public class EFRepository : IRepository
+    public class EFRepository : IProductRepository
     {
         private AppDbContext _context;
 
