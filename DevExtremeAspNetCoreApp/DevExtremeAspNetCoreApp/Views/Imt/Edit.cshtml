@@ -1,0 +1,52 @@
+﻿@using DevExtremeAspNetCoreApp.Models
+
+@model ImtCalc
+
+@{
+    ViewBag.Title = "Расчет ИМТ";
+}
+
+
+<h2>Расчет ИМТ</h2>
+
+<div style="padding-top: 30px" id="form">
+    @(Html.DevExtreme().Form()
+          .ID("Id")
+          .ColCount(2)
+          .FormData(Model)
+          .LabelLocation(FormLabelLocation.Top)
+          .MinColWidth(300)
+          .ReadOnly(false)
+          .ShowColonAfterLabel(true)
+          .FormData(Model)
+          .Items(items =>
+          {
+              items.AddGroup()
+                  .Caption("Поля")
+                  .Items(gItems =>
+                  {
+                      gItems.AddSimple().Editor(ed=>ed.NumberBox())
+                          .Editor(e => e
+                              .SelectBox()
+                              .DataSource(d => d.Mvc().Controller("GeoNames").LoadAction("Countries"))
+                          );
+                  });
+              items.AddSimple()
+                  .ColSpan(3)
+                  .Template(
+                      @<text>
+                          @( Html.DevExtreme().Button()
+                                 .Text("Пыщь")
+                                 .Width("100%")
+                                 //.ElementAttr(cssButtons)
+                                 .FocusStateEnabled(false)
+                                 .ActiveStateEnabled(false)
+                                 .HoverStateEnabled(false))
+                       </text>);
+
+          }
+
+          )
+    )
+
+</div>

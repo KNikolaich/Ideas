@@ -18,7 +18,6 @@ namespace WebCoreApplication
             Configuration = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json").Build();
-
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -28,7 +27,7 @@ namespace WebCoreApplication
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
                 Configuration["Data:SportStoreProduct:ConnectionString"]));
             services.AddTransient<IProductRepository, EFRepository>();
-            services.AddScoped(sp => SessionCart.GetCart(sp)); // глава 10
+            services.AddScoped(SessionCart.GetCart); // глава 10
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();// глава 10
             services.AddMvc();
             services.AddMemoryCache();
