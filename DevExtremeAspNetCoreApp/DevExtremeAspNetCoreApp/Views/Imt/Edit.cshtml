@@ -1,4 +1,5 @@
 ﻿@using DevExtremeAspNetCoreApp.Models
+@using DevExtreme.AspNet.Mvc
 
 @model ImtCalc
 
@@ -11,40 +12,52 @@
 
 <div style="padding-top: 30px" id="form">
     @(Html.DevExtreme().Form()
-          .ID("Id")
-          .ColCount(2)
-          .FormData(Model)
-          .LabelLocation(FormLabelLocation.Top)
-          .MinColWidth(300)
-          .ReadOnly(false)
-          .ShowColonAfterLabel(true)
-          .FormData(Model)
-          .Items(items =>
-          {
-              items.AddGroup()
-                  .Caption("Поля")
-                  .Items(gItems =>
+                  .ID("Id")
+                  .ColCount(2)
+                  .FormData(Model)
+                  .LabelLocation(FormLabelLocation.Top)
+                  .MinColWidth(300)
+                  .ReadOnly(false)
+                  .ShowColonAfterLabel(true)
+                  .FormData(Model)
+                  .Items(items =>
                   {
-                      gItems.AddSimple().Editor(ed=>ed.NumberBox())
-                          .Editor(e => e
-                              .SelectBox()
-                              .DataSource(d => d.Mvc().Controller("GeoNames").LoadAction("Countries"))
-                          );
-                  });
-              items.AddSimple()
-                  .ColSpan(3)
-                  .Template(
-                      @<text>
-                          @( Html.DevExtreme().Button()
-                                 .Text("Пыщь")
-                                 .Width("100%")
-                                 //.ElementAttr(cssButtons)
-                                 .FocusStateEnabled(false)
-                                 .ActiveStateEnabled(false)
-                                 .HoverStateEnabled(false))
-                       </text>);
+                  items.AddGroup()
+                      .Caption("Поля")
+                      .Items(gItems =>
+                      {
+                          gItems.AddSimple().DataField("Weight")
+                              .Label(l => l.Text("вес"))
+                              .Editor(ed => ed.NumberBox()
+                                  .Value(107)
+                                  .Min(3)
+                                  .Max(500)
+                                  .ShowSpinButtons(true));
+                          gItems.AddSimple().DataField("Height")
+                              .Label(l => l.Text("рост"))
+                              .Editor(ed => ed.NumberBox()
+                                  .Value(175.5)
+                                  .Min(50)
+                                  .Max(250));
 
-          }
+                          gItems.AddSimple().Editor(e => e.TextBox().ID("result").Placeholder("результаты расчета"));
+                      });
+                  items.AddSimple()
+                      .ColSpan(3)
+                      .Template(
+                              @<text>
+                                  @( Html.DevExtreme().Button()
+                                         .Text("Пыщь")
+                                         .Width("100%")
+                                         .UseSubmitBehavior(true)
+                                         .Type(ButtonType.Success)
+                                         //.FocusStateEnabled(false)
+                                         //.ActiveStateEnabled(false)
+                                         //.HoverStateEnabled(false)
+                                         )
+                               </text>);
+
+                  }
 
           )
     )
