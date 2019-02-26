@@ -1,0 +1,35 @@
+﻿@model WebCoreApplication.Models.Order
+
+@{
+    ViewBag.Title = "оформление";
+    Layout = "_ViewStart";
+}
+
+<h2 class="text-center">оформление</h2>
+<p>Пожалуйста введите детали оформления заказа.</p> 
+
+<form asp-action="Checkout" method="post">
+    <h3>О заказчике</h3>
+    <div class="form-group">
+        <label>@Html.LabelFor(m => m.Name)</label><input asp-for="Name" class="form-control">
+    </div>
+
+    <h3>Адрес</h3>
+    <div class="form-group">
+        <label>@Html.LabelFor(m => m.Line1)</label><input asp-for="Line1" class="form-control">
+        <label>@Html.LabelFor(m => m.Line2)</label><input asp-for="Line2" class="form-control">
+        <label>@Html.LabelFor(m => m.Line3)</label><input asp-for="Line3" class="form-control">
+        <label>@Html.LabelFor(m => m.Country)</label><input asp-for="Country" class="form-control">
+        <label>@Html.LabelFor(m => m.State)</label><input asp-for="State" class="form-control">
+        <label>@Html.LabelFor(m => m.City)</label><input asp-for="City" class="form-control">
+        <label>@Html.LabelFor(m => m.Zip)</label><input asp-for="Zip" class="form-control">
+    </div>
+
+    <h3>Опции</h3>
+    <div class="checkbox">
+        <label><input asp-for="GiftWrap" />   @Html.LabelFor(m => m.GiftWrap)</label>
+    </div>
+    <div class="text-right">
+        <input class="btn btn-primary" type="submit" value="Подтвердить заказ">
+    </div>
+</form>
