@@ -165,6 +165,7 @@
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="Data\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
