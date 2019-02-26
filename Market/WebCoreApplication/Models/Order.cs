@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WebCoreApplication.Models
 {
+    [Serializable]
     public class Order
     {
         [BindNever] // атрибут заставляет систему игнорировать это свойство , и не биндить к ней контролов

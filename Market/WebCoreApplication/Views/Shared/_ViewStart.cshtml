@@ -12,7 +12,7 @@
 </head>
 <body class="form-check">
     <div class="navbar col-md-11" role="navigation">
-        <a class="navbar navbar-dark" href="/#">Sport shop</a>
+        <a class="navbar navbar-dark" asp-action="List" asp-controller="Product">Sport shop</a>
         @await Component.InvokeAsync("CartSummary")
         
     </div>
