@@ -100,12 +100,7 @@
         localStorage.removeItem(storageKey);
         return mode;
     }
-
-    function stylingModeChanged(e) {
-        localStorage.setItem(storageKey, e.value);
-        window.location.reload(true);
-    }
-
+    
     $(function() {
         $("#subject").dxValidator({
             validationRules: [{ type: "required" }]
