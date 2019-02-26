@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebCoreApplication.Models
@@ -9,7 +6,7 @@ namespace WebCoreApplication.Models
     /// <summary> реализация интерфейса репозитория ордета </summary>
     public class EfOrderRepository : IOrderRepository
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public EfOrderRepository(AppDbContext cont)
         {
