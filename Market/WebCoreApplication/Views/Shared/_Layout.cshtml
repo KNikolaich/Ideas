@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport " content="width=device-width" />
+    <link rel="stylesheet"
+          asp-href-include="/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <link rel="stylesheet" href="css/bundle.css" />
+    <title>@ViewBag.Title</title>
+</head>
+
+<body class="col-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="container p-2 text-lg-center">
+
+            <h2><i class="fa fa-hammer"> @ViewBag.Title</i></h2>
+        </div>
+            @RenderBody()
+    </div>
+</div>
+    
+<footer class="card-footer p-1 m-1 container col-12">
+    <table class="col-12">
+        <tr>
+            <td>
+                <a class="nav text-left text-black-50" href="~/#"><i class="fa fa-home"> в начало </i></a>
+            </td>
+
+            <td>
+                <a class="text-left text-black-50" asp-controller="Order" asp-action="List"><i class="fa fa-address-book"> ордеры </i></a>
+            </td>
+            <td>
+                <div class="text-black-50 text-sm-right align-text-bottom"> Запрос произведен: @DateTime.Now.ToString("F") </div>
+            </td>
+        </tr>
+    </table>
+</footer>
+</body>
+
+</html> 

@@ -15,6 +15,9 @@ namespace WebCoreApplication.Models
         [Required(ErrorMessage = "Введите имя"), DisplayName("имя")]
         public string Name { get; set; }
 
+        [DisplayName("Отгружено")]
+        public bool Shipped { get; set; }
+
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
 

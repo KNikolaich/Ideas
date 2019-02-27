@@ -1,25 +1,33 @@
 ﻿@using WebCoreApplication.Infrastructure
 @model WebCoreApplication.Models.Cart
-
-<div class="btn-lg float-right" style="alignment: right">
-    @if (Model.Lines.Any())
-    {
-        <small class="navbar-text">
-            <b>Состояние корзины:</b>
-            @Model.Lines.Sum(l => l.Quantity) товар(а)
-            @Model.ComputeTotalValue().ToString("C")
-        </small>
-    }
-        <a class="btn btn-lg navbar-dark"
-           asp-controller="Cart" asp-action="Index"
-           asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
-            @if (Model.Lines.Any())
-            {
-                <i class="fa fa-cart-arrow-down"> Корзина</i>
-            }
-            else
-            {
-                <i class="fa fa-shopping-cart"> Корзина</i>
-            }
-        </a>
-</div>
+<header>
+    <table class="col-12">
+        <tr>
+            <td>
+                <a class="navbar navbar-dark text-left" href="~/#"><i class="fa fa-home"> Home</i></a>
+            </td>
+            <td>
+                <div class="text-right">
+                    @if (Model.Lines.Any())
+                    {
+                        <small>
+                            <b>Состояние корзины:</b>
+                            @Model.Lines.Sum(l => l.Quantity) товар(а)
+                            @Model.ComputeTotalValue().ToString("C")
+                        </small>
+                    }@*class="navbar navbar-dark text-right"*@<a asp-controller="Cart" asp-action="Index"
+                                                                 asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+                        @if (Model.Lines.Any())
+                        {
+                            <i class="fa fa-cart-arrow-down"> Корзина</i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-shopping-cart"> Корзина</i>
+                        }
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</header>

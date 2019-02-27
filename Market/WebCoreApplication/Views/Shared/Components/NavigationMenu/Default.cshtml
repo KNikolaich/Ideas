@@ -1,19 +1,25 @@
 ﻿@model IEnumerable<string>
 
-
-<a class="btn btn-block btn-toolbar @(ViewBag.SelectedCategory == null? "btn-outline-info": "Ьtn-default")"
-   asp-action="List"
-   asp-controller="Product"
-   asp-route-category="">
-    Все
-</a>
-
-@foreach (string category in Model) {
-    <a class="btn btn-block btn-toolbar @(category == ViewBag.SelectedCategory? "btn-outline-info": "Ьtn-default")"
-       asp-action="List"
-       asp-controller="Product"
-       asp-route-category="@category"
-       asp-route-page="1">
-        @category
-    </a>
-}
+<div class="collapse navbar-collapse" id="navbarSupportedContent" role="navigation">
+    <ul id="categories" class="navbar-nav mr-auto flex-column">
+        <li class="nav nav-item">
+            <a class=" btn btn-block btn-toolbar @(ViewBag.SelectedCategory == null? "btn-outline-info": "Ьtn-default")"
+               asp-action="List"
+               asp-controller="Product"
+               asp-route-category="">
+                Все
+            </a>
+        </li>
+        @foreach (string category in Model) {
+            <li class="nav nav-item">
+                <a class="btn btn-block btn-toolbar @(category == ViewBag.SelectedCategory? "btn-outline-info": "Ьtn-default")"
+                   asp-action="List"
+                   asp-controller="Product"
+                   asp-route-category="@category"
+                   asp-route-page="1">
+                    @category
+                </a>
+            </li>
+        }
+    </ul>
+</div>

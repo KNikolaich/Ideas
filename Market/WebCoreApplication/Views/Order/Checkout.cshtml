@@ -2,10 +2,9 @@
 
 @{
     ViewBag.Title = "оформление";
-    Layout = "_ViewStart";
+    Layout = "_Simple";
 }
 
-<h2 class="text-center">оформление</h2>
 <p>Пожалуйста введите детали оформления заказа.</p> 
 
 <div asp-validation-summary="All" class="text-danger"></div>
@@ -30,6 +29,9 @@
     <h3>Опции</h3>
     <div class="checkbox">
         <label><input asp-for="GiftWrap" />   @Html.LabelFor(m => m.GiftWrap)</label>
+    </div>
+    <div class="checkbox">
+        <label><input asp-for="Shipped" />   @Html.LabelFor(m => m.Shipped)</label>
     </div>
     <div class="text-right">
         <input class="btn btn-primary" type="submit" value="Подтвердить заказ">

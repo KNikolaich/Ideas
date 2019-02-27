@@ -8779,6 +8779,7 @@ button.bg-dark:focus {
   }
   .text-sm-right {
     text-align: right !important;
+    font-size: 10px;
   }
   .text-sm-center {
     text-align: center !important;

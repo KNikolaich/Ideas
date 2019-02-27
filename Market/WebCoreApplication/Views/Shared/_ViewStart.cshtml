@@ -1,31 +1,31 @@
 ﻿@using WebCoreApplication.Infrastructure
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport " content="width=device-width" />
-    <link rel="stylesheet"
-          asp-href-include="/bootstrap/dist/**/*.min.css"
-          asp-href-exclude="**/*-reboot*,**/*-grid*" />
-    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
-    <link rel="stylesheet" href="css/bundle.css" />
-    <title>@ViewBag.Title</title>
-</head>
-<body class="form-check">
-    <div class="navbar col-md-11" role="navigation">
-        <a class="navbar navbar-dark" asp-action="List" asp-controller="Product">Sport shop</a>
-        @await Component.InvokeAsync("CartSummary")
-        
-    </div>
-    <div class="row m-1 p-1">
-        <div id="categories" class="col-xs-4">
-            @await Component.InvokeAsync("NavigationMenu")
-        </div>
-        <div class="col-md-10"> @RenderBody() </div>
-    </div>
-    
-    <footer class="card-footer">
-        <p class="align-text-bottom float-sm-right">Запрос произведен: @DateTime.Now.ToString("F")</p>
-    </footer>
-</body>
 
-</html> 
+@{
+    ViewBag.Title = "Магазин";
+    Layout = "_Layout";
+}
+
+<div class="col-12 blog-header" role="navigation">
+    @await Component.InvokeAsync("CartSummary")
+
+</div>
+<header class="col-md-3">
+
+    <nav class="sidebar-sticky bg-light navbar-light navbar-expand-md">
+        @*<a href="#" class="logo navbar-brand">Logo</a>*@
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="col-1">@await Component.InvokeAsync("NavigationMenu")</div>
+
+    </nav>
+</header>
+<!-- end header -->
+
+<main class="col-md-9">
+    @RenderBody()
+</main>
+<!-- end main -->
+
+
