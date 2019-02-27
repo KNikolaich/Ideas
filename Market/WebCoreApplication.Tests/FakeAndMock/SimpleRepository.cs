@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using WebCoreApplication.Models;
 
-namespace WebCoreApplication.Models
+namespace WebCoreApplication.Tests.FakeAndMock
 {
     public class SimpleRepository : IProductRepository
     {
@@ -33,6 +31,10 @@ namespace WebCoreApplication.Models
         #region Implementation from Interface
 
         public IEnumerable<Product> Products => _products.Values;
+        public void SaveProduct(Product product)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void AddProduct(Product item)
         {

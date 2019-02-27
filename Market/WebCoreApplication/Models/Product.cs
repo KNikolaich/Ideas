@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace WebCoreApplication.Models
 {
-    public class Product
+    public class Product : PersistentObj
     {
         public Product()
         {
@@ -25,13 +27,18 @@ namespace WebCoreApplication.Models
 
         public Product(int id, string name, decimal price, string category): this(name, price, category)
         {
-            ProductId = id;
+            Id = id;
         }
 
-        public int ProductId { get; set; }
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Введите название")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Введите описание")]
         public string Description { get; set; }
+        [Required, Range(0.01, double.MaxValue, ErrorMessage = "Введите цену")]
         public decimal Price { get; set; }
+        [Required(ErrorMessage = "Укажите категорию")]
         public string Category { get; set; }
 
         public override string ToString()

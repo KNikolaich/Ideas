@@ -8,6 +8,10 @@
     <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
     <link rel="stylesheet" href="css/bundle.css" />
     <title>@ViewBag.Title</title>
+    
+    <style>
+    .input-validation-error { border-color: red; background-color: #fee;}
+    </style>
 </head>
 
 <body class="col-12">
@@ -30,6 +34,9 @@
 
             <td>
                 <a class="text-left text-black-50" asp-controller="Order" asp-action="List"><i class="fa fa-address-book"> ордеры </i></a>
+            </td>
+            <td>
+                <a class="text-left text-black-50" asp-controller="Admin" asp-action="Index"><i class="fa fa-address-book"> правим товары </i></a>
             </td>
             <td>
                 <div class="text-black-50 text-sm-right align-text-bottom"> Запрос произведен: @DateTime.Now.ToString("F") </div>

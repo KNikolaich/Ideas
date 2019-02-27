@@ -7,6 +7,7 @@ using Moq;
 using WebCoreApplication.Models;
 using WebCoreApplication.Tests.FakeAndMock;
 using Xunit;
+using SimpleRepository = WebCoreApplication.Tests.FakeAndMock.SimpleRepository;
 
 namespace WebCoreApplication.Tests
 {

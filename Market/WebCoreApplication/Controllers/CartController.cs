@@ -21,10 +21,10 @@ namespace WebCoreApplication.Controllers
             return View(new CartIndexViewModel { Cart = _cart, ReturnUrl = returnUrl });
         }
 
-        public RedirectToActionResult AddToCart(int productid, string returnUrl)
+        public RedirectToActionResult AddToCart(int id, string returnUrl)
         {
             Product product = _repository.Products
-            .FirstOrDefault(p => p.ProductId == productid);
+            .FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
                 _cart.AddItem(product, 1);
@@ -32,9 +32,9 @@ namespace WebCoreApplication.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToActionResult RemoveFromCart(int productid, string returnUrl)
+        public RedirectToActionResult RemoveFromCart(int id, string returnUrl)
         {
-            Product product = _repository.Products.FirstOrDefault(p => p.ProductId == productid);
+            Product product = _repository.Products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
                 _cart.RemoveLine(product);

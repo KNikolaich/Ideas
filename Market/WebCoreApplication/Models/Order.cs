@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WebCoreApplication.Models
 {
-    [Serializable]
-    public class Order
+    public class Order : PersistentObj
     {
         [BindNever] // атрибут заставляет систему игнорировать это свойство , и не биндить к ней контролов
         public int Id { get; set; }

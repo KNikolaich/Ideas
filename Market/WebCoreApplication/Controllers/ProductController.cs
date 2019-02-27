@@ -23,7 +23,7 @@ namespace WebCoreApplication.Controllers
         {
             var resultP = _repository.Products.
                 Where(p=> category == null || p.Category == category).
-                OrderBy(p => p.ProductId).
+                OrderBy(p => p.Id).
                 Skip((page - 1) * PageSize).
                 Take(PageSize);
             

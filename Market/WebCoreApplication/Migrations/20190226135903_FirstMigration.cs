@@ -32,7 +32,7 @@ namespace WebCoreApplication.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -41,7 +41,7 @@ namespace WebCoreApplication.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,7 +50,7 @@ namespace WebCoreApplication.Migrations
                 {
                     CartLineID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ProductId = table.Column<int>(nullable: true),
+                    Id = table.Column<int>(nullable: true),
                     OrderId = table.Column<int>(nullable: true),
                     Quantity = table.Column<int>(nullable: false)
                 },
@@ -64,10 +64,10 @@ namespace WebCoreApplication.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CartLines_Products_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_CartLines_Products_Id",
+                        column: x => x.Id,
                         principalTable: "Products",
-                        principalColumn: "ProductId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -77,9 +77,9 @@ namespace WebCoreApplication.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartLines_ProductId",
+                name: "IX_CartLines_Id",
                 table: "CartLines",
-                column: "ProductId");
+                column: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

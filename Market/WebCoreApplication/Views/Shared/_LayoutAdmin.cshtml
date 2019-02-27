@@ -2,4 +2,11 @@
     ViewBag.Title = "Админка";
     Layout = "_Layout";
 }
-@RenderBody()
+
+<div class=" container card-body p-2 ">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+    @RenderBody()
+</div>
