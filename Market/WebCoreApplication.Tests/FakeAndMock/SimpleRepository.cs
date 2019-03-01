@@ -3,7 +3,7 @@ using WebCoreApplication.Models;
 
 namespace WebCoreApplication.Tests.FakeAndMock
 {
-    public class SimpleRepository : IProductRepository
+    public class SimpleRepository //: IProductRepository
     {
         private readonly Dictionary<string, Product> _products = new Dictionary<string, Product>();
 

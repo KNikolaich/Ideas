@@ -4,28 +4,14 @@
     ViewBag.Title = "Магазин";
     Layout = "_Layout";
 }
-
-<div class="col-12 blog-header" role="navigation">
-    @await Component.InvokeAsync("CartSummary")
-
+<div class="row panel">
+    <div id="categories" class="col-xs-3">
+        @await Component.InvokeAsync("NavigationMenu")
+    </div>
+    <div class="col-xs-8">
+        @RenderBody()
+    </div>
 </div>
-<header class="col-md-3">
 
-    <nav class="sidebar-sticky bg-light navbar-light navbar-expand-md">
-        @*<a href="#" class="logo navbar-brand">Logo</a>*@
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="col-1">@await Component.InvokeAsync("NavigationMenu")</div>
 
-    </nav>
-</header>
-<!-- end header -->
-
-<main class="col-md-9">
-    @RenderBody()
-</main>
 <!-- end main -->
-
-

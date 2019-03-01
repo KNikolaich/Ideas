@@ -1,5 +1,4 @@
-﻿
-@model WebCoreApplication.Models.ViewModel.ProductsListViewModel
+﻿@model ProductsListViewModel
 
 @{
     ViewBag.Title = "Спортивный магазин";
@@ -8,12 +7,12 @@
 
 @foreach (var p in Model.Products)
 {
-    @Html.Partial("ProductSummary", p)
+    @HtmlHelperPartialExtensions.Partial(Html, "ProductSummary", p)
 }
 
 
 <div page-model="@Model.Paginginfo" page-action="List" page-classes-enabled="true"
-     page-class="btn btn-link" page-class-normal="btn-light"
+     page-class="btn" page-class-normal="btn-light"
      page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
-    class="btn-group-sm btn" style="float: right">
+    class="btn-group-sm pull-right">
 </div>

@@ -27,7 +27,7 @@ namespace WebCoreApplication.Migrations
 
                     b.Property<int?>("OrderId");
 
-                    b.Property<int?>("Id");
+                    b.Property<int?>("ProductId");
 
                     b.Property<int>("Quantity");
 
@@ -35,7 +35,7 @@ namespace WebCoreApplication.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("CartLines");
                 });
@@ -82,11 +82,14 @@ namespace WebCoreApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Category");
+                    b.Property<string>("Category")
+                        .IsRequired();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<decimal>("Price");
 
@@ -103,7 +106,7 @@ namespace WebCoreApplication.Migrations
 
                     b.HasOne("WebCoreApplication.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("Id");
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

@@ -30,5 +30,16 @@ namespace WebCoreApplication.Models
             }
             _context.SaveChanges();
         }
+
+        public Product DeleteProduct(int id)
+        {
+            var dbEntry = _context.Products.FirstOrDefault(p => p.Id == id);
+            if (dbEntry != null)
+            {
+                _context.Products.Remove(dbEntry);
+                _context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }

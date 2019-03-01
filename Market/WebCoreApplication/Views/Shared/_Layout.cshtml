@@ -6,44 +6,50 @@
           asp-href-include="/bootstrap/dist/**/*.min.css"
           asp-href-exclude="**/*-reboot*,**/*-grid*" />
     <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
-    <link rel="stylesheet" href="css/bundle.css" />
+    <link rel="stylesheet" href="/css/bundle.css" />
     <title>@ViewBag.Title</title>
-    
+
     <style>
-    .input-validation-error { border-color: red; background-color: #fee;}
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
     </style>
+
+    <script asp-src-include="/lib/jquery/**/jquery.min.js"></script>
+    <script asp-src-include="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+    @*<script asp-src-include="/lib/jquery-validation/**/jquery.validat.min.js"></script>*@
+    <script asp-src-include="/lib/jquery-validation-unobtrusive/**/*.min.js"></script>
 </head>
 
-<body class="col-12">
-<div class="container-fluid">
-    <div class="row">
-        <div class="container p-2 text-lg-center">
+<body>
 
-            <h2><i class="fa fa-hammer"> @ViewBag.Title</i></h2>
+    <div class="navbar navbar-inverse" role="navigation">
+        <ul>
+            <li class="nav navbar-brand text-black-50"><a class="fa fa-hammer" href="/"> @ViewBag.Title</a></li>
+            <li class="nav navbar-brand  pull-right"> @await Component.InvokeAsync("CartSummary")</li>
+        </ul>
+        
+        <div>
+           
+
         </div>
-            @RenderBody()
     </div>
-</div>
-    
-<footer class="card-footer p-1 m-1 container col-12">
-    <table class="col-12">
-        <tr>
-            <td>
-                <a class="nav text-left text-black-50" href="~/#"><i class="fa fa-home"> в начало </i></a>
-            </td>
+    <div>
+        <div class="container panel-body">
+            @RenderBody()
 
-            <td>
-                <a class="text-left text-black-50" asp-controller="Order" asp-action="List"><i class="fa fa-address-book"> ордеры </i></a>
-            </td>
-            <td>
-                <a class="text-left text-black-50" asp-controller="Admin" asp-action="Index"><i class="fa fa-address-book"> правим товары </i></a>
-            </td>
-            <td>
-                <div class="text-black-50 text-sm-right align-text-bottom"> Запрос произведен: @DateTime.Now.ToString("F") </div>
-            </td>
-        </tr>
-    </table>
-</footer>
+        </div>
+
+        <footer class="panel-footer navbar-fixed-bottom  position-fixed ">
+            <ul class="nav  nav-pills collapsed">
+                <li><a class="nav text-left text-black-50" href="/"><i class="fa fa-home"> в начало </i></a></li>
+                <li><a class="text-left text-black-50" asp-controller="Order" asp-action="List"><i class="fa fa-address-book"> ордеры </i></a></li>
+                <li><a class="text-left text-black-50" asp-controller="Admin" asp-action="Index"><i class="fa fa-address-book"> правим товары </i></a></li>
+                <li class="pull-right text-info">Запрос произведен: @DateTime.Now.ToString("F") </li>
+            </ul>
+        </footer>
+    </div>
 </body>
 
 </html> 

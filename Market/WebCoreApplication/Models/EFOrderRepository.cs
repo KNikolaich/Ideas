@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebCoreApplication.Models
@@ -22,9 +23,9 @@ namespace WebCoreApplication.Models
             _context.AttachRange(order.Lines);
             if (order.Id == 0)
             {
-                _context.Orders.Add(order);
+                _context.Attach(order);
             }
-            _context.SaveChanges();
+            _context.SaveChanges(); 
         }
     }
 }

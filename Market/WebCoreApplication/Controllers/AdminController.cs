@@ -37,5 +37,18 @@ namespace WebCoreApplication.Controllers
             }
             return View(product);
         }
+
+        public ViewResult Create() => View("Edit", new Product());
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var delPro = _repository.DeleteProduct(id);
+            if (delPro != null)
+            {
+                TempData["message"] = $"{delPro.Name} был уничножен";
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

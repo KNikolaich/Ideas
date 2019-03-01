@@ -58,5 +58,10 @@ namespace WebCoreApplication.Tests.FakeAndMock
         {
             throw new NotImplementedException();
         }
+
+        public Product DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

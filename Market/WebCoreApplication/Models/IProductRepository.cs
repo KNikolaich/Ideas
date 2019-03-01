@@ -11,5 +11,7 @@ namespace WebCoreApplication.Models
 
         //void AddProduct(Product item);
         void SaveProduct(Product product);
+
+        Product DeleteProduct(int id);
     }
 }
