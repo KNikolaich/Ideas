@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebCoreApplication.Data;
 using WebCoreApplication.Models;
 
 
@@ -30,6 +31,7 @@ namespace WebCoreApplication
             services.AddTransient<IOrderRepository, EfOrderRepository>(); 
             services.AddScoped(SessionCart.GetCart); // глава 10
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();// глава 10
+            services.AddSingleton<ITimerStarter, TimerStarter>();// глава 10
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();

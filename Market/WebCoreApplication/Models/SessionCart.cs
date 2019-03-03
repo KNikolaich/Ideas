@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using WebCoreApplication.Data;
 using WebCoreApplication.Infrastructure;
 
 namespace WebCoreApplication.Models
@@ -36,6 +37,8 @@ namespace WebCoreApplication.Models
             var session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var cart = session?.GetJson<SessionCart>(SessionKey) ?? new SessionCart();
             cart.Session = session;
+
+            var timer = services.GetRequiredService<ITimerStarter>();
             return cart;
         }
     }

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using WebCoreApplication.Data
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport " content="width=device-width" />
@@ -43,10 +44,10 @@
 
         <footer class="panel-footer navbar-fixed-bottom  position-fixed ">
             <ul class="nav  nav-pills collapsed">
-                <li><a class="nav text-left text-black-50" href="/"><i class="fa fa-home"> в начало </i></a></li>
-                <li><a class="text-left text-black-50" asp-controller="Order" asp-action="List"><i class="fa fa-address-book"> ордеры </i></a></li>
-                <li><a class="text-left text-black-50" asp-controller="Admin" asp-action="Index"><i class="fa fa-address-book"> правим товары </i></a></li>
-                <li class="pull-right text-info">Запрос произведен: @DateTime.Now.ToString("F") </li>
+                <li><a class="nav text-left glyphicon-text-color" href="/"><i class="fa fa-home"> в начало </i></a></li>
+                <li><a class="text-left" asp-controller="Order" asp-action="List"><i class=" fa fa-address-book"> ордеры </i></a></li>
+                <li><a class="text-left" asp-controller="Admin" asp-action="Index"><i class="fa fa-angry"> правим товары </i></a></li>
+                <li class="pull-right text-info"><a><i class="fa fa-angle-right">@TimerStarter.GetString() </i></a></li>
             </ul>
         </footer>
     </div>
