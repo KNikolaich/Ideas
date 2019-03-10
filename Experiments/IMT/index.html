@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ИМТ</title>
+     <link rel="stylesheet" href="int.css">
+	 
+</head>
+
+<body>
+
+<label>ввеодите рост (см)</label>
+<input type="number" placeholder="рост" id="height_id" required min=50 max=2500 width="70%" value="180"/>
+
+<br/>
+<label>ввеодите вес (кг)</label>
+<input type="number" placeholder="вес" id="weight_id" required min=40 max =500/>
+
+<br/>
+<label>введите год рождения</label>
+<input type="number" placeholder="год рождения" max=date id="year_id"/>
+<br/>
+
+<input type="button" onClick="calculat()" value="жми!"></input>
+ <br/>
+ <div id="elem_id"align="center">
+
+<img src="pulse.gif" vspace=220 width="300" height="100" alt="отображение дейстивтельности запрещено в данной реальности.">
+</div>
+</body>
+
+	<script  src="calcul.js"></script>
+</html>
