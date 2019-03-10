@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Пульсация</title>
+     <link rel="stylesheet" href="pulse.css">
+</head>
+
+<body>
+<svg viewbox="0 0 500 200">
+<rect width="2" height="2" fill="green">
+	<animate attributeName="x" from="40" to="300" dur="3s" feel="remove" repeatCount="indefinite"
+</rect>
+<path d=
+M 50,50
+L 100,100
+</svg>
+
+<!--    { x: 100, y: 300 },
+            { x: 200, y: 300, q: { x: 150, y: 50 } },
+            { x: 300, y: 300, q: { x: 250, y: 550 } },
+            { x: 400, y: 300, q: { x: 350, y: 50 } },
+            { x: 500, y: 300, c: [{ x: 450, y: 550 }, { x: 450, y: 50 }] },
+            { x: 600, y: 300, c: [{ x: 550, y: 50 }, { x: 550, y: 550 }] },
+            { x: 700, y: 300, a: { rx: 50, ry: 50, rot: 0, laf: 1, sf: 1 } }-->
+ <div id="elem_id"align="center">
+
+<img src="pulse.gif" width="300" height="100" alt="гиф не отобразить">
+</div>
+
+<button onClick="showHide('elem_id')">Щелкните меня!</button>
+</body>
+
+	<script  src="pulse.js"></script>
+</html>
