@@ -19,5 +19,8 @@ function calculat(){
 	
 	
 	var person = new Person(weight, height, yearOfBirdth);
-	alert("возраст : "+person.ageYear + "\nИМТ: " + person.Imt);
+	var request = "возраст : "+person.ageYear + "\nИМТ: " + person.Imt;
+	//alert();
+	//console.write(request);
+	document.getElementById("request").innerHTML = request;
 }
