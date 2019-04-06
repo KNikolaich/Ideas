@@ -7,22 +7,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8CAD853A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreApplication", "WebCoreApplication\WebCoreApplication.csproj", "{3A59E8A4-1687-4AA0-BAE5-E03890A35685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCoreApplication.Tests", "WebCoreApplication.Tests\WebCoreApplication.Tests.csproj", "{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreApplication.Tests", "WebCoreApplication.Tests\WebCoreApplication.Tests.csproj", "{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Debug|x86.ActiveCfg = Debug|x86
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Debug|x86.Build.0 = Debug|x86
 		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Release|x86.ActiveCfg = Release|x86
+		{3A59E8A4-1687-4AA0-BAE5-E03890A35685}.Release|x86.Build.0 = Release|x86
 		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Debug|x86.ActiveCfg = Debug|x86
+		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Debug|x86.Build.0 = Debug|x86
 		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Release|x86.ActiveCfg = Release|x86
+		{0E0ABE02-0A46-4A7F-8D27-28A7F54018B2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

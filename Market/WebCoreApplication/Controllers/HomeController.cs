@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebCoreApplication.Components;
 using WebCoreApplication.Models;
@@ -10,10 +7,15 @@ namespace WebCoreApplication.Controllers
 {
     public class HomeController : ReposBaseController
     {
+
+        public HomeController(IProductRepository repo)
+        {
+            _repository = repo;
+        }
         public ActionResult Index()
         {
             ViewBag.Title = "Приветствую тебя, мой мир!";
-            return View(ProductRepository.Products.OrderBy(p=>p.Name));
+            return View(_repository.Products.OrderBy(p=>p.Name));
         }
 
         [HttpGet]

@@ -16,14 +16,14 @@ namespace WebCoreApplication.Controllers
 
         public ProductController(IProductRepository repo)
         {
-            ProductRepository = repo;
+            _repository = repo;
         }
 
         public ViewResult List(string category, int page = 1)
         {
-            var resultP = ProductRepository.Products.
+            var resultP = _repository.Products.
                 Where(p=> category == null || p.Category == category).
-                OrderBy(p => p.ProductId).
+                OrderBy(p => p.Id).
                 Skip((page - 1) * PageSize).
                 Take(PageSize);
             
@@ -33,7 +33,7 @@ namespace WebCoreApplication.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = category == null ? ProductRepository.Products.Count() : ProductRepository.Products.Where(e=>e.Category == category).Count()
+                    TotalItems = category == null ? _repository.Products.Count() : _repository.Products.Count(e => e.Category == category)
                 },
                 CurrentCategory = category
             });

@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<string>
 
 
-<a class="btn btn-block btn-toolbar @(ViewBag.SelectedCategory == null? "btn-outline-info": "Ьtn-default")"
+<a class="btn btn-block btn-toolbar @(ViewBag.SelectedCategory == null? "btn-info": "Ьtn-default")"
    asp-action="List"
    asp-controller="Product"
    asp-route-category="">
-    Все
+    Home
 </a>
-
-@foreach (string category in Model) {
-    <a class="btn btn-block btn-toolbar @(category == ViewBag.SelectedCategory? "btn-outline-info": "Ьtn-default")"
-       asp-action="List"
-       asp-controller="Product"
-       asp-route-category="@category"
-       asp-route-page="1">
-        @category
-    </a>
-}
+@foreach (string category in Model)
+    {
+        <a class="btn btn-block btn-toolbar @(category == ViewBag.SelectedCategory ? "btn-info" : "Ьtn-default")"
+           asp-action="List"
+           asp-controller="Product"
+           asp-route-category="@category"
+           asp-route-page="1">
+            @category
+        </a>
+    }

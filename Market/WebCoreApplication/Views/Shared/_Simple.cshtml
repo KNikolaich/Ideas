@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="panel panel-body">
+
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+    @RenderBody()
+</div>

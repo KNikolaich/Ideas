@@ -10,5 +10,8 @@ namespace WebCoreApplication.Models
         IEnumerable<Product> Products { get; }
 
         //void AddProduct(Product item);
+        void SaveProduct(Product product);
+
+        Product DeleteProduct(int id);
     }
 }

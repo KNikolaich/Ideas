@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using WebCoreApplication.Components;
 using WebCoreApplication.Models;
-using WebCoreApplication.Infrastructure;
 using WebCoreApplication.Models.ViewModel;
 
 namespace WebCoreApplication.Controllers
@@ -17,7 +12,7 @@ namespace WebCoreApplication.Controllers
 
         public CartController(IProductRepository repository, Cart cartService)
         {
-            ProductRepository = repository;
+            _repository = repository;
             _cart = cartService;
         }
 
@@ -26,10 +21,10 @@ namespace WebCoreApplication.Controllers
             return View(new CartIndexViewModel { Cart = _cart, ReturnUrl = returnUrl });
         }
 
-        public RedirectToActionResult AddToCart(int productid, string returnUrl)
+        public RedirectToActionResult AddToCart(int id, string returnUrl)
         {
-            Product product = ProductRepository.Products
-            .FirstOrDefault(p => p.ProductId == productid);
+            Product product = _repository.Products
+            .FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
                 _cart.AddItem(product, 1);
@@ -37,9 +32,9 @@ namespace WebCoreApplication.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToActionResult RemoveFromCart(int productid, string returnUrl)
+        public RedirectToActionResult RemoveFromCart(int id, string returnUrl)
         {
-            Product product = ProductRepository.Products.FirstOrDefault(p => p.ProductId == productid);
+            Product product = _repository.Products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
                 _cart.RemoveLine(product);

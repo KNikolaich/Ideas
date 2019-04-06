@@ -7,6 +7,7 @@ using Moq;
 using WebCoreApplication.Models;
 using WebCoreApplication.Tests.FakeAndMock;
 using Xunit;
+using SimpleRepository = WebCoreApplication.Tests.FakeAndMock.SimpleRepository;
 
 namespace WebCoreApplication.Tests
 {
@@ -16,7 +17,7 @@ namespace WebCoreApplication.Tests
         public void IndexActionModelIsComplete()
         {
             // arrange
-            var controller = new Controllers.HomeController {ProductRepository = new ModelCompleteFakeRepository()};
+            var controller = new Controllers.HomeController(new ModelCompleteFakeRepository());
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -27,6 +28,7 @@ namespace WebCoreApplication.Tests
             Assert.Equal(SimpleRepository.SharedRepository.Products.OrderBy(p =>p.Name), model?.OrderBy(p => p.Name), comparer);
         }
 
+
         [Fact]
         public void IndexActionModelIsCompletePricesUnder50()
         {
@@ -34,7 +36,7 @@ namespace WebCoreApplication.Tests
 
             var fakeRepository = new ModelCompleteFakeRepository(p => p.Price < 50m);
 
-            var controller = new Controllers.HomeController {ProductRepository = fakeRepository};
+            var controller = new Controllers.HomeController(fakeRepository);
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -63,11 +65,7 @@ namespace WebCoreApplication.Tests
 
             var fakeRepository = new ModelCompleteFakeRepository(products);
             
-            var controller = new Controllers.HomeController
-            {
-                ProductRepository = fakeRepository
-            };
-
+            var controller = new Controllers.HomeController(fakeRepository);
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -86,7 +84,7 @@ namespace WebCoreApplication.Tests
             // arrange
             var mock = new Mock<IProductRepository>();
             mock.SetupGet(m => m.Products).Returns(products);
-            var controller = new Controllers.HomeController {ProductRepository = mock.Object};
+            var controller = new Controllers.HomeController(mock.Object);
 
             // act
             var viewResult = controller.Index() as ViewResult;
@@ -105,7 +103,7 @@ namespace WebCoreApplication.Tests
             var mock = new Mock<IProductRepository>();
             mock.SetupGet(m => m.Products).Returns(new[] {new Product {Name = "P1", Price = 100}});
 
-            var controller = new Controllers.HomeController {ProductRepository = mock.Object};
+            var controller = new Controllers.HomeController(mock.Object);
 
             // act
             var viewResult = controller.Index();

@@ -1,31 +1,17 @@
 ﻿@using WebCoreApplication.Infrastructure
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport " content="width=device-width" />
-    <link rel="stylesheet"
-          asp-href-include="/bootstrap/dist/**/*.min.css"
-          asp-href-exclude="**/*-reboot*,**/*-grid*" />
-    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
-    <link rel="stylesheet" href="css/bundle.css" />
-    <title>@ViewBag.Title</title>
-</head>
-<body class="form-check">
-    <div class="navbar col-md-11" role="navigation">
-        <a class="navbar navbar-dark" href="/#">Sport shop</a>
-        @await Component.InvokeAsync("CartSummary")
-        
-    </div>
-    <div class="row m-1 p-1">
-        <div id="categories" class="col-xs-4">
-            @await Component.InvokeAsync("NavigationMenu")
-        </div>
-        <div class="col-md-10"> @RenderBody() </div>
-    </div>
-    
-    <footer class="card-footer">
-        <p class="align-text-bottom float-sm-right">Запрос произведен: @DateTime.Now.ToString("F")</p>
-    </footer>
-</body>
 
-</html> 
+@{
+    ViewBag.Title = "Магазин";
+    Layout = "_Layout";
+}
+<div class="row panel">
+    <div id="categories" class="col-xs-3">
+        @await Component.InvokeAsync("NavigationMenu")
+    </div>
+    <div class="col-xs-8">
+        @RenderBody()
+    </div>
+</div>
+
+
+<!-- end main -->

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebCoreApplication.Models;
 
-namespace WebCoreApplication.Tests
+namespace WebCoreApplication.Tests.FakeAndMock
 {
     public class ModelCompleteFakeRepository : IProductRepository
     {
@@ -54,5 +54,14 @@ namespace WebCoreApplication.Tests
         }
 
         public IEnumerable<Product> Products => _products ?? (_products = new List<Product>());
+        public void SaveProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
