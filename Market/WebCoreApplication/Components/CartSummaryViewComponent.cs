@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebCoreApplication.Models;
 
@@ -18,9 +15,10 @@ namespace WebCoreApplication.Components
             _cart = cart;
         }
 
-        public IViewComponentResult Invoke()
-        {
-            return View(_cart);
-        }
+        /// <summary>
+        /// Состояние корзины на экран
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IViewComponentResult> InvokeAsync() => View(_cart);
     }
 }
