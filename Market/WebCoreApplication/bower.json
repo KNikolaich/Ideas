@@ -4,7 +4,7 @@
   "dependencies": {
     "Font-Awesome": "5.6.3",
     "jquery": "2.2.4",
-    "jquery-validation": "1.15.0",
-    "jquery-validation-unobtrusive": "3.6.2"
+    "jquery-validation-unobtrusive": "v3.2.11",
+    "jquery-validation": "1.19.0"
   }
 }

@@ -8,9 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\bootstrap\js\dist\**" />
+    <Compile Remove="wwwroot\bootstrap\js\src\**" />
     <Compile Remove="wwwroot\bootstrap\scss\**" />
+    <Content Remove="wwwroot\bootstrap\js\dist\**" />
+    <Content Remove="wwwroot\bootstrap\js\src\**" />
     <Content Remove="wwwroot\bootstrap\scss\**" />
+    <EmbeddedResource Remove="wwwroot\bootstrap\js\dist\**" />
+    <EmbeddedResource Remove="wwwroot\bootstrap\js\src\**" />
     <EmbeddedResource Remove="wwwroot\bootstrap\scss\**" />
+    <None Remove="wwwroot\bootstrap\js\dist\**" />
+    <None Remove="wwwroot\bootstrap\js\src\**" />
     <None Remove="wwwroot\bootstrap\scss\**" />
   </ItemGroup>
 
@@ -26,50 +34,8 @@
     <None Include="wwwroot\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
     <None Include="wwwroot\bootstrap\dist\css\bootstrap.css.map" />
     <None Include="wwwroot\bootstrap\dist\css\bootstrap.min.css.map" />
-    <None Include="wwwroot\bootstrap\dist\js\bootstrap.bundle.js" />
-    <None Include="wwwroot\bootstrap\dist\js\bootstrap.bundle.js.map" />
-    <None Include="wwwroot\bootstrap\dist\js\bootstrap.bundle.min.js" />
-    <None Include="wwwroot\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
     <None Include="wwwroot\bootstrap\dist\js\bootstrap.js" />
-    <None Include="wwwroot\bootstrap\dist\js\bootstrap.js.map" />
     <None Include="wwwroot\bootstrap\dist\js\bootstrap.min.js" />
-    <None Include="wwwroot\bootstrap\dist\js\bootstrap.min.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\alert.js" />
-    <None Include="wwwroot\bootstrap\js\dist\alert.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\button.js" />
-    <None Include="wwwroot\bootstrap\js\dist\button.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\carousel.js" />
-    <None Include="wwwroot\bootstrap\js\dist\carousel.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\collapse.js" />
-    <None Include="wwwroot\bootstrap\js\dist\collapse.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\dropdown.js" />
-    <None Include="wwwroot\bootstrap\js\dist\dropdown.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\index.js" />
-    <None Include="wwwroot\bootstrap\js\dist\index.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\modal.js" />
-    <None Include="wwwroot\bootstrap\js\dist\modal.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\popover.js" />
-    <None Include="wwwroot\bootstrap\js\dist\popover.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\scrollspy.js" />
-    <None Include="wwwroot\bootstrap\js\dist\scrollspy.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\tab.js" />
-    <None Include="wwwroot\bootstrap\js\dist\tab.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\tooltip.js" />
-    <None Include="wwwroot\bootstrap\js\dist\tooltip.js.map" />
-    <None Include="wwwroot\bootstrap\js\dist\util.js" />
-    <None Include="wwwroot\bootstrap\js\dist\util.js.map" />
-    <None Include="wwwroot\bootstrap\js\src\alert.js" />
-    <None Include="wwwroot\bootstrap\js\src\button.js" />
-    <None Include="wwwroot\bootstrap\js\src\carousel.js" />
-    <None Include="wwwroot\bootstrap\js\src\collapse.js" />
-    <None Include="wwwroot\bootstrap\js\src\dropdown.js" />
-    <None Include="wwwroot\bootstrap\js\src\index.js" />
-    <None Include="wwwroot\bootstrap\js\src\modal.js" />
-    <None Include="wwwroot\bootstrap\js\src\popover.js" />
-    <None Include="wwwroot\bootstrap\js\src\scrollspy.js" />
-    <None Include="wwwroot\bootstrap\js\src\tab.js" />
-    <None Include="wwwroot\bootstrap\js\src\tooltip.js" />
-    <None Include="wwwroot\bootstrap\js\src\util.js" />
     <None Include="wwwroot\bootstrap\LICENSE" />
     <None Include="wwwroot\bootstrap\README.md" />
   </ItemGroup>
@@ -81,10 +47,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
