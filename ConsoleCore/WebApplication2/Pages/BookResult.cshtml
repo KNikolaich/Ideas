@@ -1,0 +1,11 @@
+﻿@page
+@model WebApplication2.Pages.BookMedServModel
+@{
+    ViewData["Title"] = "Ввод данных";
+}
+
+<h2>@Model.Message</h2>
+<form method="post">
+    <label for="Result">ЛПУ</label><br />
+    <input type="text" readonly="readonly" name="Result" id="Result" /><br /><br />
+</form>

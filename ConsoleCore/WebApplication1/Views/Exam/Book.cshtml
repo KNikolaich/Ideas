@@ -1,0 +1,17 @@
+﻿@model WebApplication1.Views.Exam.BookMedServModel
+
+@{
+    ViewBag.Title = "Ввод данных";
+    Layout = "_Layout";
+}
+
+<h2>@Model.Message</h2>
+<form method="post">
+    <label for="idLpu">ЛПУ</label><br />
+    <input type="text" name="idLpu" id="idLpu" /><br /><br />
+    <label for="idPat">идентификатор Пациента</label><br />
+    <input type="number" name="idPat" id="idPat" /><br /><br />
+    <label for="idMedExam">идентификатор CCName</label><br />
+    <input type="text" name="idMedExam" id="idMedExam" /><br /><br />
+    <input type="submit" value="Оправить" />
+</form>
