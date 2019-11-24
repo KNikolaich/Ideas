@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebAppli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3", "WebApplication3\WebApplication3.csproj", "{BFCAEB39-4178-44C6-99F0-29554112A2E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamClient", "ExamClient\ExamClient.csproj", "{C5400D84-B857-49A6-8065-7C1BCC695D30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamClient", "ExamClient\ExamClient.csproj", "{C5400D84-B857-49A6-8065-7C1BCC695D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXWebApplication1", "DXApplication1\DXWebApplication1\DXWebApplication1.csproj", "{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,14 @@ Global
 		{C5400D84-B857-49A6-8065-7C1BCC695D30}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5400D84-B857-49A6-8065-7C1BCC695D30}.Release|x64.ActiveCfg = Release|Any CPU
 		{C5400D84-B857-49A6-8065-7C1BCC695D30}.Release|x64.Build.0 = Release|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Debug|x64.Build.0 = Debug|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Release|x64.ActiveCfg = Release|Any CPU
+		{B3D962C1-C67D-4CB1-B1A6-5C077D832F6C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

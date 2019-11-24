@@ -1,0 +1,44 @@
+﻿@using DXWebApplication1.Models.Examination
+@model DXWebApplication1.KostaN3Exam.MedicalExamination
+
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "grid";
+    settings.CallbackRouteValues = new { Controller = "AviceN3Exam", Action = "MedicalServiceBookingPartial" };
+    settings.Width = Unit.Percentage(100);
+
+    settings.KeyFieldName = "IdMedicalService";
+    settings.Columns.Add("IdMedicalService");
+    settings.Columns.Add("MedicalServiceCode");
+    //settings.Columns.Add("MedicalServiceComment");
+    settings.Columns.Add("MedicalServiceConditions");
+    settings.Columns.Add("MedicalServiceName");
+    settings.Columns.Add("MedicalServiceRequired");
+    settings.Columns.Add("MedicalServiceUnavailableReason");
+    settings.Columns.Add("MedicalServiceStatus");
+
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+    settings.SettingsDetail.ShowDetailRow = true;
+    settings.SettingsDetail.ShowDetailButtons = true;
+    settings.SetDetailRowTemplateContent(c => {
+
+        ViewContext.Writer.Write("<h2>" +
+        "IdMedicalService: <b>" + DataBinder.Eval(c.DataItem, "IdMedicalService") +
+        "</b>, Comment: <b>" + DataBinder.Eval(c.DataItem, "MedicalServiceComment") +
+        "</b>,  Статус: <b>" + PlanRequest.GetMedicalServiceStatus(DataBinder.Eval(c.DataItem, "MedicalServiceStatus")) + "</b>" +
+        "<br />" +
+        "<br /> </h2>"
+
+        );
+        //if(booking != null)
+        Html.RenderAction("MedicalServiceBookingPartial", new {id = DataBinder.Eval(c.DataItem, "IdMedicalService") });
+        Html.RenderAction("ListMedicalResource", new {id = DataBinder.Eval(c.DataItem, "IdMedicalService") });
+    });
+    settings.PreRender = (sender, e) => {
+        for (int i = 0; i< Model.ListMedicalService.Length; i++)
+        {
+            ((MVCxGridView)sender).DetailRows.ExpandRow(i);
+        }
+    };
+
+    //DevExpress.Web.Demos.GridViewFeaturesHelper.SetupGlobalGridViewBehavior(settings);
+}).Bind(Model.ListMedicalService).GetHtml()

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" />
+  <xs:element name="ValidateMedicalExamination">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="medicalExaminationType" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q1:guid" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="examinationPatient" nillable="true" type="q2:Patient" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateMedicalExaminationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="ValidateMedicalExaminationResult" nillable="true" type="q3:ValidateMedicalExaminationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MedicalExaminationQuestioning">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalExamination" type="q4:guid" />
+        <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q5:guid" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="ListQuestionnaire" nillable="true" type="q6:ArrayOfQuestionnaire" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MedicalExaminationQuestioningResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="MedicalExaminationQuestioningResult" nillable="true" type="q7:MedicalExaminationQuestioningResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMedicalServiceAvailableSlots">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalExamination" type="q8:guid" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalService" type="q9:guid" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalResource" type="q10:guid" />
+        <xs:element minOccurs="0" name="slotSearchStartDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="slotSearchEndDate" type="xs:dateTime" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q11:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMedicalServiceAvailableSlotsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="GetMedicalServiceAvailableSlotsResult" nillable="true" type="q12:GetMedicalServiceAvailableSlotsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMedicalExaminationPlan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalExamination" type="q13:guid" />
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q14:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMedicalExaminationPlanResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="GetMedicalExaminationPlanResult" nillable="true" type="q15:GetMedicalExaminationPlanResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookMedicalService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalExamination" type="q16:guid" />
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalService" type="q17:guid" />
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalResource" type="q18:guid" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idSlot" type="q19:guid" />
+        <xs:element minOccurs="0" name="visitStart" nillable="true" type="xs:dateTime" />
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q20:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BookMedicalServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="BookMedicalServiceResult" nillable="true" type="q21:BookMedicalServiceResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelMedicalServiceBooking">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalServiceBooking" type="q22:guid" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q23:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelMedicalServiceBookingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="CancelMedicalServiceBookingResult" nillable="true" type="q24:CancelMedicalServiceBookingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMedicalServiceBooking">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q25:guid" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="medicalExamination" nillable="true" type="q26:MedicalExamination" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMedicalServiceBookingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="UpdateMedicalServiceBookingResult" nillable="true" type="q27:UpdateMedicalServiceBookingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMedicalExaminationQuestionnaires">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idLpu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idPat" nillable="true" type="xs:string" />
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="idMedicalExamination" type="q28:guid" />
+        <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="guid" type="q29:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMedicalExaminationQuestionnairesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" minOccurs="0" name="GetMedicalExaminationQuestionnairesResult" nillable="true" type="q30:GetMedicalExaminationQuestionnairesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVersion">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVersionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

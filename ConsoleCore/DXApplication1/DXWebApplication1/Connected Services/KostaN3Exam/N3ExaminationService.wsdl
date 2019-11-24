@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="N3ExaminationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+      <xsd:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" />
+      <xsd:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HubService2" />
+      <xsd:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IExaminationService_ValidateMedicalExamination_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMedicalExamination" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_ValidateMedicalExamination_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateMedicalExaminationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_ValidateMedicalExamination_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q1:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_MedicalExaminationQuestioning_InputMessage">
+    <wsdl:part name="parameters" element="tns:MedicalExaminationQuestioning" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_MedicalExaminationQuestioning_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MedicalExaminationQuestioningResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_MedicalExaminationQuestioning_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q2:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalServiceAvailableSlots_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMedicalServiceAvailableSlots" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalServiceAvailableSlots_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMedicalServiceAvailableSlotsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalServiceAvailableSlots_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q3:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalExaminationPlan_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMedicalExaminationPlan" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalExaminationPlan_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMedicalExaminationPlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalExaminationPlan_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q4:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_BookMedicalService_InputMessage">
+    <wsdl:part name="parameters" element="tns:BookMedicalService" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_BookMedicalService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BookMedicalServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_BookMedicalService_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q5:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_CancelMedicalServiceBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMedicalServiceBooking" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_CancelMedicalServiceBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMedicalServiceBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_CancelMedicalServiceBooking_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q6:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_UpdateMedicalServiceBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMedicalServiceBooking" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_UpdateMedicalServiceBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMedicalServiceBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_UpdateMedicalServiceBooking_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q7:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalExaminationQuestionnaires_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMedicalExaminationQuestionnaires" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalExaminationQuestionnaires_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMedicalExaminationQuestionnairesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetMedicalExaminationQuestionnaires_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q8:FaultException" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExaminationService_GetVersion_FaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/System.ServiceModel" name="detail" element="q9:FaultException" />
+  </wsdl:message>
+  <wsdl:portType name="IExaminationService">
+    <wsdl:operation name="ValidateMedicalExamination">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/ValidateMedicalExamination" message="tns:IExaminationService_ValidateMedicalExamination_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/ValidateMedicalExaminationResponse" message="tns:IExaminationService_ValidateMedicalExamination_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/ValidateMedicalExaminationFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_ValidateMedicalExamination_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MedicalExaminationQuestioning">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/MedicalExaminationQuestioning" message="tns:IExaminationService_MedicalExaminationQuestioning_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/MedicalExaminationQuestioningResponse" message="tns:IExaminationService_MedicalExaminationQuestioning_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/MedicalExaminationQuestioningFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_MedicalExaminationQuestioning_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicalServiceAvailableSlots">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalServiceAvailableSlots" message="tns:IExaminationService_GetMedicalServiceAvailableSlots_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalServiceAvailableSlotsResponse" message="tns:IExaminationService_GetMedicalServiceAvailableSlots_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalServiceAvailableSlotsFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_GetMedicalServiceAvailableSlots_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicalExaminationPlan">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalExaminationPlan" message="tns:IExaminationService_GetMedicalExaminationPlan_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalExaminationPlanResponse" message="tns:IExaminationService_GetMedicalExaminationPlan_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalExaminationPlanFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_GetMedicalExaminationPlan_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BookMedicalService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/BookMedicalService" message="tns:IExaminationService_BookMedicalService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/BookMedicalServiceResponse" message="tns:IExaminationService_BookMedicalService_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/BookMedicalServiceFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_BookMedicalService_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelMedicalServiceBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/CancelMedicalServiceBooking" message="tns:IExaminationService_CancelMedicalServiceBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/CancelMedicalServiceBookingResponse" message="tns:IExaminationService_CancelMedicalServiceBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/CancelMedicalServiceBookingFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_CancelMedicalServiceBooking_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMedicalServiceBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/UpdateMedicalServiceBooking" message="tns:IExaminationService_UpdateMedicalServiceBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/UpdateMedicalServiceBookingResponse" message="tns:IExaminationService_UpdateMedicalServiceBooking_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/UpdateMedicalServiceBookingFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_UpdateMedicalServiceBooking_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicalExaminationQuestionnaires">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalExaminationQuestionnaires" message="tns:IExaminationService_GetMedicalExaminationQuestionnaires_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalExaminationQuestionnairesResponse" message="tns:IExaminationService_GetMedicalExaminationQuestionnaires_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/GetMedicalExaminationQuestionnairesFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_GetMedicalExaminationQuestionnaires_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExaminationService/GetVersion" message="tns:IExaminationService_GetVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExaminationService/GetVersionResponse" message="tns:IExaminationService_GetVersion_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IExaminationService/GetVersionFaultExceptionFault" name="FaultExceptionFault" message="tns:IExaminationService_GetVersion_FaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IExaminationService" type="tns:IExaminationService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateMedicalExamination">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/ValidateMedicalExamination" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="MedicalExaminationQuestioning">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/MedicalExaminationQuestioning" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicalServiceAvailableSlots">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/GetMedicalServiceAvailableSlots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicalExaminationPlan">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/GetMedicalExaminationPlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BookMedicalService">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/BookMedicalService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMedicalServiceBooking">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/CancelMedicalServiceBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMedicalServiceBooking">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/UpdateMedicalServiceBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMedicalExaminationQuestionnaires">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/GetMedicalExaminationQuestionnaires" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://tempuri.org/IExaminationService/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="FaultExceptionFault">
+        <soap:fault use="literal" name="FaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="N3ExaminationService">
+    <wsdl:port name="BasicHttpBinding_IExaminationService" binding="tns:BasicHttpBinding_IExaminationService">
+      <soap:address location="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

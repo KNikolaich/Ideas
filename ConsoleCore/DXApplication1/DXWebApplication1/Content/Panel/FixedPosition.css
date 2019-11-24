@@ -1,0 +1,41 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    background-color: #F4F0DB;
+    font: 14px Tahoma;
+}
+
+.panelContent {
+    font-size: 14px;
+    text-align: center;
+    white-space: normal;
+}
+
+.bodyContent {
+    margin: 0 auto;
+    width: 80%;
+    min-width: 180px;
+    line-height: 150%;
+    text-align: center;
+}
+
+    .bodyContent h3 {
+        padding: 40px 0 20px;
+    }
+
+.leftPanel {
+    width: 20%;
+    max-width: 180px;
+    min-width: 80px;
+    background-color: #F3EAFB !important;
+}
+
+.topPanel {
+    background-color: #DBF4DE !important;
+    padding: 20px 0 20px !important;
+}
+
+.bottomPanel {
+    background-color: #DBEBF4 !important;
+    padding: 20px 0 20px !important;
+}

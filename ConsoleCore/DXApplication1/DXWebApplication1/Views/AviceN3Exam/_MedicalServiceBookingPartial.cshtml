@@ -1,0 +1,41 @@
+﻿@model DXWebApplication1.KostaN3Exam.MedicalServiceBooking
+@if (Model != null)
+{
+    @functions{
+        Action<MVCxFormLayoutItem> AssignTextBoxItemSettingsMethod = item => {
+             item.NestedExtension().TextBox(s => {
+                 s.ShowModelErrors = true;
+                 s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                 s.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                 s.Properties.ValidationSettings.Display = Display.Dynamic;
+                 s.Properties.Password = item.Name.Contains("Password");
+                 s.Width = Unit.Percentage(100);
+             });
+             item.Width = Unit.Percentage(100);
+        };
+    }
+
+    @Html.DevExpress().FormLayout(settings => {
+    settings.Name = "formLayoutMedicalServiceBooking";
+    settings.UseDefaultPaddings = false;
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 450;
+
+
+    settings.Items.AddGroupItem(g => {
+        g.Name = "registerGroup";
+        g.Caption = "Medical Service Booking - информация о бронировании номерка";
+        g.UseDefaultPaddings = false;
+        //g.ClientVisible = !Model.IsNewUser;
+        g.GroupBoxDecoration = GroupBoxDecoration.Box;
+        g.Items.Add(i => i.IdMedicalServiceBooking, AssignTextBoxItemSettingsMethod);
+        g.Items.Add(i => i.BookingMember, AssignTextBoxItemSettingsMethod);
+        //g.Items.Add(i => i.IdLpu, AssignTextBoxItemSettingsMethod);
+        g.Items.Add(i => i.MedicalServiceBookingStatus, AssignTextBoxItemSettingsMethod);
+        g.Items.Add(i => i.MedicalServiceBookingStatusString, AssignTextBoxItemSettingsMethod);
+
+    });
+       }).GetHtml()
+
+}

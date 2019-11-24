@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode url="javascript:void(0);">
+    <siteMapNode url="Article" title="Статья">
+    </siteMapNode>
+    <siteMapNode url="Scheduler" title="Расписание">
+    </siteMapNode>
+    <siteMapNode url="GridView" title="Грид">
+    </siteMapNode>
+    <siteMapNode url="AviceN3Exam" title="План">
+    </siteMapNode>
+    <siteMapNode url="Home" title="Домой">
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>
