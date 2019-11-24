@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9b7da3f5-ca92-42b1-b8a3-1462c32b3c34" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="N3ExaminationService.disco" MetadataType="Disco" ID="6e12e6da-cd94-44ca-82c6-2d5b2aee2137" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?disco" />
+    <MetadataFile FileName="N3ExaminationService.xsd" MetadataType="Schema" ID="db2019d6-ca33-4bb9-ab77-fbe4692afb25" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd0" />
+    <MetadataFile FileName="N3ExaminationService1.xsd" MetadataType="Schema" ID="f4105677-caca-43f2-ab62-5670fc7a52f6" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd3" />
+    <MetadataFile FileName="N3ExaminationService2.xsd" MetadataType="Schema" ID="93baff01-d91c-4cd9-a570-f6ee7c41d807" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd2" />
+    <MetadataFile FileName="N3ExaminationService3.xsd" MetadataType="Schema" ID="991ce0ca-5843-41ed-b793-46f7859ccf6e" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd5" />
+    <MetadataFile FileName="N3ExaminationService4.xsd" MetadataType="Schema" ID="df0f538d-5585-4ef0-b189-d88e6f4fc4d6" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd1" />
+    <MetadataFile FileName="N3ExaminationService.wsdl" MetadataType="Wsdl" ID="cf76d0da-5b05-452d-a762-934b2e05e745" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?wsdl" />
+    <MetadataFile FileName="N3ExaminationService5.xsd" MetadataType="Schema" ID="95861383-0478-4af7-a30c-f4d05abdd3a3" SourceId="1" SourceUrl="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

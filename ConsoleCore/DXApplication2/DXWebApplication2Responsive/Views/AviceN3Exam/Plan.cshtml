@@ -1,0 +1,19 @@
+﻿@using DXWebApplication2Responsive.Models.Examination
+@model DXWebApplication2Responsive.Models.Examination.PlanRequest
+
+@{
+    ViewBag.Title = "План диспансеризации";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("FinderPlan", Model);
+
+@if (Model != null && PlanRequest.Response != null)
+{
+
+    @Html.Partial("ResponsePlan", PlanRequest.Response);
+}
+
+
+

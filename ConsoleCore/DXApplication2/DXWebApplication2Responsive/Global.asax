@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="DXWebApplication2Responsive.MvcApplication" Language="C#" %>

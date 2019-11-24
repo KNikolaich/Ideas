@@ -1,0 +1,15 @@
+﻿@model DXWebApplication2Responsive.AviceN3ExamServiceReference.GetMedicalExaminationPlanResult
+
+<div class="col-lg-8 left-block">
+    @if (Model.ErrorList == null || Model.ErrorList.Length == 0)
+    {
+        @Html.Partial("_MedicalServiceGridPartial", Model.MedicalExamination)
+
+        //@Html.Partial("_MedicalExaminationPartial", Model.MedicalExamination)
+    }
+    else
+    {
+        Html.RenderPartial("ErrorList", Model.ErrorList);
+    }
+
+</div>
