@@ -23,11 +23,12 @@ namespace DXWebApplication2Responsive.Models.Examination
 
         public void CalcRequest()
         {
-            if (Response == null)
+            //if (Response == null)
             {
                 ExaminationServiceClient client = new ExaminationServiceClient();
+                
                 Response = client.GetMedicalExaminationPlan(IdLpu, IdPat.ToString(), new Guid(Servid), Guid);
-
+                Servid = client.GetVersionAsync().Result;
             }
 
         }

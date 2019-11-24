@@ -5,15 +5,88 @@
     ViewBag.Title = "План диспансеризации";
     Layout = "../Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    function OnBegin() {
+        LoadingPanel.Show();
+    }
+
+    function OnFailure(request, error) {
+        LoadingPanel.Hide();
+        $("#results").html(Html.Partial("ErrorList", error));
+    }
+    function OnComplete(request, status) {
+        LoadingPanel.Hide();
+    }
+</script>
 
 
-@Html.Partial("FinderPlan", Model);
-
-@if (Model != null && PlanRequest.Response != null)
+@using (Ajax.BeginForm("Response", new AjaxOptions { UpdateTargetId = "results", OnBegin="OnBegin",
+    OnFailure="OnFailure", OnComplete="OnComplete" }))//OnSuccess="OnSuccess", 
 {
+    @Html.DevExpress().FormLayout(settings => {
+   settings.Name = "detailFormLayout";
+   settings.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+   settings.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 500;
+   settings.ControlStyle.CssClass = "formLayout";
+   // settings.Styles.Style.BackColor = Color.Transparent;
+   settings.Items.AddGroupItem(g => {
+       g.Caption = "План диспансеризации";
+       g.ColCount = 5;
+       g.UseDefaultPaddings = false;
+       g.Paddings.PaddingTop = Unit.Pixel(10);
+       g.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+       g.GroupBoxStyle.Caption.Font.Bold = true;
+       g.GroupBoxStyle.Caption.Font.Size = 16;
 
-    @Html.Partial("ResponsePlan", PlanRequest.Response);
+       g.Items.Add(m => m.IdPat, i => {
+           i.NestedExtension().TextBox(s => {
+               s.ShowModelErrors = true;
+               s.Properties.ValidationSettings.Display = Display.Dynamic;
+           });
+       });
+       g.Items.Add(m => m.Servid, i =>
+       {
+           i.NestedExtension().TextBox(s =>
+           {
+               s.ShowModelErrors = true;
+               s.Properties.ValidationSettings.Display = Display.Dynamic;
+           });
+           i.ColSpan = 2;
+
+       });
+       g.Items.Add(m => m.IdLpu, i => {
+           i.NestedExtension().TextBox(s => {
+               s.ShowModelErrors = true;
+               s.Properties.ValidationSettings.Display = Display.Dynamic;
+
+           });
+       });
+       g.Items.Add(i => {
+           i.ShowCaption = DefaultBoolean.False;
+           i.Width = Unit.Percentage(100);
+           i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+       }).SetNestedContent(() => {
+           ViewContext.Writer.Write("<table><tr><td style=\"padding-right:10px;\">");
+
+           Html.DevExpress().Button(s => {
+               s.Name = "Submit";
+               s.Width = Unit.Pixel(100);
+               s.Text = "Запросить";
+               //s.ClientSideEvents.Click = "function(s, e) { LoadData(); }";
+                s.UseSubmitBehavior = true;
+           }).Render();
+
+           ViewContext.Writer.Write("</td></tr></table>");
+       });
+   });
+}).GetHtml()
 }
 
+<div id="results"></div>
 
-
+@Html.DevExpress().LoadingPanel(
+settings => {
+                settings.Name = "LoadingPanel";
+                settings.Modal = true;
+}
+).GetHtml()

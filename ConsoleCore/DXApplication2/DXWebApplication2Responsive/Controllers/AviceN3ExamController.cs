@@ -20,10 +20,10 @@ namespace DXWebApplication2Responsive.Controllers
         }
 
         [HttpPost]
-        public ActionResult Plan(PlanRequest plan)
+        public ActionResult Response(string servid, int idPat)
         {
-            plan.CalcRequest();
-            return View("Plan", plan);
+            new PlanRequest { IdPat = idPat, Servid = servid}.CalcRequest();
+            return PartialView("ResponsePlan", PlanRequest.Response);
         }
 
         // GET: AviceN3Exam
@@ -32,85 +32,8 @@ namespace DXWebApplication2Responsive.Controllers
         public ActionResult Index()
         {
             return RedirectToAction("Plan");
-            return View("Plan", new PlanRequest()
-            {
-                IdPat = 26450,
-                Servid = "FECA9BD1-CDBD-E911-80D0-20CF301DFD89"
-            });
         }
-
-        // GET: AviceN3Exam/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AviceN3Exam/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AviceN3Exam/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AviceN3Exam/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AviceN3Exam/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AviceN3Exam/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AviceN3Exam/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        
 
         [ValidateInput(false)]
         public ActionResult MedicalExaminationPartial(MedicalExamination model)

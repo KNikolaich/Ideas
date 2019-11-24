@@ -300,6 +300,7 @@
     <Content Include="Views\AviceN3Exam\FinderPlan.cshtml" />
     <Content Include="Views\AviceN3Exam\Plan.cshtml" />
     <Content Include="Views\AviceN3Exam\ResponsePlan.cshtml" />
+    <Content Include="Views\AviceN3Exam\ExamplePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -325,6 +326,7 @@
     <Compile Include="Controllers\ExamintionPlanController.cs" />
     <Compile Include="Controllers\GridViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadingPanelController.cs" />
     <Compile Include="Controllers\SchedulerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -343,6 +345,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\AviceN3ExamServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\LoadingPanel\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
