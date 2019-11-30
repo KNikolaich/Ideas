@@ -23,7 +23,7 @@
     settings.SetDetailRowTemplateContent(c => {
 
         ViewContext.Writer.Write("<h2>" +
-        "IdMedicalService: <b>" + DataBinder.Eval(c.DataItem, "IdMedicalService") +
+        "MedicalService: <b>" + DataBinder.Eval(c.DataItem, "MedicalServiceName") +
         "</b>, Comment: <b>" + DataBinder.Eval(c.DataItem, "MedicalServiceComment") +
         "</b>,  Статус: <b>" + PlanRequest.GetMedicalServiceStatus(DataBinder.Eval(c.DataItem, "MedicalServiceStatus")) + "</b>" +
         "<br />" +
