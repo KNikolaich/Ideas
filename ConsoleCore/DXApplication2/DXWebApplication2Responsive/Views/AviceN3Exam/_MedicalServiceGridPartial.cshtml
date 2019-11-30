@@ -21,7 +21,6 @@
     settings.SettingsDetail.ShowDetailRow = true;
     settings.SettingsDetail.ShowDetailButtons = true;
     settings.SetDetailRowTemplateContent(c => {
-
         ViewContext.Writer.Write("<h2>" +
         "MedicalService: <b>" + DataBinder.Eval(c.DataItem, "MedicalServiceName") +
         "</b>, Comment: <b>" + DataBinder.Eval(c.DataItem, "MedicalServiceComment") +
