@@ -2,7 +2,7 @@
 
 @if (Model != null && Model.ListMedicalResource.Length > 0)
 {
-<h3>@Model.IdLpu</h3>
+<b>Lpu id:@Model.IdLpu</b>
     @Html.DevExpress().GridView(settings =>
 {
     settings.Name = "detailGrid_" + ViewData["IdMedicalService"];
