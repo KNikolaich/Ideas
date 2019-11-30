@@ -15,7 +15,7 @@ namespace DXWebApplication2Responsive.Controllers
             return View(new PlanRequest()
             {
                 IdPat = 26450,
-                Servid = "FECA9BD1-CDBD-E911-80D0-20CF301DFD89"
+                Servid = "feca9bd1-cdbd-e911-80d0-20cf301dfd89"
             });
         }
 
