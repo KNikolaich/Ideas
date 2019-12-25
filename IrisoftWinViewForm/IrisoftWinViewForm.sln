@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrisoftWinViewForm", "IrisoftWinViewForm\IrisoftWinViewForm.csproj", "{9F459B8A-1F7F-4458-9C26-E037B343AFC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerTest", "ControllerTest\ControllerTest.csproj", "{78F8E447-3495-4ED4-A8F0-1DA9B9A5544A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F459B8A-1F7F-4458-9C26-E037B343AFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F459B8A-1F7F-4458-9C26-E037B343AFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F459B8A-1F7F-4458-9C26-E037B343AFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F459B8A-1F7F-4458-9C26-E037B343AFC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F8E447-3495-4ED4-A8F0-1DA9B9A5544A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F8E447-3495-4ED4-A8F0-1DA9B9A5544A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F8E447-3495-4ED4-A8F0-1DA9B9A5544A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F8E447-3495-4ED4-A8F0-1DA9B9A5544A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
