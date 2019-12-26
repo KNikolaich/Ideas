@@ -6,8 +6,8 @@ namespace IrisoftWinViewForm
 {
     public class StringsDataController
     {
-        private StringsDataModel _model;
-        private List<char> _allowed;
+        private readonly StringsDataModel _model;
+        private readonly List<char> _allowed;
 
         public StringsDataController(StringsDataModel model)
         {
@@ -22,32 +22,28 @@ namespace IrisoftWinViewForm
 
         private double CalcAnswer()
         {
-            HashSet<string> hs = new HashSet<string>();
-
             var separator = GetSeparator();
 
-            var strings = _model.ArticleOne.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             // собираем первую строку в таблицу
-            foreach (string str in strings)
-            {
-                hs.Add(str);
-            }
+            var listFromOneStr = _model.ArticleOne.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToList();
+            
             var stringsTwo = _model.ArticleTwo.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToList();
+            
             // выкидываем полные совпадения
             //var stringsTwoCount = stringsTwo.Count; // изначальное кол-во слов
             var countWithoutChangeWords = 0; // кол-во оставленных без изменения слов
             for (int index = stringsTwo.Count - 1; index >= 0; index--)
             {
                 string str = stringsTwo[index];
-                if (hs.Contains(str))
+                if (listFromOneStr.Contains(str))
                 {
-                    hs.Remove(str);
+                    listFromOneStr.Remove(str);
                     //stringsTwo.RemoveAt(index);
                     countWithoutChangeWords++;
                 }
             }
             
-            double maxCountWords = stringsTwo.Count > strings.Length ? stringsTwo.Count : strings.Length;
+            double maxCountWords = stringsTwo.Count > listFromOneStr.Count ? stringsTwo.Count : listFromOneStr.Count;
 
             if (Equals(maxCountWords, (double)0))
             {
