@@ -12,7 +12,7 @@ namespace ControllerTest
             StringsDataModel model = new StringsDataModel(dataOne, dataTwo);
             var result = new StringsDataController(model).GetAnswer();
 
-            Assert.Equal(result, actual: 1);
+            Assert.Equal(result, 1);
         }
 
     }

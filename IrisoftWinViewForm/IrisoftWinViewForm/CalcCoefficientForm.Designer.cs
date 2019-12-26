@@ -1,6 +1,6 @@
 ﻿namespace IrisoftWinViewForm
 {
-    partial class Form1
+    partial class CalcCoefficientForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.Text = "CalcCoefficientForm";
         }
 
         #endregion

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace IrisoftWinViewForm
 {
-    public partial class Form1 : Form
+    public partial class CalcCoefficientForm : Form
     {
-        public Form1()
+        public CalcCoefficientForm()
         {
             InitializeComponent();
         }

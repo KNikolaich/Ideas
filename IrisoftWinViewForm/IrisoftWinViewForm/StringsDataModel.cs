@@ -7,8 +7,8 @@
     {
         public StringsDataModel(string strOne, string strTwo)
         {
-            ArticleOne = strOne;
-            ArticleTwo = strTwo;
+            ArticleOne = strOne.ToLower();
+            ArticleTwo = strTwo.ToLower();
         }
 
         public string ArticleOne { get; set; }
