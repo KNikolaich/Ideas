@@ -57,6 +57,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringsDataController.cs" />
     <Compile Include="StringsDataModel.cs" />
+    <EmbeddedResource Include="CalcCoefficientForm.resx">
+      <DependentUpon>CalcCoefficientForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

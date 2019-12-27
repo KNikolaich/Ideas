@@ -15,6 +15,11 @@
 
         public string ArticleTwo { get; set; }
 
-        public double Answer { get; set; }
+        public float Answer { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{ArticleOne} и {ArticleTwo} совпадение {Answer}");
+        }
     }
 }

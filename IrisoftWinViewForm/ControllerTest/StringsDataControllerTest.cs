@@ -12,7 +12,7 @@ namespace ControllerTest
             StringsDataModel model = new StringsDataModel(dataOne, dataTwo);
             var result = new StringsDataController(model).GetAnswer();
 
-            Assert.Equal(result, 1);
+            Assert.Equal(result, 1f);
         }
 
         [Theory]
@@ -22,7 +22,18 @@ namespace ControllerTest
             StringsDataModel model = new StringsDataModel(dataOne, dataTwo);
             var result = new StringsDataController(model).GetAnswer();
 
-            Assert.Equal(result, (double)0.5);
+            Assert.Equal(result, 0.5f);
+        }
+
+
+        [Theory]
+        [MemberData(nameof(FullDifferentsStrings))]
+        public void AllString_AreDifferentFully(string dataOne, string dataTwo)
+        {
+            StringsDataModel model = new StringsDataModel(dataOne, dataTwo);
+            var result = new StringsDataController(model).GetAnswer();
+
+            Assert.Equal(result, 0f);
         }
     }
 }
