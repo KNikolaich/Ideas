@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace IrisoftWinViewForm
@@ -14,9 +12,17 @@ namespace IrisoftWinViewForm
         [STAThread]
         static void Main()
         {
+
+            //Включить обработку исключений
+            ExceptionHandler exceptionHandler = new ExceptionHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CalcCoefficientForm());
+
+            if (Equals(exceptionHandler, exceptionHandler)) // так надо чтобы оптимизатор не убил этот объект
+            {
+                exceptionHandler.ToString();
+            }
         }
     }
 }
