@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Conf.cs" />
     <Compile Include="Crypto.cs" />
+    <Compile Include="Model\Models.cs" />
     <Compile Include="Model\Project.cs">
       <DependentUpon>StaffTimeModel.tt</DependentUpon>
     </Compile>

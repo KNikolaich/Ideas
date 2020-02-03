@@ -61,7 +61,7 @@ namespace StaffTimes
             }
         }
         
-        private void tbLogin_KeyUp(object sender, KeyEventArgs e)
+        private void tbLogin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
             {
@@ -69,7 +69,7 @@ namespace StaffTimes
             }
         }
 
-        private void _tbPasswd_KeyUp(object sender, KeyEventArgs e)
+        private void _tbPasswd_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
             {

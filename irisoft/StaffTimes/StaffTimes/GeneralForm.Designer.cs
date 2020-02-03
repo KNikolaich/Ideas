@@ -29,32 +29,23 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.таймингиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._gridWeeks = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colWeekNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditStarted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditEndet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewImageColumn();
             this.colApproved = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._gridWeeks)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.таймингиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // таймингиToolStripMenuItem
-            // 
-            this.таймингиToolStripMenuItem.Name = "таймингиToolStripMenuItem";
-            this.таймингиToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.таймингиToolStripMenuItem.Text = "Тайминги";
             // 
             // _gridWeeks
             // 
@@ -63,6 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._gridWeeks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._gridWeeks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colId,
             this.colWeekNumber,
             this.colEditStarted,
             this.colEditEndet,
@@ -75,6 +67,14 @@
             this._gridWeeks.TabIndex = 1;
             this._gridWeeks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._gridWeeks_CellContentClick);
             this._gridWeeks.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._gridWeeks_CellDoubleClick);
+            // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "Id";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Visible = false;
             // 
             // colWeekNumber
             // 
@@ -130,8 +130,6 @@
             this.Name = "GeneralForm";
             this.Text = "Учет времени";
             this.Load += new System.EventHandler(this.GeneralForm_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._gridWeeks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,8 +139,8 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem таймингиToolStripMenuItem;
         private System.Windows.Forms.DataGridView _gridWeeks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colWeekNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEditStarted;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEditEndet;

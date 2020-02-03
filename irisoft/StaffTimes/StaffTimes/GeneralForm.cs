@@ -26,7 +26,9 @@ namespace StaffTimes
 
             using (var repository = new StaffTimeModelContainer())
             {
-                _gridWeeks.DataSource = repository.Week.ToList();
+                var weeks = repository.Week.Where(w => w.UserId == _user.Id).ToList();
+                var source = weeks.Select(w=> new {w.Id, w.Approved, w.EditStarted, w.EditEnded, w.Status} ).ToList();
+                _gridWeeks.DataSource = source;
             }
         }
 
@@ -57,6 +59,7 @@ namespace StaffTimes
                 if (logForm.ShowDialog() == DialogResult.OK)
                 {
                     _user = logForm.GetUser();
+                    Text += (" - " + _user);
                 }
                 else
                 {

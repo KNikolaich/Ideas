@@ -74,7 +74,7 @@
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(142, 20);
             this.tbLogin.TabIndex = 0;
-            this.tbLogin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbLogin_KeyUp);
+            this.tbLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbLogin_KeyDown);
             // 
             // _tbPasswd
             // 
@@ -83,7 +83,7 @@
             this._tbPasswd.PasswordChar = '*';
             this._tbPasswd.Size = new System.Drawing.Size(141, 20);
             this._tbPasswd.TabIndex = 1;
-            this._tbPasswd.KeyUp += new System.Windows.Forms.KeyEventHandler(this._tbPasswd_KeyUp);
+            this._tbPasswd.KeyDown += new System.Windows.Forms.KeyEventHandler(this._tbPasswd_KeyDown);
             // 
             // LoginForm
             // 
