@@ -56,6 +56,17 @@ namespace Core.Model
             SaveChanges();
             return user;
         }
+
+        /// <summary>
+        /// Взять пользователя по паре логин/пароль
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="passwd"></param>
+        /// <returns></returns>
+        public User GetUser(string login, string passwd)
+        {
+            return User.FirstOrDefault(user => user.Login == login && user.Password == passwd);
+        }
     }
 
     /// <summary> роли пользователей  </summary>

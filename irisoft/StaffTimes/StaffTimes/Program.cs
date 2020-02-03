@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,9 +15,14 @@ namespace StaffTimes
         [STAThread]
         static void Main()
         {
+            ExceptionHandler exceptionHandler = new ExceptionHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GeneralForm());
+            if (Equals(exceptionHandler, exceptionHandler)) // так надо чтобы оптимизатор не убил этот объект
+            {
+                exceptionHandler.ToString();
+            }
         }
     }
 }
