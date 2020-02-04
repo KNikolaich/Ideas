@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this._tsmiProjects = new System.Windows.Forms.ToolStripMenuItem();
             this._dateNavigator = new DevExpress.XtraScheduler.DateNavigator();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.taskBindingSource = new System.Windows.Forms.BindingSource();
@@ -50,11 +52,10 @@
             this.projectCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
-            this._tsmiProjects = new System.Windows.Forms.ToolStripMenuItem();
-            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this._tsmiUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTop.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
@@ -67,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +81,21 @@
             this.panelTop.Padding = new System.Windows.Forms.Padding(5);
             this.panelTop.Size = new System.Drawing.Size(800, 174);
             this.panelTop.TabIndex = 2;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._tsmiProjects,
+            this._tsmiUsers});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // _tsmiProjects
+            // 
+            this._tsmiProjects.Name = "_tsmiProjects";
+            this._tsmiProjects.Size = new System.Drawing.Size(180, 22);
+            this._tsmiProjects.Text = "Ведение проектов";
+            this._tsmiProjects.Click += new System.EventHandler(this._tsmiProjects_Click);
             // 
             // _dateNavigator
             // 
@@ -133,6 +148,7 @@
             // 
             // colUser
             // 
+            this.colUser.Caption = "Сотрудник";
             this.colUser.FieldName = "User";
             this.colUser.Name = "colUser";
             this.colUser.Visible = true;
@@ -140,6 +156,7 @@
             // 
             // colDate
             // 
+            this.colDate.Caption = "Дата";
             this.colDate.FieldName = "Date";
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
@@ -147,6 +164,7 @@
             // 
             // colDuration
             // 
+            this.colDuration.Caption = "Длительность";
             this.colDuration.FieldName = "Duration";
             this.colDuration.Name = "colDuration";
             this.colDuration.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -156,6 +174,7 @@
             // 
             // colProject
             // 
+            this.colProject.Caption = "Проект";
             this.colProject.ColumnEdit = this.repositoryItemGridLookUpEdit1;
             this.colProject.FieldName = "Project";
             this.colProject.Name = "colProject";
@@ -184,6 +203,7 @@
             // 
             // colComment
             // 
+            this.colComment.Caption = "Комментарий";
             this.colComment.FieldName = "Comment";
             this.colComment.Name = "colComment";
             this.colComment.Visible = true;
@@ -256,29 +276,6 @@
             this.layoutViewField_layoutViewColumn3});
             this.layoutViewCard1.Name = "layoutViewTemplateCard";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._tsmiProjects});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(174, 26);
-            // 
-            // _tsmiProjects
-            // 
-            this._tsmiProjects.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usersToolStripMenuItem});
-            this._tsmiProjects.Name = "_tsmiProjects";
-            this._tsmiProjects.Size = new System.Drawing.Size(173, 22);
-            this._tsmiProjects.Text = "Ведение проектов";
-            this._tsmiProjects.Click += new System.EventHandler(this._tsmiProjects_Click);
-            // 
-            // usersToolStripMenuItem
-            // 
-            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.usersToolStripMenuItem.Text = "Ведение пользвоателей";
-            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.gridControl1);
@@ -288,6 +285,13 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(800, 357);
             this.panel1.TabIndex = 9;
+            // 
+            // _tsmiUsers
+            // 
+            this._tsmiUsers.Name = "_tsmiUsers";
+            this._tsmiUsers.Size = new System.Drawing.Size(180, 22);
+            this._tsmiUsers.Text = "Сотрудники";
+            this._tsmiUsers.Click += new System.EventHandler(this._tsmiUsers_Click);
             // 
             // GeneralForm
             // 
@@ -301,6 +305,7 @@
             this.Text = "Учет времени";
             this.Load += new System.EventHandler(this.GeneralForm_Load);
             this.panelTop.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
@@ -313,7 +318,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -343,8 +347,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colComment;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem _tsmiProjects;
-        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiUsers;
     }
 }
 

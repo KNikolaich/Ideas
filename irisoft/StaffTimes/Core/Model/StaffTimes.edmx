@@ -94,7 +94,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectName" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" DefaultValue="" />
           <NavigationProperty Name="Tasks" Relationship="StaffTimes.ProjectTask" FromRole="Project" ToRole="Task" />
           
         </EntityType>
@@ -115,8 +115,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="Duration" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" DefaultValue="8" />
+          <Property Name="Comment" Type="String" Nullable="false" DefaultValue="" />
           <Property Name="ProjectId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="StaffTimes.ProjectTask" FromRole="Task" ToRole="Project" />

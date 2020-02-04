@@ -14,6 +14,13 @@ namespace Core.Model
     
     public partial class Task
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Task()
+        {
+            this.Duration = 8;
+            this.Comment = "";
+        }
+    
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public int Duration { get; set; }

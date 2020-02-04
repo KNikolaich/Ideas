@@ -38,15 +38,6 @@ namespace StaffTimes
                 //_gridDays.DataSource = source;
         }
 
-        private void stmiUsers_Click(object sender, EventArgs e)
-        {
-            using (StaffsForm sf = new StaffsForm())
-            {
-                sf.ShowDialog();
-            }
-        }
-
-
         private void _gridWeeks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //_gridDays.DataSource
@@ -68,17 +59,27 @@ namespace StaffTimes
                     Close();
                 }
             }
+            gridView1.ExpandAllGroups();
         }
 
         private void _tsmiProjects_Click(object sender, EventArgs e)
         {
-
+            using (ProjectsForm pf = new ProjectsForm())
+            {
+                pf.ShowDialog();
+            }
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StaffsForm sf = new StaffsForm();
-            sf.ShowDialog(this);
+        }
+
+        private void _tsmiUsers_Click(object sender, EventArgs e)
+        {
+            using (StaffsForm sf = new StaffsForm())
+            {
+                sf.ShowDialog();
+            }
         }
     }
 }
