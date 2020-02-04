@@ -104,6 +104,7 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUserName, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.ValidateRow += GridView1_ValidateRow;
             // 
             // colId
             // 
@@ -153,6 +154,7 @@
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
         private System.Windows.Forms.ContextMenuStrip staffMenu;

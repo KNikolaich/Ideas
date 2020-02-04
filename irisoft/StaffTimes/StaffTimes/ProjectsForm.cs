@@ -16,7 +16,7 @@ namespace StaffTimes
 {
     public partial class ProjectsForm : Form
     {
-        private StaffTimesContainer _repository;
+        private ContextAdapter _repository;
 
         public ProjectsForm()
         {
@@ -31,15 +31,16 @@ namespace StaffTimes
 
         private void ProjectsForm_Load(object sender, EventArgs e)
         {
-            _repository = new StaffTimesContainer();
+
+            _repository = new ContextAdapter(new StaffTimesContainer());
             RefreshData();
         }
 
         private void RefreshData()
         {
-            var fields = new List<string> {"Id", "ProjectName", "Description"};
-            gridControl1.DataSource = _repository.GetDataTable(fields, "Project");
+            gridControl1.DataSource = _repository.GetDataTableProjects();
         }
+
 
 
         private void gridControl1_DataSourceChanged(object sender, EventArgs e)
@@ -54,55 +55,17 @@ namespace StaffTimes
 
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
-            DataRowView drw = e.Row as DataRowView;
-            if (drw != null)
+            if (e.Row is DataRowView drw)
             {
-                Type targerType = typeof(Project);
-
-                if (e.RowHandle < 0)
-                {
-                    //var targetObj = ((System.Data.Entity.Infrastructure.IObjectContextAdapter) _repository).ObjectContext.CreateObject<Project>();
-                    //var target = new Project();
-                    var targetObj = _repository.Project.Create();
-                    SetValues(targerType, drw, targetObj);
-                    _repository.Project.Add(targetObj);
-                    _repository.SaveChanges();
-                }
-                else
-                {
-
-                    int i = (int)drw["Id"];
-                    var pEditable = _repository.Project.FirstOrDefault(p => p.Id ==  i);
-                    SetValues(targerType, drw, pEditable);
-                    _repository.SaveChanges();
-                }
-                //_repository.SaveDataTable(drw.Row.Table);
-
-
-
-                //_repository.Configuration.AutoDetectChangesEnabled  = true;
-                //_repository.ChangeTracker.DetectChanges();
-                //_repository.Entry(targetObj).State;
-                RefreshData();
-
+                _repository.SetAndUpdateProject(drw, e.RowHandle < 0);
             }
+            RefreshData();
+
             //var row = gridView1.GetDataRow(e.RowHandle);
 
             //_repository.SaveChanges();
         }
 
-        private static void SetValues(Type targerType, DataRowView drw, Project targetObj)
-        {
-            foreach (var property in targerType.GetProperties())
-            {
-                if (drw.Row.Table.Columns.Contains(property.Name))
-                {
-                    var value = drw[property.Name];
-                    if(value != DBNull.Value)
-                        property.SetValue(targetObj, value); 
-                }
-            }
-        }
 
         private void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e)
         {

@@ -18,7 +18,7 @@ namespace StaffTimes
             ExceptionHandler exceptionHandler = new ExceptionHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProjectsForm());
+            Application.Run(new GeneralForm());
             if (Equals(exceptionHandler, exceptionHandler)) // так надо чтобы оптимизатор не убил этот объект
             {
                 exceptionHandler.ToString();

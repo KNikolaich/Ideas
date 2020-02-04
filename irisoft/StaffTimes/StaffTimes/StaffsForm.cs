@@ -15,7 +15,7 @@ namespace StaffTimes
 {
     public partial class StaffsForm : Form
     {
-        private StaffTimesContainer _repository;
+        private ContextAdapter _repository;
 
         public StaffsForm()
         {
@@ -24,15 +24,29 @@ namespace StaffTimes
 
         private void StaffsForm_Load(object sender, EventArgs e)
         {
-            _repository = new StaffTimesContainer();
-            gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.None; // пока отклдючено, не работает
-            gridControl1.DataSource = _repository.User.ToArray();
+            _repository = new ContextAdapter(new StaffTimesContainer());
+            //gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.None; // пока отклдючено, не работает
+            RefreshData();
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            _repository.SaveChanges();
+            _repository.Update();
             base.OnClosing(e);
+        }
+
+        private void GridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            if (e.Row is DataRowView drw)
+            {
+                _repository.SetAndUpdateUser(drw, e.RowHandle < 0);
+            }
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            gridControl1.DataSource = _repository.GetDataTableUser();
         }
 
         private void tsmInsert_Click(object sender, EventArgs e)

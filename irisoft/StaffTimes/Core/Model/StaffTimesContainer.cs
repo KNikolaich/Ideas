@@ -17,7 +17,7 @@ namespace Core.Model
 
             var table = new DataTable(tableName);
             var cmd = Database.Connection.CreateCommand();
-            cmd.CommandText = $"Select {selectF} from {tableName}";
+            cmd.CommandText = $"Select {selectF} from [{tableName}]";
             try
             {
                 cmd.Connection.Open();

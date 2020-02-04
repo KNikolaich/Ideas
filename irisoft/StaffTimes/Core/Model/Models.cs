@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Core.Model
 {
  
-    public partial class User
+    public partial class User : IModelSupp
     {
         public override string ToString()
         {
@@ -72,6 +72,15 @@ namespace Core.Model
 
     }*/
 
+    public partial class Project : IModelSupp
+    {
+        
+    }
+
+    public partial class Task : IModelSupp
+    {
+
+    }
 
     public enum ColorEnum
     {
