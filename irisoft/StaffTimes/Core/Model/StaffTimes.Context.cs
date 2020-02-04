@@ -16,7 +16,7 @@ namespace Core.Model
     public partial class StaffTimesContainer : DbContext
     {
         public StaffTimesContainer()
-            : base("name=StaffTimesContainer")
+            : base("name=StaffTimesDb")
         {
         }
     

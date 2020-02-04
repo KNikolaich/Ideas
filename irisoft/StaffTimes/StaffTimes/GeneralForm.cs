@@ -14,6 +14,7 @@ namespace StaffTimes
     public partial class GeneralForm : Form
     {
         private User _user;
+        private StaffTimesContainer _repository;
 
         public GeneralForm()
         {
@@ -23,13 +24,12 @@ namespace StaffTimes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            _repository = new StaffTimesContainer();
 
-            using (var repository = new StaffTimesContainer())
-            {
-                //var days = repository.Day.Where(w => w.UserId == _user.Id).ToList();
+            gridControl1.DataSource = _repository.User.ToArray();
+                //var days = _repository.Day.Where(w => w.UserId == _user.Id).ToList();
                 //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
                 //_gridDays.DataSource = source;
-            }
         }
 
         private void stmiUsers_Click(object sender, EventArgs e)
