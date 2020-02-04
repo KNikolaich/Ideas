@@ -13,10 +13,10 @@ namespace Core.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StaffTimeModelContainer : DbContext
+    public partial class StaffTimesContainer : DbContext
     {
-        public StaffTimeModelContainer()
-            : base("name=StaffTimeModelContainer")
+        public StaffTimesContainer()
+            : base("name=StaffTimesContainer")
         {
         }
     
@@ -25,10 +25,8 @@ namespace Core.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Week> Week { get; set; }
-        public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<Project> Project { get; set; }
-        public virtual DbSet<ProjectType> ProjectType { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Task> Task { get; set; }
     }
 }

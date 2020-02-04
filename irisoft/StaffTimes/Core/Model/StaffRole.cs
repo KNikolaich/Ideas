@@ -10,18 +10,10 @@
 namespace Core.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Task
+    public enum StaffRole : int
     {
-        public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-        public int Duration { get; set; }
-        public string Comment { get; set; }
-        public int ProjectId { get; set; }
-        public int UserId { get; set; }
-    
-        public virtual Project Project { get; set; }
-        public virtual User User { get; set; }
+        User = 0,
+        Admin = 1
     }
 }

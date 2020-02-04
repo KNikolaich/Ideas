@@ -48,9 +48,9 @@ namespace StaffTimes
             _theUser.Login = _textBoxLogin.Text;
             _theUser.Password = _textBoxLogin.Text.GetHashCode().ToString();
 
-            if(Enum.TryParse(_textBoxRole.Text, out RoleEnum roleSh))
+            if(Enum.TryParse(_textBoxRole.Text, out StaffRole roleSh))
             {
-                _theUser.Role = (short) roleSh;
+                _theUser.Role = roleSh;
             }
         }
 

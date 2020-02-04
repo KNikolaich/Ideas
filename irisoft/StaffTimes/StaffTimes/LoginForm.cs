@@ -41,7 +41,7 @@ namespace StaffTimes
         {
             DialogResult = DialogResult.Abort;
 
-            using (StaffTimeModelContainer container = new StaffTimeModelContainer())
+            using (StaffTimesContainer container = new StaffTimesContainer())
             {
                 if ((_user = container.GetUser(tbLogin.Text, _tbPasswd.Text)) != null)
                 {

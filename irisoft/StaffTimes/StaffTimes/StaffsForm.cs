@@ -14,7 +14,7 @@ namespace StaffTimes
 {
     public partial class StaffsForm : Form
     {
-        private StaffTimeModelContainer _repository;
+        private StaffTimesContainer _repository;
 
         public StaffsForm()
         {
@@ -23,7 +23,7 @@ namespace StaffTimes
 
         private void StaffsForm_Load(object sender, EventArgs e)
         {
-            _repository = new StaffTimeModelContainer();
+            _repository = new StaffTimesContainer();
             _gridStaff.DataSource = _repository.User.ToArray();
         }
 
@@ -33,7 +33,7 @@ namespace StaffTimes
             {
                 if (sef.ShowDialog(this) == DialogResult.OK)
                 {
-                    _repository.CreateUser(sef.Staff.UserName, sef.Staff.Login, sef.Staff.Password, (RoleEnum) sef.Staff.Role);
+                    //_repository.CreateUser(sef.Staff.UserName, sef.Staff.Login, sef.Staff.Password, (RoleEnum) sef.Staff.Role);
                     _gridStaff.Refresh();
                 }
             }

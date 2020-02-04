@@ -24,11 +24,11 @@ namespace StaffTimes
         {
             base.OnLoad(e);
 
-            using (var repository = new StaffTimeModelContainer())
+            using (var repository = new StaffTimesContainer())
             {
-                var weeks = repository.Week.Where(w => w.UserId == _user.Id).ToList();
-                var source = weeks.Select(w=> new {w.Id, w.Approved, w.EditStarted, w.EditEnded, w.Status} ).ToList();
-                _gridWeeks.DataSource = source;
+                //var days = repository.Day.Where(w => w.UserId == _user.Id).ToList();
+                //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
+                //_gridDays.DataSource = source;
             }
         }
 
@@ -40,15 +40,10 @@ namespace StaffTimes
             }
         }
 
-        private void _gridWeeks_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var col = _gridWeeks.Columns[e.ColumnIndex];
-
-        }
 
         private void _gridWeeks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //_gridWeeks.DataSource
+            //_gridDays.DataSource
             //e.RowIndex
         }
 
@@ -68,5 +63,6 @@ namespace StaffTimes
                 }
             }
         }
+
     }
 }

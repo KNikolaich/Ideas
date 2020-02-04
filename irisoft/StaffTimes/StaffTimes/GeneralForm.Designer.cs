@@ -28,124 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this._gridWeeks = new System.Windows.Forms.DataGridView();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWeekNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditStarted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditEndet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatus = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colApproved = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this._gridWeeks)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
+            this.panelTop = new System.Windows.Forms.Panel();
+            this._monthCalendarTo = new System.Windows.Forms.MonthCalendar();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.printBarManager1 = new DevExpress.XtraPrinting.Preview.PrintBarManager();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.printBarManager1)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // panelTop
             // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.panelTop.Controls.Add(this._monthCalendarTo);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(800, 171);
+            this.panelTop.TabIndex = 2;
             // 
-            // _gridWeeks
+            // _monthCalendarTo
             // 
-            this._gridWeeks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._gridWeeks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._gridWeeks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colId,
-            this.colWeekNumber,
-            this.colEditStarted,
-            this.colEditEndet,
-            this.colStatus,
-            this.colApproved});
-            this._gridWeeks.GridColor = System.Drawing.SystemColors.Control;
-            this._gridWeeks.Location = new System.Drawing.Point(12, 37);
-            this._gridWeeks.Name = "_gridWeeks";
-            this._gridWeeks.Size = new System.Drawing.Size(776, 401);
-            this._gridWeeks.TabIndex = 1;
-            this._gridWeeks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._gridWeeks_CellContentClick);
-            this._gridWeeks.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._gridWeeks_CellDoubleClick);
+            this._monthCalendarTo.CalendarDimensions = new System.Drawing.Size(2, 1);
+            this._monthCalendarTo.Location = new System.Drawing.Point(18, 9);
+            this._monthCalendarTo.Name = "_monthCalendarTo";
+            this._monthCalendarTo.TabIndex = 3;
             // 
-            // colId
+            // gridControl1
             // 
-            this.colId.DataPropertyName = "Id";
-            this.colId.HeaderText = "Id";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Visible = false;
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 171);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(800, 360);
+            this.gridControl1.TabIndex = 3;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // colWeekNumber
+            // gridView1
             // 
-            this.colWeekNumber.DataPropertyName = "WeekNumber";
-            this.colWeekNumber.FillWeight = 200F;
-            this.colWeekNumber.HeaderText = "Номер недели";
-            this.colWeekNumber.MinimumWidth = 10;
-            this.colWeekNumber.Name = "colWeekNumber";
-            this.colWeekNumber.ReadOnly = true;
-            this.colWeekNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.colWeekNumber.Width = 150;
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
             // 
-            // colEditStarted
+            // printBarManager1
             // 
-            this.colEditStarted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEditStarted.DataPropertyName = "EditStarted";
-            this.colEditStarted.FillWeight = 200F;
-            this.colEditStarted.HeaderText = "Начало заполнения";
-            this.colEditStarted.Name = "colEditStarted";
-            this.colEditStarted.ReadOnly = true;
+            this.printBarManager1.DockControls.Add(this.barDockControlTop);
+            this.printBarManager1.DockControls.Add(this.barDockControlBottom);
+            this.printBarManager1.DockControls.Add(this.barDockControlLeft);
+            this.printBarManager1.DockControls.Add(this.barDockControlRight);
+            this.printBarManager1.Form = this;
+            this.printBarManager1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("printBarManager1.ImageStream")));
+            this.printBarManager1.MaxItemId = 57;
+            this.printBarManager1.TransparentEditors = true;
             // 
-            // colEditEndet
+            // barDockControlTop
             // 
-            this.colEditEndet.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEditEndet.DataPropertyName = "EditEnded";
-            this.colEditEndet.FillWeight = 200F;
-            this.colEditEndet.HeaderText = "Завершено заполнение";
-            this.colEditEndet.Name = "colEditEndet";
-            this.colEditEndet.ReadOnly = true;
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(800, 0);
             // 
-            // colStatus
+            // barDockControlBottom
             // 
-            this.colStatus.DataPropertyName = "Status";
-            this.colStatus.HeaderText = "Статус";
-            this.colStatus.Name = "colStatus";
-            this.colStatus.ReadOnly = true;
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 531);
+            this.barDockControlBottom.Size = new System.Drawing.Size(800, 0);
             // 
-            // colApproved
+            // barDockControlLeft
             // 
-            this.colApproved.DataPropertyName = "Approved";
-            this.colApproved.HeaderText = "Одобрено";
-            this.colApproved.Name = "colApproved";
-            this.colApproved.ReadOnly = true;
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 531);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(800, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 531);
             // 
             // GeneralForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this._gridWeeks);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.ClientSize = new System.Drawing.Size(800, 531);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.panelTop);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GeneralForm";
             this.Text = "Учет времени";
             this.Load += new System.EventHandler(this.GeneralForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this._gridWeeks)).EndInit();
+            this.panelTop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.printBarManager1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.DataGridView _gridWeeks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colWeekNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEditStarted;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEditEndet;
-        private System.Windows.Forms.DataGridViewImageColumn colStatus;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colApproved;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.MonthCalendar _monthCalendarTo;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraPrinting.Preview.PrintBarManager printBarManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
     }
 }
 

@@ -7,20 +7,32 @@ using System.Threading.Tasks;
 
 namespace Core.Model
 {
-
+ 
     public partial class User
     {
-        public RoleEnum GetRoleEnum()
-        {
-            return (RoleEnum)Role;
-        }
         public override string ToString()
         {
-            return $"{UserName } ({Login}) {GetRoleEnum()}";
+            return $"{UserName } ({Login}) {Role}";
+        }
+
+        public int GetLastWeekNumber()
+        {
+            //Day last = null;
+            //using (var repository = new ModelCont())
+            {
+                
+                //var collection = Weeks.ToList();
+               // last = repository.Day.Where(w => w.UserId == Id).OrderByDescending(w => w.Date).FirstOrDefault();
+            }
+//            if (last != null)
+//                return last.WeekNumber;
+            var cal = new GregorianCalendar();
+            var weekNumber = cal.GetWeekOfYear(DateTime.Today.AddDays(-13), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            return weekNumber;
         }
     }
-
-    public partial class Week
+    /*
+   public partial class Day
     {
         public ColorEnum Status
         {
@@ -45,7 +57,7 @@ namespace Core.Model
         private string GetDurationDates()
         {
             var cal = new GregorianCalendar();
-            var weekNumber = cal.GetWeekOfYear(EditStarted, CalendarWeekRule.FirstFullWeek, DayOfWeek.Monday);
+            var weekNumber = cal.GetWeekOfYear(Date, CalendarWeekRule.FirstFullWeek, DayOfWeek.Monday);
             var beginDateOfWeek = GetBeginDateOfWeek(weekNumber);
             var lastDateOfWeek = beginDateOfWeek.AddDays(6);
             return $"{beginDateOfWeek.ToString("M")} - {lastDateOfWeek.ToString("M")}";
@@ -58,7 +70,7 @@ namespace Core.Model
             return firstDay.AddDays(7 * weekNumber); //добавляем количество недель * 7 дней
         }
 
-    }
+    }*/
 
 
     public enum ColorEnum
@@ -69,4 +81,5 @@ namespace Core.Model
         Orange,
         Red
     }
+
 }
