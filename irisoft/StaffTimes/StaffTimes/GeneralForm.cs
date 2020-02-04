@@ -26,7 +26,13 @@ namespace StaffTimes
             base.OnLoad(e);
             _repository = new StaffTimesContainer();
 
-            gridControl1.DataSource = _repository.User.ToArray();
+            if (_user.Role != StaffRole.Admin)
+            {
+#if !DEBUG
+                ContextMenu = null;
+#endif
+            }
+            gridControl1.DataSource = _repository.Task.ToArray();
                 //var days = _repository.Day.Where(w => w.UserId == _user.Id).ToList();
                 //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
                 //_gridDays.DataSource = source;
@@ -64,5 +70,15 @@ namespace StaffTimes
             }
         }
 
+        private void _tsmiProjects_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StaffsForm sf = new StaffsForm();
+            sf.ShowDialog(this);
+        }
     }
 }

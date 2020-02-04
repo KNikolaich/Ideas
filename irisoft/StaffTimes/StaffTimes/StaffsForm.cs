@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core.Model;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace StaffTimes
 {
@@ -24,7 +25,14 @@ namespace StaffTimes
         private void StaffsForm_Load(object sender, EventArgs e)
         {
             _repository = new StaffTimesContainer();
-            _gridStaff.DataSource = _repository.User.ToArray();
+            gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.None; // пока отклдючено, не работает
+            gridControl1.DataSource = _repository.User.ToArray();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _repository.SaveChanges();
+            base.OnClosing(e);
         }
 
         private void tsmInsert_Click(object sender, EventArgs e)
@@ -34,15 +42,15 @@ namespace StaffTimes
                 if (sef.ShowDialog(this) == DialogResult.OK)
                 {
                     //_repository.CreateUser(sef.Staff.UserName, sef.Staff.Login, sef.Staff.Password, (RoleEnum) sef.Staff.Role);
-                    _gridStaff.Refresh();
+                    //_gridStaff.Refresh();
                 }
             }
         }
 
         private void tsmEdit_Click(object sender, EventArgs e)
         {
-            _repository.User.Load();
-            _gridStaff.Refresh();
+            //_repository.User.Load();
+            //_gridStaff.Refresh();
         }
     }
 }
