@@ -15,7 +15,7 @@ namespace StaffTimes
 {
     public partial class GeneralForm : Form
     {
-        private User _user;
+        GeneralFormFinder _finder = new GeneralFormFinder();
         private ContextAdapter _contextDb;
 
         public GeneralForm()
@@ -26,9 +26,9 @@ namespace StaffTimes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _contextDb = new ContextAdapter(); 
-
-            if (_user.Role != StaffRole.Admin)
+            _contextDb = new ContextAdapter();
+            _finder.Db = _contextDb;
+            if (_finder.IsAdmin)
             {
                 ContextMenu = null;
             }
@@ -43,6 +43,11 @@ namespace StaffTimes
 
         private void InitDateSource()
         {
+            showAllStaffToolStripMenuItem.CheckState = CheckState.Unchecked;
+
+            showAllStaffToolStripMenuItem.Visible = _finder.IsAdmin;
+            _nsiTsmi.Visible = _finder.IsAdmin;
+
             _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects();
             _usersRepositoryItem.DataSource = _contextDb.GetDataTableUser(true);
             _projCheckedListBoxControl.DataSource = GenerateProjList();
@@ -55,7 +60,7 @@ namespace StaffTimes
         private List<CheckedListBoxItem> GenerateProjList()
         {
             List<CheckedListBoxItem> res = new List<CheckedListBoxItem>();
-            var projects = _contextDb.GetSelectProjects();
+            var projects = _finder.GetSelectProjects();
             foreach (Project project in projects)
             {
                 res.Add(new CheckedListBoxItem(project, CheckState.Unchecked));
@@ -65,9 +70,13 @@ namespace StaffTimes
 
         private void RefreshGridDataSource()
         {
-            var dtList = GetSelectDatesListOnInit();
-            var userId = _user.Role == StaffRole.User ? _user.Id : -1;
-            gridControl1.DataSource = _contextDb.GetDataTableTasks(userId, dtList.Min(), dtList.Max());
+
+            _finder.ShowAllUsers = showAllStaffToolStripMenuItem.CheckState == CheckState.Checked;
+            _finder.StartDate = _dateNavigator.SelectionStart;
+            _finder.EndDate = _dateNavigator.SelectionEnd;
+
+            var userId = _finder.IsAdmin && _finder.ShowAllUsers ? -1 : _finder.UserId;
+            gridControl1.DataSource = _contextDb.GetDataTableTasks(userId, _finder.StartDate, _finder.EndDate);
             gridView1.ExpandAllGroups();
         }
 
@@ -85,25 +94,6 @@ namespace StaffTimes
             _dateNavigator.HotDate = DateTime.Today;
         }
 
-        private static List<DateTime> GetSelectDatesListOnInit()
-        {
-            DateTime end = DateTime.Today.AddDays(1);
-            DateTime start = DateTime.Today.AddDays(-7);
-            DateTime? additionDateTime = end;
-            List<DateTime> dtList = new List<DateTime>();
-            while (additionDateTime != null)
-            {
-                dtList.Add(additionDateTime.Value);
-                additionDateTime = additionDateTime.Value.AddDays(-1);
-                if (additionDateTime <= start && additionDateTime.Value.DayOfWeek == DayOfWeek.Monday
-                ) // гоним до понедельника прошлой неделеи
-                {
-                    additionDateTime = null;
-                }
-            }
-            return dtList;
-        }
-
 
         private void GeneralForm_Load(object sender, EventArgs e)
         {
@@ -111,8 +101,8 @@ namespace StaffTimes
             {
                 if (logForm.ShowDialog() == DialogResult.OK)
                 {
-                    _user = logForm.GetUser();
-                    Text += (" - " + _user);
+                    _finder.CurrentUser = logForm.GetUser();
+                    Text += (" - " + _finder.CurrentUser);
                 }
                 else
                 {
@@ -132,6 +122,7 @@ namespace StaffTimes
         private void _dateNavigator_Validated(object sender, EventArgs e)
         {
             // тут меняем условия запроса
+            
         }
 
 
@@ -140,14 +131,22 @@ namespace StaffTimes
             var dataRow = gridView1.GetDataRow(e.RowHandle);
 
             if (dataRow["Userid"] == DBNull.Value)
-                dataRow["Userid"] = _user.Id;
+                dataRow["Userid"] = _finder.UserId;
+
+            var idUser = (int)dataRow["Userid"];
+            Tuple<DateTime, int> newDateDurat = _finder.CalcNewDate(idUser);
+
+            if (dataRow["Date"] == DBNull.Value)
+                dataRow["Date"] = newDateDurat.Item1;
 
             if (dataRow["Duration"] == DBNull.Value)
-                dataRow["Duration"] = 8;
+                dataRow["Duration"] = newDateDurat.Item2;
 
             if (dataRow["Comment"] == DBNull.Value)
                 dataRow["Comment"] = "";
+
         }
+
 
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
@@ -182,6 +181,11 @@ namespace StaffTimes
         private void _projCheckedListBoxControl_SelectedValueChanged(object sender, EventArgs e)
         {
             // смена чекбоксом массива проектов
+        }
+
+        private void _sButtonFind_Click(object sender, EventArgs e)
+        {
+            RefreshGridDataSource();
         }
     }
 }

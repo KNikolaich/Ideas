@@ -20,8 +20,7 @@ namespace Core.Model
         {
             _dbContainer = dbContainer;
         }
-
-
+        
         public void SetAndUpdateProject(DataRowView drw, bool isNewRow)
         {
             GreateOrUpdateRow(drw, isNewRow, _dbContainer.Project);
@@ -51,7 +50,8 @@ namespace Core.Model
                 }
                 catch (Exception e)
                 {
-                    //_dbContainer.Set<TTargetObj>().dettach
+
+                    dbSet.Remove(targetObj);
                     throw;
                 }
                 finally
@@ -73,26 +73,11 @@ namespace Core.Model
             var idsEmptyProjs = projectIds.Length == 0;
             var tasks = _dbContainer.Task.Where(t =>
                 (userId < 0 || t.UserId == userId) &&
-                (idsEmptyProjs || projectIds.Contains(t.ProjectId) && t.Date >= from && t.Date <= to)).ToList();
-            Dictionary<int, string> usersDic = new Dictionary<int, string>();
-            foreach (var task in tasks)
-            {
-                if (!usersDic.ContainsKey(task.UserId))
-                {
-                    usersDic.Add(task.UserId, task.User.UserName);
-                }
-            }
+                (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
+            
             var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
-            var dataTable = _dbContainer.GetDataTable(fields, "Task", tasks.Select(t=>t.Id).ToArray());
-            dataTable.Columns.Add("UserName");
-            //dataTable.Columns.Add("ProjectName");
-            foreach (DataRow dataRow in dataTable.Rows)
-            {
-                if (int.TryParse(dataRow["UserId"] as string, out var userid))
-                {
-                    dataRow["UserName"] = usersDic[userid];
-                }
-            }
+            int[] arrUserId = tasks.Any()? tasks.Select(t=>t.Id).ToArray() : new int[]{-1};
+            var dataTable = _dbContainer.GetDataTable(fields, "Task", arrUserId);
             return dataTable;
         }
 
@@ -129,10 +114,13 @@ namespace Core.Model
             _dbContainer.SaveChanges();
         }
 
-        public IList<Project> GetSelectProjects(params int[] ids)
-        {
-            var idsEmpty = ids.Length == 0;
-            return _dbContainer.Project.Where(p => idsEmpty || ids.Contains(p.Id)).ToList();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public DbSet<Task> Tasks => _dbContainer.Task;
+
+
+        public DbSet<Project> Projects => _dbContainer.Project;
     }
 }

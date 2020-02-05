@@ -34,13 +34,15 @@
             this._projCheckedListBoxControl = new DevExpress.XtraEditors.CheckedListBoxControl();
             this._dateNavigator = new DevExpress.XtraScheduler.DateNavigator();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this._settingsTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this._topTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllStaffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._exitTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this._nsiTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelButtom = new System.Windows.Forms.Panel();
+            this._sButtonFind = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -65,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._projCheckedListBoxControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.panelButtom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -87,20 +90,21 @@
             this.panelLeft.Controls.Add(this._projCheckedListBoxControl);
             this.panelLeft.Controls.Add(this._dateNavigator);
             this.panelLeft.Controls.Add(this.menuStrip1);
+            this.panelLeft.Controls.Add(this.panelButtom);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Padding = new System.Windows.Forms.Padding(5);
-            this.panelLeft.Size = new System.Drawing.Size(233, 531);
+            this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
+            this.panelLeft.Size = new System.Drawing.Size(294, 531);
             this.panelLeft.TabIndex = 2;
             // 
             // _projCheckedListBoxControl
             // 
             this._projCheckedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._projCheckedListBoxControl.Location = new System.Drawing.Point(5, 346);
+            this._projCheckedListBoxControl.Location = new System.Drawing.Point(3, 344);
             this._projCheckedListBoxControl.Name = "_projCheckedListBoxControl";
-            this._projCheckedListBoxControl.Size = new System.Drawing.Size(223, 180);
-            this._projCheckedListBoxControl.TabIndex = 1;
+            this._projCheckedListBoxControl.Size = new System.Drawing.Size(288, 152);
+            this._projCheckedListBoxControl.TabIndex = 2;
             this._projCheckedListBoxControl.SelectedValueChanged += new System.EventHandler(this._projCheckedListBoxControl_SelectedValueChanged);
             // 
             // _dateNavigator
@@ -108,12 +112,12 @@
             this._dateNavigator.DateTime = new System.DateTime(((long)(0)));
             this._dateNavigator.Dock = System.Windows.Forms.DockStyle.Top;
             this._dateNavigator.HotDate = null;
-            this._dateNavigator.Location = new System.Drawing.Point(5, 29);
+            this._dateNavigator.Location = new System.Drawing.Point(3, 27);
             this._dateNavigator.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             this._dateNavigator.Name = "_dateNavigator";
             this._dateNavigator.Padding = new System.Windows.Forms.Padding(5);
-            this._dateNavigator.Size = new System.Drawing.Size(223, 317);
-            this._dateNavigator.TabIndex = 0;
+            this._dateNavigator.Size = new System.Drawing.Size(288, 317);
+            this._dateNavigator.TabIndex = 1;
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
             this._dateNavigator.EditDateModified += new System.EventHandler(this._dateNavigator_EditDateModified);
             this._dateNavigator.Validated += new System.EventHandler(this._dateNavigator_Validated);
@@ -121,23 +125,23 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._settingsTsmi,
+            this._topTsmi,
             this._nsiTsmi});
-            this.menuStrip1.Location = new System.Drawing.Point(5, 5);
+            this.menuStrip1.Location = new System.Drawing.Point(3, 3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(223, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(288, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // _settingsTsmi
+            // _topTsmi
             // 
-            this._settingsTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._topTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showAllStaffToolStripMenuItem,
             this.toolStripSeparator1,
             this._exitTsmi});
-            this._settingsTsmi.Name = "_settingsTsmi";
-            this._settingsTsmi.Size = new System.Drawing.Size(79, 20);
-            this._settingsTsmi.Text = "Настройки";
+            this._topTsmi.Name = "_topTsmi";
+            this._topTsmi.Size = new System.Drawing.Size(53, 20);
+            this._topTsmi.Text = "Меню";
             // 
             // showAllStaffToolStripMenuItem
             // 
@@ -183,19 +187,39 @@
             this.projectsToolStripMenuItem.Text = "Проекты";
             this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
             // 
+            // panelButtom
+            // 
+            this.panelButtom.Controls.Add(this._sButtonFind);
+            this.panelButtom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelButtom.Location = new System.Drawing.Point(3, 496);
+            this.panelButtom.Name = "panelButtom";
+            this.panelButtom.Padding = new System.Windows.Forms.Padding(3);
+            this.panelButtom.Size = new System.Drawing.Size(288, 32);
+            this.panelButtom.TabIndex = 4;
+            // 
+            // _sButtonFind
+            // 
+            this._sButtonFind.Dock = System.Windows.Forms.DockStyle.Right;
+            this._sButtonFind.Location = new System.Drawing.Point(173, 3);
+            this._sButtonFind.Name = "_sButtonFind";
+            this._sButtonFind.Size = new System.Drawing.Size(112, 26);
+            this._sButtonFind.TabIndex = 3;
+            this._sButtonFind.Text = "поиск...";
+            this._sButtonFind.Click += new System.EventHandler(this._sButtonFind_Click);
+            // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.taskBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.Location = new System.Drawing.Point(3, 3);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Padding = new System.Windows.Forms.Padding(5);
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem});
-            this.gridControl1.Size = new System.Drawing.Size(563, 531);
-            this.gridControl1.TabIndex = 3;
+            this.gridControl1.Size = new System.Drawing.Size(706, 525);
+            this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
             this.layoutView1});
@@ -213,6 +237,7 @@
             this.colProject,
             this.colComment});
             this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GroupCount = 1;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", null, "")});
             this.gridView1.Name = "gridView1";
@@ -220,6 +245,9 @@
             this.gridView1.OptionsView.ShowChildrenInGroupPanel = true;
             this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupedColumns = true;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUser, DevExpress.Data.ColumnSortOrder.Descending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colDate, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
             this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
             // 
@@ -232,6 +260,7 @@
             this.colUser.Name = "colUser";
             this.colUser.Visible = true;
             this.colUser.VisibleIndex = 0;
+            this.colUser.Width = 129;
             // 
             // _usersRepositoryItem
             // 
@@ -241,6 +270,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("UserName", "Сотрудник")});
             this._usersRepositoryItem.DisplayMember = "UserName";
             this._usersRepositoryItem.Name = "_usersRepositoryItem";
+            this._usersRepositoryItem.NullText = "";
             this._usersRepositoryItem.ShowFooter = false;
             this._usersRepositoryItem.ValueMember = "UserId";
             // 
@@ -252,6 +282,7 @@
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
             this.colDate.VisibleIndex = 1;
+            this.colDate.Width = 100;
             // 
             // colDuration
             // 
@@ -263,6 +294,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Duration", "Сумма: {0}")});
             this.colDuration.Visible = true;
             this.colDuration.VisibleIndex = 3;
+            this.colDuration.Width = 100;
             // 
             // colProject
             // 
@@ -273,6 +305,7 @@
             this.colProject.Name = "colProject";
             this.colProject.Visible = true;
             this.colProject.VisibleIndex = 2;
+            this.colProject.Width = 307;
             // 
             // _projRepositoryItemLookUpEdit
             // 
@@ -283,7 +316,9 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProjectName", "Проект", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending)});
             this._projRepositoryItemLookUpEdit.DisplayMember = "ProjectName";
             this._projRepositoryItemLookUpEdit.Name = "_projRepositoryItemLookUpEdit";
-            this._projRepositoryItemLookUpEdit.NullText = "необходимо заполнить";
+            this._projRepositoryItemLookUpEdit.NullText = "";
+            this._projRepositoryItemLookUpEdit.NullValuePrompt = "необходимо заполнить";
+            this._projRepositoryItemLookUpEdit.NullValuePromptShowForEmptyValue = true;
             this._projRepositoryItemLookUpEdit.ValueMember = "ProjectId";
             // 
             // colComment
@@ -293,6 +328,7 @@
             this.colComment.Name = "colComment";
             this.colComment.Visible = true;
             this.colComment.VisibleIndex = 4;
+            this.colComment.Width = 237;
             // 
             // layoutView1
             // 
@@ -378,15 +414,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gridControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 531);
-            this.splitContainer1.SplitterDistance = 233;
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
+            this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
+            this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 4;
             // 
             // GeneralForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 531);
+            this.ClientSize = new System.Drawing.Size(1010, 531);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -400,6 +437,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panelButtom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -443,7 +481,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit _usersRepositoryItem;
         private DevExpress.XtraEditors.CheckedListBoxControl _projCheckedListBoxControl;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem _settingsTsmi;
+        private System.Windows.Forms.ToolStripMenuItem _topTsmi;
         private System.Windows.Forms.ToolStripMenuItem showAllStaffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _nsiTsmi;
         private System.Windows.Forms.ToolStripMenuItem staffToolStripMenuItem;
@@ -451,6 +489,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem _exitTsmi;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panelButtom;
+        private DevExpress.XtraEditors.SimpleButton _sButtonFind;
     }
 }
 
