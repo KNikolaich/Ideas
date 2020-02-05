@@ -36,6 +36,8 @@
             this._bOk = new System.Windows.Forms.Button();
             this.tbLogin = new System.Windows.Forms.TextBox();
             this._tbPasswd = new System.Windows.Forms.TextBox();
+            this._cbSavePass = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lLogin
@@ -85,14 +87,40 @@
             this._tbPasswd.TabIndex = 1;
             this._tbPasswd.KeyDown += new System.Windows.Forms.KeyEventHandler(this._tbPasswd_KeyDown);
             // 
+            // _cbSavePass
+            // 
+            this._cbSavePass.AutoSize = true;
+            this._cbSavePass.Checked = true;
+            this._cbSavePass.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._cbSavePass.Location = new System.Drawing.Point(114, 77);
+            this._cbSavePass.Name = "_cbSavePass";
+            this._cbSavePass.Size = new System.Drawing.Size(15, 14);
+            this._cbSavePass.TabIndex = 3;
+            this._cbSavePass.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._cbSavePass.UseVisualStyleBackColor = true;
+            this._cbSavePass.CheckedChanged += new System.EventHandler(this._cbSavePass_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(15, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Сохранять пароль:";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(235, 107);
+            this.Controls.Add(this._cbSavePass);
             this.Controls.Add(this._tbPasswd);
             this.Controls.Add(this.tbLogin);
             this.Controls.Add(this._bOk);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lPasswd);
             this.Controls.Add(this.lLogin);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -113,5 +141,7 @@
         private System.Windows.Forms.Button _bOk;
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.TextBox _tbPasswd;
+        private System.Windows.Forms.CheckBox _cbSavePass;
+        private System.Windows.Forms.Label label1;
     }
 }

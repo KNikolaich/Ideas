@@ -33,9 +33,11 @@ namespace StaffTimes
 #endif
             }
             gridControl1.DataSource = _repository.Task.ToArray();
-                //var days = _repository.Day.Where(w => w.UserId == _user.Id).ToList();
-                //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
-                //_gridDays.DataSource = source;
+
+            gridView1.ExpandAllGroups();
+            //var days = _repository.Day.Where(w => w.UserId == _user.Id).ToList();
+            //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
+            //_gridDays.DataSource = source;
         }
 
         private void _gridWeeks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -59,7 +61,7 @@ namespace StaffTimes
                     Close();
                 }
             }
-            gridView1.ExpandAllGroups();
+            //gridView1.ExpandAllGroups();
         }
 
         private void _tsmiProjects_Click(object sender, EventArgs e)

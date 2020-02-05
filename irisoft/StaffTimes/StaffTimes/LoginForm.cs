@@ -30,6 +30,11 @@ namespace StaffTimes
             if (!string.IsNullOrEmpty(tuple.Item2))
             {
                 _tbPasswd.Text = tuple.Item2;
+                _cbSavePass.Checked = true;
+            }
+            else
+            {
+                _cbSavePass.Checked = false;
             }
         }
 
@@ -46,7 +51,7 @@ namespace StaffTimes
             {
                 if ((_user = container.GetUser(tbLogin.Text, _tbPasswd.Text)) != null)
                 {
-                    Core.Conf.Write(tbLogin.Text, _tbPasswd.Text);
+                    Core.Conf.Write(tbLogin.Text, _tbPasswd.Text, _cbSavePass.Checked);
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -76,6 +81,11 @@ namespace StaffTimes
             {
                 EnterKey();
             }
+        }
+
+        private void _cbSavePass_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

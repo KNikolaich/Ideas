@@ -16,6 +16,9 @@ namespace Core
 
         public string Login { get; set; }
 
+        public bool SavePassword { get; set; }
+
+
         public string Password { get; set; }
 
         public string ConnectionInfo { get; set; }
@@ -48,16 +51,17 @@ namespace Core
             }
         }
 
-        public static void Write(string login, string password)
+        public static void Write(string login, string password, bool savePassword = false)
         {
-            var configuration = new Conf {Login = login, Password = password};
+            var configuration = new Conf {Login = login, Password = password, SavePassword = savePassword};
             configuration.Save();
         }
 
         public static Tuple<string, string> ReadLoginPassword()
         {
             var configuration = new Conf().Load();
-            return new Tuple<string, string>(configuration.Login, configuration.Password);
+
+            return new Tuple<string, string>(configuration.Login, configuration.SavePassword ? configuration.Password : "");
         }
     }
 }
