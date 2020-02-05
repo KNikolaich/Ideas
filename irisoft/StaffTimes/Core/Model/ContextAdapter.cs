@@ -12,6 +12,10 @@ namespace Core.Model
     {
         private StaffTimesContainer _dbContainer;
 
+        public ContextAdapter() : this(new StaffTimesContainer())
+        {
+        }
+
         public ContextAdapter(StaffTimesContainer dbContainer)
         {
             _dbContainer = dbContainer;
@@ -51,6 +55,34 @@ namespace Core.Model
             }
         }
 
+        public object GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
+        {
+            var idsEmptyProjs = projectIds.Length == 0;
+            var tasks = _dbContainer.Task.Where(t =>
+                (userId < 0 || t.UserId == userId) &&
+                (idsEmptyProjs || projectIds.Contains(t.ProjectId) && t.Date >= from && t.Date <= to)).ToList();
+            Dictionary<int, string> usersDic = new Dictionary<int, string>();
+            foreach (var task in tasks)
+            {
+                if (!usersDic.ContainsKey(task.UserId))
+                {
+                    usersDic.Add(task.UserId, task.User.UserName);
+                }
+            }
+            var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
+            var dataTable = _dbContainer.GetDataTable(fields, "Task", tasks.Select(t=>t.Id).ToArray());
+            dataTable.Columns.Add("UserName");
+            //dataTable.Columns.Add("ProjectName");
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                if (int.TryParse(dataRow["UserId"] as string, out var userid))
+                {
+                    dataRow["UserName"] = usersDic[userid];
+                }
+            }
+            return dataTable;
+        }
+
         public object GetDataTableUser()
         {
             var fields = new List<string> { "Id", "UserName", "Login", "Password", "Role" };
@@ -58,10 +90,11 @@ namespace Core.Model
             return dataTable;
         }
 
-        public object GetDataTableProjects()
+        public object GetDataTableProjects(params int[] projectIds)
         {
-            var fields = new List<string> { "Id", "ProjectName", "Description" };
-            var dataTable = _dbContainer.GetDataTable(fields, "Project");
+            var fields = new List<string> { "Id as ProjectId", "ProjectName", "Description" };
+            var dataTable = _dbContainer.GetDataTable(fields, "Project", projectIds);
+            //dataTable.Columns.Add("ProjectId");
             return dataTable;
         }
 
@@ -81,6 +114,12 @@ namespace Core.Model
         public void Update()
         {
             _dbContainer.SaveChanges();
+        }
+
+        public IList<Project> GetSelectProjects(params int[] ids)
+        {
+            var idsEmpty = ids.Length == 0;
+            return _dbContainer.Project.Where(p => idsEmpty || ids.Contains(p.Id)).ToList();
         }
     }
 }

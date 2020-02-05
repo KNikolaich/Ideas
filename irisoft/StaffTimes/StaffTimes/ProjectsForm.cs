@@ -32,7 +32,7 @@ namespace StaffTimes
         private void ProjectsForm_Load(object sender, EventArgs e)
         {
 
-            _repository = new ContextAdapter(new StaffTimesContainer());
+            _repository = new ContextAdapter();
             RefreshData();
         }
 

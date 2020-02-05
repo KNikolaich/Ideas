@@ -14,7 +14,7 @@ namespace StaffTimes
     public partial class GeneralForm : Form
     {
         private User _user;
-        private StaffTimesContainer _repository;
+        private ContextAdapter _contextDb;
 
         public GeneralForm()
         {
@@ -24,27 +24,72 @@ namespace StaffTimes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _repository = new StaffTimesContainer();
+            _contextDb = new ContextAdapter(); 
 
             if (_user.Role != StaffRole.Admin)
             {
-#if !DEBUG
                 ContextMenu = null;
-#endif
             }
-            gridControl1.DataSource = _repository.Task.ToArray();
+            InitDateNavigator();
 
-            gridView1.ExpandAllGroups();
-            //var days = _repository.Day.Where(w => w.UserId == _user.Id).ToList();
+
+            InitDateSource();
+            //var days = _contextDb.Day.Where(w => w.UserId == _user.Id).ToList();
             //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
             //_gridDays.DataSource = source;
         }
 
-        private void _gridWeeks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void InitDateSource()
         {
-            //_gridDays.DataSource
-            //e.RowIndex
+            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects();
+            
+            //rojectRepositoryItemView.Columns.Clear();
+
+            //this.layoutViewField_layoutViewColumn1
+            RefreshGridDataSource();
         }
+
+        private void RefreshGridDataSource()
+        {
+            var dtList = GetSelectDatesListOnInit();
+            var userId = _user.Role == StaffRole.User ? _user.Id : -1;
+            gridControl1.DataSource = _contextDb.GetDataTableTasks(userId, dtList.Min(), dtList.Max());
+            gridView1.ExpandAllGroups();
+        }
+
+        private void InitDateNavigator()
+        {
+            _dateNavigator.TodayButton.Text = "Сегодня";
+            _dateNavigator.TodayButton.PerformClick();
+            
+            /*foreach (var dateTime in dtList.OrderBy(dt=>dt.DayOfYear))
+            {
+                _dateNavigator.Selection.Add(dateTime);
+            }*/
+
+            _dateNavigator.DateTime = DateTime.Today;
+            _dateNavigator.HotDate = DateTime.Today;
+        }
+
+        private static List<DateTime> GetSelectDatesListOnInit()
+        {
+            DateTime end = DateTime.Today.AddDays(1);
+            DateTime start = DateTime.Today.AddDays(-7);
+            DateTime? additionDateTime = end;
+            List<DateTime> dtList = new List<DateTime>();
+            while (additionDateTime != null)
+            {
+                dtList.Add(additionDateTime.Value);
+                additionDateTime = additionDateTime.Value.AddDays(-1);
+                if (additionDateTime <= start && additionDateTime.Value.DayOfWeek == DayOfWeek.Monday
+                ) // гоним до понедельника прошлой неделеи
+                {
+                    additionDateTime = null;
+                }
+            }
+            return dtList;
+        }
+
 
         private void GeneralForm_Load(object sender, EventArgs e)
         {
@@ -61,7 +106,6 @@ namespace StaffTimes
                     Close();
                 }
             }
-            //gridView1.ExpandAllGroups();
         }
 
         private void _tsmiProjects_Click(object sender, EventArgs e)
@@ -72,16 +116,46 @@ namespace StaffTimes
             }
         }
 
-        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void _tsmiUsers_Click(object sender, EventArgs e)
         {
             using (StaffsForm sf = new StaffsForm())
             {
                 sf.ShowDialog();
             }
+        }
+
+        private void _dateNavigator_EditDateModified(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _dateNavigator_Validated(object sender, EventArgs e)
+        {
+            // тут меняем условия запроса
+        }
+
+
+        private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            var dataRow = gridView1.GetDataRow(e.RowHandle);
+
+            if (dataRow["Userid"] == DBNull.Value)
+                dataRow["Userid"] = _user.Id;
+
+            if (dataRow["Duration"] == DBNull.Value)
+                dataRow["Duration"] = 8;
+
+            if (dataRow["Comment"] == DBNull.Value)
+                dataRow["Comment"] = "";
+        }
+
+        private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            if (e.Row is DataRowView drw)
+            {
+                _contextDb.SetAndUpdateTask(drw, e.RowHandle < 0);
+            }
+            RefreshGridDataSource();
         }
     }
 }

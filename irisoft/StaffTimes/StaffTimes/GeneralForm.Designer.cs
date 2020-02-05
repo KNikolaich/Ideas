@@ -28,22 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
             this.panelTop = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._tsmiProjects = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiUsers = new System.Windows.Forms.ToolStripMenuItem();
             this._dateNavigator = new DevExpress.XtraScheduler.DateNavigator();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource();
+            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDuration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProject = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource();
-            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this._projRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this._projectRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this._projectRepositoryItemView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.DateCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -53,22 +55,23 @@
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.panel1 = new System.Windows.Forms.Panel();
-            this._tsmiUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelTop.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._projRepositoryItemLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItemView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -88,19 +91,26 @@
             this._tsmiProjects,
             this._tsmiUsers});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(174, 48);
             // 
             // _tsmiProjects
             // 
             this._tsmiProjects.Name = "_tsmiProjects";
-            this._tsmiProjects.Size = new System.Drawing.Size(180, 22);
+            this._tsmiProjects.Size = new System.Drawing.Size(173, 22);
             this._tsmiProjects.Text = "Ведение проектов";
             this._tsmiProjects.Click += new System.EventHandler(this._tsmiProjects_Click);
+            // 
+            // _tsmiUsers
+            // 
+            this._tsmiUsers.Name = "_tsmiUsers";
+            this._tsmiUsers.Size = new System.Drawing.Size(173, 22);
+            this._tsmiUsers.Text = "Сотрудники";
+            this._tsmiUsers.Click += new System.EventHandler(this._tsmiUsers_Click);
             // 
             // _dateNavigator
             // 
             this._dateNavigator.DateTime = new System.DateTime(((long)(0)));
-            this._dateNavigator.HotDate = new System.DateTime(2020, 2, 1, 0, 0, 0, 0);
+            this._dateNavigator.HotDate = null;
             this._dateNavigator.Location = new System.Drawing.Point(5, 8);
             this._dateNavigator.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             this._dateNavigator.Name = "_dateNavigator";
@@ -108,6 +118,8 @@
             this._dateNavigator.Size = new System.Drawing.Size(398, 166);
             this._dateNavigator.TabIndex = 0;
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
+            this._dateNavigator.EditDateModified += new System.EventHandler(this._dateNavigator_EditDateModified);
+            this._dateNavigator.Validated += new System.EventHandler(this._dateNavigator_Validated);
             // 
             // gridControl1
             // 
@@ -118,7 +130,8 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Padding = new System.Windows.Forms.Padding(5);
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemGridLookUpEdit1});
+            this._projectRepositoryItem,
+            this._projRepositoryItemLookUpEdit});
             this.gridControl1.Size = new System.Drawing.Size(790, 347);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -138,68 +151,66 @@
             this.colProject,
             this.colComment});
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.GroupCount = 2;
             this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", null, "")});
             this.gridView1.Name = "gridView1";
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUser, DevExpress.Data.ColumnSortOrder.Ascending),
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colDate, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridView1.OptionsView.ShowChildrenInGroupPanel = true;
+            this.gridView1.OptionsView.ShowFooter = true;
+            this.gridView1.OptionsView.ShowGroupedColumns = true;
+            this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
             // 
             // colUser
             // 
             this.colUser.Caption = "Сотрудник";
-            this.colUser.FieldName = "User";
+            this.colUser.FieldName = "UserName";
             this.colUser.Name = "colUser";
             this.colUser.Visible = true;
-            this.colUser.VisibleIndex = 4;
+            this.colUser.VisibleIndex = 0;
             // 
             // colDate
             // 
             this.colDate.Caption = "Дата";
             this.colDate.FieldName = "Date";
+            this.colDate.MaxWidth = 100;
             this.colDate.Name = "colDate";
             this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 0;
+            this.colDate.VisibleIndex = 1;
             // 
             // colDuration
             // 
             this.colDuration.Caption = "Длительность";
             this.colDuration.FieldName = "Duration";
+            this.colDuration.MaxWidth = 100;
             this.colDuration.Name = "colDuration";
             this.colDuration.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Duration", "Сумма")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Duration", "Сумма: {0}")});
             this.colDuration.Visible = true;
-            this.colDuration.VisibleIndex = 0;
+            this.colDuration.VisibleIndex = 3;
             // 
             // colProject
             // 
             this.colProject.Caption = "Проект";
-            this.colProject.ColumnEdit = this.repositoryItemGridLookUpEdit1;
-            this.colProject.FieldName = "Project";
+            this.colProject.ColumnEdit = this._projRepositoryItemLookUpEdit;
+            this.colProject.FieldName = "ProjectId";
+            this.colProject.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.colProject.Name = "colProject";
             this.colProject.Visible = true;
             this.colProject.VisibleIndex = 2;
             // 
-            // repositoryItemGridLookUpEdit1
+            // _projRepositoryItemLookUpEdit
             // 
-            this.repositoryItemGridLookUpEdit1.AutoHeight = false;
-            this.repositoryItemGridLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this._projRepositoryItemLookUpEdit.AutoHeight = false;
+            this._projRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemGridLookUpEdit1.DataSource = this.projectBindingSource;
-            this.repositoryItemGridLookUpEdit1.Name = "repositoryItemGridLookUpEdit1";
-            this.repositoryItemGridLookUpEdit1.View = this.repositoryItemGridLookUpEdit1View;
-            // 
-            // projectBindingSource
-            // 
-            this.projectBindingSource.DataSource = typeof(Core.Model.Project);
-            // 
-            // repositoryItemGridLookUpEdit1View
-            // 
-            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
-            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this._projRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "id"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProjectName", "Проект", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this._projRepositoryItemLookUpEdit.DisplayMember = "ProjectName";
+            this._projRepositoryItemLookUpEdit.Name = "_projRepositoryItemLookUpEdit";
+            this._projRepositoryItemLookUpEdit.NullText = "необходимо заполнить";
+            this._projRepositoryItemLookUpEdit.ValueMember = "ProjectId";
             // 
             // colComment
             // 
@@ -207,7 +218,24 @@
             this.colComment.FieldName = "Comment";
             this.colComment.Name = "colComment";
             this.colComment.Visible = true;
-            this.colComment.VisibleIndex = 1;
+            this.colComment.VisibleIndex = 4;
+            // 
+            // _projectRepositoryItem
+            // 
+            this._projectRepositoryItem.AutoHeight = false;
+            this._projectRepositoryItem.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this._projectRepositoryItem.Name = "_projectRepositoryItem";
+            this._projectRepositoryItem.NullText = "Выбераем проект";
+            this._projectRepositoryItem.View = this._projectRepositoryItemView;
+            // 
+            // _projectRepositoryItemView
+            // 
+            this._projectRepositoryItemView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this._projectRepositoryItemView.Name = "_projectRepositoryItemView";
+            this._projectRepositoryItemView.OptionsLayout.Columns.AddNewColumns = false;
+            this._projectRepositoryItemView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this._projectRepositoryItemView.OptionsView.ShowGroupPanel = false;
             // 
             // layoutView1
             // 
@@ -286,12 +314,9 @@
             this.panel1.Size = new System.Drawing.Size(800, 357);
             this.panel1.TabIndex = 9;
             // 
-            // _tsmiUsers
+            // projectBindingSource
             // 
-            this._tsmiUsers.Name = "_tsmiUsers";
-            this._tsmiUsers.Size = new System.Drawing.Size(180, 22);
-            this._tsmiUsers.Text = "Сотрудники";
-            this._tsmiUsers.Click += new System.EventHandler(this._tsmiUsers_Click);
+            this.projectBindingSource.DataSource = typeof(Core.Model.Project);
             // 
             // GeneralForm
             // 
@@ -310,15 +335,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._projRepositoryItemLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItemView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -341,14 +367,15 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
         private DevExpress.XtraGrid.Columns.GridColumn colDuration;
         private DevExpress.XtraGrid.Columns.GridColumn colProject;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit1;
-        private System.Windows.Forms.BindingSource projectBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit _projectRepositoryItem;
+        private DevExpress.XtraGrid.Views.Grid.GridView _projectRepositoryItemView;
         private DevExpress.XtraGrid.Columns.GridColumn colComment;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem _tsmiProjects;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem _tsmiUsers;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit _projRepositoryItemLookUpEdit;
+        private System.Windows.Forms.BindingSource projectBindingSource;
     }
 }
 

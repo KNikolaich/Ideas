@@ -11,13 +11,16 @@ namespace Core.Model
     public partial class StaffTimesContainer
     {
 
-        public DataTable GetDataTable(List<string> fields, string tableName)
+        public DataTable GetDataTable(List<string> fields, string tableName, params int[] iDs)
         {
             string selectF = fields.Aggregate("", (current, field) => current + (", " + field)).Trim(',');
 
+            string idString = iDs.Aggregate("", (current, id) => current + (", " + id)).Trim(',').Trim();
+
             var table = new DataTable(tableName);
             var cmd = Database.Connection.CreateCommand();
-            cmd.CommandText = $"Select {selectF} from [{tableName}]";
+            cmd.CommandText = $"Select {selectF} from [{tableName}] " + 
+                (idString.Length == 0 ? "" : $"where id in ({idString})"); // условия на идентификаторы
             try
             {
                 cmd.Connection.Open();

@@ -74,12 +74,18 @@ namespace Core.Model
 
     public partial class Project : IModelSupp
     {
-        
+        public override string ToString()
+        {
+            return ProjectName;
+        }
     }
 
     public partial class Task : IModelSupp
     {
-
+        public override string ToString()
+        {
+            return $"{User} ({Duration}) {Date:M}";
+        }
     }
 
     public enum ColorEnum
