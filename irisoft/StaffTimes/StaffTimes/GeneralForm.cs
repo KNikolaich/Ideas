@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core.Model;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraRichEdit.API.Word;
 
 namespace StaffTimes
 {
@@ -42,11 +44,23 @@ namespace StaffTimes
         private void InitDateSource()
         {
             _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects();
-            
+            _usersRepositoryItem.DataSource = _contextDb.GetDataTableUser(true);
+            _projCheckedListBoxControl.DataSource = GenerateProjList();
             //rojectRepositoryItemView.Columns.Clear();
 
             //this.layoutViewField_layoutViewColumn1
             RefreshGridDataSource();
+        }
+
+        private List<CheckedListBoxItem> GenerateProjList()
+        {
+            List<CheckedListBoxItem> res = new List<CheckedListBoxItem>();
+            var projects = _contextDb.GetSelectProjects();
+            foreach (Project project in projects)
+            {
+                res.Add(new CheckedListBoxItem(project, CheckState.Unchecked));
+            }
+            return res;
         }
 
         private void RefreshGridDataSource()
@@ -108,21 +122,7 @@ namespace StaffTimes
             }
         }
 
-        private void _tsmiProjects_Click(object sender, EventArgs e)
-        {
-            using (ProjectsForm pf = new ProjectsForm())
-            {
-                pf.ShowDialog();
-            }
-        }
 
-        private void _tsmiUsers_Click(object sender, EventArgs e)
-        {
-            using (StaffsForm sf = new StaffsForm())
-            {
-                sf.ShowDialog();
-            }
-        }
 
         private void _dateNavigator_EditDateModified(object sender, EventArgs e)
         {
@@ -156,6 +156,32 @@ namespace StaffTimes
                 _contextDb.SetAndUpdateTask(drw, e.RowHandle < 0);
             }
             RefreshGridDataSource();
+        }
+
+        private void staffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (StaffsForm sf = new StaffsForm())
+            {
+                sf.ShowDialog();
+            }
+        }
+
+        private void projectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ProjectsForm pf = new ProjectsForm())
+            {
+                pf.ShowDialog();
+            }
+        }
+
+        private void _exitTsmi_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void _projCheckedListBoxControl_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // смена чекбоксом массива проектов
         }
     }
 }

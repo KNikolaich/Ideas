@@ -30,22 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
-            this.panelTop = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._tsmiProjects = new System.Windows.Forms.ToolStripMenuItem();
-            this._tsmiUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelLeft = new System.Windows.Forms.Panel();
+            this._projCheckedListBoxControl = new DevExpress.XtraEditors.CheckedListBoxControl();
             this._dateNavigator = new DevExpress.XtraScheduler.DateNavigator();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this._settingsTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAllStaffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._exitTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this._nsiTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colUser = new DevExpress.XtraGrid.Columns.GridColumn();
+            this._usersRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDuration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProject = new DevExpress.XtraGrid.Columns.GridColumn();
             this._projRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
-            this._projectRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this._projectRepositoryItemView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.DateCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -54,85 +59,142 @@
             this.projectCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panelTop.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._projCheckedListBoxControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._usersRepositoryItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._projRepositoryItemLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItemView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelTop
+            // panelLeft
             // 
-            this.panelTop.ContextMenuStrip = this.contextMenuStrip1;
-            this.panelTop.Controls.Add(this._dateNavigator);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Padding = new System.Windows.Forms.Padding(5);
-            this.panelTop.Size = new System.Drawing.Size(800, 174);
-            this.panelTop.TabIndex = 2;
+            this.panelLeft.Controls.Add(this._projCheckedListBoxControl);
+            this.panelLeft.Controls.Add(this._dateNavigator);
+            this.panelLeft.Controls.Add(this.menuStrip1);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Padding = new System.Windows.Forms.Padding(5);
+            this.panelLeft.Size = new System.Drawing.Size(233, 531);
+            this.panelLeft.TabIndex = 2;
             // 
-            // contextMenuStrip1
+            // _projCheckedListBoxControl
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._tsmiProjects,
-            this._tsmiUsers});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(174, 48);
-            // 
-            // _tsmiProjects
-            // 
-            this._tsmiProjects.Name = "_tsmiProjects";
-            this._tsmiProjects.Size = new System.Drawing.Size(173, 22);
-            this._tsmiProjects.Text = "Ведение проектов";
-            this._tsmiProjects.Click += new System.EventHandler(this._tsmiProjects_Click);
-            // 
-            // _tsmiUsers
-            // 
-            this._tsmiUsers.Name = "_tsmiUsers";
-            this._tsmiUsers.Size = new System.Drawing.Size(173, 22);
-            this._tsmiUsers.Text = "Сотрудники";
-            this._tsmiUsers.Click += new System.EventHandler(this._tsmiUsers_Click);
+            this._projCheckedListBoxControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._projCheckedListBoxControl.Location = new System.Drawing.Point(5, 346);
+            this._projCheckedListBoxControl.Name = "_projCheckedListBoxControl";
+            this._projCheckedListBoxControl.Size = new System.Drawing.Size(223, 180);
+            this._projCheckedListBoxControl.TabIndex = 1;
+            this._projCheckedListBoxControl.SelectedValueChanged += new System.EventHandler(this._projCheckedListBoxControl_SelectedValueChanged);
             // 
             // _dateNavigator
             // 
             this._dateNavigator.DateTime = new System.DateTime(((long)(0)));
+            this._dateNavigator.Dock = System.Windows.Forms.DockStyle.Top;
             this._dateNavigator.HotDate = null;
-            this._dateNavigator.Location = new System.Drawing.Point(5, 8);
+            this._dateNavigator.Location = new System.Drawing.Point(5, 29);
             this._dateNavigator.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             this._dateNavigator.Name = "_dateNavigator";
             this._dateNavigator.Padding = new System.Windows.Forms.Padding(5);
-            this._dateNavigator.Size = new System.Drawing.Size(398, 166);
+            this._dateNavigator.Size = new System.Drawing.Size(223, 317);
             this._dateNavigator.TabIndex = 0;
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
             this._dateNavigator.EditDateModified += new System.EventHandler(this._dateNavigator_EditDateModified);
             this._dateNavigator.Validated += new System.EventHandler(this._dateNavigator_Validated);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._settingsTsmi,
+            this._nsiTsmi});
+            this.menuStrip1.Location = new System.Drawing.Point(5, 5);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(223, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // _settingsTsmi
+            // 
+            this._settingsTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showAllStaffToolStripMenuItem,
+            this.toolStripSeparator1,
+            this._exitTsmi});
+            this._settingsTsmi.Name = "_settingsTsmi";
+            this._settingsTsmi.Size = new System.Drawing.Size(79, 20);
+            this._settingsTsmi.Text = "Настройки";
+            // 
+            // showAllStaffToolStripMenuItem
+            // 
+            this.showAllStaffToolStripMenuItem.Checked = true;
+            this.showAllStaffToolStripMenuItem.CheckOnClick = true;
+            this.showAllStaffToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showAllStaffToolStripMenuItem.Name = "showAllStaffToolStripMenuItem";
+            this.showAllStaffToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.showAllStaffToolStripMenuItem.Text = "Показывать всех сотрудников";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(236, 6);
+            // 
+            // _exitTsmi
+            // 
+            this._exitTsmi.Name = "_exitTsmi";
+            this._exitTsmi.Size = new System.Drawing.Size(239, 22);
+            this._exitTsmi.Text = "Выход";
+            this._exitTsmi.Click += new System.EventHandler(this._exitTsmi_Click);
+            // 
+            // _nsiTsmi
+            // 
+            this._nsiTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.staffToolStripMenuItem,
+            this.projectsToolStripMenuItem});
+            this._nsiTsmi.Name = "_nsiTsmi";
+            this._nsiTsmi.Size = new System.Drawing.Size(94, 20);
+            this._nsiTsmi.Text = "Справочники";
+            // 
+            // staffToolStripMenuItem
+            // 
+            this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
+            this.staffToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.staffToolStripMenuItem.Text = "Сотрудники";
+            this.staffToolStripMenuItem.Click += new System.EventHandler(this.staffToolStripMenuItem_Click);
+            // 
+            // projectsToolStripMenuItem
+            // 
+            this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.projectsToolStripMenuItem.Text = "Проекты";
+            this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
+            // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.taskBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(5, 5);
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Padding = new System.Windows.Forms.Padding(5);
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this._projectRepositoryItem,
-            this._projRepositoryItemLookUpEdit});
-            this.gridControl1.Size = new System.Drawing.Size(790, 347);
+            this._projRepositoryItemLookUpEdit,
+            this._usersRepositoryItem});
+            this.gridControl1.Size = new System.Drawing.Size(563, 531);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -164,10 +226,23 @@
             // colUser
             // 
             this.colUser.Caption = "Сотрудник";
-            this.colUser.FieldName = "UserName";
+            this.colUser.ColumnEdit = this._usersRepositoryItem;
+            this.colUser.FieldName = "UserId";
+            this.colUser.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.colUser.Name = "colUser";
             this.colUser.Visible = true;
             this.colUser.VisibleIndex = 0;
+            // 
+            // _usersRepositoryItem
+            // 
+            this._usersRepositoryItem.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this._usersRepositoryItem.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("UserName", "Сотрудник")});
+            this._usersRepositoryItem.DisplayMember = "UserName";
+            this._usersRepositoryItem.Name = "_usersRepositoryItem";
+            this._usersRepositoryItem.ShowFooter = false;
+            this._usersRepositoryItem.ValueMember = "UserId";
             // 
             // colDate
             // 
@@ -205,7 +280,6 @@
             this._projRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this._projRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "id"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProjectName", "Проект", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending)});
             this._projRepositoryItemLookUpEdit.DisplayMember = "ProjectName";
             this._projRepositoryItemLookUpEdit.Name = "_projRepositoryItemLookUpEdit";
@@ -219,23 +293,6 @@
             this.colComment.Name = "colComment";
             this.colComment.Visible = true;
             this.colComment.VisibleIndex = 4;
-            // 
-            // _projectRepositoryItem
-            // 
-            this._projectRepositoryItem.AutoHeight = false;
-            this._projectRepositoryItem.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this._projectRepositoryItem.Name = "_projectRepositoryItem";
-            this._projectRepositoryItem.NullText = "Выбераем проект";
-            this._projectRepositoryItem.View = this._projectRepositoryItemView;
-            // 
-            // _projectRepositoryItemView
-            // 
-            this._projectRepositoryItemView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this._projectRepositoryItemView.Name = "_projectRepositoryItemView";
-            this._projectRepositoryItemView.OptionsLayout.Columns.AddNewColumns = false;
-            this._projectRepositoryItemView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this._projectRepositoryItemView.OptionsView.ShowGroupPanel = false;
             // 
             // layoutView1
             // 
@@ -304,53 +361,66 @@
             this.layoutViewField_layoutViewColumn3});
             this.layoutViewCard1.Name = "layoutViewTemplateCard";
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.gridControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 174);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(800, 357);
-            this.panel1.TabIndex = 9;
-            // 
             // projectBindingSource
             // 
             this.projectBindingSource.DataSource = typeof(Core.Model.Project);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panelLeft);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.gridControl1);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 531);
+            this.splitContainer1.SplitterDistance = 233;
+            this.splitContainer1.TabIndex = 4;
             // 
             // GeneralForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 531);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelTop);
+            this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "GeneralForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет времени";
             this.Load += new System.EventHandler(this.GeneralForm_Load);
-            this.panelTop.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.panelLeft.ResumeLayout(false);
+            this.panelLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._projCheckedListBoxControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._usersRepositoryItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._projRepositoryItemLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._projectRepositoryItemView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewCard1)).EndInit();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Panel panelLeft;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraScheduler.DateNavigator _dateNavigator;
         private DevExpress.XtraGrid.Views.Layout.LayoutView layoutView1;
@@ -367,15 +437,20 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
         private DevExpress.XtraGrid.Columns.GridColumn colDuration;
         private DevExpress.XtraGrid.Columns.GridColumn colProject;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit _projectRepositoryItem;
-        private DevExpress.XtraGrid.Views.Grid.GridView _projectRepositoryItemView;
         private DevExpress.XtraGrid.Columns.GridColumn colComment;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem _tsmiProjects;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem _tsmiUsers;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit _projRepositoryItemLookUpEdit;
         private System.Windows.Forms.BindingSource projectBindingSource;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit _usersRepositoryItem;
+        private DevExpress.XtraEditors.CheckedListBoxControl _projCheckedListBoxControl;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem _settingsTsmi;
+        private System.Windows.Forms.ToolStripMenuItem showAllStaffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _nsiTsmi;
+        private System.Windows.Forms.ToolStripMenuItem staffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem _exitTsmi;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

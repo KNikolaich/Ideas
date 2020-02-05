@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.staffMenu = new System.Windows.Forms.ContextMenuStrip();
+            this.components = new System.ComponentModel.Container();
+            this.staffMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +105,6 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUserName, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.gridView1.ValidateRow += GridView1_ValidateRow;
             // 
             // colId
             // 
@@ -113,6 +113,7 @@
             // 
             // colUserName
             // 
+            this.colUserName.Caption = "Имя";
             this.colUserName.FieldName = "UserName";
             this.colUserName.Name = "colUserName";
             this.colUserName.Visible = true;
@@ -120,6 +121,7 @@
             // 
             // colLogin
             // 
+            this.colLogin.Caption = "Логин для входа";
             this.colLogin.FieldName = "Login";
             this.colLogin.Name = "colLogin";
             this.colLogin.Visible = true;
@@ -127,6 +129,7 @@
             // 
             // colPassword
             // 
+            this.colPassword.Caption = "Пароль";
             this.colPassword.FieldName = "Password";
             this.colPassword.Name = "colPassword";
             this.colPassword.Visible = true;
@@ -134,6 +137,7 @@
             // 
             // colRole
             // 
+            this.colRole.Caption = "Роль";
             this.colRole.FieldName = "Role";
             this.colRole.Name = "colRole";
             this.colRole.Visible = true;
@@ -146,6 +150,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.gridControl1);
             this.Name = "StaffsForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Сотрудники";
             this.Load += new System.EventHandler(this.StaffsForm_Load);
             this.staffMenu.ResumeLayout(false);

@@ -42,9 +42,22 @@ namespace Core.Model
                 //var targetObj = ((System.Data.Entity.Infrastructure.IObjectContextAdapter) _repository).ObjectContext.CreateObject<Project>();
                 //var target = new Project();
                 var targetObj = dbSet.Create();
-                SetValues(drw, targetObj);
-                dbSet.Add(targetObj);
-                _dbContainer.SaveChanges();
+                try
+                {
+                    SetValues(drw, targetObj);
+                    dbSet.Add(targetObj);
+                    _dbContainer.SaveChanges();
+
+                }
+                catch (Exception e)
+                {
+                    //_dbContainer.Set<TTargetObj>().dettach
+                    throw;
+                }
+                finally
+                {
+                    
+                }
             }
             else
             {
@@ -83,9 +96,9 @@ namespace Core.Model
             return dataTable;
         }
 
-        public object GetDataTableUser()
+        public object GetDataTableUser(bool modifyId = false)
         {
-            var fields = new List<string> { "Id", "UserName", "Login", "Password", "Role" };
+            var fields = new List<string> { modifyId? "Id as UserId" : "Id", "UserName", "Login", "Password", "Role" };
             var dataTable = _dbContainer.GetDataTable(fields, "User");
             return dataTable;
         }
