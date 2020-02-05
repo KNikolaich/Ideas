@@ -16,6 +16,7 @@ namespace StaffTimes
     {
         internal GeneralFormFinder()
         {
+            ProjectIds = new List<int>();
             InitDates();
         }
 
@@ -70,7 +71,10 @@ namespace StaffTimes
                 else
                     lastDate = lastDate.AddDays(1); // берем следующий день
             }
-
+            else
+            {
+                sumdaily = 0;
+            }
             return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
         }
 

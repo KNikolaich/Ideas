@@ -48,7 +48,7 @@ namespace StaffTimes
             showAllStaffToolStripMenuItem.Visible = _finder.IsAdmin;
             _nsiTsmi.Visible = _finder.IsAdmin;
 
-            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects();
+            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray());
             _usersRepositoryItem.DataSource = _contextDb.GetDataTableUser(true);
             _projCheckedListBoxControl.DataSource = GenerateProjList();
             //rojectRepositoryItemView.Columns.Clear();
@@ -75,9 +75,13 @@ namespace StaffTimes
             _finder.StartDate = _dateNavigator.SelectionStart;
             _finder.EndDate = _dateNavigator.SelectionEnd;
 
+            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(); // загружаем все для отображения
             var userId = _finder.IsAdmin && _finder.ShowAllUsers ? -1 : _finder.UserId;
             gridControl1.DataSource = _contextDb.GetDataTableTasks(userId, _finder.StartDate, _finder.EndDate);
             gridView1.ExpandAllGroups();
+
+            SetProjectIds();
+            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray()); // загружаем только фильтрованные
         }
 
         private void InitDateNavigator()
@@ -121,7 +125,7 @@ namespace StaffTimes
 
         private void _dateNavigator_Validated(object sender, EventArgs e)
         {
-            // тут меняем условия запроса
+            // тут срабатывает не во-время
             
         }
 
@@ -180,12 +184,30 @@ namespace StaffTimes
 
         private void _projCheckedListBoxControl_SelectedValueChanged(object sender, EventArgs e)
         {
-            // смена чекбоксом массива проектов
+            SetProjectIds();
+            //_finder.ProjectIds = ids;
+        }
+
+        private void SetProjectIds()
+        {
+            _finder.ProjectIds = new List<int>();
+            foreach (CheckedListBoxItem checkedItem in _projCheckedListBoxControl.CheckedItems)
+            {
+                if (checkedItem.Value is IModelSupp proj)
+                    _finder.ProjectIds.Add(proj.Id);
+            }
         }
 
         private void _sButtonFind_Click(object sender, EventArgs e)
         {
             RefreshGridDataSource();
+        }
+
+        private void экспортВExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filePath = Guid.NewGuid() + ".xlsx";
+            gridControl1.ExportToXlsx(filePath);
+            System.Diagnostics.Process.Start(filePath);
         }
     }
 }
