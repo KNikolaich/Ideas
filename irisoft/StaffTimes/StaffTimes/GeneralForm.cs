@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
 using Core.Model;
+using DevExpress.Data;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraRichEdit.API.Word;
 
 namespace StaffTimes
@@ -44,6 +46,14 @@ namespace StaffTimes
 
         private void InitDateSource()
         {
+
+            GridGroupSummaryItem item1 = new GridGroupSummaryItem();
+            item1.FieldName = colDuration.FieldName;
+            item1.SummaryType = SummaryItemType.Sum;
+            item1.DisplayFormat = "{0}";
+            item1.ShowInGroupColumnFooter = colDuration;
+            gridView1.GroupSummary.Add(item1);
+
             showAllStaffToolStripMenuItem.CheckState = CheckState.Unchecked;
 
             showAllStaffToolStripMenuItem.Visible = _finder.IsAdmin;
@@ -229,6 +239,15 @@ namespace StaffTimes
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
             gridControl1.ShowPrintPreview();
+        }
+
+        private void lockDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (LockDateEditForm dateEditForm = new LockDateEditForm())
+            {
+                if(dateEditForm.ShowDialog() == DialogResult.OK)
+                    RefreshGridDataSource();
+            }
         }
     }
 }

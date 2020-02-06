@@ -66,6 +66,7 @@
             this.Name = "ActiveProjectsEditForm";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Выбираем проекты, в которые можно логировать время.";
             ((System.ComponentModel.ISupportInitialize)(this._checkedListBoxControl)).EndInit();
             this.ResumeLayout(false);

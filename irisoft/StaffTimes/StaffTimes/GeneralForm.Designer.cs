@@ -44,6 +44,7 @@
             this._nsiTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -209,7 +210,8 @@
             // 
             this._nsiTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.staffToolStripMenuItem,
-            this.projectsToolStripMenuItem});
+            this.projectsToolStripMenuItem,
+            this.lockDateToolStripMenuItem});
             this._nsiTsmi.Name = "_nsiTsmi";
             this._nsiTsmi.Size = new System.Drawing.Size(97, 20);
             this._nsiTsmi.Text = "Справочники";
@@ -218,16 +220,23 @@
             // staffToolStripMenuItem
             // 
             this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
-            this.staffToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.staffToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.staffToolStripMenuItem.Text = "Сотрудники...";
             this.staffToolStripMenuItem.Click += new System.EventHandler(this.staffToolStripMenuItem_Click);
             // 
             // projectsToolStripMenuItem
             // 
             this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.projectsToolStripMenuItem.Text = "Проекты...";
             this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
+            // 
+            // lockDateToolStripMenuItem
+            // 
+            this.lockDateToolStripMenuItem.Name = "lockDateToolStripMenuItem";
+            this.lockDateToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.lockDateToolStripMenuItem.Text = "Дата блокировки";
+            this.lockDateToolStripMenuItem.Click += new System.EventHandler(this.lockDateToolStripMenuItem_Click);
             // 
             // _reportsToolStripMenuItem
             // 
@@ -291,7 +300,6 @@
             this.gridView1.OptionsView.AllowCellMerge = true;
             this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridView1.OptionsView.ShowChildrenInGroupPanel = true;
-            this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUser, DevExpress.Data.ColumnSortOrder.Descending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colDate, DevExpress.Data.ColumnSortOrder.Ascending)});
@@ -544,6 +552,7 @@
         private System.Windows.Forms.GroupBox _groupBoxFinder;
         private System.Windows.Forms.ToolStripMenuItem activeProjSettingsTsmi;
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockDateToolStripMenuItem;
     }
 }
 

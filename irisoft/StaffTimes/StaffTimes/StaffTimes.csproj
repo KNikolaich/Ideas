@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>calendar.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v11.1, Version=11.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -87,6 +90,12 @@
       <DependentUpon>GeneralForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneralFormFinder.cs" />
+    <Compile Include="LockDateEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LockDateEditForm.Designer.cs">
+      <DependentUpon>LockDateEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +131,9 @@
     <EmbeddedResource Include="GeneralForm.resx">
       <DependentUpon>GeneralForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LockDateEditForm.resx">
+      <DependentUpon>LockDateEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -175,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="calendar.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
