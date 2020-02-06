@@ -66,16 +66,26 @@ namespace StaffTimes
             }
             if (sumdaily != -1)
             {
-                if (lastDate.DayOfWeek == DayOfWeek.Friday)
-                    lastDate = lastDate.AddDays(3); // перескакиваем выходные
+                if (sumdaily == 8) // полный день , передвигаем относительно последнего исследованного
+                {
+                    if (lastDate.DayOfWeek == DayOfWeek.Friday)
+                        lastDate = lastDate.AddDays(3); // перескакиваем выходные
+                    else
+                    {
+                        lastDate = lastDate.AddDays(1); // берем следующий день
+
+                    }
+                    return new Tuple<DateTime, int>(lastDate, sumdaily);
+                }
                 else
-                    lastDate = lastDate.AddDays(1); // берем следующий день
+                {
+                    return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
+                }
             }
             else
             {
-                sumdaily = 0;
+                return new Tuple<DateTime, int>(lastDate, 8);
             }
-            return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
         }
 
         private void InitDates()

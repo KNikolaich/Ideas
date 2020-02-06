@@ -98,7 +98,6 @@
             this._cbSavePass.TabIndex = 3;
             this._cbSavePass.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this._cbSavePass.UseVisualStyleBackColor = true;
-            this._cbSavePass.CheckedChanged += new System.EventHandler(this._cbSavePass_CheckedChanged);
             // 
             // label1
             // 

@@ -53,6 +53,7 @@ namespace Core
 
         public static void Write(string login, string password, bool savePassword = false)
         {
+            password = Crypto.Encript(password, login);
             var configuration = new Conf {Login = login, Password = password, SavePassword = savePassword};
             configuration.Save();
         }
@@ -60,8 +61,7 @@ namespace Core
         public static Tuple<string, string> ReadLoginPassword()
         {
             var configuration = new Conf().Load();
-
-            return new Tuple<string, string>(configuration.Login, configuration.SavePassword ? configuration.Password : "");
+            return new Tuple<string, string>(configuration.Login, configuration.SavePassword ? Crypto.Decript(configuration.Password, configuration.Login) : "");
         }
     }
 }
