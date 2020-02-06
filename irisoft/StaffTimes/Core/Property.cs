@@ -7,13 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Core.Model
+namespace Core
 {
     using System;
+    using System.Collections.Generic;
     
-    public enum StaffRole : int
+    public partial class Property
     {
-        User = 0,
-        Admin = 1
+        public int Id { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

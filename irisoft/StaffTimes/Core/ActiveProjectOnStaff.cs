@@ -7,28 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Core.Model
+namespace Core
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Task
+    public partial class ActiveProjectOnStaff
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Task()
-        {
-            this.Duration = 8;
-            this.Comment = "";
-        }
-    
         public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-        public int Duration { get; set; }
-        public string Comment { get; set; }
-        public int ProjectId { get; set; }
         public int UserId { get; set; }
+        public int ProjectId { get; set; }
     
-        public virtual Project Project { get; set; }
         public virtual User User { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

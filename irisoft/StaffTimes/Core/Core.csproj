@@ -55,78 +55,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveProjectOnStaff.cs">
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Conf.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Model\ContextAdapter.cs" />
     <Compile Include="Model\IModelSupp.cs" />
     <Compile Include="Model\Models.cs" />
-    <Compile Include="Model\Project.cs">
-      <DependentUpon>StaffTimesContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StaffRole.cs">
-      <DependentUpon>StaffTimesContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StaffTimes.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StaffTimes.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StaffTimes.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StaffTimes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StaffTimes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StaffTimes.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\StaffTimesContainer.cs" />
-    <Compile Include="Model\StaffTimesContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StaffTimesContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Task.cs">
-      <DependentUpon>StaffTimesContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\User.cs">
-      <DependentUpon>StaffTimesContext.tt</DependentUpon>
+    <Compile Include="Project.cs">
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Property.cs">
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Registry.cs" />
+    <Compile Include="StaffRole.cs">
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StaffTimeDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffTimeDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="StaffTimesContainer.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffTimesContainer.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StaffTimesContainer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Task.cs">
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>StaffTimesContainer.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="AppCrypto.config" />
-    <EntityDeploy Include="Model\StaffTimes.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StaffTimes.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\StaffTimes.edmx.diagram">
-      <DependentUpon>StaffTimes.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="StaffTimeDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StaffTimeDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="StaffTimeDb.edmx.diagram">
+      <DependentUpon>StaffTimeDb.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\StaffTimes.Context.tt">
+    <Content Include="StaffTimeDb.edmx.sql" />
+    <Content Include="StaffTimesContainer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaffTimes.Context.cs</LastGenOutput>
-      <DependentUpon>StaffTimes.edmx</DependentUpon>
+      <LastGenOutput>StaffTimesContainer.Context.cs</LastGenOutput>
+      <DependentUpon>StaffTimeDb.edmx</DependentUpon>
     </Content>
-    <Content Include="Model\StaffTimes.edmx.sql" />
-    <Content Include="Model\StaffTimes.tt">
+    <Content Include="StaffTimesContainer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaffTimes.cs</LastGenOutput>
-      <DependentUpon>StaffTimes.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\StaffTimesContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StaffTimesContext.cs</LastGenOutput>
-      <DependentUpon>StaffTimes.edmx</DependentUpon>
+      <LastGenOutput>StaffTimesContainer.cs</LastGenOutput>
+      <DependentUpon>StaffTimeDb.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

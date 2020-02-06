@@ -10,13 +10,13 @@ namespace Core.Model
 {
     public class ContextAdapter 
     {
-        private StaffTimesContainer _dbContainer;
+        private StaffTimeDbContainer _dbContainer;
 
-        public ContextAdapter() : this(new StaffTimesContainer())
+        public ContextAdapter() : this(new StaffTimeDbContainer())
         {
         }
 
-        public ContextAdapter(StaffTimesContainer dbContainer)
+        public ContextAdapter(StaffTimeDbContainer dbContainer)
         {
             _dbContainer = dbContainer;
         }
@@ -48,15 +48,10 @@ namespace Core.Model
                     _dbContainer.SaveChanges();
 
                 }
-                catch (Exception e)
+                catch
                 {
-
                     dbSet.Remove(targetObj);
                     throw;
-                }
-                finally
-                {
-                    
                 }
             }
             else

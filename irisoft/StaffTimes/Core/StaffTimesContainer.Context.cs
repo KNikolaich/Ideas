@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Core.Model
+namespace Core
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StaffTimesContainer : DbContext
+    public partial class StaffTimeDbContainer : DbContext
     {
-        public StaffTimesContainer()
-            : base("name=StaffTimesDb")
+        public StaffTimeDbContainer()
+            : base("name=StaffTimeDbContainer")
         {
         }
     
@@ -28,5 +28,7 @@ namespace Core.Model
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Task> Task { get; set; }
+        public virtual DbSet<Property> PropertySet { get; set; }
+        public virtual DbSet<ActiveProjectOnStaff> ActiveProjectOnStaffSet { get; set; }
     }
 }

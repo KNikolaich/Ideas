@@ -7,25 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Core.Model
+namespace Core
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Project
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Project()
+        public User()
         {
-            this.Description = "";
             this.Tasks = new HashSet<Task>();
+            this.ActiveProjectOnStaff = new HashSet<ActiveProjectOnStaff>();
         }
     
         public int Id { get; set; }
-        public string ProjectName { get; set; }
-        public string Description { get; set; }
+        public string UserName { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public StaffRole Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ActiveProjectOnStaff> ActiveProjectOnStaff { get; set; }
     }
 }

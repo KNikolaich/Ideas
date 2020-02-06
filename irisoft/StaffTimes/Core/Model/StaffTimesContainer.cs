@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Model
+namespace Core
 {
-    public partial class StaffTimesContainer
+    public partial class StaffTimeDbContainer
     {
 
         public DataTable GetDataTable(List<string> fields, string tableName, params int[] iDs)

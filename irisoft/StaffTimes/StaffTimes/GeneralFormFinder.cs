@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Core;
 using System.Threading.Tasks;
 using Core.Model;
-using Task = Core.Model.Task;
+using Task = Core.Task;
 
 
 namespace StaffTimes

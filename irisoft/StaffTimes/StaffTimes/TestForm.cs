@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core;
 using Core.Model;
 
 namespace StaffTimes
@@ -40,7 +41,7 @@ namespace StaffTimes
             //            pList.ForEach(p => dataTable.Rows.Add(p));
 
             var table = new DataTable();
-            using (var ctx = new StaffTimesContainer())
+            using (var ctx = new StaffTimeDbContainer())
             {
                 var cmd = ctx.Database.Connection.CreateCommand();
                 cmd.CommandText = "Select Id, ProjectName,Description from Project";

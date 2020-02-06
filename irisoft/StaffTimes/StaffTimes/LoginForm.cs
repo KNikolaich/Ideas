@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Core.Model;
+using Core;
 
 namespace StaffTimes
 {
@@ -47,7 +47,7 @@ namespace StaffTimes
         {
             DialogResult = DialogResult.Abort;
 
-            using (StaffTimesContainer container = new StaffTimesContainer())
+            using (var container = new StaffTimeDbContainer())
             {
                 if ((_user = container.GetUser(tbLogin.Text, _tbPasswd.Text)) != null)
                 {

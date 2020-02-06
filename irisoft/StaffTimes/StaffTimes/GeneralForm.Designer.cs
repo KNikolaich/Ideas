@@ -41,6 +41,8 @@
             this._nsiTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.экспортВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelButtom = new System.Windows.Forms.Panel();
             this._sButtonFind = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -63,8 +65,6 @@
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.экспортВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._projCheckedListBoxControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -179,16 +179,31 @@
             // staffToolStripMenuItem
             // 
             this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
-            this.staffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.staffToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.staffToolStripMenuItem.Text = "Сотрудники";
             this.staffToolStripMenuItem.Click += new System.EventHandler(this.staffToolStripMenuItem_Click);
             // 
             // projectsToolStripMenuItem
             // 
             this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.projectsToolStripMenuItem.Text = "Проекты";
             this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
+            // 
+            // _reportsToolStripMenuItem
+            // 
+            this._reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.экспортВExcelToolStripMenuItem});
+            this._reportsToolStripMenuItem.Name = "_reportsToolStripMenuItem";
+            this._reportsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this._reportsToolStripMenuItem.Text = "Отчеты";
+            // 
+            // экспортВExcelToolStripMenuItem
+            // 
+            this.экспортВExcelToolStripMenuItem.Name = "экспортВExcelToolStripMenuItem";
+            this.экспортВExcelToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.экспортВExcelToolStripMenuItem.Text = "Экспорт в Excel";
+            this.экспортВExcelToolStripMenuItem.Click += new System.EventHandler(this.экспортВExcelToolStripMenuItem_Click);
             // 
             // panelButtom
             // 
@@ -229,7 +244,7 @@
             // 
             // taskBindingSource
             // 
-            this.taskBindingSource.DataSource = typeof(Core.Model.Task);
+            this.taskBindingSource.DataSource = typeof(Core.Task);
             // 
             // gridView1
             // 
@@ -294,6 +309,7 @@
             this.colDuration.FieldName = "Duration";
             this.colDuration.MaxWidth = 100;
             this.colDuration.Name = "colDuration";
+            this.colDuration.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colDuration.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Duration", "Сумма: {0}")});
             this.colDuration.Visible = true;
@@ -330,6 +346,7 @@
             this.colComment.Caption = "Комментарий";
             this.colComment.FieldName = "Comment";
             this.colComment.Name = "colComment";
+            this.colComment.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colComment.Visible = true;
             this.colComment.VisibleIndex = 4;
             this.colComment.Width = 237;
@@ -403,7 +420,7 @@
             // 
             // projectBindingSource
             // 
-            this.projectBindingSource.DataSource = typeof(Core.Model.Project);
+            this.projectBindingSource.DataSource = typeof(Core.Project);
             // 
             // splitContainer1
             // 
@@ -422,21 +439,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 4;
-            // 
-            // _reportsToolStripMenuItem
-            // 
-            this._reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.экспортВExcelToolStripMenuItem});
-            this._reportsToolStripMenuItem.Name = "_reportsToolStripMenuItem";
-            this._reportsToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this._reportsToolStripMenuItem.Text = "Отчеты";
-            // 
-            // экспортВExcelToolStripMenuItem
-            // 
-            this.экспортВExcelToolStripMenuItem.Name = "экспортВExcelToolStripMenuItem";
-            this.экспортВExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.экспортВExcelToolStripMenuItem.Text = "Экспорт в Excel";
-            this.экспортВExcelToolStripMenuItem.Click += new System.EventHandler(this.экспортВExcelToolStripMenuItem_Click);
             // 
             // GeneralForm
             // 

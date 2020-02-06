@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core;
 using Core.Model;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraRichEdit.API.Word;

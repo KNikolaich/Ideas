@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/04/2020 12:21:51
--- Generated from EDMX file: E:\git\Ideas\irisoft\StaffTimes\Core\Model\StaffTimes.edmx
+-- Date Created: 02/06/2020 12:55:01
+-- Generated from EDMX file: e:\git\Ideas\irisoft\StaffTimes\Core\StaffTimeDb.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,26 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_ProjectTask]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Task] DROP CONSTRAINT [FK_ProjectTask];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserTasks]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Task] DROP CONSTRAINT [FK_UserTasks];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Project]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Project];
-GO
-IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[User];
-GO
-IF OBJECT_ID(N'[dbo].[Task]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Task];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -46,7 +31,8 @@ GO
 CREATE TABLE [dbo].[Project] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ProjectName] nvarchar(max)  NOT NULL,
-    [Description] nvarchar(max)  NOT NULL
+    [Description] nvarchar(max)  NOT NULL,
+    [IsArchive] bit  NULL
 );
 GO
 
@@ -71,6 +57,22 @@ CREATE TABLE [dbo].[Task] (
 );
 GO
 
+-- Creating table 'PropertySet'
+CREATE TABLE [dbo].[PropertySet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Key] nvarchar(max)  NOT NULL,
+    [Value] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'ActiveProjectOnStaffSet'
+CREATE TABLE [dbo].[ActiveProjectOnStaffSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [UserId] int  NOT NULL,
+    [ProjectId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -90,6 +92,18 @@ GO
 -- Creating primary key on [Id] in table 'Task'
 ALTER TABLE [dbo].[Task]
 ADD CONSTRAINT [PK_Task]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'PropertySet'
+ALTER TABLE [dbo].[PropertySet]
+ADD CONSTRAINT [PK_PropertySet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ActiveProjectOnStaffSet'
+ALTER TABLE [dbo].[ActiveProjectOnStaffSet]
+ADD CONSTRAINT [PK_ActiveProjectOnStaffSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -125,6 +139,36 @@ GO
 CREATE INDEX [IX_FK_UserTasks]
 ON [dbo].[Task]
     ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'ActiveProjectOnStaffSet'
+ALTER TABLE [dbo].[ActiveProjectOnStaffSet]
+ADD CONSTRAINT [FK_ActiveProjectOnStaffUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[User]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ActiveProjectOnStaffUser'
+CREATE INDEX [IX_FK_ActiveProjectOnStaffUser]
+ON [dbo].[ActiveProjectOnStaffSet]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [ProjectId] in table 'ActiveProjectOnStaffSet'
+ALTER TABLE [dbo].[ActiveProjectOnStaffSet]
+ADD CONSTRAINT [FK_ProjectActiveProjectOnStaff]
+    FOREIGN KEY ([ProjectId])
+    REFERENCES [dbo].[Project]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProjectActiveProjectOnStaff'
+CREATE INDEX [IX_FK_ProjectActiveProjectOnStaff]
+ON [dbo].[ActiveProjectOnStaffSet]
+    ([ProjectId]);
 GO
 
 -- --------------------------------------------------
