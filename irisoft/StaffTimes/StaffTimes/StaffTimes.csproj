@@ -101,11 +101,11 @@
       <DependentUpon>ProjectsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaffEditForm.cs">
+    <Compile Include="ActiveProjectsEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StaffEditForm.Designer.cs">
-      <DependentUpon>StaffEditForm.cs</DependentUpon>
+    <Compile Include="ActiveProjectsEditForm.Designer.cs">
+      <DependentUpon>ActiveProjectsEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StaffsForm.cs">
       <SubType>Form</SubType>
@@ -140,8 +140,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StaffEditForm.resx">
-      <DependentUpon>StaffEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="ActiveProjectsEditForm.resx">
+      <DependentUpon>ActiveProjectsEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StaffsForm.resx">
       <DependentUpon>StaffsForm.cs</DependentUpon>

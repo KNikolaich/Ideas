@@ -51,8 +51,7 @@ namespace StaffTimes
 
             _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray());
             _usersRepositoryItem.DataSource = _contextDb.GetDataTableUser(true);
-            _projCheckedListBoxControl.DataSource = GenerateProjList();
-            //rojectRepositoryItemView.Columns.Clear();
+            //_projCheckedListBoxControl.DataSource = GenerateProjList();
 
             //this.layoutViewField_layoutViewColumn1
             RefreshGridDataSource();
@@ -182,21 +181,11 @@ namespace StaffTimes
         {
             Close();
         }
-
-        private void _projCheckedListBoxControl_SelectedValueChanged(object sender, EventArgs e)
-        {
-            SetProjectIds();
-            //_finder.ProjectIds = ids;
-        }
-
+        
         private void SetProjectIds()
         {
-            _finder.ProjectIds = new List<int>();
-            foreach (CheckedListBoxItem checkedItem in _projCheckedListBoxControl.CheckedItems)
-            {
-                if (checkedItem.Value is IModelSupp proj)
-                    _finder.ProjectIds.Add(proj.Id);
-            }
+            _finder.RecalcActiveProjects();
+            
         }
 
         private void _sButtonFind_Click(object sender, EventArgs e)
@@ -204,11 +193,42 @@ namespace StaffTimes
             RefreshGridDataSource();
         }
 
-        private void экспортВExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var filePath = Guid.NewGuid() + ".xlsx";
             gridControl1.ExportToXlsx(filePath);
             System.Diagnostics.Process.Start(filePath);
+        }
+
+        private void gridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete && gridView1.ActiveEditor == null)
+            {
+                var focusedRow = gridView1.GetFocusedDataRow();
+                
+                if (MessageBox.Show("Удалить строку?", "Удаление записи и работе.",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    // Удаляем строку
+                {
+                    _contextDb.Delete<Core.Task>((int) focusedRow["id"]);
+                    RefreshGridDataSource();
+                }
+
+            }
+        }
+
+        private void activeProjSettingsTsmi_Click(object sender, EventArgs e)
+        {
+            using (ActiveProjectsEditForm acProjForm = new ActiveProjectsEditForm(_finder.CurrentUser))
+            {
+                acProjForm.ShowDialog();
+                _finder.RecalcActiveProjects();
+            }
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gridControl1.ShowPrintPreview();
         }
     }
 }

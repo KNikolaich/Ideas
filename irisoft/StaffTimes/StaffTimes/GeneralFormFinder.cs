@@ -105,5 +105,10 @@ namespace StaffTimes
             return Db.Projects.Where(p => idsEmpty || ids.Contains(p.Id)).ToList();
         }
 
+        public void RecalcActiveProjects()
+        {
+            var queryable = Db.ActiveProjectOnStaff(CurrentUser).Select(act => act.ProjectId);
+            ProjectIds = queryable.ToList();
+        }
     }
 }

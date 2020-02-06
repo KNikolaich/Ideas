@@ -116,6 +116,15 @@ namespace Core.Model
         public DbSet<Task> Tasks => _dbContainer.Task;
 
 
+        public IQueryable<ActiveProjectOnStaff> ActiveProjectOnStaff(User currentUser) => _dbContainer.ActiveProjectOnStaffSet.Where(act => act.UserId == currentUser.Id);
+
         public DbSet<Project> Projects => _dbContainer.Project;
+
+        public void Delete<T>(int i) where T: class, IModelSupp
+        {
+            var itemT = _dbContainer.Set<T>().FirstOrDefault(t => t.Id == i);
+            _dbContainer.Entry(itemT).State = EntityState.Deleted;
+            _dbContainer.SaveChanges();
+        }
     }
 }

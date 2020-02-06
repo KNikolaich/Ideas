@@ -51,7 +51,7 @@ namespace StaffTimes
 
         private void tsmInsert_Click(object sender, EventArgs e)
         {
-            using (StaffEditForm sef = new StaffEditForm(null))
+            using (ActiveProjectsEditForm sef = new ActiveProjectsEditForm(null))
             {
                 if (sef.ShowDialog(this) == DialogResult.OK)
                 {
