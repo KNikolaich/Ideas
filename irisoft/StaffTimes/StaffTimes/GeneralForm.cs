@@ -36,9 +36,9 @@ namespace StaffTimes
                 ContextMenu = null;
             }
             InitDateNavigator();
-
-
             InitDateSource();
+
+
             //var days = _contextDb.Day.Where(w => w.UserId == _user.Id).ToList();
             //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
             //_gridDays.DataSource = source;
@@ -66,25 +66,12 @@ namespace StaffTimes
             //this.layoutViewField_layoutViewColumn1
             RefreshGridDataSource();
         }
-
-        private List<CheckedListBoxItem> GenerateProjList()
-        {
-            List<CheckedListBoxItem> res = new List<CheckedListBoxItem>();
-            var projects = _finder.GetSelectProjects();
-            foreach (Project project in projects)
-            {
-                res.Add(new CheckedListBoxItem(project, CheckState.Unchecked));
-            }
-            return res;
-        }
-
+        
         private void RefreshGridDataSource()
         {
-
-            _finder.ShowAllUsers = showAllStaffToolStripMenuItem.CheckState == CheckState.Checked;
             _finder.StartDate = _dateNavigator.SelectionStart;
             _finder.EndDate = _dateNavigator.SelectionEnd;
-
+            _finder.ShowAllUsers = showAllStaffToolStripMenuItem.CheckState == CheckState.Checked;
             _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(); // загружаем все для отображения
             var userId = _finder.IsAdmin && _finder.ShowAllUsers ? -1 : _finder.UserId;
             gridControl1.DataSource = _contextDb.GetDataTableTasks(userId, _finder.StartDate, _finder.EndDate);
@@ -96,16 +83,17 @@ namespace StaffTimes
 
         private void InitDateNavigator()
         {
-            _dateNavigator.TodayButton.Text = "Сегодня";
-            _dateNavigator.TodayButton.PerformClick();
-            
+
+            //            _dateNavigator.TodayButton.Text = "Сегодня";
+            //            _dateNavigator.TodayButton.PerformClick();
+
             /*foreach (var dateTime in dtList.OrderBy(dt=>dt.DayOfYear))
             {
                 _dateNavigator.Selection.Add(dateTime);
             }*/
-
             _dateNavigator.DateTime = DateTime.Today;
             _dateNavigator.HotDate = DateTime.Today;
+            _dateNavigator.SetSelection(_finder.StartDate, _finder.EndDate);
         }
 
 
@@ -124,13 +112,6 @@ namespace StaffTimes
                     Close();
                 }
             }
-        }
-
-
-
-        private void _dateNavigator_EditDateModified(object sender, EventArgs e)
-        {
-
         }
 
         private void _dateNavigator_Validated(object sender, EventArgs e)
@@ -168,7 +149,7 @@ namespace StaffTimes
             {
                 _contextDb.SetAndUpdateTask(drw, e.RowHandle < 0);
             }
-            RefreshGridDataSource();
+            //RefreshGridDataSource();
         }
 
         private void staffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,14 +197,13 @@ namespace StaffTimes
             {
                 var focusedRow = gridView1.GetFocusedDataRow();
                 
-                if (MessageBox.Show("Удалить строку?", "Удаление записи и работе.",
+                if (focusedRow != null && MessageBox.Show("Удалить строку?", "Удаление записи и работе.",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     // Удаляем строку
                 {
                     _contextDb.Delete<Core.Task>((int) focusedRow["id"]);
                     RefreshGridDataSource();
                 }
-
             }
         }
 

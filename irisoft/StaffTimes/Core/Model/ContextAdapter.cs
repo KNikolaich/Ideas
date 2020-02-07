@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Model
 {
@@ -71,7 +69,7 @@ namespace Core.Model
                 (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
             
             var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
-            int[] arrUserId = tasks.Any()? tasks.Select(t=>t.Id).ToArray() : new int[]{-1};
+            int[] arrUserId = tasks.Any()? tasks.Select(t=>t.Id).ToArray() : new []{-1};
             var dataTable = _dbContainer.GetDataTable(fields, "Task", arrUserId);
             return dataTable;
         }
@@ -99,7 +97,7 @@ namespace Core.Model
                 {
                     var value = rawRow[property.Name];
                     if (value != DBNull.Value)
-                        property.SetValue(targetObj, value);
+                        property.SetValue(targetObj, value, null);
                 }
             }
         }

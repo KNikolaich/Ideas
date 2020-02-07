@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Core
 {
     using System;
@@ -23,7 +25,10 @@ namespace Core
     
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
+
+        [Required, Range(0, 12)]
         public int Duration { get; set; }
+
         public string Comment { get; set; }
         public int ProjectId { get; set; }
         public int UserId { get; set; }

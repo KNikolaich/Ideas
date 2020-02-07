@@ -58,7 +58,6 @@ namespace StaffTimes
                 }
                 else
                 {
-
                     lastDate = task.Date;
                     sumdaily = task.Duration;
                 }
@@ -79,7 +78,7 @@ namespace StaffTimes
                 }
                 else
                 {
-                    return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
+                    return new Tuple<DateTime, int>(lastDate, sumdaily < 8 ? (8 - sumdaily) : sumdaily);
                 }
             }
             else

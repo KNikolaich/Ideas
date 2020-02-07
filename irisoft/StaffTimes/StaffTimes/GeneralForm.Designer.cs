@@ -71,6 +71,7 @@
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._dateNavigator.CalendarTimeProperties)).BeginInit();
             this.panelButtom.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -115,17 +116,22 @@
             // 
             // _dateNavigator
             // 
+            this._dateNavigator.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this._dateNavigator.CellPadding = new System.Windows.Forms.Padding(1);
             this._dateNavigator.DateTime = new System.DateTime(((long)(0)));
             this._dateNavigator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._dateNavigator.HotDate = null;
+            this._dateNavigator.EditValue = new System.DateTime(((long)(0)));
+            this._dateNavigator.FirstDayOfWeek = System.DayOfWeek.Monday;
             this._dateNavigator.Location = new System.Drawing.Point(3, 16);
             this._dateNavigator.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             this._dateNavigator.Name = "_dateNavigator";
+            this._dateNavigator.NavigationMode = DevExpress.XtraScheduler.DateNavigationMode.ScrollCalendar;
             this._dateNavigator.Padding = new System.Windows.Forms.Padding(5);
             this._dateNavigator.Size = new System.Drawing.Size(248, 450);
             this._dateNavigator.TabIndex = 1;
+            this._dateNavigator.ToolTip = "Выбор дат для отображения данных";
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
-            this._dateNavigator.EditDateModified += new System.EventHandler(this._dateNavigator_EditDateModified);
             this._dateNavigator.Validated += new System.EventHandler(this._dateNavigator_Validated);
             // 
             // panelButtom
@@ -369,7 +375,7 @@
             this._projRepositoryItemLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this._projRepositoryItemLookUpEdit.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProjectName", "Проект", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProjectName", "Проект", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.Default)});
             this._projRepositoryItemLookUpEdit.DisplayMember = "ProjectName";
             this._projRepositoryItemLookUpEdit.Name = "_projRepositoryItemLookUpEdit";
             this._projRepositoryItemLookUpEdit.NullText = "";
@@ -447,7 +453,7 @@
             // 
             // layoutViewCard1
             // 
-            this.layoutViewCard1.ExpandButtonLocation = DevExpress.Utils.GroupElementLocation.AfterText;
+            this.layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
             this.layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutViewField_layoutViewColumn1,
             this.layoutViewField_layoutViewColumn2,
@@ -491,6 +497,7 @@
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             this._groupBoxFinder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._dateNavigator.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).EndInit();
             this.panelButtom.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
