@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Core;
 using Core.Model;
 using DevExpress.Data;
-using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraEditors.Filtering.Templates;
 using DevExpress.XtraGrid;
-using DevExpress.XtraRichEdit.API.Word;
 
 namespace StaffTimes
 {
     public partial class GeneralForm : Form
     {
-        GeneralFormFinder _finder = new GeneralFormFinder();
+        private readonly GeneralFormFinder _finder = new GeneralFormFinder();
         private ContextAdapter _contextDb;
 
         public GeneralForm()
@@ -33,11 +25,6 @@ namespace StaffTimes
                 GetAboutForm();
             }
             return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        protected override void OnKeyUp(KeyEventArgs e)
-        {
-            base.OnKeyUp(e);
         }
 
         private static void GetAboutForm()
@@ -68,12 +55,14 @@ namespace StaffTimes
 
         private void InitDateSource()
         {
-            GridGroupSummaryItem item1 = new GridGroupSummaryItem();
-            item1.FieldName = colDuration.FieldName;
-            item1.SummaryType = SummaryItemType.Sum;
-            item1.DisplayFormat = "{0}";
-            item1.ShowInGroupColumnFooter = colDuration;
-            gridView1.GroupSummary.Add(item1);
+            GridGroupSummaryItem summaryItem = new GridGroupSummaryItem
+            {
+                FieldName = colDuration.FieldName,
+                SummaryType = SummaryItemType.Sum,
+                DisplayFormat = @"{0}",
+                ShowInGroupColumnFooter = colDuration
+            };
+            gridView1.GroupSummary.Add(summaryItem);
 
             showAllStaffToolStripMenuItem.CheckState = CheckState.Unchecked;
 
@@ -113,9 +102,17 @@ namespace StaffTimes
             {
                 _dateNavigator.Selection.Add(dateTime);
             }*/
+            SetLockedDate();
             _dateNavigator.DateTime = DateTime.Today;
             _dateNavigator.HotDate = DateTime.Today;
             _dateNavigator.SetSelection(_finder.StartDate, _finder.EndDate);
+        }
+
+        private void SetLockedDate()
+        {
+            var dateOfLock = _finder.GetDateOfLock(true);
+            if (dateOfLock != null)
+                _repositoryItemDateEdit.MinValue = dateOfLock.Value;
         }
 
 
@@ -126,7 +123,7 @@ namespace StaffTimes
                 if (logForm.ShowDialog() == DialogResult.OK)
                 {
                     _finder.CurrentUser = logForm.GetUser();
-                    Text += (" - " + _finder.CurrentUser);
+                    Text += @" - " + _finder.CurrentUser;
                 }
                 else
                 {
@@ -216,8 +213,7 @@ namespace StaffTimes
             {
                 var focusedRow = gridView1.GetFocusedDataRow();
 
-                if (focusedRow != null && MessageBox.Show("Удалить строку?", "Удаление записи и работе.",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (focusedRow != null && MessageBox.Show("Удалить строку?", "Удаление записи о работе.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     // Удаляем строку
                 {
                     _contextDb.Delete<Core.Task>((int) focusedRow["id"]);
@@ -245,8 +241,26 @@ namespace StaffTimes
             using (LockDateEditForm dateEditForm = new LockDateEditForm())
             {
                 if (dateEditForm.ShowDialog() == DialogResult.OK)
-                    RefreshGridDataSource();
+                    SetLockedDate();
             }
+        }
+
+        private void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            var dateOfLock = _finder.GetDateOfLock();
+            /*if (dateOfLock != null && e.RowHandle >= 0 && e.Column.Name == "colDate")
+            {
+                var rowDrowing = gridView1.GetRow(e.RowHandle) as DataRowView;
+                if (rowDrowing != null) // Удаляем строку
+                {
+                    var dateTime = rowDrowing["Date"];
+                    var date = Convert.ToDateTime(dateTime);
+                    var repositoryItem = ((DevExpress.XtraGrid.Views.Grid.ViewInfo.GridCellInfo)e.Cell).Editor;
+                    repositoryItem.ReadOnly = date < dateOfLock;
+                    repositoryItem.AppearanceReadOnly.BackColor = System.Drawing.Color.AliceBlue;
+                }
+            }*/
+                
         }
     }
 }

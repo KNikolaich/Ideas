@@ -14,6 +14,8 @@ namespace StaffTimes
     /// </summary>
     public class GeneralFormFinder
     {
+        private DateTime? _dateOfLock;
+
         internal GeneralFormFinder()
         {
             ProjectIds = new List<int>();
@@ -117,6 +119,13 @@ namespace StaffTimes
         {
             var queryable = Db.ActiveProjectOnStaff(CurrentUser).Select(act => act.ProjectId);
             ProjectIds = queryable.ToList();
+        }
+
+        public DateTime? GetDateOfLock(bool needRefresh = false)
+        {
+            if(needRefresh)
+                _dateOfLock = Db.GetDateOfLock();
+            return _dateOfLock;
         }
     }
 }

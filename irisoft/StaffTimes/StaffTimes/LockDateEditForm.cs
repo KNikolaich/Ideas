@@ -31,6 +31,7 @@ namespace StaffTimes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
         }
 
         private void _bSave_Click(object sender, EventArgs e)
@@ -41,10 +42,12 @@ namespace StaffTimes
                 {
                     _property = _db.PropertySet.Create();
                     _property.Key = PropertyKey;
-                    _property.Value = _dtpLock.Value.ToShortDateString();
                     _db.PropertySet.Add(_property);
-                    _db.SaveChanges();
                 }
+                _property.Value = _dtpLock.Value.ToShortDateString();
+                _db.SaveChanges();
+
+                
             }
             DialogResult = DialogResult.OK;
         }
