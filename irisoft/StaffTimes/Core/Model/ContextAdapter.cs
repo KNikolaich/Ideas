@@ -124,5 +124,16 @@ namespace Core.Model
             _dbContainer.Entry(itemT).State = EntityState.Deleted;
             _dbContainer.SaveChanges();
         }
+
+        public DateTime? GetDateOfLock()
+        {
+            using (var staffTimeDbContainer = new StaffTimeDbContainer())
+            {
+                var property = staffTimeDbContainer.PropertySet.FirstOrDefault(p => p.Key == "DateOfLock");
+                if (property != null)
+                    return Convert.ToDateTime(property.Value);
+                return null;
+            }
+        }
     }
 }
