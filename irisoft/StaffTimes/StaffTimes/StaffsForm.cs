@@ -25,6 +25,7 @@ namespace StaffTimes
         private void StaffsForm_Load(object sender, EventArgs e)
         {
             _repository = new ContextAdapter();
+            gridView1.ValidateRow += GridView1_ValidateRow;
             //gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.None; // пока отклдючено, не работает
             RefreshData();
         }

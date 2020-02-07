@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
             this.panelLeft = new System.Windows.Forms.Panel();
             this._groupBoxFinder = new System.Windows.Forms.GroupBox();
@@ -49,7 +48,7 @@
             this.exportToExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.taskBindingSource = new System.Windows.Forms.BindingSource();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this._usersRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -66,7 +65,7 @@
             this.projectCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBindingSource = new System.Windows.Forms.BindingSource();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
@@ -100,7 +99,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(260, 531);
+            this.panelLeft.Size = new System.Drawing.Size(257, 531);
             this.panelLeft.TabIndex = 2;
             // 
             // _groupBoxFinder
@@ -109,7 +108,7 @@
             this._groupBoxFinder.Dock = System.Windows.Forms.DockStyle.Fill;
             this._groupBoxFinder.Location = new System.Drawing.Point(3, 27);
             this._groupBoxFinder.Name = "_groupBoxFinder";
-            this._groupBoxFinder.Size = new System.Drawing.Size(254, 469);
+            this._groupBoxFinder.Size = new System.Drawing.Size(251, 469);
             this._groupBoxFinder.TabIndex = 5;
             this._groupBoxFinder.TabStop = false;
             this._groupBoxFinder.Text = "Диапазона дат для отображения:";
@@ -128,7 +127,7 @@
             this._dateNavigator.Name = "_dateNavigator";
             this._dateNavigator.NavigationMode = DevExpress.XtraScheduler.DateNavigationMode.ScrollCalendar;
             this._dateNavigator.Padding = new System.Windows.Forms.Padding(5);
-            this._dateNavigator.Size = new System.Drawing.Size(248, 450);
+            this._dateNavigator.Size = new System.Drawing.Size(245, 450);
             this._dateNavigator.TabIndex = 1;
             this._dateNavigator.ToolTip = "Выбор дат для отображения данных";
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
@@ -141,13 +140,13 @@
             this.panelButtom.Location = new System.Drawing.Point(3, 496);
             this.panelButtom.Name = "panelButtom";
             this.panelButtom.Padding = new System.Windows.Forms.Padding(3);
-            this.panelButtom.Size = new System.Drawing.Size(254, 32);
+            this.panelButtom.Size = new System.Drawing.Size(251, 32);
             this.panelButtom.TabIndex = 4;
             // 
             // _sButtonFind
             // 
             this._sButtonFind.Dock = System.Windows.Forms.DockStyle.Right;
-            this._sButtonFind.Location = new System.Drawing.Point(139, 3);
+            this._sButtonFind.Location = new System.Drawing.Point(136, 3);
             this._sButtonFind.Name = "_sButtonFind";
             this._sButtonFind.Size = new System.Drawing.Size(112, 26);
             this._sButtonFind.TabIndex = 3;
@@ -165,7 +164,7 @@
             this._reportsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(3, 3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(254, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(251, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -257,14 +256,14 @@
             // exportToExcelToolStripMenuItem
             // 
             this.exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
-            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToExcelToolStripMenuItem.Text = "Экспорт в Excel...";
             this.exportToExcelToolStripMenuItem.Click += new System.EventHandler(this.exportToExcelToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printToolStripMenuItem.Text = "Печать..";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
@@ -279,7 +278,7 @@
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem});
-            this.gridControl1.Size = new System.Drawing.Size(740, 525);
+            this.gridControl1.Size = new System.Drawing.Size(743, 525);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -479,7 +478,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
-            this.splitContainer1.SplitterDistance = 260;
+            this.splitContainer1.SplitterDistance = 257;
             this.splitContainer1.TabIndex = 4;
             // 
             // GeneralForm

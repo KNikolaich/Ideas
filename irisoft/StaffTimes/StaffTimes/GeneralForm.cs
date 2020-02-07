@@ -26,6 +26,28 @@ namespace StaffTimes
             InitializeComponent();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F1)
+            {
+                GetAboutForm();
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+        }
+
+        private static void GetAboutForm()
+        {
+            using (var about = new AboutBox())
+            {
+                about.ShowDialog();
+            }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
