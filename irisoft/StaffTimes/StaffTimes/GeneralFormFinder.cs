@@ -38,10 +38,11 @@ namespace StaffTimes
 
         internal Tuple<DateTime, int> CalcNewDate(int idUser)
         {
-            IList<Task> tasks = Db.Tasks.Where(t => t.UserId == idUser && t.Date >= StartDate && t.Date <= EndDate).ToList();
+            IList<Task> tasks = Db.Tasks.Where(t => t.UserId == idUser && t.Date >= StartDate && t.Date <= EndDate)
+                .ToList();
             int sumdaily = -1;
             DateTime lastDate = DateTime.Today;
-            foreach (var task in tasks.OrderBy(t=>t.Date))
+            foreach (var task in tasks.OrderBy(t => t.Date))
             {
                 if (sumdaily == -1) // первый прогон
                 {
@@ -54,14 +55,13 @@ namespace StaffTimes
                 }
                 else if (sumdaily < 8)
                 {
-                    return new Tuple<DateTime, int>(lastDate, 8-sumdaily);
+                    return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
                 }
                 else
                 {
                     lastDate = task.Date;
                     sumdaily = task.Duration;
                 }
-
             }
             if (sumdaily != -1)
             {
@@ -72,7 +72,6 @@ namespace StaffTimes
                     else
                     {
                         lastDate = lastDate.AddDays(1); // берем следующий день
-
                     }
                     return new Tuple<DateTime, int>(lastDate, sumdaily);
                 }

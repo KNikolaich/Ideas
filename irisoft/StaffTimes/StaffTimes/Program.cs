@@ -20,7 +20,6 @@ namespace StaffTimes
             {
                 exceptionHandler = null;
             }
-
         }
     }
 }
