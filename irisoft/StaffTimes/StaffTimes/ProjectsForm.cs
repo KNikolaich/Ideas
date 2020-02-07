@@ -31,7 +31,6 @@ namespace StaffTimes
 
         private void ProjectsForm_Load(object sender, EventArgs e)
         {
-
             _repository = new ContextAdapter();
             RefreshData();
         }
@@ -42,15 +41,13 @@ namespace StaffTimes
         }
 
 
-
         private void gridControl1_DataSourceChanged(object sender, EventArgs e)
         {
-
         }
 
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void gridView1_CellValueChanged(object sender,
+            DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            
         }
 
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
@@ -76,8 +73,6 @@ namespace StaffTimes
             }*/
             //
             //_repository.Project.Create();
-
-
         }
     }
 }

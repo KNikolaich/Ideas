@@ -57,7 +57,9 @@ namespace StaffTimes
                     DialogResult = DialogResult.OK;
                     Close();
                 }
-                else if (MessageBox.Show($"Не верно введены данные авторизации! {Environment.NewLine}Повторить попытку?","Ошибка", MessageBoxButtons.YesNo,
+                else if (MessageBox.Show(
+                             $"Не верно введены данные авторизации! {Environment.NewLine}Повторить попытку?", "Ошибка",
+                             MessageBoxButtons.YesNo,
                              MessageBoxIcon.Error) != DialogResult.Yes)
                 {
                     Close();
@@ -67,10 +69,9 @@ namespace StaffTimes
                     DialogResult = DialogResult.None;
                 }
                 Cursor = oldCursor;
-                
             }
         }
-        
+
         private void tbLogin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)

@@ -68,7 +68,6 @@ namespace StaffTimes
 
         private void InitDateSource()
         {
-
             GridGroupSummaryItem item1 = new GridGroupSummaryItem();
             item1.FieldName = colDuration.FieldName;
             item1.SummaryType = SummaryItemType.Sum;
@@ -88,24 +87,25 @@ namespace StaffTimes
             //this.layoutViewField_layoutViewColumn1
             RefreshGridDataSource();
         }
-        
+
         private void RefreshGridDataSource()
         {
             _finder.StartDate = _dateNavigator.SelectionStart;
             _finder.EndDate = _dateNavigator.SelectionEnd;
             _finder.ShowAllUsers = showAllStaffToolStripMenuItem.CheckState == CheckState.Checked;
-            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(); // загружаем все для отображения
+            _projRepositoryItemLookUpEdit.DataSource =
+                _contextDb.GetDataTableProjects(); // загружаем все для отображения
             var userId = _finder.IsAdmin && _finder.ShowAllUsers ? -1 : _finder.UserId;
             gridControl1.DataSource = _contextDb.GetDataTableTasks(userId, _finder.StartDate, _finder.EndDate);
             gridView1.ExpandAllGroups();
 
             SetProjectIds();
-            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray()); // загружаем только фильтрованные
+            _projRepositoryItemLookUpEdit.DataSource =
+                _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray()); // загружаем только фильтрованные
         }
 
         private void InitDateNavigator()
         {
-
             //            _dateNavigator.TodayButton.Text = "Сегодня";
             //            _dateNavigator.TodayButton.PerformClick();
 
@@ -139,7 +139,6 @@ namespace StaffTimes
         private void _dateNavigator_Validated(object sender, EventArgs e)
         {
             // тут срабатывает не во-время
-            
         }
 
 
@@ -150,7 +149,7 @@ namespace StaffTimes
             if (dataRow["Userid"] == DBNull.Value)
                 dataRow["Userid"] = _finder.UserId;
 
-            var idUser = (int)dataRow["Userid"];
+            var idUser = (int) dataRow["Userid"];
             Tuple<DateTime, int> newDateDurat = _finder.CalcNewDate(idUser);
 
             if (dataRow["Date"] == DBNull.Value)
@@ -161,7 +160,6 @@ namespace StaffTimes
 
             if (dataRow["Comment"] == DBNull.Value)
                 dataRow["Comment"] = "";
-
         }
 
 
@@ -194,11 +192,10 @@ namespace StaffTimes
         {
             Close();
         }
-        
+
         private void SetProjectIds()
         {
             _finder.RecalcActiveProjects();
-            
         }
 
         private void _sButtonFind_Click(object sender, EventArgs e)
@@ -218,7 +215,7 @@ namespace StaffTimes
             if (e.KeyData == Keys.Delete && gridView1.ActiveEditor == null)
             {
                 var focusedRow = gridView1.GetFocusedDataRow();
-                
+
                 if (focusedRow != null && MessageBox.Show("Удалить строку?", "Удаление записи и работе.",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     // Удаляем строку
@@ -247,7 +244,7 @@ namespace StaffTimes
         {
             using (LockDateEditForm dateEditForm = new LockDateEditForm())
             {
-                if(dateEditForm.ShowDialog() == DialogResult.OK)
+                if (dateEditForm.ShowDialog() == DialogResult.OK)
                     RefreshGridDataSource();
             }
         }
