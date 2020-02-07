@@ -49,13 +49,15 @@ namespace StaffTimes
 
             using (var container = new StaffTimeDbContainer())
             {
+                Cursor oldCursor = Cursor.Current;
+                Cursor = Cursors.WaitCursor;
                 if ((_user = container.GetUser(tbLogin.Text, _tbPasswd.Text)) != null)
                 {
                     Conf.Write(tbLogin.Text, _tbPasswd.Text, _cbSavePass.Checked);
                     DialogResult = DialogResult.OK;
                     Close();
                 }
-                else if (MessageBox.Show("Ошибка", "Не верно введены дынные! Повторить?", MessageBoxButtons.YesNo,
+                else if (MessageBox.Show($"Не верно введены данные авторизации! {Environment.NewLine}Повторить попытку?","Ошибка", MessageBoxButtons.YesNo,
                              MessageBoxIcon.Error) != DialogResult.Yes)
                 {
                     Close();
@@ -64,6 +66,8 @@ namespace StaffTimes
                 {
                     DialogResult = DialogResult.None;
                 }
+                Cursor = oldCursor;
+                
             }
         }
         

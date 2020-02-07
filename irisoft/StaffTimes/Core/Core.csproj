@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="Conf.cs" />
     <Compile Include="Crypto.cs" />
+    <Compile Include="Exceptions\IriExceptionHandler.cs" />
     <Compile Include="Model\ContextAdapter.cs" />
     <Compile Include="Model\IModelSupp.cs" />
     <Compile Include="Model\Models.cs" />

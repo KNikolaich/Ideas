@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Core
 {
     using System;
@@ -21,10 +23,16 @@ namespace Core
             this.Tasks = new HashSet<Task>();
             this.ActiveProjectOnStaff = new HashSet<ActiveProjectOnStaff>();
         }
-    
+        
         public int Id { get; set; }
+
+        [Display(Name = "Название", Description = "Основное наименование проекта")]
         public string ProjectName { get; set; }
+
+        [Display(Name = "описание", Description = "не обязательное поле с описанием")]
         public string Description { get; set; }
+
+        [Display(Name = "архив", Description = "устаревшие проекты отправляются в архив")]
         public Nullable<bool> IsArchive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

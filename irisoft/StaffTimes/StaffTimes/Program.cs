@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExceptionHandler = Core.Exceptions.ExceptionHandler;
 
 namespace StaffTimes
 {
@@ -19,10 +16,11 @@ namespace StaffTimes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GeneralForm());
-            if (Equals(exceptionHandler, exceptionHandler)) // так надо чтобы оптимизатор не убил этот объект
+            if (exceptionHandler == exceptionHandler)
             {
-                exceptionHandler.ToString();
+                exceptionHandler = null;
             }
+
         }
     }
 }
