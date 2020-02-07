@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+            gridView1.ValidateRow -= GridView1_ValidateRow;
             base.Dispose(disposing);
         }
 
