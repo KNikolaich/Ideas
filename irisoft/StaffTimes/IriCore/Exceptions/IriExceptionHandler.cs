@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
@@ -84,9 +85,9 @@ namespace Core.Exceptions
                                 action = "удаление";
                             }
                         }
-                        MessageBox.Show(String.Format("У Вас нет прав на {2} информации в [{0}] - {1}",
+                        /*MessageBox.Show(String.Format("У Вас нет прав на {2} информации в [{0}] - {1}",
                                                           ex.Data["Name"], ex.Data["Description"], action), "Ошибка",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);*/
                     }
                 }
                 else

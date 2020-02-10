@@ -4,11 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Windows.Forms;
+using EntityState = System.Data.Entity.EntityState;
 
 namespace Core.Model
 {
-    public class ContextAdapter 
+    public partial class ContextAdapter 
     {
         private StaffTimeDbContainer _dbContainer;
 

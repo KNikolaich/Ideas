@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using ExceptionHandler = Core.Exceptions.ExceptionHandler;
+using Core;
+using Core.Exceptions;
 
 namespace StaffTimes
 {
@@ -12,13 +13,24 @@ namespace StaffTimes
         [STAThread]
         static void Main()
         {
-            ExceptionHandler exceptionHandler = new ExceptionHandler();
+            IriExceptionHandler iriExceptionHandler = new IriExceptionHandler();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GeneralForm());
-            if (exceptionHandler == exceptionHandler)
+
+            User currentUser = null;
+            using (LoginForm logForm = new LoginForm())
             {
-                exceptionHandler = null;
+                if (logForm.ShowDialog() == DialogResult.OK)
+                {
+                    currentUser = logForm.GetUser();
+                }
+            }
+            if (currentUser != null)
+                Application.Run(new GeneralForm(currentUser));
+            if (iriExceptionHandler == iriExceptionHandler)
+            {
+                iriExceptionHandler = null;
             }
         }
     }

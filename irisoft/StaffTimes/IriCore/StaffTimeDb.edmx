@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StaffTimeDb.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StaffTimeDbStoreContainer">
+    <EntitySet Name="Project" EntityType="StaffTimeDb.Store.Project" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="StaffTimeDb.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Task" EntityType="StaffTimeDb.Store.Task" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PropertySet" EntityType="StaffTimeDb.Store.PropertySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActiveProjectOnStaffSet" EntityType="StaffTimeDb.Store.ActiveProjectOnStaffSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProjectTask" Association="StaffTimeDb.Store.ProjectTask">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="UserTasks" Association="StaffTimeDb.Store.UserTasks">
+      <End Role="User" EntitySet="User" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="ActiveProjectOnStaffUser" Association="StaffTimeDb.Store.ActiveProjectOnStaffUser">
+      <End Role="ActiveProjectOnStaff" EntitySet="ActiveProjectOnStaffSet" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectActiveProjectOnStaff" Association="StaffTimeDb.Store.ProjectActiveProjectOnStaff">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ActiveProjectOnStaff" EntitySet="ActiveProjectOnStaffSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" DefaultValue="" />
+    <Property Name="IsArchive" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="75" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="75" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" DefaultValue="8" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" DefaultValue="" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActiveProjectOnStaffSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ProjectTask">
+    <End Role="Project" Type="StaffTimeDb.Store.Project" Multiplicity="1" />
+    <End Role="Task" Type="StaffTimeDb.Store.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserTasks">
+    <End Role="User" Type="StaffTimeDb.Store.User" Multiplicity="1" />
+    <End Role="Task" Type="StaffTimeDb.Store.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActiveProjectOnStaffUser">
+    <End Role="ActiveProjectOnStaff" Type="StaffTimeDb.Store.ActiveProjectOnStaffSet" Multiplicity="*" />
+    <End Role="User" Type="StaffTimeDb.Store.User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActiveProjectOnStaff">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectActiveProjectOnStaff">
+    <End Role="Project" Type="StaffTimeDb.Store.Project" Multiplicity="1" />
+    <End Role="ActiveProjectOnStaff" Type="StaffTimeDb.Store.ActiveProjectOnStaffSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActiveProjectOnStaff">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="StaffTimeDb" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="StaffTimeDbContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Project" EntityType="StaffTimeDb.Project" />
+          <EntitySet Name="User" EntityType="StaffTimeDb.User" />
+          <EntitySet Name="Task" EntityType="StaffTimeDb.Task" />
+          <AssociationSet Name="ProjectTask" Association="StaffTimeDb.ProjectTask">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="UserTasks" Association="StaffTimeDb.UserTasks">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <EntitySet Name="PropertySet" EntityType="StaffTimeDb.Property" />
+          <EntitySet Name="ActiveProjectOnStaffSet" EntityType="StaffTimeDb.ActiveProjectOnStaff" />
+          <AssociationSet Name="ActiveProjectOnStaffUser" Association="StaffTimeDb.ActiveProjectOnStaffUser">
+            <End Role="ActiveProjectOnStaff" EntitySet="ActiveProjectOnStaffSet" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectActiveProjectOnStaff" Association="StaffTimeDb.ProjectActiveProjectOnStaff">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ActiveProjectOnStaff" EntitySet="ActiveProjectOnStaffSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" DefaultValue="" />
+          <NavigationProperty Name="Tasks" Relationship="StaffTimeDb.ProjectTask" FromRole="Project" ToRole="Task" />
+          <Property Name="IsArchive" Type="Boolean" Nullable="true" />
+          <NavigationProperty Name="ActiveProjectOnStaff" Relationship="StaffTimeDb.ProjectActiveProjectOnStaff" FromRole="Project" ToRole="ActiveProjectOnStaff" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="75" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="75" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Role" Type="StaffTimeDb.StaffRole" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="StaffTimeDb.UserTasks" FromRole="User" ToRole="Task" />
+          <NavigationProperty Name="ActiveProjectOnStaff" Relationship="StaffTimeDb.ActiveProjectOnStaffUser" FromRole="User" ToRole="ActiveProjectOnStaff" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" DefaultValue="8" />
+          <Property Name="Comment" Type="String" Nullable="false" DefaultValue="" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="StaffTimeDb.ProjectTask" FromRole="Task" ToRole="Project" />
+          <NavigationProperty Name="User" Relationship="StaffTimeDb.UserTasks" FromRole="Task" ToRole="User" />
+        </EntityType>
+        <Association Name="ProjectTask">
+          <End Type="StaffTimeDb.Project" Role="Project" Multiplicity="1" />
+          <End Type="StaffTimeDb.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserTasks">
+          <End Type="StaffTimeDb.User" Role="User" Multiplicity="1" />
+          <End Type="StaffTimeDb.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActiveProjectOnStaff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="StaffTimeDb.ActiveProjectOnStaffUser" FromRole="ActiveProjectOnStaff" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="StaffTimeDb.ProjectActiveProjectOnStaff" FromRole="ActiveProjectOnStaff" ToRole="Project" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ActiveProjectOnStaffUser">
+          <End Type="StaffTimeDb.ActiveProjectOnStaff" Role="ActiveProjectOnStaff" Multiplicity="*" />
+          <End Type="StaffTimeDb.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActiveProjectOnStaff">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectActiveProjectOnStaff">
+          <End Type="StaffTimeDb.Project" Role="Project" Multiplicity="1" />
+          <End Type="StaffTimeDb.ActiveProjectOnStaff" Role="ActiveProjectOnStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActiveProjectOnStaff">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="StaffRole">
+          <Member Name="User" Value="0" />
+          <Member Name="Admin" Value="1" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StaffTimeDbStoreContainer" CdmEntityContainer="StaffTimeDbContainer">
+    <EntitySetMapping Name="Project">
+      <EntityTypeMapping TypeName="IsTypeOf(StaffTimeDb.Project)">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(StaffTimeDb.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Task">
+      <EntityTypeMapping TypeName="IsTypeOf(StaffTimeDb.Task)">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertySet">
+      <EntityTypeMapping TypeName="IsTypeOf(StaffTimeDb.Property)">
+        <MappingFragment StoreEntitySet="PropertySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActiveProjectOnStaffSet">
+      <EntityTypeMapping TypeName="IsTypeOf(StaffTimeDb.ActiveProjectOnStaff)">
+        <MappingFragment StoreEntitySet="ActiveProjectOnStaffSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

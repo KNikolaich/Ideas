@@ -3,7 +3,7 @@ using Xunit;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
-using Core;
+using IriCore;
 
 namespace XUnitTest.Core
 {

@@ -14,9 +14,10 @@ namespace StaffTimes
         private readonly GeneralFormFinder _finder = new GeneralFormFinder();
         private ContextAdapter _contextDb;
 
-        public GeneralForm()
+        public GeneralForm(User currentUser)
         {
             InitializeComponent();
+            _finder.CurrentUser = currentUser;
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -119,19 +120,7 @@ namespace StaffTimes
 
         private void GeneralForm_Load(object sender, EventArgs e)
         {
-            using (LoginForm logForm = new LoginForm())
-            {
-                if (logForm.ShowDialog() == DialogResult.OK)
-                {
-                    _finder.CurrentUser = logForm.GetUser();
-                    Text += @" - " + _finder.CurrentUser;
-                }
-                else
-                {
-                    Hide();
-                    Close();
-                }
-            }
+            Text += @" - " + _finder.CurrentUser;
         }
 
         private void _dateNavigator_Validated(object sender, EventArgs e)
