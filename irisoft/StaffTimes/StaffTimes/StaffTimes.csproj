@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://Program01-H/Shara/StaffTimes/</UpdateUrl>
-    <ApplicationRevision>1</ApplicationRevision>
+    <UpdateUrl>//192.168.1.158/Shara/StaffTimes/</UpdateUrl>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
