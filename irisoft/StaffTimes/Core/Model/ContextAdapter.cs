@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Core.Model
 {
@@ -19,21 +21,9 @@ namespace Core.Model
             _dbContainer = dbContainer;
         }
         
-        public void SetAndUpdateProject(DataRowView drw, bool isNewRow)
+        public bool GreateOrUpdateRow<TTargetObj>(DataRowView drw, bool isNewRow) where TTargetObj : class, IModelSupp
         {
-            GreateOrUpdateRow(drw, isNewRow, _dbContainer.Project);
-        }
-        public void SetAndUpdateTask(DataRowView drw, bool isNewRow)
-        {
-            GreateOrUpdateRow(drw, isNewRow, _dbContainer.Task);
-        }
-        public void SetAndUpdateUser(DataRowView drw, bool isNewRow)
-        {
-            GreateOrUpdateRow(drw, isNewRow, _dbContainer.User);
-        }
-
-        private void GreateOrUpdateRow<TTargetObj>(DataRowView drw, bool isNewRow, DbSet<TTargetObj> dbSet) where TTargetObj : class, IModelSupp
-        {
+            var dbSet = _dbContainer.Set<TTargetObj>();
             if (isNewRow)
             {
                 //var targetObj = ((System.Data.Entity.Infrastructure.IObjectContextAdapter) _repository).ObjectContext.CreateObject<Project>();
@@ -46,19 +36,40 @@ namespace Core.Model
                     _dbContainer.SaveChanges();
 
                 }
+                catch (DbEntityValidationException exValid)
+                {
+                    ShowInvalidDatas<TTargetObj>();
+                    dbSet.Remove(targetObj);
+                    return false;
+                }
                 catch
                 {
                     dbSet.Remove(targetObj);
                     throw;
+                    
                 }
             }
             else
             {
-                int i = (int) drw["Id"];
-                var pEditable = dbSet.FirstOrDefault(p => p.Id == i);
-                SetValues(drw, pEditable);
-                _dbContainer.SaveChanges();
+                try
+                {
+                    int i = (int) drw["Id"];
+                    var pEditable = dbSet.FirstOrDefault(p => p.Id == i);
+                    SetValues(drw, pEditable);
+                    _dbContainer.SaveChanges();
+                }
+                catch (DbEntityValidationException exValid)
+                {
+                    ShowInvalidDatas<TTargetObj>();
+                    return false;
+                }
             }
+            return true;
+        }
+
+        private static void ShowInvalidDatas<TTargetObj>() where TTargetObj : class, IModelSupp
+        {
+            //MessageBox.Show("Исправьте не верно введеные данные!" + Environment.NewLine + "Сохранение невозможно.", "Данные не валидны", MessageBoxButtons.OK);
         }
 
         public object GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
@@ -120,9 +131,12 @@ namespace Core.Model
 
         public void Delete<T>(int i) where T: class, IModelSupp
         {
-            var itemT = _dbContainer.Set<T>().FirstOrDefault(t => t.Id == i);
+            var dbSet = _dbContainer.Set<T>();
+            var itemT = dbSet.FirstOrDefault(t => t.Id == i);
             _dbContainer.Entry(itemT).State = EntityState.Deleted;
-            _dbContainer.SaveChanges();
+            if (itemT != null)
+                dbSet.Remove(itemT);
+            _dbContainer.SaveChanges(); 
         }
 
         public DateTime? GetDateOfLock()

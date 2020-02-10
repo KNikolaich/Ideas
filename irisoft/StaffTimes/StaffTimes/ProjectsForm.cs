@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core;
 using Core.Model;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
@@ -50,11 +51,11 @@ namespace StaffTimes
         {
         }
 
-        private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        private void gridView1_ValidateRow(object sender, ValidateRowEventArgs e)
         {
             if (e.Row is DataRowView drw)
             {
-                _repository.SetAndUpdateProject(drw, e.RowHandle < 0);
+                e.Valid = _repository.GreateOrUpdateRow<Project>(drw, e.RowHandle < 0);
             }
             RefreshData();
 
