@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using Core;
 using Core.Model;
 using DevExpress.Data;
 using DevExpress.XtraEditors.Filtering.Templates;
@@ -164,7 +165,7 @@ namespace StaffTimes
         {
             if (e.Row is DataRowView drw)
             {
-                _contextDb.SetAndUpdateTask(drw, e.RowHandle < 0);
+                e.Valid = _contextDb.GreateOrUpdateRow<Task>(drw, e.RowHandle < 0);
             }
             //RefreshGridDataSource();
         }

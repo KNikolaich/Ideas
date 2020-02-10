@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core;
 using Core.Model;
 using DevExpress.XtraGrid.Views.Grid;
 
@@ -40,7 +41,7 @@ namespace StaffTimes
         {
             if (e.Row is DataRowView drw)
             {
-                _repository.SetAndUpdateUser(drw, e.RowHandle < 0);
+                e.Valid = _repository.GreateOrUpdateRow<User>(drw, e.RowHandle < 0);
             }
             RefreshData();
         }
