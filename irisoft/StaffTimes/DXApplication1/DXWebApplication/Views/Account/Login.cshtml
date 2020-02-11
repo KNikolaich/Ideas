@@ -1,0 +1,50 @@
+@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+@model DXWebApplication.Models.LoginModel
+<div class="accountHeader">
+    <h2>Log In</h2>
+    <p>
+        Please enter your username and password. @Html.ActionLink("Register", "Register")
+        if you don't have an account.
+    </p>
+    <p style="color:red">@ViewBag.ErrorMessage</p>
+</div>
+@using(Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    @Html.DevExpress().TextBoxFor(m => m.UserName, tb => {
+        tb.Properties.Caption = "User Name";
+        tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        tb.ShowModelErrors = true;
+        tb.Properties.ValidationSettings.Display = Display.Dynamic;
+        tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+        tb.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+    }).GetHtml()
+    
+    @Html.DevExpress().TextBoxFor(m => m.Password, tb => {
+        tb.Properties.Caption = "Password";
+        tb.Properties.Password = true;
+        tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        tb.ShowModelErrors = true;
+        tb.Properties.ValidationSettings.Display = Display.Dynamic;
+        tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+        tb.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+    }).GetHtml()
+    
+    @Html.DevExpress().CheckBox(cb => {
+        cb.Name = "RememberMe";
+        cb.Text = "Remember me?";
+    }).GetHtml()
+    <br />
+    @Html.DevExpress().Button(b => {
+        b.Name = "Button";
+        b.Text = "Log On";
+        b.UseSubmitBehavior = true;
+    }).GetHtml()
+}
+ 
+@* Enable this once you have account confirmation enabled for password reset functionality
+<br />
+@Html.ActionLink("Forgot your password?", "ForgotPassword")
+*@
+<br />
+@Html.Partial("_ExternalLoginsListPartial", new DXWebApplication.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
