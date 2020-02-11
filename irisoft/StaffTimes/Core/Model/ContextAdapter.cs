@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,7 +21,62 @@ namespace Core.Model
         {
             _dbContainer = dbContainer;
         }
-        
+
+        #region Work with DataTables
+
+
+        public DataTable GetDataTable(List<string> fields, string tableName, params int[] iDs)
+        {
+            string selectF = fields.Aggregate("", (current, field) => current + (", " + field)).Trim(',');
+
+            string idString = iDs.Aggregate("", (current, id) => current + (", " + id)).Trim(',').Trim();
+
+            var table = new DataTable(tableName);
+            var cmd = _dbContainer.Database.Connection.CreateCommand();
+            cmd.CommandText = $"Select {selectF} from [{tableName}] " +
+                              (idString.Length == 0 ? "" : $"where id in ({idString})"); // условия на идентификаторы
+            try
+            {
+                cmd.Connection.Open();
+                table.Load(cmd.ExecuteReader());
+
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return table;
+        }
+
+        public void SaveDataTable(DataTable myDataTable)
+        {
+            using (SqlConnection connection = new SqlConnection(_dbContainer.Database.Connection.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                    {
+                        foreach (DataColumn c in myDataTable.Columns)
+                            bulkCopy.ColumnMappings.Add(c.ColumnName, c.ColumnName);
+
+                        bulkCopy.DestinationTableName = myDataTable.TableName;
+
+                        bulkCopy.WriteToServer(myDataTable);
+
+                    }
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        #endregion
+
+
         public bool GreateOrUpdateRow<TTargetObj>(DataRowView drw, bool isNewRow) where TTargetObj : class, IModelSupp
         {
             var dbSet = _dbContainer.Set<TTargetObj>();
@@ -75,30 +131,18 @@ namespace Core.Model
             //MessageBox.Show("Исправьте не верно введеные данные!" + Environment.NewLine + "Сохранение невозможно.", "Данные не валидны", MessageBoxButtons.OK);
         }
 
-        public object GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
-        {
-            var idsEmptyProjs = projectIds.Length == 0;
-            var tasks = _dbContainer.Task.Where(t =>
-                (userId < 0 || t.UserId == userId) &&
-                (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
-            
-            var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
-            int[] arrUserId = tasks.Any()? tasks.Select(t=>t.Id).ToArray() : new []{-1};
-            var dataTable = _dbContainer.GetDataTable(fields, "Task", arrUserId);
-            return dataTable;
-        }
 
-        public object GetDataTableUser(bool modifyId = false)
+        public DataTable GetDataTableUser(bool modifyId = false)
         {
             var fields = new List<string> { modifyId? "Id as UserId" : "Id", "UserName", "Login", "Password", "Role" };
-            var dataTable = _dbContainer.GetDataTable(fields, "User");
+            var dataTable = GetDataTable(fields, "User");
             return dataTable;
         }
 
-        public object GetDataTableProjects(params int[] projectIds)
+        public DataTable GetDataTableProjects(params int[] projectIds)
         {
             var fields = new List<string> { "Id as ProjectId", "ProjectName", "Description" };
-            var dataTable = _dbContainer.GetDataTable(fields, "Project", projectIds);
+            var dataTable = GetDataTable(fields, "Project", projectIds);
             //dataTable.Columns.Add("ProjectId");
             return dataTable;
         }
@@ -135,9 +179,11 @@ namespace Core.Model
         {
             var dbSet = _dbContainer.Set<T>();
             var itemT = dbSet.FirstOrDefault(t => t.Id == i);
-            _dbContainer.Entry(itemT).State = EntityState.Deleted;
             if (itemT != null)
+            {
+                _dbContainer.Entry(itemT).State = EntityState.Deleted;
                 dbSet.Remove(itemT);
+            }
             _dbContainer.SaveChanges(); 
         }
 

@@ -17,7 +17,7 @@ namespace StaffTimes
     public partial class GeneralForm : Form
     {
         private readonly GeneralFormFinder _finder = new GeneralFormFinder();
-        private ContextAdapter _contextDb;
+        
         private FormatConditionRuleValue _formatConditionRuleValue1;
         private GridFormatRule _gridFormatRule5;
 
@@ -46,8 +46,6 @@ namespace StaffTimes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _contextDb = new ContextAdapter();
-            _finder.Db = _contextDb;
             if (_finder.IsAdmin)
             {
                 ContextMenu = null;
@@ -76,10 +74,16 @@ namespace StaffTimes
             showAllStaffToolStripMenuItem.CheckState = CheckState.Unchecked;
 
             showAllStaffToolStripMenuItem.Visible = _finder.IsAdmin;
+            if (!_finder.IsAdmin)
+            {
+                colUser.Visible = false;
+                colUser.UnGroup();
+                gridTaskView.Columns.Remove(colUser);
+            }
             _nsiTsmi.Visible = _finder.IsAdmin;
 
-            _projRepositoryItemLookUpEdit.DataSource = _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray());
-            _usersRepositoryItem.DataSource = _contextDb.GetDataTableUser(true);
+            _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects();
+            _usersRepositoryItem.DataSource = _finder.GetDataTableUser();
             //_projCheckedListBoxControl.DataSource = GenerateProjList();
 
             //this.layoutViewField_layoutViewColumn1
@@ -91,15 +95,14 @@ namespace StaffTimes
             _finder.StartDate = _dateNavigator.SelectionStart;
             _finder.EndDate = _dateNavigator.SelectionEnd;
             _finder.ShowAllUsers = showAllStaffToolStripMenuItem.CheckState == CheckState.Checked;
-            _projRepositoryItemLookUpEdit.DataSource =
-                _contextDb.GetDataTableProjects(); // загружаем все для отображения
-            var userId = _finder.IsAdmin && _finder.ShowAllUsers ? -1 : _finder.UserId;
-            gridTaskControl.DataSource = _contextDb.GetDataTableTasks(userId, _finder.StartDate, _finder.EndDate);
+            _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(true); // загружаем все для отображения
+            
+            gridTaskControl.DataSource = _finder.GetDataTableTasks();
             gridTaskView.ExpandAllGroups();
 
             SetProjectIds();
             _projRepositoryItemLookUpEdit.DataSource =
-                _contextDb.GetDataTableProjects(_finder.ProjectIds.ToArray()); // загружаем только фильтрованные
+                _finder.GetDataTableProjects(); // загружаем только фильтрованные
         }
 
         private void InitDateNavigator()
@@ -198,11 +201,11 @@ namespace StaffTimes
         }
 
 
-        private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        private void gridView1_ValidateRow(object sender, ValidateRowEventArgs e)
         {
             if (e.Row is DataRowView drw)
             {
-                //e.Valid = _contextDb.GreateOrUpdateRow<Task>(drw, e.RowHandle < 0);
+                e.Valid = _finder.ValidateTask(drw, e.RowHandle < 0);
             }
             //RefreshGridDataSource();
         }
@@ -254,7 +257,11 @@ namespace StaffTimes
                 if (focusedRow != null && MessageBox.Show("Удалить строку?", "Удаление записи о работе.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     // Удаляем строку
                 {
-                    _contextDb.Delete<Core.Task>((int) focusedRow["id"]);
+
+                    _finder.DeleteTask((int) focusedRow["id"]);
+                    //var dt = gridTaskControl.DataSource as DataTable;
+                    //dt.remo
+                    //gridTaskView.RefreshData();
                     RefreshGridDataSource();
                 }
             }
