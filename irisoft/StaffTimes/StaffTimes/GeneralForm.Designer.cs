@@ -69,6 +69,7 @@
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.colState = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -229,21 +230,21 @@
             // staffToolStripMenuItem
             // 
             this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
-            this.staffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.staffToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.staffToolStripMenuItem.Text = "Сотрудники...";
             this.staffToolStripMenuItem.Click += new System.EventHandler(this.staffToolStripMenuItem_Click);
             // 
             // projectsToolStripMenuItem
             // 
             this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.projectsToolStripMenuItem.Text = "Проекты...";
             this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
             // 
             // lockDateToolStripMenuItem
             // 
             this.lockDateToolStripMenuItem.Name = "lockDateToolStripMenuItem";
-            this.lockDateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lockDateToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.lockDateToolStripMenuItem.Text = "Дата блокировки";
             this.lockDateToolStripMenuItem.Click += new System.EventHandler(this.lockDateToolStripMenuItem_Click);
             // 
@@ -260,14 +261,14 @@
             // exportToExcelToolStripMenuItem
             // 
             this.exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
-            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.exportToExcelToolStripMenuItem.Text = "Экспорт в Excel...";
             this.exportToExcelToolStripMenuItem.Click += new System.EventHandler(this.exportToExcelToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.printToolStripMenuItem.Text = "Печать..";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
@@ -300,7 +301,8 @@
             this.colDate,
             this.colDuration,
             this.colProject,
-            this.colComment});
+            this.colComment,
+            this.colState});
             this.gridTaskView.GridControl = this.gridTaskControl;
             this.gridTaskView.GroupCount = 1;
             this.gridTaskView.GroupFormat = " [#image]{1} {2}";
@@ -314,7 +316,6 @@
             this.gridTaskView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUser, DevExpress.Data.ColumnSortOrder.Descending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colDate, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.gridTaskView.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.GridTaskView_RowStyle);
             this.gridTaskView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridTaskView_ShowingEditor);
             this.gridTaskView.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
             this.gridTaskView.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
@@ -500,6 +501,11 @@
             this.splitContainer1.SplitterDistance = 257;
             this.splitContainer1.TabIndex = 4;
             // 
+            // colState
+            // 
+            this.colState.FieldName = "StateTask";
+            this.colState.Name = "colState";
+            // 
             // GeneralForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -581,6 +587,7 @@
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lockDateToolStripMenuItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit _repositoryItemDateEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn colState;
     }
 }
 

@@ -143,7 +143,6 @@ namespace Core.Model
         {
             var fields = new List<string> { "Id as ProjectId", "ProjectName", "Description" };
             var dataTable = GetDataTable(fields, "Project", projectIds);
-            //dataTable.Columns.Add("ProjectId");
             return dataTable;
         }
 

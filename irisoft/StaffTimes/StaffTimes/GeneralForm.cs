@@ -18,9 +18,6 @@ namespace StaffTimes
     {
         private readonly GeneralFormFinder _finder = new GeneralFormFinder();
         
-        private FormatConditionRuleValue _formatConditionRuleValue1;
-        private GridFormatRule _gridFormatRule5;
-
         public GeneralForm()
         {
             InitializeComponent();
@@ -50,9 +47,10 @@ namespace StaffTimes
             {
                 ContextMenu = null;
             }
+
+            InitRowStyles();
             InitDateNavigator();
             InitDateSource();
-
 
             //var days = _contextDb.Day.Where(w => w.UserId == _user.Id).ToList();
             //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
@@ -126,34 +124,38 @@ namespace StaffTimes
             if (dateOfLock != null)
             {
                 _repositoryItemDateEdit.MinValue = dateOfLock.Value;
-                if (!gridTaskView.FormatRules.Contains(_gridFormatRule5))
-                {
-                    _formatConditionRuleValue1 =
-                    new FormatConditionRuleValue
-                    {
-                        Condition = FormatCondition.LessOrEqual,
-                        Value1 = dateOfLock
-                    };
-                    _formatConditionRuleValue1.Appearance.BackColor = Color.LightGray;
-                    //formatConditionRuleValue1.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("resource.ForeColor3")));
-                    _formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
-                    _formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-
-                    _gridFormatRule5 = new GridFormatRule
-                    {
-                        Column = colDate,
-                        Name = "FormatLock",
-                        ApplyToRow = true,
-                        Rule = _formatConditionRuleValue1
-                    };
-                    gridTaskView.FormatRules.Add(_gridFormatRule5);
-                }
-                else
-                {
-                    _formatConditionRuleValue1.Value1 = dateOfLock;
-                }
-
             }
+        }
+
+        private void InitRowStyles()
+        {
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.ReadOnly, Color.LightGray));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.LessThenNecessary, Color.AliceBlue));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.Normal, Color.PaleGreen));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.MoreThenNecessary, Color.LightPink));
+        }
+
+        private GridFormatRule GetFormatRule(StateTaskEnum stateTaskEnum, Color backColor)
+        {
+            var conditionRuleValue = new FormatConditionRuleValue
+            {
+                Condition = FormatCondition.Equal,
+                Value1 = stateTaskEnum
+            };
+
+            conditionRuleValue.Appearance.BackColor = backColor;
+            //formatConditionRuleValue1.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("resource.ForeColor3")));
+            conditionRuleValue.Appearance.Options.UseBackColor = true;
+            conditionRuleValue.Appearance.Options.UseForeColor = true;
+
+            var formatRule = new GridFormatRule
+            {
+                Column = colState,
+                Name = stateTaskEnum.ToString(),
+                ApplyToRow = true,
+                Rule = conditionRuleValue
+            };
+            return formatRule;
         }
 
 
@@ -290,29 +292,6 @@ namespace StaffTimes
             }
         }
 
-        private void GridTaskView_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
-        {
-            var dateOfLock = _finder.GetDateOfLock();
-            if (dateOfLock != null && e.RowHandle >= 0)
-            {
-                bool rowIsReadOnly = false;
-                if (gridTaskView.GetRow(e.RowHandle) is DataRowView rowDrowing) // Удаляем строку
-                {
-                    var dateTime = rowDrowing["Date"];
-                    var date = Convert.ToDateTime(dateTime);
-                    rowIsReadOnly = date <= dateOfLock;
-                    if (rowIsReadOnly)
-                    {
-                       /* e.Appearance.BackColor = Color.LightGray;
-                        e.Appearance.BackColor2 = Color.LightGray;
-                        gridTaskView.RefreshRow(e.RowHandle);*/
-                    }
-                }
-
-                _finder.SetReadOnlyRowHandle(e.RowHandle, rowIsReadOnly);
-            }
-        }
-
         private void gridTaskView_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
         {
             e.Valid = true;
@@ -322,14 +301,16 @@ namespace StaffTimes
                 {
                     if (int.TryParse(e.Value.ToString(), out int value))
                     {
-                        if (value <= 0 || value > 8)
+                        if (value <= 0)
                         {
                             e.Valid = false;
+                            e.ErrorText = "Длительность задачи не может мыть меньше 1 часа в день.";
                         }
-                    }
-                    if (!e.Valid)
-                    {
-                        e.ErrorText = "Длительность задачи не может превышать 8 часов в день.";
+                        else if (value > 8)
+                        {
+                            e.Valid = false;
+                            e.ErrorText = "Длительность задачи не может превышать 8 часов в день.";
+                        }
                     }
                 }
             }
@@ -338,7 +319,11 @@ namespace StaffTimes
 
         private void gridTaskView_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = _finder.FocusedRowIsReadOnly(gridTaskView.FocusedRowHandle);
+            //var date = StateTaskEnum.TryParse(dateTime);
+            if (gridTaskView.GetRow(gridTaskView.FocusedRowHandle) is DataRowView rowDrowing) // Удаляем строку
+            {
+                e.Cancel = (StateTaskEnum) rowDrowing["StateTask"] == StateTaskEnum.ReadOnly;
+            }
         }
 
     }

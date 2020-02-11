@@ -136,36 +136,12 @@ namespace StaffTimes
         #region Для обработки блокировки по дате
 
         private DateTime? _dateOfLock;
-        SortedSet<int> _readOnlyRows = new SortedSet<int>();
 
         public DateTime? GetDateOfLock(bool needRefresh = false)
         {
             if(needRefresh)
                 _dateOfLock = DbAdapter.GetDateOfLock();
             return _dateOfLock;
-        }
-
-        internal bool FocusedRowIsReadOnly(int rowhandle)
-        {
-            return _readOnlyRows.Contains(rowhandle);
-        }
-
-        /// <summary>
-        ///  если строка была уже помечена как readOnly = снимаем или подтверждаем
-        /// если надо пометить, добавляем в коллекцию
-        /// </summary>
-        /// <param name="eRowHandle"></param>
-        /// <param name="rowIsReadOnly"></param>
-        public void SetReadOnlyRowHandle(int eRowHandle, bool rowIsReadOnly)
-        {
-            if (rowIsReadOnly && !_readOnlyRows.Contains(eRowHandle))
-            {
-                _readOnlyRows.Add(eRowHandle);
-            }
-            else if (!rowIsReadOnly && _readOnlyRows.Contains(eRowHandle))
-            {
-                _readOnlyRows.Remove(eRowHandle);
-            }
         }
 
         #endregion
