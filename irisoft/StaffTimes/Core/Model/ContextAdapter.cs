@@ -111,7 +111,10 @@ namespace Core.Model
                 try
                 {
                     int i = (int) drw["Id"];
+
+                    dbSet.Load();
                     var pEditable = dbSet.FirstOrDefault(p => p.Id == i);
+                    
                     SetValues(drw, pEditable);
                     _dbContainer.SaveChanges();
                 }

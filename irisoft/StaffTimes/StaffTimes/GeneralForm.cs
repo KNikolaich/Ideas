@@ -99,8 +99,8 @@ namespace StaffTimes
             gridTaskView.ExpandAllGroups();
 
             SetProjectIds();
-            _projRepositoryItemLookUpEdit.DataSource =
-                _finder.GetDataTableProjects(); // загружаем только фильтрованные
+            _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(); // загружаем только фильтрованные
+
         }
 
         private void InitDateNavigator()
@@ -123,16 +123,16 @@ namespace StaffTimes
             var dateOfLock = _finder.GetDateOfLock(true);
             if (dateOfLock != null)
             {
-                _repositoryItemDateEdit.MinValue = dateOfLock.Value;
+                _repositoryItemDateEdit.MinValue = dateOfLock.Value.AddDays(1);
             }
         }
 
         private void InitRowStyles()
         {
             gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.ReadOnly, Color.LightGray));
-            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.LessThenNecessary, Color.AliceBlue));
-            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.Normal, Color.PaleGreen));
-            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.MoreThenNecessary, Color.LightPink));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.LessThenNecessary, Color.LightYellow));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.Normal, Color.LightGreen));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.MoreThenNecessary, Color.Pink));
         }
 
         private GridFormatRule GetFormatRule(StateTaskEnum stateTaskEnum, Color backColor)
@@ -189,8 +189,8 @@ namespace StaffTimes
             if (dataRow["Userid"] == DBNull.Value)
                 dataRow["Userid"] = _finder.UserId;
 
-            var idUser = (int) dataRow["Userid"];
-            Tuple<DateTime, int> newDateDurat = _finder.CalcNewDate(idUser);
+//            var idUser = (int) dataRow["Userid"];
+            Tuple<DateTime, int> newDateDurat = _finder.CalcNewDate((DataTable)gridTaskControl.DataSource);
 
             if (dataRow["Date"] == DBNull.Value)
                 dataRow["Date"] = newDateDurat.Item1;
@@ -200,6 +200,7 @@ namespace StaffTimes
 
             if (dataRow["Comment"] == DBNull.Value)
                 dataRow["Comment"] = "";
+
         }
 
 
@@ -209,6 +210,9 @@ namespace StaffTimes
             {
                 e.Valid = _finder.ValidateTask(drw, e.RowHandle < 0);
             }
+            var dataTable = (DataTable)gridTaskControl.DataSource;
+             _finder.RecalcStatesTask(dataTable);
+            gridTaskControl.Refresh();
             //RefreshGridDataSource();
         }
 
@@ -322,7 +326,7 @@ namespace StaffTimes
             //var date = StateTaskEnum.TryParse(dateTime);
             if (gridTaskView.GetRow(gridTaskView.FocusedRowHandle) is DataRowView rowDrowing) // Удаляем строку
             {
-                e.Cancel = (StateTaskEnum) rowDrowing["StateTask"] == StateTaskEnum.ReadOnly;
+                e.Cancel = rowDrowing["StateTask"] != DBNull.Value && (StateTaskEnum) rowDrowing["StateTask"] == StateTaskEnum.ReadOnly;
             }
         }
 

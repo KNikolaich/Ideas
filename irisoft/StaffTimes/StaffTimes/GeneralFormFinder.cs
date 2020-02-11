@@ -38,57 +38,44 @@ namespace StaffTimes
         private ContextAdapter DbAdapter { get; }
 
 
-        internal Tuple<DateTime, int> CalcNewDate(int idUser)
+
+        internal Tuple<DateTime, int> CalcNewDate(DataTable tasks)
         {
-            DateTime startDate = _dateOfLock.HasValue && _dateOfLock.Value >= StartDate ? _dateOfLock.Value.AddDays(1) : StartDate; // ограничим снизу датой блокировки
-
-            DateTime endDate = EndDate > DateTime.Today ? DateTime.Today : EndDate;
-
-            IList<Task> tasks = DbAdapter.Tasks.Where(t => t.UserId == idUser && t.Date >= startDate && t.Date <= endDate).ToList();
-            int sumdaily = -1;
-            DateTime lastDate = DateTime.Today;
-            foreach (var task in tasks.OrderBy(t => t.Date))
+            var grouppedBy = tasks.Rows.Cast<DataRow>().OrderBy(t => Convert.ToDateTime(t["Date"]).Ticks).GroupBy(t => t["Date"]);
+            var dateLock = GetDateOfLock();
+            DateTime maxDate = DateTime.MinValue;
+            foreach (IGrouping<object, DataRow> group in grouppedBy)
             {
-                if (sumdaily == -1) // первый прогон
+                var groupDate = Convert.ToDateTime(group.Key);
+                if (!dateLock.HasValue || groupDate > dateLock)
                 {
-                    lastDate = task.Date;
-                    sumdaily = task.Duration;
-                }
-                else if (lastDate == task.Date)
-                {
-                    sumdaily += task.Duration;
-                }
-                else if (sumdaily < 8)
-                {
-                    return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
-                }
-                else
-                {
-                    lastDate = task.Date;
-                    sumdaily = task.Duration;
-                }
-            }
-            if (sumdaily != -1)
-            {
-                if (sumdaily == 8) // полный день , передвигаем относительно последнего исследованного
-                {
-                    if (lastDate.DayOfWeek == DayOfWeek.Friday)
-                        lastDate = lastDate.AddDays(3); // перескакиваем выходные
-                    else
+                    var sumDurations = group.Sum(t => (int) t["Duration"]);
+                    if (sumDurations < 8)
+                        return new Tuple<DateTime, int>(groupDate, 8 - sumDurations);
+
+                    if (groupDate > maxDate)
                     {
-                        lastDate = lastDate.AddDays(1); // берем следующий день
+                        if (maxDate != DateTime.MinValue && (groupDate - maxDate).Days > 1)
+                        {
+                            if (maxDate.DayOfWeek != DayOfWeek.Friday)
+                            {
+                                return new Tuple<DateTime, int>(maxDate.AddDays(1), 8);
+                            }
+                            if ((groupDate - maxDate).Days > 3) // возвращаем понедельник
+                            {
+                                return new Tuple<DateTime, int>(maxDate.AddDays(3), 8);
+                            }
+
+                        }
+                            
+                        maxDate = groupDate;
                     }
-                    return new Tuple<DateTime, int>(lastDate, sumdaily);
+
                 }
-                else
-                {
-                    return new Tuple<DateTime, int>(lastDate, sumdaily < 8 ? (8 - sumdaily) : sumdaily > 8 ? 8 : sumdaily);
-                }
+                 
             }
-            else
-            {
-                return new Tuple<DateTime, int>(lastDate, 8);
-            }
+            maxDate = maxDate == DateTime.MinValue ? DateTime.Today : maxDate.AddDays(1);
+            return new Tuple<DateTime, int>(maxDate, 8);
         }
 
         private void InitDates()
@@ -166,7 +153,6 @@ namespace StaffTimes
                 (userId < 0 || t.UserId == userId) &&
                 (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
 
-            Dictionary<DateTime, StateTaskEnum> states = GetDictStatesTask(tasks);
 
             var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
             int[] arrUserId = tasks.Any() ? tasks.Select(t => t.Id).ToArray() : new[] { -1 };
@@ -174,44 +160,46 @@ namespace StaffTimes
 
             tableTasks.Columns.Add("StateTask", typeof(StateTaskEnum));
 
-            foreach (DataRow row in tableTasks.Rows)
+            RecalcStatesTask(tableTasks);
+            
+            return tableTasks;
+        }
+
+        internal void RecalcStatesTask(DataTable tasks)
+        {
+            Dictionary<DateTime, StateTaskEnum> states = new Dictionary<DateTime, StateTaskEnum>();
+            var grouppedBy = tasks.Rows.Cast<DataRow>().GroupBy(t => t["Date"]);
+            var dateLock = GetDateOfLock();
+            foreach (IGrouping<object, DataRow> group in grouppedBy)
+            {
+                var groupKey = Convert.ToDateTime(group.Key);
+                if (dateLock.HasValue && groupKey <= dateLock)
+                {
+                    states.Add(groupKey, StateTaskEnum.ReadOnly);
+                }
+                else
+                {
+                    var sumDurations = group.Sum(t => (int)t["Duration"]);
+                    if(sumDurations < 8)
+                        states.Add(groupKey, StateTaskEnum.LessThenNecessary);
+                    else if (sumDurations == 8)
+                        states.Add(groupKey, StateTaskEnum.Normal);
+                    else if (sumDurations > 8)
+                        states.Add(groupKey, StateTaskEnum.MoreThenNecessary);
+                }
+            }
+
+            foreach (DataRow row in tasks.Rows)
             {
                 var date = Convert.ToDateTime(row["Date"]);
                 row["StateTask"] = states[date];
             }
-            return tableTasks;
-        }
-
-        private Dictionary<DateTime, StateTaskEnum> GetDictStatesTask(List<Task> tasks)
-        {
-            Dictionary<DateTime, StateTaskEnum> result = new Dictionary<DateTime, StateTaskEnum>();
-            var grouppedBy = tasks.GroupBy(t => t.Date);
-            var date = GetDateOfLock();
-            foreach (IGrouping<DateTime, Task> group in grouppedBy)
-            {
-                if (date.HasValue && group.Key <= date)
-                {
-                    result.Add(group.Key, StateTaskEnum.ReadOnly);
-                }
-                else
-                {
-                    var sumDurations = group.Sum(t => t.Duration);
-                    if(sumDurations < 8)
-                        result.Add(group.Key, StateTaskEnum.LessThenNecessary);
-                    else if (sumDurations == 8)
-                        result.Add(group.Key, StateTaskEnum.Normal);
-                    else if (sumDurations > 8)
-                        result.Add(group.Key, StateTaskEnum.MoreThenNecessary);
-                }
-            }
-            return result;
         }
 
         public bool ValidateTask(DataRowView drw, bool isNewRow)
         {
             return DbAdapter.GreateOrUpdateRow<Task>(drw, isNewRow);
         }
-
 
     }
 

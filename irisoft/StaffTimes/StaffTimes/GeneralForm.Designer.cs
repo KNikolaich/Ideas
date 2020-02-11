@@ -59,6 +59,7 @@
             this.colProject = new DevExpress.XtraGrid.Columns.GridColumn();
             this._projRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colState = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.DateCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -69,7 +70,6 @@
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.colState = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -309,6 +309,7 @@
             this.gridTaskView.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", this.colDate, "")});
             this.gridTaskView.Name = "gridTaskView";
+            this.gridTaskView.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridTaskView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridTaskView.OptionsView.ShowChildrenInGroupPanel = true;
             this.gridTaskView.OptionsView.ShowGroupedColumns = true;
@@ -412,6 +413,11 @@
             this.colComment.VisibleIndex = 3;
             this.colComment.Width = 237;
             // 
+            // colState
+            // 
+            this.colState.FieldName = "StateTask";
+            this.colState.Name = "colState";
+            // 
             // layoutView1
             // 
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
@@ -500,11 +506,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
             this.splitContainer1.SplitterDistance = 257;
             this.splitContainer1.TabIndex = 4;
-            // 
-            // colState
-            // 
-            this.colState.FieldName = "StateTask";
-            this.colState.Name = "colState";
             // 
             // GeneralForm
             // 
