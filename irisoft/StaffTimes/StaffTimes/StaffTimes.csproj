@@ -188,6 +188,12 @@
     <Compile Include="StaffsForm.Designer.cs">
       <DependentUpon>StaffsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TasksGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TasksGridControl.Designer.cs">
+      <DependentUpon>TasksGridControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     <EmbeddedResource Include="StaffsForm.resx">
       <DependentUpon>StaffsForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TasksGridControl.resx">
+      <DependentUpon>TasksGridControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>

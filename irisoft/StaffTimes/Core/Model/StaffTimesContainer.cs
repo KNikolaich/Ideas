@@ -25,6 +25,7 @@ namespace Core
             {
                 cmd.Connection.Open();
                 table.Load(cmd.ExecuteReader());
+
             }
             finally
             {

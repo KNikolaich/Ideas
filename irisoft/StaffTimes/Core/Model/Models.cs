@@ -43,6 +43,9 @@ namespace Core
 
     public partial class Task : IModelSupp
     {
+
+        public virtual string ProjectName => Project?.ProjectName;
+
         public override string ToString()
         {
             return $"{User} ({Duration}) {Date:M}";

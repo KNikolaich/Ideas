@@ -40,13 +40,14 @@ namespace Core.Model
                 {
                     ShowInvalidDatas<TTargetObj>();
                     dbSet.Remove(targetObj);
+                    //throw;
                     return false;
                 }
                 catch
                 {
                     dbSet.Remove(targetObj);
-                    throw;
-                    
+                    //throw;
+                    return false;
                 }
             }
             else
@@ -61,6 +62,8 @@ namespace Core.Model
                 catch (DbEntityValidationException exValid)
                 {
                     ShowInvalidDatas<TTargetObj>();
+                    //throw;
+
                     return false;
                 }
             }
@@ -123,7 +126,6 @@ namespace Core.Model
         /// </summary>
         /// <returns></returns>
         public DbSet<Task> Tasks => _dbContainer.Task;
-
 
         public IQueryable<ActiveProjectOnStaff> ActiveProjectOnStaff(User currentUser) => _dbContainer.ActiveProjectOnStaffSet.Where(act => act.UserId == currentUser.Id);
 

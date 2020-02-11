@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
             this.panelLeft = new System.Windows.Forms.Panel();
             this._groupBoxFinder = new System.Windows.Forms.GroupBox();
@@ -47,9 +48,9 @@
             this._reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridTaskControl = new DevExpress.XtraGrid.GridControl();
+            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridTaskView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this._usersRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,7 +67,7 @@
             this.projectCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource();
+            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
@@ -74,9 +75,9 @@
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator.CalendarTimeProperties)).BeginInit();
             this.panelButtom.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._usersRepositoryItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit.CalendarTimeProperties)).BeginInit();
@@ -270,52 +271,53 @@
             this.printToolStripMenuItem.Text = "Печать..";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
-            // gridControl1
+            // gridTaskControl
             // 
-            this.gridControl1.DataSource = this.taskBindingSource;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 3);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gridTaskControl.DataSource = this.taskBindingSource;
+            this.gridTaskControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridTaskControl.Location = new System.Drawing.Point(3, 3);
+            this.gridTaskControl.MainView = this.gridTaskView;
+            this.gridTaskControl.Name = "gridTaskControl";
+            this.gridTaskControl.Padding = new System.Windows.Forms.Padding(5);
+            this.gridTaskControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem,
             this._repositoryItemDateEdit});
-            this.gridControl1.Size = new System.Drawing.Size(743, 525);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1,
+            this.gridTaskControl.Size = new System.Drawing.Size(743, 525);
+            this.gridTaskControl.TabIndex = 0;
+            this.gridTaskControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridTaskView,
             this.layoutView1});
             // 
             // taskBindingSource
             // 
             this.taskBindingSource.DataSource = typeof(Core.Task);
             // 
-            // gridView1
+            // gridTaskView
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridTaskView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colUser,
             this.colDate,
             this.colDuration,
             this.colProject,
             this.colComment});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.GroupCount = 1;
-            this.gridView1.GroupFormat = " [#image]{1} {2}";
-            this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.gridTaskView.GridControl = this.gridTaskControl;
+            this.gridTaskView.GroupCount = 1;
+            this.gridTaskView.GroupFormat = " [#image]{1} {2}";
+            this.gridTaskView.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", this.colDate, "")});
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.AllowCellMerge = true;
-            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.gridView1.OptionsView.ShowChildrenInGroupPanel = true;
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            this.gridTaskView.Name = "gridTaskView";
+            this.gridTaskView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridTaskView.OptionsView.ShowChildrenInGroupPanel = true;
+            this.gridTaskView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUser, DevExpress.Data.ColumnSortOrder.Descending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colDate, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
-            this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
-            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
-            this.gridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyUp);
+            this.gridTaskView.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.GridTaskView_RowStyle);
+            this.gridTaskView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridTaskView_ShowingEditor);
+            this.gridTaskView.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
+            this.gridTaskView.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridTaskView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyUp);
+            this.gridTaskView.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridTaskView_ValidatingEditor);
             // 
             // colUser
             // 
@@ -413,7 +415,7 @@
             this.DateCol,
             this.durationCol,
             this.projectCol});
-            this.layoutView1.GridControl = this.gridControl1;
+            this.layoutView1.GridControl = this.gridTaskControl;
             this.layoutView1.GroupCount = 1;
             this.layoutView1.Name = "layoutView1";
             this.layoutView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
@@ -490,7 +492,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.gridControl1);
+            this.splitContainer1.Panel2.Controls.Add(this.gridTaskControl);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
             this.splitContainer1.SplitterDistance = 257;
@@ -516,9 +518,9 @@
             this.panelButtom.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._usersRepositoryItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit)).EndInit();
@@ -539,7 +541,7 @@
 
         #endregion
         private System.Windows.Forms.Panel panelLeft;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl gridTaskControl;
         private DevExpress.XtraScheduler.DateNavigator _dateNavigator;
         private DevExpress.XtraGrid.Views.Layout.LayoutView layoutView1;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn DateCol;
@@ -550,7 +552,7 @@
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn3;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private System.Windows.Forms.BindingSource taskBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridTaskView;
         private DevExpress.XtraGrid.Columns.GridColumn colUser;
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
         private DevExpress.XtraGrid.Columns.GridColumn colDuration;
