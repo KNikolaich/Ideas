@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Core.Model;
 using DXWebApplication.Models;
 
 namespace DXWebApplication.Controllers
@@ -13,13 +14,13 @@ namespace DXWebApplication.Controllers
         {
             // DXCOMMENT: Pass a data model for GridView
             
-            return View(NorthwindDataProvider.GetCustomers());
+            return View(WebContext.GetTasks(-1));
         }
         
         public ActionResult GridViewPartialView() 
         {
             // DXCOMMENT: Pass a data model for GridView in the PartialView method's second parameter
-            return PartialView("GridViewPartialView", NorthwindDataProvider.GetCustomers());
+            return PartialView("GridViewPartialView", WebContext.GetTasks(-1));
         }
     
     }

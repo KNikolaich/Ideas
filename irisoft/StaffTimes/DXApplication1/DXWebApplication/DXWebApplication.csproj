@@ -159,10 +159,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NWind.mdf" />
-    <Content Include="App_Data\NWind_log.ldf">
-      <DependentUpon>NWind.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
     <Content Include="Content\Images\AquaHeader.jpg" />
@@ -256,10 +252,14 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NorthwindContext.cs" />
-    <Compile Include="Models\NorthwindDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{ba326119-044a-433b-a2ce-5aecb344dd07}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

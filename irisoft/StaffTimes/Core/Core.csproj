@@ -86,6 +86,7 @@
     <Compile Include="Model\IModelSupp.cs" />
     <Compile Include="Model\Models.cs" />
     <Compile Include="Model\StaffTimesContainer.cs" />
+    <Compile Include="Model\WebContext.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>StaffTimesContainer.tt</DependentUpon>
     </Compile>

@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Core.Model;
 using DevExpress.Data;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;

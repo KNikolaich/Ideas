@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
@@ -200,5 +201,72 @@ namespace Core.Model
                 return null;
             }
         }
+
+
+        public DataTable GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
+        {
+            var idsEmptyProjs = projectIds.Length == 0;
+            var tasks = Tasks.Where(t =>
+                (userId < 0 || t.UserId == userId) &&
+                (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
+
+
+            var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
+            int[] arrUserId = tasks.Any() ? tasks.Select(t => t.Id).ToArray() : new[] { -1 };
+            var tableTasks = GetDataTable(fields, "Task", arrUserId);
+
+            tableTasks.Columns.Add("StateTask", typeof(StateTaskEnum));
+
+            RecalcStatesTask(tableTasks);
+
+            return tableTasks;
+        }
+
+        internal void RecalcStatesTask(DataTable tasks)
+        {
+            Dictionary<DateTime, StateTaskEnum> states = new Dictionary<DateTime, StateTaskEnum>();
+            var grouppedBy = tasks.Rows.Cast<DataRow>().GroupBy(t => t["Date"]);
+            var dateLock = GetDateOfLock();
+            foreach (IGrouping<object, DataRow> group in grouppedBy)
+            {
+                var groupKey = Convert.ToDateTime(group.Key);
+                if (dateLock.HasValue && groupKey <= dateLock)
+                {
+                    states.Add(groupKey, StateTaskEnum.ReadOnly);
+                }
+                else
+                {
+                    var sumDurations = group.Sum(t => (int)t["Duration"]);
+                    if (sumDurations < 8)
+                        states.Add(groupKey, StateTaskEnum.LessThenNecessary);
+                    else if (sumDurations == 8)
+                        states.Add(groupKey, StateTaskEnum.Normal);
+                    else if (sumDurations > 8)
+                        states.Add(groupKey, StateTaskEnum.MoreThenNecessary);
+                }
+            }
+
+            foreach (DataRow row in tasks.Rows)
+            {
+                var date = Convert.ToDateTime(row["Date"]);
+                row["StateTask"] = states[date];
+            }
+        }
+
+    }
+
+    public enum StateTaskEnum
+    {
+        [Description("Неопределенное состояние строки")]
+        Unknow,
+        [Description("Только для чтения")]
+        ReadOnly,
+        [Description("Меньше, чем необходимо")]
+        LessThenNecessary,
+        [Description("Отлично!")]
+        Normal,
+        [Description("Больше, чем необходимо")]
+        MoreThenNecessary,
+
     }
 }

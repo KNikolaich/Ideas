@@ -142,58 +142,8 @@ namespace StaffTimes
         {
 
             var userId = IsAdmin && ShowAllUsers ? -1 : UserId;
-            var tableTasks = GetDataTableTasks(userId, StartDate, EndDate);
+            var tableTasks = DbAdapter.GetDataTableTasks(userId, StartDate, EndDate);
             return tableTasks;
-        }
-
-        private DataTable GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
-        {
-            var idsEmptyProjs = projectIds.Length == 0;
-            var tasks = DbAdapter.Tasks.Where(t =>
-                (userId < 0 || t.UserId == userId) &&
-                (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
-
-
-            var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
-            int[] arrUserId = tasks.Any() ? tasks.Select(t => t.Id).ToArray() : new[] { -1 };
-            var tableTasks = DbAdapter.GetDataTable(fields, "Task", arrUserId);
-
-            tableTasks.Columns.Add("StateTask", typeof(StateTaskEnum));
-
-            RecalcStatesTask(tableTasks);
-            
-            return tableTasks;
-        }
-
-        internal void RecalcStatesTask(DataTable tasks)
-        {
-            Dictionary<DateTime, StateTaskEnum> states = new Dictionary<DateTime, StateTaskEnum>();
-            var grouppedBy = tasks.Rows.Cast<DataRow>().GroupBy(t => t["Date"]);
-            var dateLock = GetDateOfLock();
-            foreach (IGrouping<object, DataRow> group in grouppedBy)
-            {
-                var groupKey = Convert.ToDateTime(group.Key);
-                if (dateLock.HasValue && groupKey <= dateLock)
-                {
-                    states.Add(groupKey, StateTaskEnum.ReadOnly);
-                }
-                else
-                {
-                    var sumDurations = group.Sum(t => (int)t["Duration"]);
-                    if(sumDurations < 8)
-                        states.Add(groupKey, StateTaskEnum.LessThenNecessary);
-                    else if (sumDurations == 8)
-                        states.Add(groupKey, StateTaskEnum.Normal);
-                    else if (sumDurations > 8)
-                        states.Add(groupKey, StateTaskEnum.MoreThenNecessary);
-                }
-            }
-
-            foreach (DataRow row in tasks.Rows)
-            {
-                var date = Convert.ToDateTime(row["Date"]);
-                row["StateTask"] = states[date];
-            }
         }
 
         public bool ValidateTask(DataRowView drw, bool isNewRow)
@@ -203,18 +153,4 @@ namespace StaffTimes
 
     }
 
-    internal enum StateTaskEnum
-    {
-        [Description("Неопределенное состояние строки")]
-        Unknow,
-        [Description("Только для чтения")]
-        ReadOnly,
-        [Description("Меньше, чем необходимо")]
-        LessThenNecessary,
-        [Description("Отлично!")]
-        Normal,
-        [Description("Больше, чем необходимо")]
-        MoreThenNecessary,
-
-    }
 }
