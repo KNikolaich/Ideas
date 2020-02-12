@@ -160,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\NWind.mdf" />
+    <Content Include="App_Data\NWind_log.ldf">
+      <DependentUpon>NWind.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\SideMenu.xml" />
     <Content Include="App_Data\TopMenu.xml" />
     <Content Include="Content\Images\AquaHeader.jpg" />

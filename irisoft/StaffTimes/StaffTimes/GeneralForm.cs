@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using Core;
-using Core.Model;
 using DevExpress.Data;
 using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Filtering.Templates;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace StaffTimes
 {
@@ -23,35 +20,24 @@ namespace StaffTimes
             InitializeComponent();
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.F1)
-            {
-                GetAboutForm();
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        private static void GetAboutForm()
-        {
-            using (var about = new AboutBox())
-            {
-                about.ShowDialog();
-            }
-        }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if (_finder.IsAdmin)
+            if (_finder.CurrentUser != null) // если на входе отказались от идеи запускать ПО
             {
-                ContextMenu = null;
+                if (_finder.IsAdmin)
+                {
+                    ContextMenu = null;
+                }
+
+                InitRowStyles();
+                InitDateNavigator();
+                InitDateSource();
+
             }
 
-            InitRowStyles();
-            InitDateNavigator();
-            InitDateSource();
-
+            
             //var days = _contextDb.Day.Where(w => w.UserId == _user.Id).ToList();
             //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
             //_gridDays.DataSource = source;
@@ -210,10 +196,10 @@ namespace StaffTimes
             {
                 e.Valid = _finder.ValidateTask(drw, e.RowHandle < 0);
             }
-            var dataTable = (DataTable)gridTaskControl.DataSource;
-             _finder.RecalcStatesTask(dataTable);
-            gridTaskControl.Refresh();
-            //RefreshGridDataSource();
+            //var dataTable = (DataTable)gridTaskControl.DataSource;
+            // _finder.RecalcStatesTask(dataTable);
+            //gridTaskControl.DataSource = dataTable;
+            RefreshGridDataSource();
         }
 
         private void staffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,18 +244,7 @@ namespace StaffTimes
         {
             if (e.KeyData == Keys.Delete && gridTaskView.ActiveEditor == null)
             {
-                var focusedRow = gridTaskView.GetFocusedDataRow();
-
-                if (focusedRow != null && MessageBox.Show("Удалить строку?", "Удаление записи о работе.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    // Удаляем строку
-                {
-
-                    _finder.DeleteTask((int) focusedRow["id"]);
-                    //var dt = gridTaskControl.DataSource as DataTable;
-                    //dt.remo
-                    //gridTaskView.RefreshData();
-                    RefreshGridDataSource();
-                }
+                
             }
         }
 
@@ -327,6 +302,70 @@ namespace StaffTimes
             if (gridTaskView.GetRow(gridTaskView.FocusedRowHandle) is DataRowView rowDrowing) // Удаляем строку
             {
                 e.Cancel = rowDrowing["StateTask"] != DBNull.Value && (StateTaskEnum) rowDrowing["StateTask"] == StateTaskEnum.ReadOnly;
+            }
+        }
+
+        private void _tsmiDelete_Click(object sender, EventArgs e)
+        {
+            var selectedRows = gridTaskView.GetSelectedRows();
+            if (selectedRows.Length == 0)
+            {
+                MessageBox.Show("Нет выделенных строк.", "Удаление записи о работе.", MessageBoxButtons.OK);
+
+
+            }
+            else
+            {
+                
+
+                 Dictionary<int, String> dictDels= new Dictionary<int, string>();
+                foreach (var rowHandle in selectedRows)
+                {
+                    var delRow = gridTaskView.GetRow(rowHandle) as DataRowView;
+                    if (delRow != null)
+                    {
+                        var strDelRow =$"Работа сотрудника {Convert.ToDateTime(delRow["Date"]).ToString("M")} на {delRow["Duration"]}ч. {Environment.NewLine}";
+                        dictDels.Add((int) delRow["id"], strDelRow);
+                    }
+                }
+
+                string collection = dictDels.Values.Aggregate("Записи:"+ Environment.NewLine, (s, s1) => s + s1);
+                if (MessageBox.Show(collection, "Удаление записи о работе.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    // Удаляем строку
+                {
+                    foreach (int id in dictDels.Keys)
+                    {
+                        _finder.DeleteTask(id);
+                    }
+                    //var dt = gridTaskControl.DataSource as DataTable;
+                    //dt.remo
+                    //gridTaskView.RefreshData();
+                    RefreshGridDataSource();
+                }
+            }
+            
+        }
+
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F1)
+            {
+                GetAboutForm();
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void _tsmiAbout_Click(object sender, EventArgs e)
+        {
+            GetAboutForm();
+        }
+
+        private static void GetAboutForm()
+        {
+            using (var about = new AboutBox())
+            {
+                about.ShowDialog();
             }
         }
 

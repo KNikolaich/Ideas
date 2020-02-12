@@ -63,6 +63,16 @@ namespace StaffTimes.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Action_Delete {
+            get {
+                object obj = ResourceManager.GetObject("Action_Delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add2 {
             get {
                 object obj = ResourceManager.GetObject("add2", resourceCulture);

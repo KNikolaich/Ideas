@@ -89,6 +89,7 @@ namespace Core.Model
                 {
                     SetValues(drw, targetObj);
                     dbSet.Add(targetObj);
+                    _dbContainer.Entry(targetObj).State = EntityState.Added;
                     _dbContainer.SaveChanges();
 
                 }
@@ -113,7 +114,7 @@ namespace Core.Model
                     int i = (int) drw["Id"];
 
                     dbSet.Load();
-                    var pEditable = dbSet.FirstOrDefault(p => p.Id == i);
+                    var pEditable = dbSet.Where(p => p.Id == i).FirstOrDefault();
                     
                     SetValues(drw, pEditable);
                     _dbContainer.SaveChanges();
