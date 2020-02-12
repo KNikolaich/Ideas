@@ -4,7 +4,7 @@
     <PublishUrlHistory>\\192.168.1.158\Shara\StaffTimes\x86\|E:\dst\Shara\StaffTimes\|E:\dst\Shara\|publish\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>\\192.168.1.158\Shara\StaffTimes\x86\</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
