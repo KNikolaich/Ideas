@@ -33,7 +33,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>23</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -263,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="calendar.ico" />
+    <None Include="Resources\BO_Note.png" />
     <None Include="Resources\Action_Delete.png" />
   </ItemGroup>
   <ItemGroup>

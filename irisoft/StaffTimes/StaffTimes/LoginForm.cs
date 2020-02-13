@@ -58,7 +58,7 @@ namespace StaffTimes
                     Close();
                 }
                 else if (MessageBox.Show(
-                             $"Не верно введены данные авторизации! {Environment.NewLine}Повторить попытку?", "Ошибка",
+                             $"Неверно введены данные авторизации! {Environment.NewLine}Повторить попытку?", "Ошибка",
                              MessageBoxButtons.YesNo,
                              MessageBoxIcon.Error) != DialogResult.Yes)
                 {

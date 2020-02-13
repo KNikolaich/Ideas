@@ -22,6 +22,8 @@ namespace StaffTimes
         }
 
 
+        #region Загрузка
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -43,6 +45,27 @@ namespace StaffTimes
             //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
             //_gridDays.DataSource = source;
         }
+
+        private void GeneralForm_Load(object sender, EventArgs e)
+        {
+            using (LoginForm logForm = new LoginForm())
+            {
+                if (logForm.ShowDialog() == DialogResult.OK)
+                {
+                    _finder.CurrentUser = logForm.GetUser();
+                    Text += @" - " + _finder.CurrentUser;
+                }
+                else
+                {
+                    Hide();
+                    Close();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Инициализация
 
         private void InitDateSource()
         {
@@ -85,16 +108,16 @@ namespace StaffTimes
             gridTaskControl.DataSource = _finder.GetDataTableTasks();
             gridTaskView.ExpandAllGroups();
 
-            SetProjectIds();
+            _repositoryItemDateEdit.MinValue = _finder.GetMinData();
+            _repositoryItemDateEdit.MaxValue = _finder.EndDate;
+
+            _finder.RecalcActiveProjects();
             _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(); // загружаем только фильтрованные
 
         }
 
         private void InitDateNavigator()
         {
-            //            _dateNavigator.TodayButton.Text = "Сегодня";
-            //            _dateNavigator.TodayButton.PerformClick();
-
             /*foreach (var dateTime in dtList.OrderBy(dt=>dt.DayOfYear))
             {
                 _dateNavigator.Selection.Add(dateTime);
@@ -110,17 +133,21 @@ namespace StaffTimes
             var dateOfLock = _finder.GetDateOfLock(true);
             if (dateOfLock != null)
             {
-                _repositoryItemDateEdit.MinValue = dateOfLock.Value.AddDays(1);
+                _repositoryItemDateEdit.MinValue = _finder.GetMinData();
             }
         }
 
         private void InitRowStyles()
         {
-            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.ReadOnly, Color.LightGray));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.ReadOnly | StateTaskEnum.LessThenNecessary, Color.PaleGoldenrod));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.ReadOnly | StateTaskEnum.Normal, Color.LightGreen));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.ReadOnly | StateTaskEnum.MoreThenNecessary, Color.Pink));
             gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.LessThenNecessary, Color.LightYellow));
-            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.Normal, Color.LightGreen));
-            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.MoreThenNecessary, Color.Pink));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.Normal, Color.PaleGreen));
+            gridTaskView.FormatRules.Add(GetFormatRule(StateTaskEnum.MoreThenNecessary, Color.LightPink));
         }
+
+        #endregion
 
         private GridFormatRule GetFormatRule(StateTaskEnum stateTaskEnum, Color backColor)
         {
@@ -130,8 +157,13 @@ namespace StaffTimes
                 Value1 = stateTaskEnum
             };
 
+            if (stateTaskEnum.HasFlag(StateTaskEnum.ReadOnly))
+            {
+                conditionRuleValue.Appearance.Font = new Font(conditionRuleValue.Appearance.Font, FontStyle.Italic | FontStyle.Bold);
+                conditionRuleValue.Appearance.ForeColor = Color.SlateGray;
+            }
             conditionRuleValue.Appearance.BackColor = backColor;
-            //formatConditionRuleValue1.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("resource.ForeColor3")));
+            
             conditionRuleValue.Appearance.Options.UseBackColor = true;
             conditionRuleValue.Appearance.Options.UseForeColor = true;
 
@@ -146,28 +178,7 @@ namespace StaffTimes
         }
 
 
-        private void GeneralForm_Load(object sender, EventArgs e)
-        {
-            using (LoginForm logForm = new LoginForm())
-            {
-                if (logForm.ShowDialog() == DialogResult.OK)
-                {
-                    _finder.CurrentUser = logForm.GetUser();
-                    Text += @" - " + _finder.CurrentUser;
-                }
-                else
-                {
-                    Hide();
-                    Close();
-                }
-            }
-        }
-
-        private void _dateNavigator_Validated(object sender, EventArgs e)
-        {
-            // тут срабатывает не во-время
-        }
-
+        #region События грида
 
         private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
@@ -203,75 +214,6 @@ namespace StaffTimes
             RefreshGridDataSource();
         }
 
-        private void staffToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (StaffsForm sf = new StaffsForm())
-            {
-                sf.ShowDialog();
-            }
-        }
-
-        private void projectsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (ProjectsForm pf = new ProjectsForm())
-            {
-                pf.ShowDialog();
-            }
-        }
-
-        private void _exitTsmi_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void SetProjectIds()
-        {
-            _finder.RecalcActiveProjects();
-        }
-
-        private void _sButtonFind_Click(object sender, EventArgs e)
-        {
-            RefreshGridDataSource();
-        }
-
-        private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var filePath = Guid.NewGuid() + ".xlsx";
-            gridTaskControl.ExportToXlsx(filePath);
-            System.Diagnostics.Process.Start(filePath);
-        }
-
-        private void gridView1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Delete && gridTaskView.ActiveEditor == null)
-            {
-                
-            }
-        }
-
-        private void activeProjSettingsTsmi_Click(object sender, EventArgs e)
-        {
-            using (ActiveProjectsEditForm acProjForm = new ActiveProjectsEditForm(_finder.CurrentUser))
-            {
-                acProjForm.ShowDialog();
-                _finder.RecalcActiveProjects();
-            }
-        }
-
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            gridTaskControl.ShowPrintPreview();
-        }
-
-        private void lockDateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (LockDateEditForm dateEditForm = new LockDateEditForm())
-            {
-                if (dateEditForm.ShowDialog() == DialogResult.OK)
-                    SetLockedDate();
-            }
-        }
-
         private void gridTaskView_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
         {
             e.Valid = true;
@@ -284,7 +226,7 @@ namespace StaffTimes
                         if (value <= 0)
                         {
                             e.Valid = false;
-                            e.ErrorText = "Длительность задачи не может мыть меньше 1 часа в день.";
+                            e.ErrorText = "Длительность задачи не может быть меньше 1 часа в день.";
                         }
                         else if (value > 8)
                         {
@@ -302,8 +244,80 @@ namespace StaffTimes
             //var date = StateTaskEnum.TryParse(dateTime);
             if (gridTaskView.GetRow(gridTaskView.FocusedRowHandle) is DataRowView rowDrowing) // Удаляем строку
             {
-                e.Cancel = rowDrowing["StateTask"] != DBNull.Value && (StateTaskEnum) rowDrowing["StateTask"] == StateTaskEnum.ReadOnly;
+                e.Cancel = rowDrowing["StateTask"] != DBNull.Value && ((StateTaskEnum) rowDrowing["StateTask"]).HasFlag(StateTaskEnum.ReadOnly);
             }
+        }
+
+        #endregion
+
+        #region События менюшек и кнопок
+
+        private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filePath = Guid.NewGuid() + ".xlsx";
+            gridTaskControl.ExportToXlsx(filePath);
+            System.Diagnostics.Process.Start(filePath);
+        }
+
+        private void staffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (StaffsForm sf = new StaffsForm())
+            {
+                sf.ShowDialog();
+                RefreshGridDataSource();
+            }
+        }
+
+        private void activeProjSettingsTsmi_Click(object sender, EventArgs e)
+        {
+            using (ActiveProjectsEditForm acProjForm = new ActiveProjectsEditForm(_finder.CurrentUser))
+            {
+                acProjForm.ShowDialog();
+                RefreshGridDataSource();
+            }
+        }
+
+        private void projectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ProjectsForm pf = new ProjectsForm())
+            {
+                pf.ShowDialog();
+                RefreshGridDataSource();
+            }
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gridTaskControl.ShowPrintPreview();
+        }
+
+        private void lockDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (LockDateEditForm dateEditForm = new LockDateEditForm())
+            {
+                if (dateEditForm.ShowDialog() == DialogResult.OK)
+                    RefreshGridDataSource();
+            }
+        }
+
+        private void showAllStaffToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            RefreshGridDataSource();
+        }
+
+        private void _exitTsmi_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void _tsmiAbout2_Click(object sender, EventArgs e)
+        {
+            GetAboutForm();
+        }
+
+        private void _sButtonFind_Click(object sender, EventArgs e)
+        {
+            RefreshGridDataSource();
         }
 
         private void _tsmiDelete_Click(object sender, EventArgs e)
@@ -317,20 +331,27 @@ namespace StaffTimes
             }
             else
             {
-                
 
-                 Dictionary<int, String> dictDels= new Dictionary<int, string>();
+                var dateOfLock = _finder.GetDateOfLock();
+                Dictionary<int, string> dictDels= new Dictionary<int, string>();
                 foreach (var rowHandle in selectedRows)
                 {
                     var delRow = gridTaskView.GetRow(rowHandle) as DataRowView;
                     if (delRow != null)
                     {
-                        var strDelRow =$"Работа сотрудника {Convert.ToDateTime(delRow["Date"]).ToString("M")} на {delRow["Duration"]}ч. {Environment.NewLine}";
+                        var dateTime = Convert.ToDateTime(delRow["Date"]);
+                        var strDelRow =$"Работа сотрудника {dateTime.ToString("dd MMMM")} на {delRow["Duration"]}ч. {Environment.NewLine}";
                         dictDels.Add((int) delRow["id"], strDelRow);
+                        if (dateOfLock.HasValue && dateTime <= dateOfLock)
+                        {
+                            MessageBox.Show("Удаление записей за границей даты блокировки запрещено.",
+                                $"Невозможно удалить запись от {dateTime:dd MMMM}.", MessageBoxButtons.OK);
+                            return;
+                        }
                     }
                 }
 
-                string collection = dictDels.Values.Aggregate("Записи:"+ Environment.NewLine, (s, s1) => s + s1);
+                string collection = dictDels.Values.Aggregate("", (s, s1) => s + s1);
                 if (MessageBox.Show(collection, "Удаление записи о работе.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     // Удаляем строку
                 {
@@ -347,20 +368,7 @@ namespace StaffTimes
             
         }
 
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.F1)
-            {
-                GetAboutForm();
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        private void _tsmiAbout_Click(object sender, EventArgs e)
-        {
-            GetAboutForm();
-        }
+        #endregion
 
         private static void GetAboutForm()
         {
@@ -369,6 +377,5 @@ namespace StaffTimes
                 about.ShowDialog();
             }
         }
-
     }
 }

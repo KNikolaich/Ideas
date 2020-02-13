@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
             this.panelLeft = new System.Windows.Forms.Panel();
             this._groupBoxFinder = new System.Windows.Forms.GroupBox();
@@ -36,6 +37,7 @@
             this._sButtonFind = new DevExpress.XtraEditors.SimpleButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this._topTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.activeProjSettingsTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllStaffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -47,8 +49,9 @@
             this._reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiAbout2 = new System.Windows.Forms.ToolStripMenuItem();
             this.gridTaskControl = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource();
+            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridTaskView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this._usersRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -67,11 +70,12 @@
             this.projectCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource();
+            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this._tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this._tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this._labelTop = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -96,6 +100,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -107,7 +112,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(257, 531);
+            this.panelLeft.Size = new System.Drawing.Size(260, 531);
             this.panelLeft.TabIndex = 2;
             // 
             // _groupBoxFinder
@@ -116,10 +121,10 @@
             this._groupBoxFinder.Dock = System.Windows.Forms.DockStyle.Fill;
             this._groupBoxFinder.Location = new System.Drawing.Point(3, 27);
             this._groupBoxFinder.Name = "_groupBoxFinder";
-            this._groupBoxFinder.Size = new System.Drawing.Size(251, 469);
+            this._groupBoxFinder.Size = new System.Drawing.Size(254, 469);
             this._groupBoxFinder.TabIndex = 5;
             this._groupBoxFinder.TabStop = false;
-            this._groupBoxFinder.Text = "Диапазона дат для отображения:";
+            this._groupBoxFinder.Text = "Диапазон дат для отображения:";
             // 
             // _dateNavigator
             // 
@@ -135,11 +140,10 @@
             this._dateNavigator.Name = "_dateNavigator";
             this._dateNavigator.NavigationMode = DevExpress.XtraScheduler.DateNavigationMode.ScrollCalendar;
             this._dateNavigator.Padding = new System.Windows.Forms.Padding(5);
-            this._dateNavigator.Size = new System.Drawing.Size(245, 450);
+            this._dateNavigator.Size = new System.Drawing.Size(248, 450);
             this._dateNavigator.TabIndex = 1;
             this._dateNavigator.ToolTip = "Выбор дат для отображения данных";
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
-            this._dateNavigator.Validated += new System.EventHandler(this._dateNavigator_Validated);
             // 
             // panelButtom
             // 
@@ -148,13 +152,13 @@
             this.panelButtom.Location = new System.Drawing.Point(3, 496);
             this.panelButtom.Name = "panelButtom";
             this.panelButtom.Padding = new System.Windows.Forms.Padding(3);
-            this.panelButtom.Size = new System.Drawing.Size(251, 32);
+            this.panelButtom.Size = new System.Drawing.Size(254, 32);
             this.panelButtom.TabIndex = 4;
             // 
             // _sButtonFind
             // 
             this._sButtonFind.Dock = System.Windows.Forms.DockStyle.Right;
-            this._sButtonFind.Location = new System.Drawing.Point(136, 3);
+            this._sButtonFind.Location = new System.Drawing.Point(139, 3);
             this._sButtonFind.Name = "_sButtonFind";
             this._sButtonFind.Size = new System.Drawing.Size(112, 26);
             this._sButtonFind.TabIndex = 3;
@@ -169,16 +173,18 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._topTsmi,
             this._nsiTsmi,
-            this._reportsToolStripMenuItem});
+            this._reportsToolStripMenuItem,
+            this._tsmiAbout2});
             this.menuStrip1.Location = new System.Drawing.Point(3, 3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(251, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(254, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // _topTsmi
             // 
             this._topTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._tsmiChangePassword,
             this.activeProjSettingsTsmi,
             this.showAllStaffToolStripMenuItem,
             this.toolStripSeparator1,
@@ -186,6 +192,12 @@
             this._topTsmi.Name = "_topTsmi";
             this._topTsmi.Size = new System.Drawing.Size(55, 20);
             this._topTsmi.Text = "Меню";
+            // 
+            // _tsmiChangePassword
+            // 
+            this._tsmiChangePassword.Name = "_tsmiChangePassword";
+            this._tsmiChangePassword.Size = new System.Drawing.Size(250, 22);
+            this._tsmiChangePassword.Text = "Сменить свой пароль";
             // 
             // activeProjSettingsTsmi
             // 
@@ -205,6 +217,7 @@
             this.showAllStaffToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
             this.showAllStaffToolStripMenuItem.Text = "Показывать всех сотрудников";
             this.showAllStaffToolStripMenuItem.ToolTipText = "Отображение не только собственного времени в результатах поиска";
+            this.showAllStaffToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.showAllStaffToolStripMenuItem_CheckStateChanged);
             // 
             // toolStripSeparator1
             // 
@@ -264,22 +277,33 @@
             // exportToExcelToolStripMenuItem
             // 
             this.exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
-            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.exportToExcelToolStripMenuItem.Text = "Экспорт в Excel...";
             this.exportToExcelToolStripMenuItem.Click += new System.EventHandler(this.exportToExcelToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.printToolStripMenuItem.Text = "Печать..";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
+            // _tsmiAbout2
+            // 
+            this._tsmiAbout2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._tsmiAbout2.Image = global::StaffTimes.Properties.Resources.BO_Note;
+            this._tsmiAbout2.Name = "_tsmiAbout2";
+            this._tsmiAbout2.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this._tsmiAbout2.Size = new System.Drawing.Size(28, 20);
+            this._tsmiAbout2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._tsmiAbout2.ToolTipText = "О программе...";
+            this._tsmiAbout2.Click += new System.EventHandler(this._tsmiAbout2_Click);
             // 
             // gridTaskControl
             // 
             this.gridTaskControl.DataSource = this.taskBindingSource;
             this.gridTaskControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridTaskControl.Location = new System.Drawing.Point(3, 32);
+            this.gridTaskControl.Location = new System.Drawing.Point(3, 27);
             this.gridTaskControl.MainView = this.gridTaskView;
             this.gridTaskControl.Name = "gridTaskControl";
             this.gridTaskControl.Padding = new System.Windows.Forms.Padding(5);
@@ -287,7 +311,7 @@
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem,
             this._repositoryItemDateEdit});
-            this.gridTaskControl.Size = new System.Drawing.Size(743, 496);
+            this.gridTaskControl.Size = new System.Drawing.Size(740, 472);
             this.gridTaskControl.TabIndex = 0;
             this.gridTaskControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridTaskView,
@@ -328,7 +352,6 @@
             this.gridTaskView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridTaskView_ShowingEditor);
             this.gridTaskView.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
             this.gridTaskView.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
-            this.gridTaskView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyUp);
             this.gridTaskView.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridTaskView_ValidatingEditor);
             // 
             // colUser
@@ -511,21 +534,22 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gridTaskControl);
             this.splitContainer1.Panel2.Controls.Add(this.menuStrip2);
+            this.splitContainer1.Panel2.Controls.Add(this.panelTop);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
-            this.splitContainer1.SplitterDistance = 257;
+            this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 4;
             // 
             // menuStrip2
             // 
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._tsmiDelete,
-            this._tsmiAbout});
-            this.menuStrip2.Location = new System.Drawing.Point(3, 3);
+            this._tsmiDelete});
+            this.menuStrip2.Location = new System.Drawing.Point(3, 499);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 4, 0, 5);
-            this.menuStrip2.Size = new System.Drawing.Size(743, 29);
+            this.menuStrip2.Size = new System.Drawing.Size(740, 29);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -540,14 +564,29 @@
             this._tsmiDelete.ToolTipText = "Удаление выделенных объектов в таблице";
             this._tsmiDelete.Click += new System.EventHandler(this._tsmiDelete_Click);
             // 
-            // _tsmiAbout
+            // panelTop
             // 
-            this._tsmiAbout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._tsmiAbout.Name = "_tsmiAbout";
-            this._tsmiAbout.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._tsmiAbout.Size = new System.Drawing.Size(104, 20);
-            this._tsmiAbout.Text = "О программе...";
-            this._tsmiAbout.Click += new System.EventHandler(this._tsmiAbout_Click);
+            this.panelTop.Controls.Add(this._labelTop);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(3, 3);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(740, 24);
+            this.panelTop.TabIndex = 4;
+            // 
+            // _labelTop
+            // 
+            this._labelTop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._labelTop.AutoSize = true;
+            this._labelTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._labelTop.ForeColor = System.Drawing.Color.Indigo;
+            this._labelTop.Location = new System.Drawing.Point(3, 4);
+            this._labelTop.Name = "_labelTop";
+            this._labelTop.Size = new System.Drawing.Size(584, 17);
+            this._labelTop.TabIndex = 0;
+            this._labelTop.Text = "Разрешено редактирование с DateOfLock . Показано: с DateFrom по DateTo";
+            this._labelTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GeneralForm
             // 
@@ -591,6 +630,8 @@
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -638,7 +679,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colState;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem _tsmiDelete;
-        private System.Windows.Forms.ToolStripMenuItem _tsmiAbout;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiAbout2;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiChangePassword;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Label _labelTop;
     }
 }
 

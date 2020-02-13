@@ -151,6 +151,12 @@ namespace StaffTimes
             return DbAdapter.GreateOrUpdateRow<Task>(drw, isNewRow);
         }
 
+        /// <summary> берем либо дату начала, либо дату блокировки в качестве минималки для редактирования </summary>
+        /// <returns></returns>
+        public DateTime GetMinData()
+        {
+            return !_dateOfLock.HasValue || _dateOfLock.Value <= StartDate ? StartDate : _dateOfLock.Value.AddDays(1);
+        }
     }
 
 }
