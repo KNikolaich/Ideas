@@ -13,7 +13,7 @@ namespace Core
     {
         public override string ToString()
         {
-            return $"{UserName } ({Login}) {Role}";
+            return $"{UserName } ({Login}) ";
         }
 
         public int GetLastWeekNumber()

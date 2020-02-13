@@ -44,7 +44,7 @@ namespace StaffTimes
 
         public override string ToString()
         {
-            return $"Разрешено редактирование с {_dateOfLock?.ToString(FormatDate) ?? StartDate.ToString(FormatDate)}. Показано: с {StartDate.ToString(FormatDate)} по {EndDate.ToString(FormatDate)}";
+            return $"Разрешено редактирование с {_dateOfLock?.AddDays(1).ToString(FormatDate) ?? StartDate.ToString(FormatDate)}. Показано: с {StartDate.ToString(FormatDate)} по {EndDate.ToString(FormatDate)}";
         }
 
         internal Tuple<DateTime, int> CalcNewDate(DataTable tasks)
@@ -111,10 +111,22 @@ namespace StaffTimes
             return DbAdapter.GetDataTableUser(true);
         }
 
+        internal void FiltredDataTableProjects(DataTable dtProject, bool clearFilter = false)
+        {
+            if (ProjectIds.Count > 0 && !clearFilter)
+                dtProject.DefaultView.RowFilter = $"ProjectId in ({ProjectIds.Aggregate("", (s, id) => s + id + ",").TrimEnd(',')})"; // query example = "id = 10"
+            else
+            {
+                dtProject.DefaultView.RowFilter = "";
+            }
+        }
+
         internal DataTable GetDataTableProjects(bool allLoad = false)
         {
-            return DbAdapter.GetDataTableProjects(allLoad ? new int[0] : ProjectIds.ToArray());
+            DataTable dt = DbAdapter.GetDataTableProjects();
+            return dt;
         }
+
         public IList<Project> GetSelectProjects(params int[] ids)
         {
             

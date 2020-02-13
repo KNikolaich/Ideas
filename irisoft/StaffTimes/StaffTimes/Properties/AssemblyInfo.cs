@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Staff times")]
-[assembly: AssemblyDescription("Приложение учета рабочего времени сотрудников. \r\nВ левой части можно указать фильтр для отображения строк занятости. \r\nВ основной части (далее таблица), заполняются строки трудозатрат. \r\nКорректно введенная строка содержит выбранный проект, дату и длительность в часах. Строки сохраняются в БД автоматически.\r\n")]
+[assembly: AssemblyDescription("Приложение учета рабочего времени сотрудников. \r\nВ левой части можно указать фильтр для отображения строк занятости. \r\nВ основной части, заполняются строки трудозатрат. \r\nКорректно введенная строка содержит выбранный проект, дату и длительность в часах. \r\nСтроки сохраняются в БД автоматически.\r\n")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IriSoft")]
 [assembly: AssemblyProduct("StaffTimes")]
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.25")]
-[assembly: AssemblyFileVersion("1.0.2.25")]
+[assembly: AssemblyVersion("1.0.2.30")]
+[assembly: AssemblyFileVersion("1.0.2.30")]

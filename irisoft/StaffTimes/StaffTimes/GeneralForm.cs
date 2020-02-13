@@ -112,8 +112,8 @@ namespace StaffTimes
             _repositoryItemDateEdit.MaxValue = _finder.EndDate;
 
             _finder.RecalcActiveProjects();
-            //dfgsdgsdgbsd
-            _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(); // загружаем только фильтрованные
+            
+            //_projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(); // загружаем только фильтрованные
             _labelTop.Text = _finder.ToString();
         }
 
@@ -247,6 +247,16 @@ namespace StaffTimes
             {
                 e.Cancel = rowDrowing["StateTask"] != DBNull.Value && ((StateTaskEnum) rowDrowing["StateTask"]).HasFlag(StateTaskEnum.ReadOnly);
             }
+        }
+
+        private void _projRepositoryItemLookUpEdit_BeforePopup(object sender, EventArgs e)
+        {
+            _finder.FiltredDataTableProjects((DataTable) _projRepositoryItemLookUpEdit.DataSource); 
+        }
+
+        private void _projRepositoryItemLookUpEdit_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
+        {
+            _finder.FiltredDataTableProjects((DataTable)_projRepositoryItemLookUpEdit.DataSource, true);
         }
 
         #endregion

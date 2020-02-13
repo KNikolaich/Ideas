@@ -21,7 +21,7 @@ namespace StaffTimes
             _connection = new StaffTimeDbContainer().Database.Connection;
             //this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = ProductVersion;
+            this.labelVersion.Text = AssemblyVersion;
             this._server.Text = _connection.DataSource;
             this._labelDb.Text = _connection.Database;
             this.textBoxDescription.Text = AssemblyDescription;
@@ -49,7 +49,17 @@ namespace StaffTimes
 
         public string AssemblyVersion
         {
-            get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+            get
+            {
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                else
+                {
+                    return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                }
+            }
         }
 
         public string AssemblyDescription

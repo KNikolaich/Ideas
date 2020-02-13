@@ -76,6 +76,7 @@
             this._tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTop = new System.Windows.Forms.Panel();
             this._labelTop = new System.Windows.Forms.Label();
+            this.colDateOfWeek = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -304,7 +305,7 @@
             // 
             this.gridTaskControl.DataSource = this.taskBindingSource;
             this.gridTaskControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridTaskControl.Location = new System.Drawing.Point(3, 27);
+            this.gridTaskControl.Location = new System.Drawing.Point(3, 50);
             this.gridTaskControl.MainView = this.gridTaskView;
             this.gridTaskControl.Name = "gridTaskControl";
             this.gridTaskControl.Padding = new System.Windows.Forms.Padding(5);
@@ -312,7 +313,7 @@
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem,
             this._repositoryItemDateEdit});
-            this.gridTaskControl.Size = new System.Drawing.Size(740, 472);
+            this.gridTaskControl.Size = new System.Drawing.Size(740, 449);
             this.gridTaskControl.TabIndex = 0;
             this.gridTaskControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridTaskView,
@@ -334,7 +335,8 @@
             this.colDuration,
             this.colProject,
             this.colComment,
-            this.colState});
+            this.colState,
+            this.colDateOfWeek});
             this.gridTaskView.GridControl = this.gridTaskControl;
             this.gridTaskView.GroupCount = 1;
             this.gridTaskView.GroupFormat = " [#image]{1} {2}";
@@ -433,7 +435,10 @@
             this._projRepositoryItemLookUpEdit.NullText = "";
             this._projRepositoryItemLookUpEdit.NullValuePrompt = "необходимо заполнить";
             this._projRepositoryItemLookUpEdit.NullValuePromptShowForEmptyValue = true;
+            this._projRepositoryItemLookUpEdit.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.OnlyInPopup;
             this._projRepositoryItemLookUpEdit.ValueMember = "ProjectId";
+            this._projRepositoryItemLookUpEdit.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this._projRepositoryItemLookUpEdit_CloseUp);
+            this._projRepositoryItemLookUpEdit.BeforePopup += new System.EventHandler(this._projRepositoryItemLookUpEdit_BeforePopup);
             // 
             // colComment
             // 
@@ -571,7 +576,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(3, 3);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(740, 24);
+            this.panelTop.Size = new System.Drawing.Size(740, 47);
             this.panelTop.TabIndex = 4;
             // 
             // _labelTop
@@ -588,6 +593,19 @@
             this._labelTop.TabIndex = 0;
             this._labelTop.Text = "Разрешено редактирование с DateOfLock . Показано: с DateFrom по DateTo";
             this._labelTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // colDateOfWeek
+            // 
+            this.colDateOfWeek.Caption = "День";
+            this.colDateOfWeek.DisplayFormat.FormatString = "ddd";
+            this.colDateOfWeek.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDateOfWeek.FieldName = "Date";
+            this.colDateOfWeek.Name = "colDateOfWeek";
+            this.colDateOfWeek.OptionsColumn.AllowEdit = false;
+            this.colDateOfWeek.OptionsColumn.AllowFocus = false;
+            this.colDateOfWeek.OptionsColumn.ReadOnly = true;
+            this.colDateOfWeek.Visible = true;
+            this.colDateOfWeek.VisibleIndex = 4;
             // 
             // GeneralForm
             // 
@@ -637,6 +655,7 @@
 
         }
 
+
         #endregion
         private System.Windows.Forms.Panel panelLeft;
         private DevExpress.XtraGrid.GridControl gridTaskControl;
@@ -684,6 +703,7 @@
         private System.Windows.Forms.ToolStripMenuItem _tsmiChangePassword;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label _labelTop;
+        private DevExpress.XtraGrid.Columns.GridColumn colDateOfWeek;
     }
 }
 
