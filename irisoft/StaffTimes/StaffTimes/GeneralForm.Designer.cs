@@ -151,16 +151,17 @@
             this.panelButtom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelButtom.Location = new System.Drawing.Point(3, 496);
             this.panelButtom.Name = "panelButtom";
-            this.panelButtom.Padding = new System.Windows.Forms.Padding(3);
+            this.panelButtom.Padding = new System.Windows.Forms.Padding(5);
             this.panelButtom.Size = new System.Drawing.Size(254, 32);
             this.panelButtom.TabIndex = 4;
             // 
             // _sButtonFind
             // 
             this._sButtonFind.Dock = System.Windows.Forms.DockStyle.Right;
-            this._sButtonFind.Location = new System.Drawing.Point(139, 3);
+            this._sButtonFind.Location = new System.Drawing.Point(137, 5);
+            this._sButtonFind.Margin = new System.Windows.Forms.Padding(5);
             this._sButtonFind.Name = "_sButtonFind";
-            this._sButtonFind.Size = new System.Drawing.Size(112, 26);
+            this._sButtonFind.Size = new System.Drawing.Size(112, 22);
             this._sButtonFind.TabIndex = 3;
             this._sButtonFind.Text = "Выбрать";
             this._sButtonFind.ToolTip = "из диапазона дат";

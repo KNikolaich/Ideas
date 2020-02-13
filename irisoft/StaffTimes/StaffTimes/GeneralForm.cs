@@ -112,8 +112,9 @@ namespace StaffTimes
             _repositoryItemDateEdit.MaxValue = _finder.EndDate;
 
             _finder.RecalcActiveProjects();
+            //dfgsdgsdgbsd
             _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(); // загружаем только фильтрованные
-
+            _labelTop.Text = _finder.ToString();
         }
 
         private void InitDateNavigator()
@@ -340,12 +341,13 @@ namespace StaffTimes
                     if (delRow != null)
                     {
                         var dateTime = Convert.ToDateTime(delRow["Date"]);
-                        var strDelRow =$"Работа сотрудника {dateTime.ToString("dd MMMM")} на {delRow["Duration"]}ч. {Environment.NewLine}";
+                        
+                        var strDelRow =$"Работа сотрудника {dateTime.ToString(_finder.FormatDate)} на {delRow["Duration"]}ч. {Environment.NewLine}";
                         dictDels.Add((int) delRow["id"], strDelRow);
                         if (dateOfLock.HasValue && dateTime <= dateOfLock)
                         {
                             MessageBox.Show("Удаление записей за границей даты блокировки запрещено.",
-                                $"Невозможно удалить запись от {dateTime:dd MMMM}.", MessageBoxButtons.OK);
+                                $"Невозможно удалить запись от {dateTime.ToString(_finder.FormatDate)}.", MessageBoxButtons.OK);
                             return;
                         }
                     }

@@ -14,6 +14,11 @@ namespace StaffTimes
     /// </summary>
     public class GeneralFormFinder
     {
+        /// <summary>
+        /// Формат вывода даты в различных местах
+        /// </summary>
+        internal string FormatDate = "dd MMMM";
+
         internal GeneralFormFinder()
         {
             DbAdapter = new ContextAdapter();
@@ -37,7 +42,10 @@ namespace StaffTimes
 
         private ContextAdapter DbAdapter { get; }
 
-
+        public override string ToString()
+        {
+            return $"Разрешено редактирование с {_dateOfLock?.ToString(FormatDate) ?? StartDate.ToString(FormatDate)}. Показано: с {StartDate.ToString(FormatDate)} по {EndDate.ToString(FormatDate)}";
+        }
 
         internal Tuple<DateTime, int> CalcNewDate(DataTable tasks)
         {
