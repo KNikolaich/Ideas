@@ -9,6 +9,7 @@ using DevExpress.Data;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
+using StaffTimes.SubControls;
 
 namespace StaffTimes
 {
@@ -389,7 +390,10 @@ namespace StaffTimes
 
         private void _tsmiChangePassword_Click(object sender, EventArgs e)
         {
-
+            using (ChangePasswordForm cpf = new ChangePasswordForm(_finder.CurrentUser.Id))
+            {
+                cpf.ShowDialog();
+            }
         }
 
         #endregion
