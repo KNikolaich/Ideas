@@ -82,7 +82,22 @@ namespace StaffTimes
                 }
                  
             }
-            maxDate = maxDate == DateTime.MinValue ? DateTime.Today : maxDate.AddDays(1);
+            if (maxDate < EndDate)
+            {
+                if (maxDate.DayOfWeek != DayOfWeek.Friday)
+                {
+                    maxDate = maxDate.AddDays(1);
+                }
+                else if ((EndDate - maxDate).Days > 3) // возвращаем понедельник
+                {
+                    maxDate = maxDate.AddDays(3);
+                }
+                else
+                {
+                    maxDate = EndDate;
+                }
+            }
+
             return new Tuple<DateTime, int>(maxDate, 8);
         }
 
