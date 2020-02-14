@@ -104,8 +104,9 @@ namespace StaffTimes
             _finder.EndDate = _dateNavigator.SelectionEnd;
             _finder.ShowAllUsers = showAllStaffToolStripMenuItem.CheckState == CheckState.Checked;
             _projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(true); // загружаем все для отображения
-            
-            gridTaskControl.DataSource = _finder.GetDataTableTasks();
+
+            var dataTable = _finder.GetDataTableTasks();
+            gridTaskControl.DataSource = dataTable;
             gridTaskView.ExpandAllGroups();
 
             _repositoryItemDateEdit.MinValue = _finder.GetMinData();
@@ -115,6 +116,8 @@ namespace StaffTimes
             
             //_projRepositoryItemLookUpEdit.DataSource = _finder.GetDataTableProjects(); // загружаем только фильтрованные
             _labelTop.Text = _finder.ToString();
+
+            _summaryGrid.SetDataSource(_finder, dataTable);
         }
 
         private void InitDateNavigator()

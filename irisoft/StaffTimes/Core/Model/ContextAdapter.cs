@@ -23,6 +23,13 @@ namespace Core.Model
             _dbContainer = dbContainer;
         }
 
+        /// <summary> Задачки </summary>
+        /// <returns></returns>
+        public DbSet<Task> Tasks => _dbContainer.Task;
+
+        public DbSet<Project> Projects => _dbContainer.Project;
+        public DbSet<User> Users => _dbContainer.User;
+
         #region Work with DataTables
 
 
@@ -75,8 +82,38 @@ namespace Core.Model
             }
         }
 
-        #endregion
+        public DataTable GetDataTableUser(bool modifyId = false)
+        {
+            var fields = new List<string> { modifyId? "Id as UserId" : "Id", "UserName", "Login", "Password", "Role" };
+            var dataTable = GetDataTable(fields, "User");
+            return dataTable;
+        }
 
+        public DataTable GetDataTableProjects(params int[] projectIds)
+        {
+            var fields = new List<string> { "Id as ProjectId", "ProjectName", "Description" };
+            var dataTable = GetDataTable(fields, "Project", projectIds);
+            return dataTable;
+        }
+
+        public DataTable GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
+        {
+            var idsEmptyProjs = projectIds.Length == 0;
+            var tasks = Tasks.Where(t =>
+                (userId < 0 || t.UserId == userId) &&
+                (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= @from && t.Date <= to).ToList();
+
+
+            var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
+            int[] arrUserId = tasks.Any() ? tasks.Select(t => t.Id).ToArray() : new[] { -1 };
+            var tableTasks = GetDataTable(fields, "Task", arrUserId);
+
+            tableTasks.Columns.Add("StateTask", typeof(StateTaskEnum));
+
+            RecalcStatesTask(tableTasks);
+
+            return tableTasks;
+        }
 
         public bool GreateOrUpdateRow<TTargetObj>(DataRowView drw, bool isNewRow) where TTargetObj : class, IModelSupp
         {
@@ -131,25 +168,14 @@ namespace Core.Model
             return true;
         }
 
+        #endregion
+
+
         private static void ShowInvalidDatas<TTargetObj>() where TTargetObj : class, IModelSupp
         {
             //MessageBox.Show("Исправьте не верно введеные данные!" + Environment.NewLine + "Сохранение невозможно.", "Данные не валидны", MessageBoxButtons.OK);
         }
 
-
-        public DataTable GetDataTableUser(bool modifyId = false)
-        {
-            var fields = new List<string> { modifyId? "Id as UserId" : "Id", "UserName", "Login", "Password", "Role" };
-            var dataTable = GetDataTable(fields, "User");
-            return dataTable;
-        }
-
-        public DataTable GetDataTableProjects(params int[] projectIds)
-        {
-            var fields = new List<string> { "Id as ProjectId", "ProjectName", "Description" };
-            var dataTable = GetDataTable(fields, "Project", projectIds);
-            return dataTable;
-        }
 
         public static void SetValues(DataRowView rawRow, IModelSupp targetObj)
         {
@@ -169,15 +195,8 @@ namespace Core.Model
             _dbContainer.SaveChanges();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public DbSet<Task> Tasks => _dbContainer.Task;
 
         public IQueryable<ActiveProjectOnStaff> ActiveProjectOnStaff(User currentUser) => _dbContainer.ActiveProjectOnStaffSet.Where(act => act.UserId == currentUser.Id);
-
-        public DbSet<Project> Projects => _dbContainer.Project;
 
         public void Delete<T>(int i) where T: class, IModelSupp
         {
@@ -200,26 +219,6 @@ namespace Core.Model
                     return Convert.ToDateTime(property.Value);
                 return null;
             }
-        }
-
-
-        public DataTable GetDataTableTasks(int userId, DateTime from, DateTime to, params int[] projectIds)
-        {
-            var idsEmptyProjs = projectIds.Length == 0;
-            var tasks = Tasks.Where(t =>
-                (userId < 0 || t.UserId == userId) &&
-                (idsEmptyProjs || projectIds.Contains(t.ProjectId)) && t.Date >= from && t.Date <= to).ToList();
-
-
-            var fields = new List<string> { "Id", "UserId", "ProjectId", "Date", "Duration", "Comment" };
-            int[] arrUserId = tasks.Any() ? tasks.Select(t => t.Id).ToArray() : new[] { -1 };
-            var tableTasks = GetDataTable(fields, "Task", arrUserId);
-
-            tableTasks.Columns.Add("StateTask", typeof(StateTaskEnum));
-
-            RecalcStatesTask(tableTasks);
-
-            return tableTasks;
         }
 
         internal void RecalcStatesTask(DataTable tasks)

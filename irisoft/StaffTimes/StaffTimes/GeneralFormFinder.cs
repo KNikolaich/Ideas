@@ -40,7 +40,7 @@ namespace StaffTimes
 
         internal bool ShowAllUsers { get; set; }
 
-        private ContextAdapter DbAdapter { get; }
+        internal ContextAdapter DbAdapter { get; }
 
         public override string ToString()
         {
@@ -49,7 +49,7 @@ namespace StaffTimes
 
         internal Tuple<DateTime, int> CalcNewDate(DataTable tasks)
         {
-            var grouppedBy = tasks.Rows.Cast<DataRow>().OrderBy(t => Convert.ToDateTime(t["Date"]).Ticks).GroupBy(t => t["Date"]);
+            var grouppedBy = tasks.Rows.Cast<DataRow>().Where(t=>(int)t["UserId"] == CurrentUser.Id).OrderBy(t => Convert.ToDateTime(t["Date"]).Ticks).GroupBy(t => t["Date"]);
             var dateLock = GetDateOfLock();
             DateTime maxDate = DateTime.MinValue;
             foreach (IGrouping<object, DataRow> group in grouppedBy)
@@ -177,6 +177,19 @@ namespace StaffTimes
         {
             return !_dateOfLock.HasValue || _dateOfLock.Value <= StartDate ? StartDate : _dateOfLock.Value.AddDays(1);
         }
-    }
 
+        /// <summary>
+        /// гкенерирует перечислятор дат с начала периода до его окончания, за вычетом выходных
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DateTime> ColumnFromDatesGenarator()
+        {
+            var currDate = StartDate;
+            while (currDate<=EndDate)
+            {
+                yield return currDate;
+                currDate = currDate.DayOfWeek == DayOfWeek.Friday ? currDate.AddDays(3) : currDate.AddDays(1);
+            }
+        }
+    }
 }

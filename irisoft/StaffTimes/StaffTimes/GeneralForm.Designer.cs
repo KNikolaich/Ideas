@@ -62,6 +62,7 @@
             this._projRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colState = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDateOfWeek = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.DateCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -72,11 +73,12 @@
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._summaryGrid = new StaffTimes.SubControls.SummaryGrid();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this._tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTop = new System.Windows.Forms.Panel();
             this._labelTop = new System.Windows.Forms.Label();
-            this.colDateOfWeek = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -313,7 +315,7 @@
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem,
             this._repositoryItemDateEdit});
-            this.gridTaskControl.Size = new System.Drawing.Size(740, 449);
+            this.gridTaskControl.Size = new System.Drawing.Size(740, 377);
             this.gridTaskControl.TabIndex = 0;
             this.gridTaskControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridTaskView,
@@ -455,6 +457,19 @@
             this.colState.FieldName = "StateTask";
             this.colState.Name = "colState";
             // 
+            // colDateOfWeek
+            // 
+            this.colDateOfWeek.Caption = "День";
+            this.colDateOfWeek.DisplayFormat.FormatString = "ddd";
+            this.colDateOfWeek.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDateOfWeek.FieldName = "Date";
+            this.colDateOfWeek.Name = "colDateOfWeek";
+            this.colDateOfWeek.OptionsColumn.AllowEdit = false;
+            this.colDateOfWeek.OptionsColumn.AllowFocus = false;
+            this.colDateOfWeek.OptionsColumn.ReadOnly = true;
+            this.colDateOfWeek.Visible = true;
+            this.colDateOfWeek.VisibleIndex = 4;
+            // 
             // layoutView1
             // 
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
@@ -538,13 +553,23 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitterControl1);
             this.splitContainer1.Panel2.Controls.Add(this.gridTaskControl);
+            this.splitContainer1.Panel2.Controls.Add(this._summaryGrid);
             this.splitContainer1.Panel2.Controls.Add(this.menuStrip2);
             this.splitContainer1.Panel2.Controls.Add(this.panelTop);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
             this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // _summaryGrid
+            // 
+            this._summaryGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._summaryGrid.Location = new System.Drawing.Point(3, 427);
+            this._summaryGrid.Name = "_summaryGrid";
+            this._summaryGrid.Size = new System.Drawing.Size(740, 72);
+            this._summaryGrid.TabIndex = 5;
             // 
             // menuStrip2
             // 
@@ -594,18 +619,15 @@
             this._labelTop.Text = "Разрешено редактирование с DateOfLock . Показано: с DateFrom по DateTo";
             this._labelTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // colDateOfWeek
+            // splitterControl1
             // 
-            this.colDateOfWeek.Caption = "День";
-            this.colDateOfWeek.DisplayFormat.FormatString = "ddd";
-            this.colDateOfWeek.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colDateOfWeek.FieldName = "Date";
-            this.colDateOfWeek.Name = "colDateOfWeek";
-            this.colDateOfWeek.OptionsColumn.AllowEdit = false;
-            this.colDateOfWeek.OptionsColumn.AllowFocus = false;
-            this.colDateOfWeek.OptionsColumn.ReadOnly = true;
-            this.colDateOfWeek.Visible = true;
-            this.colDateOfWeek.VisibleIndex = 4;
+            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitterControl1.Location = new System.Drawing.Point(3, 422);
+            this.splitterControl1.Name = "splitterControl1";
+            this.splitterControl1.Size = new System.Drawing.Size(740, 5);
+            this.splitterControl1.TabIndex = 6;
+            this.splitterControl1.TabStop = false;
             // 
             // GeneralForm
             // 
@@ -704,6 +726,8 @@
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label _labelTop;
         private DevExpress.XtraGrid.Columns.GridColumn colDateOfWeek;
+        private SubControls.SummaryGrid _summaryGrid;
+        private DevExpress.XtraEditors.SplitterControl splitterControl1;
     }
 }
 
