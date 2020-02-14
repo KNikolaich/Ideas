@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 using Core;
 using Core.Model;
 
@@ -51,7 +52,7 @@ namespace StaffTimes
         {
             var grouppedBy = tasks.Rows.Cast<DataRow>().Where(t=>(int)t["UserId"] == CurrentUser.Id).OrderBy(t => Convert.ToDateTime(t["Date"]).Ticks).GroupBy(t => t["Date"]);
             var dateLock = GetDateOfLock();
-            DateTime maxDate = DateTime.MinValue;
+            DateTime maxDate = StartDate;
             foreach (IGrouping<object, DataRow> group in grouppedBy)
             {
                 var groupDate = Convert.ToDateTime(group.Key);
@@ -63,7 +64,7 @@ namespace StaffTimes
 
                     if (groupDate > maxDate)
                     {
-                        if (maxDate != DateTime.MinValue && (groupDate - maxDate).Days > 1)
+                        if (maxDate != StartDate && (groupDate - maxDate).Days > 1)
                         {
                             if (maxDate.DayOfWeek != DayOfWeek.Friday)
                             {
@@ -183,6 +184,11 @@ namespace StaffTimes
 
         public bool ValidateTask(DataRowView drw, bool isNewRow)
         {
+            if (_dateOfLock?.Date > Convert.ToDateTime(drw["Date"]))
+            {
+                MessageBox.Show("Необходимо исправить дату.", "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             return DbAdapter.GreateOrUpdateRow<Task>(drw, isNewRow);
         }
 

@@ -214,10 +214,12 @@ namespace StaffTimes
             {
                 e.Valid = _finder.ValidateTask(drw, e.RowHandle < 0);
             }
+            if(e.Valid)
+                RefreshGridDataSource();
+
             //var dataTable = (DataTable)gridTaskControl.DataSource;
             // _finder.RecalcStatesTask(dataTable);
             //gridTaskControl.DataSource = dataTable;
-            RefreshGridDataSource();
         }
 
         private void gridTaskView_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
