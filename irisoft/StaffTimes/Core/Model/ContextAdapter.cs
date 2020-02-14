@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace Core.Model
 {
@@ -91,7 +90,7 @@ namespace Core.Model
 
         public DataTable GetDataTableProjects(params int[] projectIds)
         {
-            var fields = new List<string> { "Id as ProjectId", "ProjectName", "Description" };
+            var fields = new List<string> { "Id", "Id as ProjectId", "ProjectName", "Description" };
             var dataTable = GetDataTable(fields, "Project", projectIds);
             return dataTable;
         }

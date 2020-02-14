@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Core;
+using Core.Exceptions;
 
 namespace StaffTimes
 {
@@ -22,7 +23,11 @@ namespace StaffTimes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            var tuple = Core.Conf.ReadLoginPassword();
+            MessageNotify.AddNotify += (sender, a) =>
+            {
+                MessageBox.Show(a.Message, a.Title, MessageBoxButtons.OK, a.Notify == NotifyEnum.Info? MessageBoxIcon.Information:MessageBoxIcon.Warning);
+            };
+            var tuple = Conf.ReadLoginPassword();
             if (!string.IsNullOrEmpty(tuple.Item1))
             {
                 tbLogin.Text = tuple.Item1;

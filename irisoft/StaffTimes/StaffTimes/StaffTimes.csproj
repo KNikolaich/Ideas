@@ -198,6 +198,7 @@
     <Compile Include="SubControls\ChangePasswordForm.Designer.cs">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubControls\IriExceptionHandler.cs" />
     <Compile Include="SubControls\SummaryGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>

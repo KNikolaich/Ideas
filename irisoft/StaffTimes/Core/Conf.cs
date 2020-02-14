@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml.Serialization;
+using Core.Exceptions;
 
 namespace Core
 {
@@ -47,7 +47,7 @@ namespace Core
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка создания файла!");
+                MessageNotify.AddMessage(this, ex.ToString(), "Ошибка создания файла!");
             }
         }
 

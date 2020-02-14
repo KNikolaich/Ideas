@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Core.Exceptions;
 using Core.Model;
 using DevExpress.Data;
 using DevExpress.XtraEditors;
@@ -40,8 +41,11 @@ namespace StaffTimes
                 InitDateSource();
 
             }
+            MessageNotify.AddNotify += (sender, a) =>
+            {
+                MessageBox.Show(a.Message, a.Title, MessageBoxButtons.OK, a.Notify == NotifyEnum.Info ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            };
 
-            
             //var days = _contextDb.Day.Where(w => w.UserId == _user.Id).ToList();
             //var source = days.Select(w=> new {w.Id, w.Approved, w.Date, w.Status} ).ToList();
             //_gridDays.DataSource = source;
