@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.Common;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
 
@@ -47,7 +42,7 @@ namespace StaffTimes
             }
         }
 
-        public string AssemblyVersion
+        public static string AssemblyVersion
         {
             get
             {
@@ -55,10 +50,7 @@ namespace StaffTimes
                 {
                     return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
                 }
-                else
-                {
-                    return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                }
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
         }
 

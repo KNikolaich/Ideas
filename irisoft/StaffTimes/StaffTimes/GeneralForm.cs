@@ -54,6 +54,7 @@ namespace StaffTimes
                 {
                     _finder.CurrentUser = logForm.GetUser();
                     Text += @" - " + _finder.CurrentUser;
+                    _tsmiVersion.Text += AboutBox.AssemblyVersion;
                 }
                 else
                 {
@@ -384,6 +385,11 @@ namespace StaffTimes
                 }
             }
             
+        }
+
+        private void _tsmiChangePassword_Click(object sender, EventArgs e)
+        {
+
         }
 
         #endregion

@@ -73,12 +73,13 @@
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this._summaryGrid = new StaffTimes.SubControls.SummaryGrid();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this._tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiVersion = new System.Windows.Forms.ToolStripTextBox();
             this.panelTop = new System.Windows.Forms.Panel();
             this._labelTop = new System.Windows.Forms.Label();
-            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
@@ -202,6 +203,7 @@
             this._tsmiChangePassword.Name = "_tsmiChangePassword";
             this._tsmiChangePassword.Size = new System.Drawing.Size(250, 22);
             this._tsmiChangePassword.Text = "Сменить свой пароль";
+            this._tsmiChangePassword.Click += new System.EventHandler(this._tsmiChangePassword_Click);
             // 
             // activeProjSettingsTsmi
             // 
@@ -315,7 +317,7 @@
             this._projRepositoryItemLookUpEdit,
             this._usersRepositoryItem,
             this._repositoryItemDateEdit});
-            this.gridTaskControl.Size = new System.Drawing.Size(740, 377);
+            this.gridTaskControl.Size = new System.Drawing.Size(740, 374);
             this.gridTaskControl.TabIndex = 0;
             this.gridTaskControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridTaskView,
@@ -347,6 +349,7 @@
             this.gridTaskView.Name = "gridTaskView";
             this.gridTaskView.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridTaskView.OptionsSelection.MultiSelect = true;
+            this.gridTaskView.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.Hidden;
             this.gridTaskView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridTaskView.OptionsView.ShowChildrenInGroupPanel = true;
             this.gridTaskView.OptionsView.ShowGroupedColumns = true;
@@ -389,7 +392,7 @@
             this.colDate.Name = "colDate";
             this.colDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 1;
+            this.colDate.VisibleIndex = 0;
             this.colDate.Width = 100;
             // 
             // _repositoryItemDateEdit
@@ -422,7 +425,7 @@
             this.colProject.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.colProject.Name = "colProject";
             this.colProject.Visible = true;
-            this.colProject.VisibleIndex = 0;
+            this.colProject.VisibleIndex = 1;
             this.colProject.Width = 307;
             // 
             // _projRepositoryItemLookUpEdit
@@ -563,10 +566,20 @@
             this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 4;
             // 
+            // splitterControl1
+            // 
+            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitterControl1.Location = new System.Drawing.Point(3, 419);
+            this.splitterControl1.Name = "splitterControl1";
+            this.splitterControl1.Size = new System.Drawing.Size(740, 5);
+            this.splitterControl1.TabIndex = 6;
+            this.splitterControl1.TabStop = false;
+            // 
             // _summaryGrid
             // 
             this._summaryGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._summaryGrid.Location = new System.Drawing.Point(3, 427);
+            this._summaryGrid.Location = new System.Drawing.Point(3, 424);
             this._summaryGrid.Name = "_summaryGrid";
             this._summaryGrid.Size = new System.Drawing.Size(740, 72);
             this._summaryGrid.TabIndex = 5;
@@ -576,11 +589,12 @@
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._tsmiDelete});
-            this.menuStrip2.Location = new System.Drawing.Point(3, 499);
+            this._tsmiDelete,
+            this._tsmiVersion});
+            this.menuStrip2.Location = new System.Drawing.Point(3, 496);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 4, 0, 5);
-            this.menuStrip2.Size = new System.Drawing.Size(740, 29);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 4, 5, 5);
+            this.menuStrip2.Size = new System.Drawing.Size(740, 32);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -590,10 +604,20 @@
             this._tsmiDelete.Name = "_tsmiDelete";
             this._tsmiDelete.ShortcutKeyDisplayString = "Shift+Delete";
             this._tsmiDelete.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Delete)));
-            this._tsmiDelete.Size = new System.Drawing.Size(122, 20);
+            this._tsmiDelete.Size = new System.Drawing.Size(122, 23);
             this._tsmiDelete.Text = "Удалить строку";
             this._tsmiDelete.ToolTipText = "Удаление выделенных объектов в таблице";
             this._tsmiDelete.Click += new System.EventHandler(this._tsmiDelete_Click);
+            // 
+            // _tsmiVersion
+            // 
+            this._tsmiVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._tsmiVersion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            this._tsmiVersion.Name = "_tsmiVersion";
+            this._tsmiVersion.Size = new System.Drawing.Size(100, 23);
+            this._tsmiVersion.Text = "Версия:";
+            this._tsmiVersion.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._tsmiVersion.ToolTipText = "Версия приложения\r\n";
             // 
             // panelTop
             // 
@@ -619,16 +643,6 @@
             this._labelTop.Text = "Разрешено редактирование с DateOfLock . Показано: с DateFrom по DateTo";
             this._labelTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // splitterControl1
-            // 
-            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.HSplit;
-            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitterControl1.Location = new System.Drawing.Point(3, 422);
-            this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(740, 5);
-            this.splitterControl1.TabIndex = 6;
-            this.splitterControl1.TabStop = false;
-            // 
             // GeneralForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -638,7 +652,6 @@
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "GeneralForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет времени";
@@ -728,6 +741,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDateOfWeek;
         private SubControls.SummaryGrid _summaryGrid;
         private DevExpress.XtraEditors.SplitterControl splitterControl1;
+        private System.Windows.Forms.ToolStripTextBox _tsmiVersion;
     }
 }
 
