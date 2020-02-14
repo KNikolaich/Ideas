@@ -310,7 +310,10 @@ namespace StaffTimes
             using (LockDateEditForm dateEditForm = new LockDateEditForm())
             {
                 if (dateEditForm.ShowDialog() == DialogResult.OK)
+                {
+                    SetLockedDate();
                     RefreshGridDataSource();
+                }
             }
         }
 
