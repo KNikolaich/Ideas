@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
+﻿using System.Net;
 
-namespace StaffTimesWebAppBot.Models
+namespace WebAppBot.Models
 {
     public static class AppSettings
     {
@@ -16,7 +11,6 @@ namespace StaffTimesWebAppBot.Models
         public static string Key { get; set; } = "939009222:AAFj7GRQ7YfinCk6gOtL4mgXQFj5ox8k84Y";
 
         public static WebProxy Proxy { get; set; }
-
-
+        public static string Description { get; set; }
     }
 }

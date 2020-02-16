@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using StaffTimesWebAppBot.Models;
 
 namespace StaffTimesWebAppBot.Controllers
 {
@@ -10,7 +11,8 @@ namespace StaffTimesWebAppBot.Controllers
     {
         public string Index()
         {
-            return "It`s my telegram bot D:";
+            return  "It`s my telegram bot D:" + AppSettings.Proxy?.Credentials;
         }
+        
     }
 }

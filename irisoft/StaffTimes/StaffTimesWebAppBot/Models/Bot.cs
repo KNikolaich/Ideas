@@ -28,7 +28,7 @@ namespace StaffTimesWebAppBot.Models
                 _commandList.Add(new HelloCommand());
                 // TOdo add new commands
 
-                client = new TelegramBotClient(AppSettings.Key);
+                client = new TelegramBotClient(AppSettings.Key, AppSettings.Proxy);
                 var hook = string.Format(AppSettings.Url, "api/message/update");
                 await client.SetWebhookAsync(hook);
             } 
