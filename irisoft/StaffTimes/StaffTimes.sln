@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTest.Core", "XUnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXWebApplication", "DXApplication1\DXWebApplication\DXWebApplication.csproj", "{772EE1DC-B4B2-401F-94A5-581DD43202F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaffTimesWebAppBot", "StaffTimesWebAppBot\StaffTimesWebAppBot.csproj", "{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,14 @@ Global
 		{772EE1DC-B4B2-401F-94A5-581DD43202F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{772EE1DC-B4B2-401F-94A5-581DD43202F2}.Release|x86.ActiveCfg = Release|Any CPU
 		{772EE1DC-B4B2-401F-94A5-581DD43202F2}.Release|x86.Build.0 = Release|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Debug|x86.Build.0 = Debug|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Release|x86.ActiveCfg = Release|Any CPU
+		{FEA5EFE0-F558-4D91-8A6D-02F5925A004F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
