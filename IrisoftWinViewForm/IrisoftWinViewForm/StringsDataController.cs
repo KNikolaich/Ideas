@@ -26,7 +26,7 @@ namespace IrisoftWinViewForm
             var listFromOneStr = _model.ArticleOne.Split(GetSeparator(_model.ArticleOne), StringSplitOptions.RemoveEmptyEntries).ToList();
             var listFromTwoStr = _model.ArticleTwo.Split(GetSeparator(_model.ArticleTwo), StringSplitOptions.RemoveEmptyEntries).ToList();
           
-            float maxCountWords = listFromTwoStr.Count > listFromOneStr.Count ? listFromTwoStr.Count : listFromOneStr.Count;
+            int maxCountWords = listFromTwoStr.Count > listFromOneStr.Count ? listFromTwoStr.Count : listFromOneStr.Count;
   
             var countWithoutChangeWords = 0; // кол-во оставленных без изменения слов
             foreach (string str in listFromTwoStr)
