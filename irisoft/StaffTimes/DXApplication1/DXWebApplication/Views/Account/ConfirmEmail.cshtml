@@ -1,0 +1,11 @@
+@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+
+@{
+    ViewBag.Title = "Confirm Email";
+}
+<div class="accountHeader">
+    <h2>@ViewBag.Title</h2>
+</div>
+<p>
+    Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account")
+</p>

@@ -67,7 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,11 +81,14 @@
     </Compile>
     <Compile Include="Conf.cs" />
     <Compile Include="Crypto.cs" />
-    <Compile Include="Exceptions\IriExceptionHandler.cs" />
+    <Compile Include="Exceptions\MessageNotify.cs" />
+    <Compile Include="Exceptions\MessageNotifyArgument.cs" />
+    <Compile Include="Exceptions\NotifyEnum.cs" />
     <Compile Include="Model\ContextAdapter.cs" />
     <Compile Include="Model\IModelSupp.cs" />
     <Compile Include="Model\Models.cs" />
     <Compile Include="Model\StaffTimesContainer.cs" />
+    <Compile Include="Model\WebContext.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>StaffTimesContainer.tt</DependentUpon>
     </Compile>

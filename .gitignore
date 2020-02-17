@@ -1,16 +1,11 @@
-packages
+/*/*/*/*/obj
+/*/*/*/*/bin
+/*/*/*/obj
+/*/*/*/bin
+/*/*/obj
+/*/*/bin
 
 /*/obj
 /*/bin
-/*/*/obj
-/*/*/bin
-/*/*/*/bin
-/*/*/*/obj
-/*/*/*/*/bin
-/*/*/*/*/obj
-
-/*/.vs
-/*/*/.vs
-/*/*/*/.vs
-/*/*/*/*/.vs
-_ReSharper.Caches
+/*/packages
+/*/*/packages

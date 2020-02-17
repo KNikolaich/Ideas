@@ -1,0 +1,27 @@
+﻿@using DXWebApplication.Models
+@model System.Collections.Generic.IList<DXWebApplication.Models.EditableProduct>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#editMode").change(function(){
+            gvEditing.PerformCallback({ editMode: $("#editMode").val() });
+        });
+    });
+</script>
+
+<div>
+    <div style="padding-bottom:15px;">
+        <label for="editMode">Edit Mode:</label>
+        @Html.DropDownList("editMode", new SelectList(GridViewEditingDemosHelper.AvailableEditModesList, GridViewEditingDemosHelper.EditMode), new { style = "width: 200px;" })
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("EditModesPartial", Model)
+}

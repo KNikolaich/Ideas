@@ -13,7 +13,7 @@ namespace Core
     {
         public override string ToString()
         {
-            return $"{UserName } ({Login}) {Role}";
+            return $"{UserName } ({Login}) ";
         }
 
         public int GetLastWeekNumber()
@@ -43,6 +43,9 @@ namespace Core
 
     public partial class Task : IModelSupp
     {
+
+        public virtual string ProjectName => Project?.ProjectName;
+
         public override string ToString()
         {
             return $"{User} ({Duration}) {Date:M}";

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 using Core;
-using System.Threading.Tasks;
 using Core.Model;
-using Task = Core.Task;
 
 
 namespace StaffTimes
@@ -14,10 +15,14 @@ namespace StaffTimes
     /// </summary>
     public class GeneralFormFinder
     {
-        private DateTime? _dateOfLock;
+        /// <summary>
+        /// Формат вывода даты в различных местах
+        /// </summary>
+        internal string FormatDate = "dd MMMM";
 
         internal GeneralFormFinder()
         {
+            DbAdapter = new ContextAdapter();
             ProjectIds = new List<int>();
             InitDates();
         }
@@ -35,57 +40,66 @@ namespace StaffTimes
         internal User CurrentUser { get; set; }
 
         internal bool ShowAllUsers { get; set; }
-        public ContextAdapter Db { get; set; }
 
+        internal ContextAdapter DbAdapter { get; }
 
-        internal Tuple<DateTime, int> CalcNewDate(int idUser)
+        public override string ToString()
         {
-            IList<Task> tasks = Db.Tasks.Where(t => t.UserId == idUser && t.Date >= StartDate && t.Date <= EndDate)
-                .ToList();
-            int sumdaily = -1;
-            DateTime lastDate = DateTime.Today;
-            foreach (var task in tasks.OrderBy(t => t.Date))
+            return $"Разрешено редактирование с {_dateOfLock?.AddDays(1).ToString(FormatDate) ?? StartDate.ToString(FormatDate)}. Показано: с {StartDate.ToString(FormatDate)} по {EndDate.ToString(FormatDate)}";
+        }
+
+        internal Tuple<DateTime, int> CalcNewDate(DataTable tasks)
+        {
+            var grouppedBy = tasks.Rows.Cast<DataRow>().Where(t=>(int)t["UserId"] == CurrentUser.Id).OrderBy(t => Convert.ToDateTime(t["Date"]).Ticks).GroupBy(t => t["Date"]);
+            var dateLock = GetDateOfLock();
+            DateTime maxDate = StartDate;
+            foreach (IGrouping<object, DataRow> group in grouppedBy)
             {
-                if (sumdaily == -1) // первый прогон
+                var groupDate = Convert.ToDateTime(group.Key);
+                if (!dateLock.HasValue || groupDate > dateLock)
                 {
-                    lastDate = task.Date;
-                    sumdaily = task.Duration;
-                }
-                else if (lastDate == task.Date)
-                {
-                    sumdaily += task.Duration;
-                }
-                else if (sumdaily < 8)
-                {
-                    return new Tuple<DateTime, int>(lastDate, 8 - sumdaily);
-                }
-                else
-                {
-                    lastDate = task.Date;
-                    sumdaily = task.Duration;
-                }
-            }
-            if (sumdaily != -1)
-            {
-                if (sumdaily == 8) // полный день , передвигаем относительно последнего исследованного
-                {
-                    if (lastDate.DayOfWeek == DayOfWeek.Friday)
-                        lastDate = lastDate.AddDays(3); // перескакиваем выходные
-                    else
+                    var sumDurations = group.Sum(t => (int) t["Duration"]);
+                    if (sumDurations < 8)
+                        return new Tuple<DateTime, int>(groupDate, 8 - sumDurations);
+
+                    if (groupDate > maxDate)
                     {
-                        lastDate = lastDate.AddDays(1); // берем следующий день
+                        if (maxDate != StartDate && (groupDate - maxDate).Days > 1)
+                        {
+                            if (maxDate.DayOfWeek != DayOfWeek.Friday)
+                            {
+                                return new Tuple<DateTime, int>(maxDate.AddDays(1), 8);
+                            }
+                            if ((groupDate - maxDate).Days > 3) // возвращаем понедельник
+                            {
+                                return new Tuple<DateTime, int>(maxDate.AddDays(3), 8);
+                            }
+
+                        }
+                            
+                        maxDate = groupDate;
                     }
-                    return new Tuple<DateTime, int>(lastDate, sumdaily);
+
+                }
+                 
+            }
+            if (maxDate < EndDate)
+            {
+                if (maxDate.DayOfWeek != DayOfWeek.Friday)
+                {
+                    maxDate = maxDate.AddDays(1);
+                }
+                else if ((EndDate - maxDate).Days > 3) // возвращаем понедельник
+                {
+                    maxDate = maxDate.AddDays(3);
                 }
                 else
                 {
-                    return new Tuple<DateTime, int>(lastDate, sumdaily < 8 ? (8 - sumdaily) : sumdaily);
+                    maxDate = EndDate;
                 }
             }
-            else
-            {
-                return new Tuple<DateTime, int>(lastDate, 8);
-            }
+
+            return new Tuple<DateTime, int>(maxDate, 8);
         }
 
         private void InitDates()
@@ -108,24 +122,95 @@ namespace StaffTimes
             EndDate = dtList.Max();
         }
 
+        public DataTable GetDataTableUser()
+        {
+            return DbAdapter.GetDataTableUser(true);
+        }
+
+        internal void FiltredDataTableProjects(DataTable dtProject, bool clearFilter = false)
+        {
+            if (ProjectIds.Count > 0 && !clearFilter)
+                dtProject.DefaultView.RowFilter = $"ProjectId in ({ProjectIds.Aggregate("", (s, id) => s + id + ",").TrimEnd(',')})"; // query example = "id = 10"
+            else
+            {
+                dtProject.DefaultView.RowFilter = "";
+            }
+        }
+
+        internal DataTable GetDataTableProjects(bool allLoad = false)
+        {
+            DataTable dt = DbAdapter.GetDataTableProjects();
+            return dt;
+        }
 
         public IList<Project> GetSelectProjects(params int[] ids)
         {
+            
             var idsEmpty = ids.Length == 0;
-            return Db.Projects.Where(p => idsEmpty || ids.Contains(p.Id)).ToList();
+            return DbAdapter.Projects.Where(p => idsEmpty || ids.Contains(p.Id)).ToList();
         }
 
         public void RecalcActiveProjects()
         {
-            var queryable = Db.ActiveProjectOnStaff(CurrentUser).Select(act => act.ProjectId);
+            var queryable = DbAdapter.ActiveProjectOnStaff(CurrentUser).Select(act => act.ProjectId);
             ProjectIds = queryable.ToList();
         }
+
+        #region Для обработки блокировки по дате
+
+        private DateTime? _dateOfLock;
 
         public DateTime? GetDateOfLock(bool needRefresh = false)
         {
             if(needRefresh)
-                _dateOfLock = Db.GetDateOfLock();
+                _dateOfLock = DbAdapter.GetDateOfLock();
             return _dateOfLock;
+        }
+
+        #endregion
+
+        public void DeleteTask(int id)
+        {
+            DbAdapter.Delete<Task>(id);
+        }
+
+        public DataTable GetDataTableTasks()
+        {
+
+            var userId = IsAdmin && ShowAllUsers ? -1 : UserId;
+            var tableTasks = DbAdapter.GetDataTableTasks(userId, StartDate, EndDate);
+            return tableTasks;
+        }
+
+        public bool ValidateTask(DataRowView drw, bool isNewRow)
+        {
+            if (_dateOfLock?.Date > Convert.ToDateTime(drw["Date"]))
+            {
+                MessageBox.Show("Необходимо исправить дату.", "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return DbAdapter.GreateOrUpdateRow<Task>(drw, isNewRow);
+        }
+
+        /// <summary> берем либо дату начала, либо дату блокировки в качестве минималки для редактирования </summary>
+        /// <returns></returns>
+        public DateTime GetMinData()
+        {
+            return !_dateOfLock.HasValue || _dateOfLock.Value <= StartDate ? StartDate : _dateOfLock.Value.AddDays(1);
+        }
+
+        /// <summary>
+        /// гкенерирует перечислятор дат с начала периода до его окончания, за вычетом выходных
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DateTime> ColumnFromDatesGenarator()
+        {
+            var currDate = StartDate;
+            while (currDate<=EndDate)
+            {
+                yield return currDate;
+                currDate = currDate.DayOfWeek == DayOfWeek.Friday ? currDate.AddDays(3) : currDate.AddDays(1);
+            }
         }
     }
 }
