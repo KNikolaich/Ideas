@@ -1,0 +1,15 @@
+﻿@model WebApplication1.ConfigurationEditModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+<form method="post">
+    <label for="name">Имя</label><br />
+    <input type="text" name="name" id="name" /><br /><br />
+    <label for="age">Возраст</label><br />
+    <input type="number" name="age" id="age" /><br /><br />
+    <input type="submit" value="Оправить" />
+</form>

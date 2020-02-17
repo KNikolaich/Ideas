@@ -1,0 +1,15 @@
+﻿html {
+    min-height: 100%;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    overflow-wrap: touch;
+}
+
+body {
+    min-height: 100%;
+    color: #252525;
+    line-height: 1.4;
+    padding: 0;
+    min-width: 320px;
+    background-color: #fff;
+}

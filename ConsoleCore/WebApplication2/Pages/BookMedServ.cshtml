@@ -1,0 +1,36 @@
+﻿@page
+@model WebApplication2.Pages.BookMedServModel
+@{
+    ViewData["Title"] = "Ввод данных";
+}
+
+
+<div class="col-lg-12">
+    <h2>@Model.Message</h2>
+    <form method="post" class="col-lg-4">
+        <label for="idLpu">ЛПУ</label><br />
+        <input type="text" name="idLpu" id="idLpu" value="@Model.Booking.idLpu" /><br /><br />
+        <label for="idPat">идентификатор Пациента</label><br />
+        <input type="number" name="idPat" id="idPat" value="@Model.Booking.idPat" /><br /><br />
+        <label for="idMedExam">идентификатор CCName</label><br />
+        <input type="text" name="idMedExam" id="idMedExam" value="@Model.Booking.idMedicalExamination" /><br /><br />
+
+        <label for="idMedicalService">idMedicalService</label><br />
+        <input type="text" name="idMedicalService" id="idMedicalService" value="@Model.Booking.idMedicalService" /><br /><br />
+
+        <label for="idMedicalResource">Ресурс</label><br />
+        <input type="text" name="idMedicalResource" id="idMedicalResource" value="@Model.Booking.idMedicalResource" /><br /><br />
+
+        <label for="idSlot">Доступный слот</label><br />
+        <input type="text" name="idSlot" id="idSlot" value="@Model.Booking.idSlot" /><br /><br />
+
+        <label for="visitStart">дата</label><br />
+        <input type="datetime" name="visitStart" id="visitStart" value="@Model.Booking.visitStart" /><br /><br />
+
+        <input type="submit" value="Оправить" />
+    </form>
+
+    <div class="col-lg-8">
+        <h3>@Model.Result</h3>
+    </div>
+</div>

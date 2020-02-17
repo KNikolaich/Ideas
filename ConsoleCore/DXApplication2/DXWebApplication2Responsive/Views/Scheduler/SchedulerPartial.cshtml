@@ -1,0 +1,9 @@
+@model DXWebApplication2Responsive.Model.SchedulerDataSource
+
+@{
+    var scheduler = Html.DevExpress().Scheduler(DXWebApplication2Responsive.Model.SchedulerHelper.Settings);
+    if(ViewBag.GeneralError != null) {
+        scheduler.SetErrorText(ViewBag.GeneralError);
+    }
+}
+@scheduler.Bind(Model.Appointments, Model.Resources).GetHtml()

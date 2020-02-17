@@ -217,15 +217,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client.Domain\Binance.API.Csharp.Client.Domain.csproj">
+    <ProjectReference Include="..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client.Domain\Binance.API.Csharp.Client.Domain.csproj">
       <Project>{E255F763-A2FE-43A8-9331-019796C935C7}</Project>
       <Name>Binance.API.Csharp.Client.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client.Models\Binance.API.Csharp.Client.Models.csproj">
+    <ProjectReference Include="..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client.Models\Binance.API.Csharp.Client.Models.csproj">
       <Project>{7cf40eb8-d81d-40b5-b849-17e5662175d6}</Project>
       <Name>Binance.API.Csharp.Client.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client\Binance.API.Csharp.Client.csproj">
+    <ProjectReference Include="..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client\Binance.API.Csharp.Client.csproj">
       <Project>{ec2a020e-338a-46ee-9d08-c158cbd49c92}</Project>
       <Name>Binance.API.Csharp.Client</Name>
     </ProjectReference>

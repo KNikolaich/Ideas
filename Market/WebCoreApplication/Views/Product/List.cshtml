@@ -1,0 +1,18 @@
+﻿@model ProductsListViewModel
+
+@{
+    ViewBag.Title = "Спортивный магазин";
+    Layout = "_ViewStart";
+}
+
+@foreach (var p in Model.Products)
+{
+    @HtmlHelperPartialExtensions.Partial(Html, "ProductSummary", p)
+}
+
+
+<div page-model="@Model.Paginginfo" page-action="List" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-light"
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+    class="btn-group-sm pull-right">
+</div>

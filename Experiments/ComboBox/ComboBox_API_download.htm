@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>ComboBox API</title>
+</head>
+
+<body>
+<body>
+<div id="contentDiv">
+
+
+<div class="webfx-main-body">
+<!-- end WebFX Layout Includes -->
+<h2>ComboBox</h2>
+
+<p>This object type creates a windows-like combobox, a bit like the address bar of Internet Explorer.</p>
+
+<h3>Constructor</h3>
+
+<pre>new ComboBox(sName[,oContainer])</pre>
+
+<table >
+<thead><tr>
+	<td>Name</td>
+	<td>Description</td>
+</tr></thead>
+<tbody>
+<tr>
+	<td>sName</td>
+	<td valign="top">A string equal to the variable you set the ComboBox to<br>
+     ( <code>sName=new ComboBox("sName")</code> ).</td>
+</tr>
+<tr>
+	<td valign="top">oContainer</td>
+	<td>A reference to the object that should contain the <br>
+     ComboBox. This eliminates a nasty bug I was running into<br>
+     with the appendChild method. This parameter is optional,<br>
+     if you don't specify one, the document.body is used as <br>
+     the parent.
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+
+<table >
+<thead><tr>
+	<td>Name</td>
+	<td>Description</td>
+</tr></thead>
+<tbody>
+<tr>
+	<td>view</td>
+	<td valign="top">Returns a referrence to the actual HTML element (div) of<br>
+     the ComboBox.</td>
+</tr>
+<tr>
+	<td valign="top">value</td>
+	<td>Returns a string that is the value of the ComboBox.</td>
+</tr>
+<tr>
+	<td>txtview</td>
+	<td valign="top">Returns a referrence to the actual HTML input text box of the<br>
+    ComboBox.</td>
+</tr>
+<tr>
+	<td>valcon</td>
+	<td valign="top">Returns a referrence to the actual HTML hidden input field of<br>
+    the ComboBox (which stores the real value).</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Methods</h3>
+
+<table >
+<thead><tr>
+	<td>Name</td>
+	<td>Description</td>
+</tr></thead>
+<tbody>
+<tr>
+	<td>add(oCmBxIm)</td>
+	<td>Adds one or more ComboBoxItem's to the ComboBox.</td>
+</tr>
+<tr>
+	<td>toggle()</td>
+	<td>Expand/collapses the ComboBox options list.</td>
+</tr>
+<tr>
+	<td>choose(text,value)</td>
+	<td>Chooses a new value for the ComboBox and text for<br> the textbox.</td>
+</tr>
+<tr>
+	<td>remove(iIndex)</td>
+	<td valign="top">Removes an index option at the specified index from  <br>the full
+    ComboBox list.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>ComboBoxItem</h2>
+
+<p>This object type creates an item for the ComboBox object above.</p>
+
+<h3>Constructor</h3>
+
+<pre>new ComboBoxItem(sText,sValue)</pre>
+
+<table >
+<thead><tr>
+	<td>Name</td>
+	<td>Description</td>
+</tr></thead>
+<tbody>
+<tr>
+	<td>sText</td>
+	<td>A string to show the user for the list item.</td>
+</tr>
+<tr>
+	<td>sValue</td>
+	<td>A string to be the actual value of the list item.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+
+<table >
+<thead><tr>
+	<td>Name</td>
+	<td>Description</td>
+</tr></thead>
+<tbody>
+<tr>
+	<td>text</td>
+	<td>A string to show the user for the list item.</td>
+</tr>
+<tr>
+	<td>value</td>
+	<td>A string to be the actual value of the list item.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Methods</h3>
+
+<table >
+<thead><tr>
+	<td>Name</td>
+	<td>Description</td>
+</tr></thead>
+<tbody>
+<tr>
+	<td colspan="2">There are no methods for this object.</td>
+</tr>
+</tbody>
+</table>
+
+<p class="author">Author: Jared Nuzzolillo</p>
+
+</body>
+</html>

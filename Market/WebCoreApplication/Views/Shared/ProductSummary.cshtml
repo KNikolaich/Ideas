@@ -1,0 +1,21 @@
+﻿@model WebCoreApplication.Models.Product
+
+<div class="well well-sm">
+    
+        <h4>
+            <strong class="">@Model.Name</strong>
+            <span class="pull-right label label-primary">@($"{Model.Price:C2}")</span>
+            <br />
+        </h4>
+        <form id="@Model.Id" asp-action="AddToCart" asp-controller="Cart" method="post">
+            <input type="hidden" asp-for="Id"/>
+            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()"/>
+            <span class="lead">
+                <button type="submit" class="btn btn-success btn-sm pull-right">
+                    В корзину
+                </button>
+                <h5>@Model.Description</h5>
+                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            </span>
+        </form>
+</div>

@@ -1,0 +1,17 @@
+﻿@using WebCoreApplication.Infrastructure
+
+@{
+    ViewBag.Title = "Магазин";
+    Layout = "_Layout";
+}
+<div class="row panel">
+    <div id="categories" class="col-xs-3">
+        @await Component.InvokeAsync("NavigationMenu")
+    </div>
+    <div class="col-xs-8">
+        @RenderBody()
+    </div>
+</div>
+
+
+<!-- end main -->

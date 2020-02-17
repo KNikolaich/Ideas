@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewBag.Title = "Список ордеров";
+    Layout = "_Simple";
+}
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <tr><th>наименование</th><th>индекс</th><th colspan="2">детали</th><th></th></tr>
+        @foreach (Order o in Model)
+        {
+            <tr>
+                <td>@o.Name</td>
+                <td>@o.Zip</td>
+                <th>товар</th>
+                <th>кол-во</th>
+                <td>
+                    <form asp-action="MarkShipped" method="post">
+                        <input type="hidden" name="orderid" value="@o.Id"/>
+                        <button type="submit" class="btn btn-sm btn-danger">отправить</button>
+                    </form>
+                </td>
+            </tr>
+
+            foreach (CartLine line in o.Lines)
+             {
+                 <tr>
+                     <td colspan="2"></td>
+                     <td>@line.Product.Name</td>
+                     <td>@line.Quantity</td>
+                     <td></td>
+                 </tr>
+             }
+        }
+    </table>
+}
+else
+{
+    <div class="text-center">Нет не отпревленных заказов</div>
+}

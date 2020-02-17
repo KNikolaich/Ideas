@@ -1,0 +1,53 @@
+@model DXWebApplication2Responsive.AviceN3ExamServiceReference.MedicalExamination
+
+
+@Html.DevExpress().DataView(settings => {
+    settings.Name = "MedicalExaminationDataView";
+    //settings.CallbackRouteValues = new { Controller = "AviceN3Exam", Action = "_MedicalExaminationPartial" };
+    settings.AllowPaging = true;
+    settings.SettingsTableLayout.RowsPerPage = 15;
+    settings.SettingsTableLayout.ColumnCount = 3;
+    settings.SetItemTemplateContent(c => {
+        ViewContext.Writer.Write(
+            "<table>" +
+            "<tr>" +
+
+            "<td><b>IdMedicalService:</b></td>" +
+            "<td colspan=\"2\"><span>" + DataBinder.Eval(c.DataItem, "IdMedicalService") + "</span></td>" +
+
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Status:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceStatus") + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Reason:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceUnavailableReason") + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Required:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceRequired") + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Name:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceName") + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Conditions:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceConditions") + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Comment:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceComment") + "</span></td>" +
+            "</tr>" + 
+            "<tr>" +
+            "<td><b>Code:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceCode") + "</span></td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td><b>Booking:</b></td>" +
+            "<td><span>" + DataBinder.Eval(c.DataItem, "MedicalServiceBooking") + "</span></td>" +
+            "</tr>" +
+            "</table>");
+    });
+}).Bind(Model.ListMedicalService).GetHtml()

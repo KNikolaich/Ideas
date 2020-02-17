@@ -1,0 +1,56 @@
+﻿@using WebCoreApplication.Data
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport " content="width=device-width" />
+    <link rel="stylesheet"
+          asp-href-include="/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <link rel="stylesheet" href="/css/bundle.css" />
+    <title>@ViewBag.Title</title>
+
+    <style>
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
+    </style>
+
+    <script asp-src-include="/lib/jquery/**/jquery.min.js"></script>
+    <script asp-src-include="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+    @*<script asp-src-include="/lib/jquery-validation/**/jquery.validat.min.js"></script>*@
+    <script asp-src-include="/lib/jquery-validation-unobtrusive/**/*.min.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse" role="navigation">
+        <ul>
+            <li class="nav navbar-brand text-black-50"><a class="fa fa-hammer" href="/"> @ViewBag.Title</a></li>
+            <li class="nav navbar-brand  pull-right"> @await Component.InvokeAsync("CartSummary")</li>
+        </ul>
+        
+        <div>
+           
+
+        </div>
+    </div>
+    <div>
+        <div class="container panel-body">
+            @RenderBody()
+
+        </div>
+
+        <footer class="panel-footer navbar-fixed-bottom  position-fixed ">
+            <ul class="nav  nav-pills collapsed">
+                <li><a class="nav text-left glyphicon-text-color" href="/"><i class="fa fa-home"> в начало </i></a></li>
+                <li><a class="text-left" asp-controller="Order" asp-action="List"><i class=" fa fa-address-book"> ордеры </i></a></li>
+                <li><a class="text-left" asp-controller="Admin" asp-action="Index"><i class="fa fa-angry"> правим товары </i></a></li>
+                <li class="pull-right text-info"><a><i class="fa fa-angle-right">@TimerStarter.GetString() </i></a></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+
+</html> 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1f8eb6a55014db9a4f8892455fd36e6" Name="Diagram1" ZoomLevel="92" >
+        <EntityTypeShape EntityType="StaffTimeDb.Project" Width="1.5" PointX="3.125" PointY="0.625" />
+        <EntityTypeShape EntityType="StaffTimeDb.User" Width="1.5" PointX="3.125" PointY="3.5" />
+        <EntityTypeShape EntityType="StaffTimeDb.Task" Width="1.5" PointX="5.625" PointY="1.75" />
+        <AssociationConnector Association="StaffTimeDb.ProjectTask" />
+        <AssociationConnector Association="StaffTimeDb.UserTasks" />
+        <EntityTypeShape EntityType="StaffTimeDb.Property" Width="1.5" PointX="7.25" PointY="1.125" />
+        <EntityTypeShape EntityType="StaffTimeDb.ActiveProjectOnStaff" Width="1.5" PointX="0.875" PointY="2.375" />
+        <AssociationConnector Association="StaffTimeDb.ActiveProjectOnStaffUser" />
+        <AssociationConnector Association="StaffTimeDb.ProjectActiveProjectOnStaff" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -423,5 +423,9 @@
             <param name="apiKey">API key from the Settings page.</param>
             <param name="secretKey">Secret key from the Settings page.</param>
         </member>
+        <member name="T:HitBtcApi.Errors">
+             Ошибки
+            
+        </member>
     </members>
 </doc>

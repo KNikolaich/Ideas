@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AviceEnterpriseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BusinessAgent_Enterprise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DerivedType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VersionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SessionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="idSmo" Type="bigint" />
+          <Property Name="HospitalGroup" Type="nvarchar" MaxLength="30" />
+          <Property Name="EnterpriseID" Type="uniqueidentifier" />
+          <Property Name="IsDMSInsurer" Type="bit" />
+          <Property Name="IsOMSInsurer" Type="bit" />
+          <Property Name="IsInsurer" Type="bit" Nullable="false" />
+          <Property Name="IsEmployer" Type="bit" Nullable="false" />
+          <Property Name="IsOU" Type="bit" />
+          <Property Name="IsDOU" Type="bit" />
+          <Property Name="IsDirection" Type="bit" Nullable="false" />
+          <Property Name="IsForTFG" Type="bit" Nullable="false" />
+          <Property Name="IsOutpatientClinic" Type="bit" Nullable="false" />
+          <Property Name="IsInpatientClinic" Type="bit" Nullable="false" />
+          <Property Name="IsLocalInsurer" Type="bit" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameForTempDisability" Type="nvarchar" MaxLength="29" />
+          <Property Name="RegistryNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="OuterAgentDirectF66_1" Type="bigint" />
+          <Property Name="WhereDischargedF66_1" Type="bigint" />
+          <Property Name="CodeForNetrika" Type="int" />
+          <Property Name="LPUType" Type="bigint" />
+          <Property Name="AdmRegionForNetrikaID" Type="uniqueidentifier" />
+          <Property Name="DirectionTypeID" Type="uniqueidentifier" />
+          <Property Name="IsPND" Type="bit" />
+          <Property Name="IsPB" Type="bit" />
+          <Property Name="IsAttach" Type="bit" />
+          <Property Name="OrganisationOfReceipt" Type="bit" Nullable="false" />
+          <Property Name="IsCourt" Type="bit" />
+          <Property Name="IsSanatorium" Type="bit" />
+          <Property Name="LateRehabilitation" Type="bit" />
+          <Property Name="IsExternalMO" Type="bit" Nullable="false" />
+          <Property Name="IsFor57Form" Type="bit" Nullable="false" />
+          <Property Name="IsDoverAgent" Type="bit" />
+        </EntityType>
+        <EntityType Name="Enterprise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DerivedType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VersionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SessionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChiefAccountant" Type="nvarchar" MaxLength="100" />
+          <Property Name="LeaderDative" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="250" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
+          <Property Name="LiscenseDate" Type="datetime" />
+          <Property Name="LiscenceNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="LiscenseIssue" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="90" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="OGRN" Type="nvarchar" MaxLength="50" />
+          <Property Name="INN" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Account" Type="nvarchar" MaxLength="150" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="250" />
+          <Property Name="BankCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="KorrAccount" Type="nvarchar" MaxLength="150" />
+          <Property Name="BIK" Type="nvarchar" MaxLength="50" />
+          <Property Name="KPP" Type="nvarchar" MaxLength="50" />
+          <Property Name="OKPO" Type="nvarchar" MaxLength="50" />
+          <Property Name="OKVED" Type="nvarchar" MaxLength="150" />
+          <Property Name="Info" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="FactAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="SettlementAccount" Type="nvarchar" MaxLength="150" />
+          <Property Name="PersonalAccount" Type="nvarchar" MaxLength="150" />
+          <Property Name="BudgetAccount" Type="nvarchar" MaxLength="30" />
+          <Property Name="Leader" Type="nvarchar" MaxLength="100" />
+          <Property Name="OKONX" Type="nvarchar" MaxLength="30" />
+          <Property Name="OKOGY" Type="nvarchar" MaxLength="30" />
+          <Property Name="EVRO" Type="nvarchar" MaxLength="30" />
+          <Property Name="OKTMO" Type="nvarchar" MaxLength="30" />
+          <Property Name="EGRN" Type="nvarchar" MaxLength="30" />
+          <Property Name="OKATO" Type="nvarchar" MaxLength="30" />
+          <Property Name="OKFS" Type="nvarchar" MaxLength="30" />
+          <Property Name="OKOPF" Type="nvarchar" MaxLength="30" />
+          <Property Name="OMSCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="DerivedTypeID" Type="int" />
+          <Property Name="RFRegionID" Type="uniqueidentifier" />
+          <Property Name="KBK" Type="nvarchar" MaxLength="30" />
+          <Property Name="CodeCardioRegister" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodeOMSCardioRegister" Type="nvarchar" MaxLength="50" />
+          <Property Name="FOMSCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IEMKCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FedCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MDLPSubjectId" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="OurEnterprise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DerivedType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VersionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SessionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GiveTempDisability" Type="bit" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsTempDisabilityByDefault" Type="bit" />
+          <Property Name="EnterpriseID" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID">
+          <End Role="Enterprise" Type="Self.Enterprise" Multiplicity="0..1" />
+          <End Role="BusinessAgent_Enterprise" Type="Self.BusinessAgent_Enterprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enterprise">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BusinessAgent_Enterprise">
+              <PropertyRef Name="EnterpriseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enterprise_OurEnterprise_EnterpriseID">
+          <End Role="Enterprise" Type="Self.Enterprise" Multiplicity="0..1" />
+          <End Role="OurEnterprise" Type="Self.OurEnterprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enterprise">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OurEnterprise">
+              <PropertyRef Name="EnterpriseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AviceEnterpriseModelStoreContainer">
+          <EntitySet Name="BusinessAgent_Enterprise" EntityType="Self.BusinessAgent_Enterprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enterprise" EntityType="Self.Enterprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OurEnterprise" EntityType="Self.OurEnterprise" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID" Association="Self.FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID">
+            <End Role="Enterprise" EntitySet="Enterprise" />
+            <End Role="BusinessAgent_Enterprise" EntitySet="BusinessAgent_Enterprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enterprise_OurEnterprise_EnterpriseID" Association="Self.FK_Enterprise_OurEnterprise_EnterpriseID">
+            <End Role="Enterprise" EntitySet="Enterprise" />
+            <End Role="OurEnterprise" EntitySet="OurEnterprise" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AviceEnterpriseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BusinessAgent_Enterprise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="DerivedType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VersionID" Type="Guid" Nullable="false" />
+          <Property Name="SessionID" Type="Guid" Nullable="false" />
+          <Property Name="idSmo" Type="Int64" />
+          <Property Name="HospitalGroup" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EnterpriseID" Type="Guid" />
+          <Property Name="IsDMSInsurer" Type="Boolean" />
+          <Property Name="IsOMSInsurer" Type="Boolean" />
+          <Property Name="IsInsurer" Type="Boolean" Nullable="false" />
+          <Property Name="IsEmployer" Type="Boolean" Nullable="false" />
+          <Property Name="IsOU" Type="Boolean" />
+          <Property Name="IsDOU" Type="Boolean" />
+          <Property Name="IsDirection" Type="Boolean" Nullable="false" />
+          <Property Name="IsForTFG" Type="Boolean" Nullable="false" />
+          <Property Name="IsOutpatientClinic" Type="Boolean" Nullable="false" />
+          <Property Name="IsInpatientClinic" Type="Boolean" Nullable="false" />
+          <Property Name="IsLocalInsurer" Type="Boolean" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NameForTempDisability" Type="String" MaxLength="29" FixedLength="false" Unicode="true" />
+          <Property Name="RegistryNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OuterAgentDirectF66_1" Type="Int64" />
+          <Property Name="WhereDischargedF66_1" Type="Int64" />
+          <Property Name="CodeForNetrika" Type="Int32" />
+          <Property Name="LPUType" Type="Int64" />
+          <Property Name="AdmRegionForNetrikaID" Type="Guid" />
+          <Property Name="DirectionTypeID" Type="Guid" />
+          <Property Name="IsPND" Type="Boolean" />
+          <Property Name="IsPB" Type="Boolean" />
+          <Property Name="IsAttach" Type="Boolean" />
+          <Property Name="OrganisationOfReceipt" Type="Boolean" Nullable="false" />
+          <Property Name="IsCourt" Type="Boolean" />
+          <Property Name="IsSanatorium" Type="Boolean" />
+          <Property Name="LateRehabilitation" Type="Boolean" />
+          <Property Name="IsExternalMO" Type="Boolean" Nullable="false" />
+          <Property Name="IsFor57Form" Type="Boolean" Nullable="false" />
+          <Property Name="IsDoverAgent" Type="Boolean" />
+          <NavigationProperty Name="Enterprise" Relationship="Self.FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID" FromRole="BusinessAgent_Enterprise" ToRole="Enterprise" />
+        </EntityType>
+        <EntityType Name="Enterprise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="DerivedType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VersionID" Type="Guid" Nullable="false" />
+          <Property Name="SessionID" Type="Guid" Nullable="false" />
+          <Property Name="ChiefAccountant" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LeaderDative" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LiscenseDate" Type="DateTime" Precision="3" />
+          <Property Name="LiscenceNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LiscenseIssue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OGRN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="INN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Account" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BankCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KorrAccount" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BIK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KPP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OKPO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OKVED" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FactAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SettlementAccount" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalAccount" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BudgetAccount" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Leader" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OKONX" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OKOGY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EVRO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OKTMO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EGRN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OKATO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OKFS" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OKOPF" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OMSCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DerivedTypeID" Type="Int32" />
+          <Property Name="RFRegionID" Type="Guid" />
+          <Property Name="KBK" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CodeCardioRegister" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodeOMSCardioRegister" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FOMSCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IEMKCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FedCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MDLPSubjectId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BusinessAgent_Enterprise" Relationship="Self.FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID" FromRole="Enterprise" ToRole="BusinessAgent_Enterprise" />
+          <NavigationProperty Name="OurEnterprise" Relationship="Self.FK_Enterprise_OurEnterprise_EnterpriseID" FromRole="Enterprise" ToRole="OurEnterprise" />
+        </EntityType>
+        <EntityType Name="OurEnterprise">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="DerivedType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VersionID" Type="Guid" Nullable="false" />
+          <Property Name="SessionID" Type="Guid" Nullable="false" />
+          <Property Name="GiveTempDisability" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsTempDisabilityByDefault" Type="Boolean" />
+          <Property Name="EnterpriseID" Type="Guid" />
+          <NavigationProperty Name="Enterprise" Relationship="Self.FK_Enterprise_OurEnterprise_EnterpriseID" FromRole="OurEnterprise" ToRole="Enterprise" />
+        </EntityType>
+        <Association Name="FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID">
+          <End Role="Enterprise" Type="Self.Enterprise" Multiplicity="0..1" />
+          <End Role="BusinessAgent_Enterprise" Type="Self.BusinessAgent_Enterprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enterprise">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BusinessAgent_Enterprise">
+              <PropertyRef Name="EnterpriseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enterprise_OurEnterprise_EnterpriseID">
+          <End Role="Enterprise" Type="Self.Enterprise" Multiplicity="0..1" />
+          <End Role="OurEnterprise" Type="Self.OurEnterprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enterprise">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OurEnterprise">
+              <PropertyRef Name="EnterpriseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ROSCHINO_1607Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BusinessAgent_Enterprise" EntityType="Self.BusinessAgent_Enterprise" />
+          <EntitySet Name="Enterprise" EntityType="Self.Enterprise" />
+          <EntitySet Name="OurEnterprise" EntityType="Self.OurEnterprise" />
+          <AssociationSet Name="FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID" Association="Self.FK_Enterprise_BusinessAgent_Enterprise_EnterpriseID">
+            <End Role="Enterprise" EntitySet="Enterprise" />
+            <End Role="BusinessAgent_Enterprise" EntitySet="BusinessAgent_Enterprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enterprise_OurEnterprise_EnterpriseID" Association="Self.FK_Enterprise_OurEnterprise_EnterpriseID">
+            <End Role="Enterprise" EntitySet="Enterprise" />
+            <End Role="OurEnterprise" EntitySet="OurEnterprise" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AviceEnterpriseModelStoreContainer" CdmEntityContainer="ROSCHINO_1607Entities">
+          <EntitySetMapping Name="BusinessAgent_Enterprise">
+            <EntityTypeMapping TypeName="AviceEnterpriseModel.BusinessAgent_Enterprise">
+              <MappingFragment StoreEntitySet="BusinessAgent_Enterprise">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DerivedType" ColumnName="DerivedType" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="idSmo" ColumnName="idSmo" />
+                <ScalarProperty Name="HospitalGroup" ColumnName="HospitalGroup" />
+                <ScalarProperty Name="EnterpriseID" ColumnName="EnterpriseID" />
+                <ScalarProperty Name="IsDMSInsurer" ColumnName="IsDMSInsurer" />
+                <ScalarProperty Name="IsOMSInsurer" ColumnName="IsOMSInsurer" />
+                <ScalarProperty Name="IsInsurer" ColumnName="IsInsurer" />
+                <ScalarProperty Name="IsEmployer" ColumnName="IsEmployer" />
+                <ScalarProperty Name="IsOU" ColumnName="IsOU" />
+                <ScalarProperty Name="IsDOU" ColumnName="IsDOU" />
+                <ScalarProperty Name="IsDirection" ColumnName="IsDirection" />
+                <ScalarProperty Name="IsForTFG" ColumnName="IsForTFG" />
+                <ScalarProperty Name="IsOutpatientClinic" ColumnName="IsOutpatientClinic" />
+                <ScalarProperty Name="IsInpatientClinic" ColumnName="IsInpatientClinic" />
+                <ScalarProperty Name="IsLocalInsurer" ColumnName="IsLocalInsurer" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="NameForTempDisability" ColumnName="NameForTempDisability" />
+                <ScalarProperty Name="RegistryNumber" ColumnName="RegistryNumber" />
+                <ScalarProperty Name="OuterAgentDirectF66_1" ColumnName="OuterAgentDirectF66_1" />
+                <ScalarProperty Name="WhereDischargedF66_1" ColumnName="WhereDischargedF66_1" />
+                <ScalarProperty Name="CodeForNetrika" ColumnName="CodeForNetrika" />
+                <ScalarProperty Name="LPUType" ColumnName="LPUType" />
+                <ScalarProperty Name="AdmRegionForNetrikaID" ColumnName="AdmRegionForNetrikaID" />
+                <ScalarProperty Name="DirectionTypeID" ColumnName="DirectionTypeID" />
+                <ScalarProperty Name="IsPND" ColumnName="IsPND" />
+                <ScalarProperty Name="IsPB" ColumnName="IsPB" />
+                <ScalarProperty Name="IsAttach" ColumnName="IsAttach" />
+                <ScalarProperty Name="OrganisationOfReceipt" ColumnName="OrganisationOfReceipt" />
+                <ScalarProperty Name="IsCourt" ColumnName="IsCourt" />
+                <ScalarProperty Name="IsSanatorium" ColumnName="IsSanatorium" />
+                <ScalarProperty Name="LateRehabilitation" ColumnName="LateRehabilitation" />
+                <ScalarProperty Name="IsExternalMO" ColumnName="IsExternalMO" />
+                <ScalarProperty Name="IsFor57Form" ColumnName="IsFor57Form" />
+                <ScalarProperty Name="IsDoverAgent" ColumnName="IsDoverAgent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enterprise">
+            <EntityTypeMapping TypeName="AviceEnterpriseModel.Enterprise">
+              <MappingFragment StoreEntitySet="Enterprise">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DerivedType" ColumnName="DerivedType" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ChiefAccountant" ColumnName="ChiefAccountant" />
+                <ScalarProperty Name="LeaderDative" ColumnName="LeaderDative" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="LiscenseDate" ColumnName="LiscenseDate" />
+                <ScalarProperty Name="LiscenceNumber" ColumnName="LiscenceNumber" />
+                <ScalarProperty Name="LiscenseIssue" ColumnName="LiscenseIssue" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="OGRN" ColumnName="OGRN" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="BankCity" ColumnName="BankCity" />
+                <ScalarProperty Name="KorrAccount" ColumnName="KorrAccount" />
+                <ScalarProperty Name="BIK" ColumnName="BIK" />
+                <ScalarProperty Name="KPP" ColumnName="KPP" />
+                <ScalarProperty Name="OKPO" ColumnName="OKPO" />
+                <ScalarProperty Name="OKVED" ColumnName="OKVED" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="PostalAddress" ColumnName="PostalAddress" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="FactAddress" ColumnName="FactAddress" />
+                <ScalarProperty Name="SettlementAccount" ColumnName="SettlementAccount" />
+                <ScalarProperty Name="PersonalAccount" ColumnName="PersonalAccount" />
+                <ScalarProperty Name="BudgetAccount" ColumnName="BudgetAccount" />
+                <ScalarProperty Name="Leader" ColumnName="Leader" />
+                <ScalarProperty Name="OKONX" ColumnName="OKONX" />
+                <ScalarProperty Name="OKOGY" ColumnName="OKOGY" />
+                <ScalarProperty Name="EVRO" ColumnName="EVRO" />
+                <ScalarProperty Name="OKTMO" ColumnName="OKTMO" />
+                <ScalarProperty Name="EGRN" ColumnName="EGRN" />
+                <ScalarProperty Name="OKATO" ColumnName="OKATO" />
+                <ScalarProperty Name="OKFS" ColumnName="OKFS" />
+                <ScalarProperty Name="OKOPF" ColumnName="OKOPF" />
+                <ScalarProperty Name="OMSCode" ColumnName="OMSCode" />
+                <ScalarProperty Name="DerivedTypeID" ColumnName="DerivedTypeID" />
+                <ScalarProperty Name="RFRegionID" ColumnName="RFRegionID" />
+                <ScalarProperty Name="KBK" ColumnName="KBK" />
+                <ScalarProperty Name="CodeCardioRegister" ColumnName="CodeCardioRegister" />
+                <ScalarProperty Name="CodeOMSCardioRegister" ColumnName="CodeOMSCardioRegister" />
+                <ScalarProperty Name="FOMSCode" ColumnName="FOMSCode" />
+                <ScalarProperty Name="IEMKCode" ColumnName="IEMKCode" />
+                <ScalarProperty Name="FedCode" ColumnName="FedCode" />
+                <ScalarProperty Name="MDLPSubjectId" ColumnName="MDLPSubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OurEnterprise">
+            <EntityTypeMapping TypeName="AviceEnterpriseModel.OurEnterprise">
+              <MappingFragment StoreEntitySet="OurEnterprise">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DerivedType" ColumnName="DerivedType" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="GiveTempDisability" ColumnName="GiveTempDisability" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsTempDisabilityByDefault" ColumnName="IsTempDisabilityByDefault" />
+                <ScalarProperty Name="EnterpriseID" ColumnName="EnterpriseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

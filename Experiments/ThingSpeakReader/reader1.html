@@ -1,0 +1,106 @@
+<html>
+  <head>
+
+  <!-- 
+  
+  NOTE: This plugin will not be visible on public views of a channel. 
+        If you intend to make your channel public, consider using the
+        MATLAB Visualization App to create your visualizations.
+  
+  -->  
+  
+  <title>Google Gauge - ThingSpeak</title>
+
+<style type="text/css">
+  body { background-color: #ddd; }
+  #container { height: 100%; width: 100%; display: table; }
+  #inner { vertical-align: middle; display: table-cell; }
+  #gauge_div { width: 120px; margin: 0 auto; }
+</style>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type='text/javascript'>
+  
+  // set your channel id here
+  var channel_id = 815578;
+  
+  // name of the gauge
+  var gauge_name = 'U АКБ';
+
+  // global variables
+  var chart, charts;//, data;
+  
+google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(initChart);
+
+  // display the data
+  function displayData(point) {
+  
+  var data = new google.visualization.DataTable();
+      data.addColumn('date', 'created_at');
+      data.addColumn('number', gauge_name);
+	for(var key in point){
+		if(point[key] && Number(point[key].field3) > 2 )
+			data.addRow(
+			[ new Date(point[key].created_at), Number(point[key].field3) ]
+			);
+			
+	  }
+      
+var options = {
+        height: 450,
+        timeline: {
+          groupByRowLabel: true
+        }
+      };
+    chart.draw(data, options);
+  }
+  
+  // load the data
+  function loadData() {
+    // variable for the data point
+    var p;
+
+    // get the data from thingspeak
+    //$.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/fields/3.json?api_key=' + api_key , function(data) {
+$.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/fields/3.json?' + '&start=2019-07-10T00:54:15Z', function(data) {
+      // get the data point
+      p = data.feeds;
+
+      // if there is a data point display it
+      if (p) {
+        displayData(p);
+      }
+
+    });
+  }
+  
+    // initialize the chart
+function initChart() {
+
+
+	chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+      
+	loadData();
+
+    // load new data every 15 seconds
+    setInterval('loadData()', 15000);
+}
+
+</script>
+  </head>
+
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <div id="container">
+      <div id="inner">
+        <div id="gauge_div"></div>
+      </div>
+    </div>
+    
+
+  </body>
+</html>
+

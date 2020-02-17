@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HubService2.ContractsClasses.Examination" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HubService2" />
+  <xs:import schemaLocation="http://kostasoft.tiera.ru:5392/N3ExaminationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Patient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Patronymic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicySeries" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Snils" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Patient" nillable="true" type="tns:Patient" />
+  <xs:complexType name="ValidateMedicalExaminationResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/HubService2" base="q1:MethodResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdPat" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ListMedicalExamination" nillable="true" type="tns:ArrayOfMedicalExamination" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ValidateMedicalExaminationResult" nillable="true" type="tns:ValidateMedicalExaminationResult" />
+  <xs:complexType name="MedicalExaminationQuestioningResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/HubService2" base="q2:MethodResult">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MedicalExaminationQuestioningResult" nillable="true" type="tns:MedicalExaminationQuestioningResult" />
+  <xs:complexType name="GetMedicalServiceAvailableSlotsResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/HubService2" base="q3:MethodResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ListSlot" nillable="true" type="tns:ArrayOfSlot" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetMedicalServiceAvailableSlotsResult" nillable="true" type="tns:GetMedicalServiceAvailableSlotsResult" />
+  <xs:complexType name="ArrayOfSlot">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Slot" nillable="true" type="tns:Slot" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSlot" nillable="true" type="tns:ArrayOfSlot" />
+  <xs:complexType name="Slot">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdSlot" type="ser:guid" />
+      <xs:element minOccurs="0" name="Room" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VisitEnd" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VisitStart" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Slot" nillable="true" type="tns:Slot" />
+  <xs:complexType name="GetMedicalExaminationPlanResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/HubService2" base="q4:MethodResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MedicalExamination" nillable="true" type="tns:MedicalExamination" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetMedicalExaminationPlanResult" nillable="true" type="tns:GetMedicalExaminationPlanResult" />
+  <xs:complexType name="MedicalExamination">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExaminationStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExaminationStatusNotes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdMedicalExamination" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsQuestionnaireFilled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ListMedicalService" nillable="true" type="tns:ArrayOfMedicalService" />
+      <xs:element minOccurs="0" name="MedicalExaminationType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedicalExamination" nillable="true" type="tns:MedicalExamination" />
+  <xs:complexType name="ArrayOfMedicalService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MedicalService" nillable="true" type="tns:MedicalService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMedicalService" nillable="true" type="tns:ArrayOfMedicalService" />
+  <xs:complexType name="MedicalService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdMedicalService" type="ser:guid" />
+      <xs:element minOccurs="0" name="MedicalServiceAvailableResource" nillable="true" type="tns:MedicalServiceAvailableResource" />
+      <xs:element minOccurs="0" name="MedicalServiceBooking" nillable="true" type="tns:MedicalServiceBooking" />
+      <xs:element minOccurs="0" name="MedicalServiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalServiceComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalServiceConditions" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalServiceRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MedicalServiceStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalServiceUnavailableReason" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedicalService" nillable="true" type="tns:MedicalService" />
+  <xs:complexType name="MedicalServiceAvailableResource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdLpu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ListMedicalResource" nillable="true" type="tns:ArrayOfMedicalResource2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedicalServiceAvailableResource" nillable="true" type="tns:MedicalServiceAvailableResource" />
+  <xs:complexType name="ArrayOfMedicalResource2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MedicalResource2" nillable="true" type="tns:MedicalResource2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMedicalResource2" nillable="true" type="tns:ArrayOfMedicalResource2" />
+  <xs:complexType name="MedicalResource2">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MedicalResource">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ListSlot" nillable="true" type="tns:ArrayOfSlot" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MedicalResource2" nillable="true" type="tns:MedicalResource2" />
+  <xs:complexType name="MedicalResource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdMedicalResource" type="ser:guid" />
+      <xs:element minOccurs="0" name="MedicalEmployee" nillable="true" type="tns:MedicalEmployee" />
+      <xs:element minOccurs="0" name="MedicalResourceComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalResourceName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedicalResource" nillable="true" type="tns:MedicalResource" />
+  <xs:complexType name="MedicalEmployee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MedicalEmployeeComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalEmployeeFedIdSpeciality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalEmployeeIdSpeciality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalEmployeeNameSpeciality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalEmployeePositionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalEmployeeSnils" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedicalEmployee" nillable="true" type="tns:MedicalEmployee" />
+  <xs:complexType name="MedicalServiceBooking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BookingMember" type="ser:guid" />
+      <xs:element minOccurs="0" name="BookingSource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeBookingMember" type="ser:guid" />
+      <xs:element minOccurs="0" name="ChangeBookingSource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdLpu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdMedicalServiceBooking" type="ser:guid" />
+      <xs:element minOccurs="0" name="ListMedicalResource" nillable="true" type="tns:ArrayOfMedicalResource" />
+      <xs:element minOccurs="0" name="MedicalServiceBookingDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MedicalServiceBookingStatus" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalServiceBoookingComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Room" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MedicalServiceBooking" nillable="true" type="tns:MedicalServiceBooking" />
+  <xs:complexType name="ArrayOfMedicalResource">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MedicalResource" nillable="true" type="tns:MedicalResource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMedicalResource" nillable="true" type="tns:ArrayOfMedicalResource" />
+  <xs:complexType name="BookMedicalServiceResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/HubService2" base="q5:MethodResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MedicalService" nillable="true" type="tns:MedicalService" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BookMedicalServiceResult" nillable="true" type="tns:BookMedicalServiceResult" />
+  <xs:complexType name="CancelMedicalServiceBookingResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/HubService2" base="q6:MethodResult">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CancelMedicalServiceBookingResult" nillable="true" type="tns:CancelMedicalServiceBookingResult" />
+  <xs:complexType name="UpdateMedicalServiceBookingResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/HubService2" base="q7:MethodResult">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateMedicalServiceBookingResult" nillable="true" type="tns:UpdateMedicalServiceBookingResult" />
+  <xs:complexType name="GetMedicalExaminationQuestionnairesResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/HubService2" base="q8:MethodResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ListQuestionnaire" nillable="true" type="tns:ArrayOfQuestionnaire" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetMedicalExaminationQuestionnairesResult" nillable="true" type="tns:GetMedicalExaminationQuestionnairesResult" />
+  <xs:complexType name="ArrayOfQuestionnaire">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Questionnaire" nillable="true" type="tns:Questionnaire" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQuestionnaire" nillable="true" type="tns:ArrayOfQuestionnaire" />
+  <xs:complexType name="Questionnaire">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ListQuestionnaireAnswer" nillable="true" type="tns:ArrayOfQuestionnaireAnswer" />
+      <xs:element minOccurs="0" name="QuestionnaireType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Questionnaire" nillable="true" type="tns:Questionnaire" />
+  <xs:complexType name="ArrayOfQuestionnaireAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QuestionnaireAnswer" nillable="true" type="tns:QuestionnaireAnswer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQuestionnaireAnswer" nillable="true" type="tns:ArrayOfQuestionnaireAnswer" />
+  <xs:complexType name="QuestionnaireAnswer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AnswerValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuestionCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QuestionnaireAnswer" nillable="true" type="tns:QuestionnaireAnswer" />
+  <xs:complexType name="ArrayOfMedicalExamination">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MedicalExamination" nillable="true" type="tns:MedicalExamination" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMedicalExamination" nillable="true" type="tns:ArrayOfMedicalExamination" />
+</xs:schema>

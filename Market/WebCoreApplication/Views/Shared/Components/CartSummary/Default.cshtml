@@ -1,0 +1,25 @@
+﻿@using WebCoreApplication.Infrastructure
+@model WebCoreApplication.Models.Cart
+<header>
+    
+    <div class="card card-header-tabs text-right">
+        @if (Model.Lines.Any())
+        {
+            <small>
+                <b>Состояние корзины:</b>
+                @Model.Lines.Sum(l => l.Quantity) товар(а)
+                @Model.ComputeTotalValue().ToString("C")
+            </small>
+        }@*class="navbar navbar-dark text-right"*@<a asp-controller="Cart" asp-action="Index"
+                                                     asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+            @if (Model.Lines.Any())
+            {
+                <i class="fa fa-cart-arrow-down"> Корзина</i>
+            }
+            else
+            {
+                <i class="fa fa-shopping-cart"> Корзина</i>
+            }
+        </a>
+    </div>
+</header>
