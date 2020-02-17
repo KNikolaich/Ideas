@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBotAutoSenderToLoesk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLoeskBot", "WebLoeskBot\WebLoeskBot.csproj", "{788DD9DE-C830-4BCF-988E-F1A854A2F6BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfBot", "WcfBot\WcfBot.csproj", "{5E767F92-C6E1-4505-88E6-0190F42468CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{788DD9DE-C830-4BCF-988E-F1A854A2F6BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{788DD9DE-C830-4BCF-988E-F1A854A2F6BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{788DD9DE-C830-4BCF-988E-F1A854A2F6BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E767F92-C6E1-4505-88E6-0190F42468CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E767F92-C6E1-4505-88E6-0190F42468CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E767F92-C6E1-4505-88E6-0190F42468CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E767F92-C6E1-4505-88E6-0190F42468CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
