@@ -5,7 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using WcfBot.Model.WcfBot;
+using System.Threading.Tasks;
+using WcfBot.Model;
 
 namespace WcfBot
 {
@@ -14,7 +15,7 @@ namespace WcfBot
     {
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = @"/Update")]
-        void GetUpdate(Update update);
+        Task GetUpdateAsync(Update update);
     }
 
  }

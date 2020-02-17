@@ -12,12 +12,12 @@ namespace WcfBot.Model
         public override string Name => "Hello";
         public override async void Execute(Message messagee, TelegramBotClient client)
         {
-            var chatId = messagee.Chat.Id;
-            var messageId = messagee.MessageId;
+            var chatId = messagee.chat.id;
+            var messageId = messagee.message_id;
 
             // TODO тут полезный код 
 
-            await client.SendTextMessageAsync(chatId, "Hello!", replyToMessageId: messageId);
+            await client.SendTextMessageAsync(chatId, "Hello!");
         }
     }
 }

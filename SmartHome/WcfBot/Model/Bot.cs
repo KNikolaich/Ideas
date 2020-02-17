@@ -28,7 +28,7 @@ namespace WcfBot.Model
                 //_commandList.Add(new HelloCommand());
                 // TOdo add new commands
 
-                client = new TelegramBotClient(Settings.Default.token) {WebProxy = webProxy, PollingTimeout = TimeSpan.FromSeconds(5), UploadTimeout = TimeSpan.FromSeconds(5) };
+                client = new TelegramBotClient(Settings.Default.token, webProxy){Timeout = TimeSpan.FromSeconds(5)};
                 var me = client.GetMeAsync().Result;
                 AppSettings.Description = me.ToString();
                 //client.OnMessage += Bot_OnMessage;
