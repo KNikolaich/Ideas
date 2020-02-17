@@ -12,7 +12,7 @@ namespace StaffTimes
         [STAThread]
         static void Main()
         {
-            ExceptionHandler exceptionHandler = new ExceptionHandler();
+            var exceptionHandler = new IriExceptionHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GeneralForm());
