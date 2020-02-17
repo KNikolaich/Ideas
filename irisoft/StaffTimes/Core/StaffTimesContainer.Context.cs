@@ -15,9 +15,21 @@ namespace Core
     
     public partial class StaffTimeDbContainer : DbContext
     {
+        string passAdmin = ";password=~fy0qL0hyU";
+        string passUser = ";password=uBpw9$aW9I";
+
         public StaffTimeDbContainer()
             : base("name=StaffTimeDbContainer")
         {
+            var connectionString = Database.Connection.ConnectionString;
+            if (!connectionString.Contains("password="))
+            {
+                if(connectionString.Contains("staff_admin"))
+                    Database.Connection.ConnectionString = connectionString.Trim(';') + passAdmin;
+                else if (connectionString.Contains("staff_user"))
+                    Database.Connection.ConnectionString = connectionString.Trim(';') + passUser;
+            }
+                
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

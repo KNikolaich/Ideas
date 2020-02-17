@@ -26,11 +26,14 @@ namespace Core
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
 
-        [Required, Range(0, 12)]
+        [Required, Range(0, 8, ErrorMessage = "Заполните длительность")]
         public int Duration { get; set; }
 
         public string Comment { get; set; }
+
+        [Required( ErrorMessage = "Заполните проект")]
         public int ProjectId { get; set; }
+
         public int UserId { get; set; }
     
         public virtual Project Project { get; set; }
