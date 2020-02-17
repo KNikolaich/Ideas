@@ -1,0 +1,24 @@
+@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+
+@model DXWebApplication.Models.SendCodeViewModel
+@{
+    ViewBag.Title = "Send Code";
+}
+<div class="accountHeader">
+    <h2>@ViewBag.Title</h2>
+</div>
+@using (Html.BeginForm("SendCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post)) {
+@Html.AntiForgeryToken()
+    @Html.Hidden("rememberMe", Model.RememberMe)
+    <h4>Send verification code</h4>
+    @Html.DevExpress().ComboBoxFor(m=>m.SelectedProvider, s=>{
+        s.Properties.Caption = "Select Two-Factor Authentication Provider";
+        s.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        s.SelectedIndex = 0;
+    }).BindList(Model.Providers).GetHtml()
+    <br />
+    @Html.DevExpress().Button(s => {
+        s.Name = s.Text = "Submit";
+        s.UseSubmitBehavior = true;
+    }).GetHtml()
+}

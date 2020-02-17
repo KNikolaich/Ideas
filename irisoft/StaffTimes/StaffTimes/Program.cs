@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ExceptionHandler = Core.Exceptions.ExceptionHandler;
+using StaffTimes.SubControls;
 
 namespace StaffTimes
 {

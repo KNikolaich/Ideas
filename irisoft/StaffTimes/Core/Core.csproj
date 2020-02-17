@@ -36,6 +36,24 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -49,7 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,11 +81,14 @@
     </Compile>
     <Compile Include="Conf.cs" />
     <Compile Include="Crypto.cs" />
-    <Compile Include="Exceptions\IriExceptionHandler.cs" />
+    <Compile Include="Exceptions\MessageNotify.cs" />
+    <Compile Include="Exceptions\MessageNotifyArgument.cs" />
+    <Compile Include="Exceptions\NotifyEnum.cs" />
     <Compile Include="Model\ContextAdapter.cs" />
     <Compile Include="Model\IModelSupp.cs" />
     <Compile Include="Model\Models.cs" />
     <Compile Include="Model\StaffTimesContainer.cs" />
+    <Compile Include="Model\WebContext.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>StaffTimesContainer.tt</DependentUpon>
     </Compile>

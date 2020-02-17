@@ -1,0 +1,28 @@
+@model HeaderViewRenderMode?
+
+@if(Model == HeaderViewRenderMode.Title) {
+    <div class="templateTitle">
+        @Html.ActionLink("Project Title", "Index", "Home")
+    </div>
+} else { 
+    if(Model == HeaderViewRenderMode.Full) { 
+        <div class="headerTop">
+            <div class="templateTitle">
+                @Html.ActionLink("Project Title", "Index", "Home")
+            </div>
+            <div class="loginControl">
+                @Html.Partial("LogOnPartialView")
+            </div>
+        </div>
+    }
+
+    <div class="headerMenu">
+            @* DXCOMMENT: Configure the header menu *@
+    @Html.DevExpress().Menu(settings => {
+        settings.Name = "HeaderMenu";
+        settings.ItemAutoWidth = false;
+        settings.ControlStyle.CssClass = "headerMenu";
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    }).BindToXML(HttpContext.Current.Server.MapPath("~/App_Data/TopMenu.xml"), "/items/*").GetHtml()
+    </div>
+}

@@ -1,0 +1,27 @@
+@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+
+@model DXWebApplication.Models.VerifyCodeViewModel
+@{
+    ViewBag.Title = "Verify Code";
+}
+<div class="accountHeader">
+    <h2>@ViewBag.Title</h2>
+</div>
+@using (Html.BeginForm("VerifyCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.Hidden("provider", @Model.Provider)
+    @Html.Hidden("rememberMe", @Model.RememberMe)
+    <h4>Enter verification code</h4>
+    @Html.DevExpress().TextBoxFor(m => m.Code, s=>{
+        s.Properties.Caption = "Code";
+        s.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+        s.ShowModelErrors = true;
+    }).GetHtml()
+    @Html.DevExpress().CheckBoxFor(m => m.RememberBrowser, s=>s.Text = "Remember me").GetHtml()
+    <br />
+    @Html.DevExpress().Button(s => {
+        s.Name = s.Text = "Submit";
+        s.UseSubmitBehavior = true;
+    }).GetHtml()
+}

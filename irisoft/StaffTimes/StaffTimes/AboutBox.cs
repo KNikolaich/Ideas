@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
+using System.Data.Common;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core;
 
@@ -12,14 +8,17 @@ namespace StaffTimes
 {
     partial class AboutBox : Form
     {
+        private DbConnection _connection;
+
         public AboutBox()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", AssemblyTitle);
+            _connection = new StaffTimeDbContainer().Database.Connection;
+            //this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
+            this.labelVersion.Text = AssemblyVersion;
+            this._server.Text = _connection.DataSource;
+            this._labelDb.Text = _connection.Database;
             this.textBoxDescription.Text = AssemblyDescription;
         }
 
@@ -43,9 +42,16 @@ namespace StaffTimes
             }
         }
 
-        public string AssemblyVersion
+        public static string AssemblyVersion
         {
-            get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+            get
+            {
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    return System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
         }
 
         public string AssemblyDescription
@@ -56,9 +62,7 @@ namespace StaffTimes
                     .GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
                 String sRes = ((AssemblyDescriptionAttribute) attributes[0]).Description;
                 sRes += Environment.NewLine;
-                StaffTimeDbContainer co = new StaffTimeDbContainer();
-                sRes += $"Система подключена к БД: '{co.Database.Connection.Database}'{Environment.NewLine}";
-                sRes += $"Сервер: '{co.Database.Connection.DataSource}'";
+                
                 return sRes;
             }
         }

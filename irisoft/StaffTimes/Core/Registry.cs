@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
+using Core.Exceptions;
 using Microsoft.Win32;
 
 namespace Core
@@ -37,7 +37,7 @@ namespace Core
             }
             catch (SystemException e)
             {
-                MessageBox.Show(e.Message, "Приложение будет завершено.");
+                MessageNotify.Show(e.Message, "Приложение будет завершено.", NotifyEnum.Error);
             }
             return new Tuple<string, string>(login, password);
         }
@@ -70,7 +70,7 @@ namespace Core
             }
             catch (SystemException e)
             {
-                MessageBox.Show(e.Message, "Приложение будет завершено.");
+                MessageNotify.Show(e.Message, "Приложение будет завершено.", NotifyEnum.Error);
             }
             return new Tuple<string, string>(login, password);
         }
@@ -103,7 +103,7 @@ namespace Core
             }
             catch (SystemException e)
             {
-                MessageBox.Show(e.Message, "Приложение рекомендуется запустить в режиме администратора.");
+                MessageNotify.Show(e.Message, "Приложение будет завершено.", NotifyEnum.Error);
             }
         }
     }

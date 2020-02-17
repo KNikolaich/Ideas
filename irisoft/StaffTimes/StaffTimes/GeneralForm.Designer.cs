@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralForm));
             this.panelLeft = new System.Windows.Forms.Panel();
             this._groupBoxFinder = new System.Windows.Forms.GroupBox();
@@ -36,6 +37,7 @@
             this._sButtonFind = new DevExpress.XtraEditors.SimpleButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this._topTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.activeProjSettingsTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllStaffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -47,16 +49,20 @@
             this._reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.taskBindingSource = new System.Windows.Forms.BindingSource();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this._tsmiAbout2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridTaskControl = new DevExpress.XtraGrid.GridControl();
+            this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridTaskView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colUser = new DevExpress.XtraGrid.Columns.GridColumn();
             this._usersRepositoryItem = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this._repositoryItemDateEdit = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.colDuration = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProject = new DevExpress.XtraGrid.Columns.GridColumn();
             this._projRepositoryItemLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colComment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colState = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDateOfWeek = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutView1 = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             this.DateCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
@@ -65,18 +71,27 @@
             this.projectCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             this.layoutViewField_layoutViewColumn3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             this.layoutViewCard1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewCard();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource();
+            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this._summaryGrid = new StaffTimes.SubControls.SummaryGrid();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this._tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiVersion = new System.Windows.Forms.ToolStripTextBox();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this._labelTop = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this._groupBoxFinder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._dateNavigator.CalendarTimeProperties)).BeginInit();
             this.panelButtom.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._usersRepositoryItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._projRepositoryItemLookUpEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).BeginInit();
@@ -88,6 +103,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
+            this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeft
@@ -99,7 +116,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(3);
-            this.panelLeft.Size = new System.Drawing.Size(257, 531);
+            this.panelLeft.Size = new System.Drawing.Size(260, 531);
             this.panelLeft.TabIndex = 2;
             // 
             // _groupBoxFinder
@@ -108,10 +125,10 @@
             this._groupBoxFinder.Dock = System.Windows.Forms.DockStyle.Fill;
             this._groupBoxFinder.Location = new System.Drawing.Point(3, 27);
             this._groupBoxFinder.Name = "_groupBoxFinder";
-            this._groupBoxFinder.Size = new System.Drawing.Size(251, 469);
+            this._groupBoxFinder.Size = new System.Drawing.Size(254, 469);
             this._groupBoxFinder.TabIndex = 5;
             this._groupBoxFinder.TabStop = false;
-            this._groupBoxFinder.Text = "Диапазона дат для отображения:";
+            this._groupBoxFinder.Text = "Диапазон дат для отображения:";
             // 
             // _dateNavigator
             // 
@@ -127,11 +144,10 @@
             this._dateNavigator.Name = "_dateNavigator";
             this._dateNavigator.NavigationMode = DevExpress.XtraScheduler.DateNavigationMode.ScrollCalendar;
             this._dateNavigator.Padding = new System.Windows.Forms.Padding(5);
-            this._dateNavigator.Size = new System.Drawing.Size(245, 450);
+            this._dateNavigator.Size = new System.Drawing.Size(248, 450);
             this._dateNavigator.TabIndex = 1;
             this._dateNavigator.ToolTip = "Выбор дат для отображения данных";
             this._dateNavigator.WeekNumberRule = DevExpress.XtraEditors.Controls.WeekNumberRule.FirstFourDayWeek;
-            this._dateNavigator.Validated += new System.EventHandler(this._dateNavigator_Validated);
             // 
             // panelButtom
             // 
@@ -139,16 +155,17 @@
             this.panelButtom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelButtom.Location = new System.Drawing.Point(3, 496);
             this.panelButtom.Name = "panelButtom";
-            this.panelButtom.Padding = new System.Windows.Forms.Padding(3);
-            this.panelButtom.Size = new System.Drawing.Size(251, 32);
+            this.panelButtom.Padding = new System.Windows.Forms.Padding(5);
+            this.panelButtom.Size = new System.Drawing.Size(254, 32);
             this.panelButtom.TabIndex = 4;
             // 
             // _sButtonFind
             // 
             this._sButtonFind.Dock = System.Windows.Forms.DockStyle.Right;
-            this._sButtonFind.Location = new System.Drawing.Point(136, 3);
+            this._sButtonFind.Location = new System.Drawing.Point(137, 5);
+            this._sButtonFind.Margin = new System.Windows.Forms.Padding(5);
             this._sButtonFind.Name = "_sButtonFind";
-            this._sButtonFind.Size = new System.Drawing.Size(112, 26);
+            this._sButtonFind.Size = new System.Drawing.Size(112, 22);
             this._sButtonFind.TabIndex = 3;
             this._sButtonFind.Text = "Выбрать";
             this._sButtonFind.ToolTip = "из диапазона дат";
@@ -161,16 +178,18 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._topTsmi,
             this._nsiTsmi,
-            this._reportsToolStripMenuItem});
+            this._reportsToolStripMenuItem,
+            this._tsmiAbout2});
             this.menuStrip1.Location = new System.Drawing.Point(3, 3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(251, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(254, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // _topTsmi
             // 
             this._topTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._tsmiChangePassword,
             this.activeProjSettingsTsmi,
             this.showAllStaffToolStripMenuItem,
             this.toolStripSeparator1,
@@ -178,6 +197,13 @@
             this._topTsmi.Name = "_topTsmi";
             this._topTsmi.Size = new System.Drawing.Size(55, 20);
             this._topTsmi.Text = "Меню";
+            // 
+            // _tsmiChangePassword
+            // 
+            this._tsmiChangePassword.Name = "_tsmiChangePassword";
+            this._tsmiChangePassword.Size = new System.Drawing.Size(250, 22);
+            this._tsmiChangePassword.Text = "Сменить свой пароль";
+            this._tsmiChangePassword.Click += new System.EventHandler(this._tsmiChangePassword_Click);
             // 
             // activeProjSettingsTsmi
             // 
@@ -197,6 +223,7 @@
             this.showAllStaffToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
             this.showAllStaffToolStripMenuItem.Text = "Показывать всех сотрудников";
             this.showAllStaffToolStripMenuItem.ToolTipText = "Отображение не только собственного времени в результатах поиска";
+            this.showAllStaffToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.showAllStaffToolStripMenuItem_CheckStateChanged);
             // 
             // toolStripSeparator1
             // 
@@ -225,22 +252,22 @@
             // staffToolStripMenuItem
             // 
             this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
-            this.staffToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.staffToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.staffToolStripMenuItem.Text = "Сотрудники...";
             this.staffToolStripMenuItem.Click += new System.EventHandler(this.staffToolStripMenuItem_Click);
             // 
             // projectsToolStripMenuItem
             // 
             this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.projectsToolStripMenuItem.Text = "Проекты...";
             this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
             // 
             // lockDateToolStripMenuItem
             // 
             this.lockDateToolStripMenuItem.Name = "lockDateToolStripMenuItem";
-            this.lockDateToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.lockDateToolStripMenuItem.Text = "Дата блокировки";
+            this.lockDateToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.lockDateToolStripMenuItem.Text = "Дата блокировки...";
             this.lockDateToolStripMenuItem.Click += new System.EventHandler(this.lockDateToolStripMenuItem_Click);
             // 
             // _reportsToolStripMenuItem
@@ -256,61 +283,84 @@
             // exportToExcelToolStripMenuItem
             // 
             this.exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
-            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToExcelToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.exportToExcelToolStripMenuItem.Text = "Экспорт в Excel...";
             this.exportToExcelToolStripMenuItem.Click += new System.EventHandler(this.exportToExcelToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.printToolStripMenuItem.Text = "Печать..";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
-            // gridControl1
+            // _tsmiAbout2
             // 
-            this.gridControl1.DataSource = this.taskBindingSource;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 3);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this._tsmiAbout2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._tsmiAbout2.Image = global::StaffTimes.Properties.Resources.BO_Note;
+            this._tsmiAbout2.Name = "_tsmiAbout2";
+            this._tsmiAbout2.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this._tsmiAbout2.Size = new System.Drawing.Size(28, 20);
+            this._tsmiAbout2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._tsmiAbout2.ToolTipText = "О программе...";
+            this._tsmiAbout2.Click += new System.EventHandler(this._tsmiAbout2_Click);
+            // 
+            // gridTaskControl
+            // 
+            this.gridTaskControl.DataSource = this.taskBindingSource;
+            this.gridTaskControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridTaskControl.Location = new System.Drawing.Point(3, 50);
+            this.gridTaskControl.MainView = this.gridTaskView;
+            this.gridTaskControl.Name = "gridTaskControl";
+            this.gridTaskControl.Padding = new System.Windows.Forms.Padding(5);
+            this.gridTaskControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this._projRepositoryItemLookUpEdit,
-            this._usersRepositoryItem});
-            this.gridControl1.Size = new System.Drawing.Size(743, 525);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1,
+            this._usersRepositoryItem,
+            this._repositoryItemDateEdit});
+            this.gridTaskControl.Size = new System.Drawing.Size(740, 374);
+            this.gridTaskControl.TabIndex = 0;
+            this.gridTaskControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridTaskView,
             this.layoutView1});
             // 
             // taskBindingSource
             // 
             this.taskBindingSource.DataSource = typeof(Core.Task);
             // 
-            // gridView1
+            // gridTaskView
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridTaskView.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridTaskView.Appearance.SelectedRow.BorderColor = System.Drawing.Color.Black;
+            this.gridTaskView.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.gridTaskView.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.gridTaskView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colUser,
             this.colDate,
             this.colDuration,
             this.colProject,
-            this.colComment});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.GroupCount = 1;
-            this.gridView1.GroupFormat = " [#image]{1} {2}";
-            this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.colComment,
+            this.colState,
+            this.colDateOfWeek});
+            this.gridTaskView.GridControl = this.gridTaskControl;
+            this.gridTaskView.GroupCount = 1;
+            this.gridTaskView.GroupFormat = " [#image]{1} {2}";
+            this.gridTaskView.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", this.colDate, "")});
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.AllowCellMerge = true;
-            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.gridView1.OptionsView.ShowChildrenInGroupPanel = true;
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            this.gridTaskView.Name = "gridTaskView";
+            this.gridTaskView.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridTaskView.OptionsSelection.MultiSelect = true;
+            this.gridTaskView.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.Hidden;
+            this.gridTaskView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridTaskView.OptionsView.ShowChildrenInGroupPanel = true;
+            this.gridTaskView.OptionsView.ShowGroupedColumns = true;
+            this.gridTaskView.OptionsView.ShowGroupPanel = false;
+            this.gridTaskView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colUser, DevExpress.Data.ColumnSortOrder.Descending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colDate, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
-            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
-            this.gridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyUp);
+            this.gridTaskView.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridTaskView_ShowingEditor);
+            this.gridTaskView.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
+            this.gridTaskView.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridTaskView.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridTaskView_ValidatingEditor);
             // 
             // colUser
             // 
@@ -336,13 +386,23 @@
             // colDate
             // 
             this.colDate.Caption = "Дата";
+            this.colDate.ColumnEdit = this._repositoryItemDateEdit;
             this.colDate.FieldName = "Date";
             this.colDate.MaxWidth = 100;
             this.colDate.Name = "colDate";
             this.colDate.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 1;
+            this.colDate.VisibleIndex = 0;
             this.colDate.Width = 100;
+            // 
+            // _repositoryItemDateEdit
+            // 
+            this._repositoryItemDateEdit.AutoHeight = false;
+            this._repositoryItemDateEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this._repositoryItemDateEdit.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this._repositoryItemDateEdit.Name = "_repositoryItemDateEdit";
             // 
             // colDuration
             // 
@@ -365,7 +425,7 @@
             this.colProject.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
             this.colProject.Name = "colProject";
             this.colProject.Visible = true;
-            this.colProject.VisibleIndex = 0;
+            this.colProject.VisibleIndex = 1;
             this.colProject.Width = 307;
             // 
             // _projRepositoryItemLookUpEdit
@@ -380,7 +440,10 @@
             this._projRepositoryItemLookUpEdit.NullText = "";
             this._projRepositoryItemLookUpEdit.NullValuePrompt = "необходимо заполнить";
             this._projRepositoryItemLookUpEdit.NullValuePromptShowForEmptyValue = true;
+            this._projRepositoryItemLookUpEdit.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.OnlyInPopup;
             this._projRepositoryItemLookUpEdit.ValueMember = "ProjectId";
+            this._projRepositoryItemLookUpEdit.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this._projRepositoryItemLookUpEdit_CloseUp);
+            this._projRepositoryItemLookUpEdit.BeforePopup += new System.EventHandler(this._projRepositoryItemLookUpEdit_BeforePopup);
             // 
             // colComment
             // 
@@ -392,13 +455,31 @@
             this.colComment.VisibleIndex = 3;
             this.colComment.Width = 237;
             // 
+            // colState
+            // 
+            this.colState.FieldName = "StateTask";
+            this.colState.Name = "colState";
+            // 
+            // colDateOfWeek
+            // 
+            this.colDateOfWeek.Caption = "День";
+            this.colDateOfWeek.DisplayFormat.FormatString = "ddd";
+            this.colDateOfWeek.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDateOfWeek.FieldName = "Date";
+            this.colDateOfWeek.Name = "colDateOfWeek";
+            this.colDateOfWeek.OptionsColumn.AllowEdit = false;
+            this.colDateOfWeek.OptionsColumn.AllowFocus = false;
+            this.colDateOfWeek.OptionsColumn.ReadOnly = true;
+            this.colDateOfWeek.Visible = true;
+            this.colDateOfWeek.VisibleIndex = 4;
+            // 
             // layoutView1
             // 
             this.layoutView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] {
             this.DateCol,
             this.durationCol,
             this.projectCol});
-            this.layoutView1.GridControl = this.gridControl1;
+            this.layoutView1.GridControl = this.gridTaskControl;
             this.layoutView1.GroupCount = 1;
             this.layoutView1.Name = "layoutView1";
             this.layoutView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
@@ -475,11 +556,92 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.gridControl1);
+            this.splitContainer1.Panel2.Controls.Add(this.splitterControl1);
+            this.splitContainer1.Panel2.Controls.Add(this.gridTaskControl);
+            this.splitContainer1.Panel2.Controls.Add(this._summaryGrid);
+            this.splitContainer1.Panel2.Controls.Add(this.menuStrip2);
+            this.splitContainer1.Panel2.Controls.Add(this.panelTop);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3);
             this.splitContainer1.Size = new System.Drawing.Size(1010, 531);
-            this.splitContainer1.SplitterDistance = 257;
+            this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // splitterControl1
+            // 
+            this.splitterControl1.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitterControl1.Location = new System.Drawing.Point(3, 419);
+            this.splitterControl1.Name = "splitterControl1";
+            this.splitterControl1.Size = new System.Drawing.Size(740, 5);
+            this.splitterControl1.TabIndex = 6;
+            this.splitterControl1.TabStop = false;
+            // 
+            // _summaryGrid
+            // 
+            this._summaryGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._summaryGrid.Location = new System.Drawing.Point(3, 424);
+            this._summaryGrid.Name = "_summaryGrid";
+            this._summaryGrid.Size = new System.Drawing.Size(740, 72);
+            this._summaryGrid.TabIndex = 5;
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._tsmiDelete,
+            this._tsmiVersion});
+            this.menuStrip2.Location = new System.Drawing.Point(3, 496);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 4, 5, 5);
+            this.menuStrip2.Size = new System.Drawing.Size(740, 32);
+            this.menuStrip2.TabIndex = 3;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // _tsmiDelete
+            // 
+            this._tsmiDelete.Image = global::StaffTimes.Properties.Resources.Action_Delete;
+            this._tsmiDelete.Name = "_tsmiDelete";
+            this._tsmiDelete.ShortcutKeyDisplayString = "Shift+Delete";
+            this._tsmiDelete.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Delete)));
+            this._tsmiDelete.Size = new System.Drawing.Size(122, 23);
+            this._tsmiDelete.Text = "Удалить строку";
+            this._tsmiDelete.ToolTipText = "Удаление выделенных объектов в таблице";
+            this._tsmiDelete.Click += new System.EventHandler(this._tsmiDelete_Click);
+            // 
+            // _tsmiVersion
+            // 
+            this._tsmiVersion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._tsmiVersion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            this._tsmiVersion.Name = "_tsmiVersion";
+            this._tsmiVersion.Size = new System.Drawing.Size(100, 23);
+            this._tsmiVersion.Text = "Версия:";
+            this._tsmiVersion.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._tsmiVersion.ToolTipText = "Версия приложения\r\n";
+            // 
+            // panelTop
+            // 
+            this.panelTop.Controls.Add(this._labelTop);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(3, 3);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(740, 47);
+            this.panelTop.TabIndex = 4;
+            // 
+            // _labelTop
+            // 
+            this._labelTop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._labelTop.AutoSize = true;
+            this._labelTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._labelTop.ForeColor = System.Drawing.Color.Indigo;
+            this._labelTop.Location = new System.Drawing.Point(3, 4);
+            this._labelTop.Name = "_labelTop";
+            this._labelTop.Size = new System.Drawing.Size(584, 17);
+            this._labelTop.TabIndex = 0;
+            this._labelTop.Text = "Разрешено редактирование с DateOfLock . Показано: с DateFrom по DateTo";
+            this._labelTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GeneralForm
             // 
@@ -487,6 +649,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1010, 531);
             this.Controls.Add(this.splitContainer1);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GeneralForm";
@@ -501,10 +664,12 @@
             this.panelButtom.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTaskView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._usersRepositoryItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._repositoryItemDateEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._projRepositoryItemLookUpEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutViewField_layoutViewColumn1)).EndInit();
@@ -514,15 +679,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
+
         #endregion
         private System.Windows.Forms.Panel panelLeft;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl gridTaskControl;
         private DevExpress.XtraScheduler.DateNavigator _dateNavigator;
         private DevExpress.XtraGrid.Views.Layout.LayoutView layoutView1;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn DateCol;
@@ -533,7 +704,7 @@
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn3;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private System.Windows.Forms.BindingSource taskBindingSource;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridTaskView;
         private DevExpress.XtraGrid.Columns.GridColumn colUser;
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
         private DevExpress.XtraGrid.Columns.GridColumn colDuration;
@@ -559,6 +730,18 @@
         private System.Windows.Forms.ToolStripMenuItem activeProjSettingsTsmi;
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lockDateToolStripMenuItem;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit _repositoryItemDateEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn colState;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiDelete;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiAbout2;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiChangePassword;
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Label _labelTop;
+        private DevExpress.XtraGrid.Columns.GridColumn colDateOfWeek;
+        private SubControls.SummaryGrid _summaryGrid;
+        private DevExpress.XtraEditors.SplitterControl splitterControl1;
+        private System.Windows.Forms.ToolStripTextBox _tsmiVersion;
     }
 }
 

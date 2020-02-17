@@ -1,0 +1,22 @@
+    @* DXCOMMENT: Configure GridView *@
+    @Html.DevExpress().GridView(
+    settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridViewPartialView" };
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.SettingsPager.PageSize = 50;
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+        settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+        
+        // DXCOMMENT: Specify the grid's key field name and define grid columns in accordance with data model fields
+        settings.KeyFieldName = "Id";
+        settings.Columns.Add("Project");
+        settings.Columns.Add("Date");
+        settings.Columns.Add("Duration");
+        settings.Columns.Add("Comment");
+        settings.Columns.Add("User");
+    }).Bind(Model).GetHtml()
