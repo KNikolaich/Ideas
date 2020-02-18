@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  webbotapp:
+    image: ${DOCKER_REGISTRY-}webbotapp
+    build:
+      context: .\WebBotApp
+      dockerfile: Dockerfile
