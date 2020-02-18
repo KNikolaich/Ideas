@@ -25,7 +25,7 @@ namespace WcfBot
                 try
                 {
                     var msg = await bot.SendTextMessageAsync(update.message.chat.id,
-                        "Привет," + update.message.from.first_name);
+                        "Привет," + update.message.from.first_name).ConfigureAwait(false);
                     Debug.WriteLine(msg);
                 }
                 catch (Exception ex)
