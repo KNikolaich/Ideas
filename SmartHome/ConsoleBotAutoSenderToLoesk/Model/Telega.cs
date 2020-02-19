@@ -36,7 +36,7 @@ namespace ConsoleBotAutoSenderToLoesk.Model
                     _bot.OnMessage -= Bot_OnMessage;
                 }
 
-                _bot = new TelegramBotClient(token, GetNewProxy()) {Timeout = TimeSpan.FromSeconds(10)};
+                _bot = new TelegramBotClient(token/*, GetNewProxy()*/) {Timeout = TimeSpan.FromSeconds(10)};
                         
                 while (!proxyOk)
                 {
