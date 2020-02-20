@@ -22,7 +22,7 @@ namespace WebCoreApp.Controllers
 
             var commands = Bot.Commands;
             var message = update.Message;
-            var botClient = await Bot.GetBotClientAsync();
+            var botClient = await Bot.GetBotClientAsync(AppSettings.Single);
 
             foreach (var command in commands)
             {

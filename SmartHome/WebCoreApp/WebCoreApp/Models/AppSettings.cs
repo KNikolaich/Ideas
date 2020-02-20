@@ -1,14 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace WebCoreApp.Models
 {
-    public static class AppSettings
+    public class AppSettings
     {
-        public static string Url { get; set; } = "https://8a054b8d.ngrok.io/{0}";
-        public static string Name { get; set; } = "Loesk sender";
-        public static string Key { get; set; } = "882717145:AAENoKNk3xjOgfS3Sm0sutUIcDu117JR3n8";
+        public AppSettings(string name, string token, string hookUrl)
+        {
+            Name = name;
+            Key = token;
+            Url = hookUrl;
+            Single = this;
+        }
+
+        public static IConfiguration AppConfig { get; set; }
+
+
+        public string Url { get; }
+        public string Name { get; } 
+        public string Key { get; }
+
+        public static AppSettings Single { get; private set; }
     }
 }
