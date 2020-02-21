@@ -21,16 +21,16 @@ namespace ConsoleBotAutoSenderToLoesk
         static void Main(string[] args)
         {
             Telega t = new Telega();
-            //while (true)
-            {
+            
                 
                 //Console.WriteLine(DateTime.Now.ToLocalTime());
                 t.SendMessage("");
 
                 //Task.Run(RunBot);
                 //RunBot();
-                
-                //Thread.Sleep(500);
+             while (true)
+            {   
+                Thread.Sleep(500);
             }
 
             Console.ReadLine();
