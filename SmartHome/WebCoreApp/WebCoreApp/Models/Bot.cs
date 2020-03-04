@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyModel;
 using Telegram.Bot;
 using WebCoreApp.Models.Commands;
 
@@ -14,7 +15,7 @@ namespace WebCoreApp.Models
 
         public static IReadOnlyList<Command> Commands => commandsList.AsReadOnly();
 
-        public static async Task<TelegramBotClient> GetBotClientAsync()
+        public static async Task<TelegramBotClient> GetBotClientAsync(AppSettings appSettings)
         {
             if (botClient != null)
             {
@@ -25,8 +26,8 @@ namespace WebCoreApp.Models
             commandsList.Add(new StartCommand());
             //TODO: Add more commands
 
-            botClient = new TelegramBotClient(AppSettings.Key);
-            string hook = string.Format(AppSettings.Url, "api/message/update");
+            botClient = new TelegramBotClient(appSettings.Key);
+            string hook = $"https://{appSettings.Url}/{"api/message/update"}";
             await botClient.SetWebhookAsync(hook);
             return botClient;
         }
