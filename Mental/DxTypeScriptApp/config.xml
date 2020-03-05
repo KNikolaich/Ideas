@@ -1,0 +1,33 @@
+<widget id="com.devexpress.apptemplate" version="1.0" versionCode="1">
+
+	<name>ApplicationTemplate</name>
+	<description>Template</description>
+	<author email="email@sample.com" href="http://sample.com">Author</author>
+
+	<preference name="permissions" value="none" />
+	<preference name="prerendered-icon" value="true" />
+	<preference name="android-windowSoftInputMode" value="adjustResize" />
+	<preference name="SplashScreen" value="splash" />
+	<preference name="SplashScreenDelay" value="60000" />
+	
+	<preference name="AutoHideSplashScreen" value="false" />
+	<preference name="SplashShowOnlyFirstTime" value="false" />
+	<preference name="FadeSplashScreen" value="false"/>
+	<preference name="ShowSplashScreenSpinner" value="false"/>
+
+	<preference name="DisallowOverscroll" value="true" />
+
+	<preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#000000" />
+  
+	<preference name="android-minSdkVersion" value="14"/>
+	<preference name="android-targetSdkVersion" value="22"/>
+
+	<access origin="*" />
+
+	<plugin name="cordova-plugin-whitelist" />
+	<plugin name="cordova-plugin-splashscreen" onload="true" />
+	<plugin name="cordova-plugin-ios-longpress-fix" />
+	<plugin name="cordova-plugin-statusbar" onload="true" />
+	
+</widget>
