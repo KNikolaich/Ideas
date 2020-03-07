@@ -56,6 +56,9 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="example2.html" />
+    <Content Include="package.json" />
+    <Content Include="libman.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -67,6 +70,7 @@
     <Content Include="app.css" />
     <Content Include="Example.html" />
     <Content Include="index.html" />
+    <Content Include="Primitive1.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
