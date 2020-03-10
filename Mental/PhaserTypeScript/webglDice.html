@@ -86,6 +86,7 @@
     outColor = texture(u_diffuse, vec3(v_texCoord, u_faceIndex[v_faceId]));
     }
 </script>
+<!-- git clone https://github.com/greggman/twgl.js.git -->
 <script src="/context/twgl-full.min.js"></script>
 <script>
     "use strict";
@@ -136,17 +137,22 @@
             u_faceIndex: [0, 1, 2, 3, 4, 5],
         };
 
+        let oldKoefX = 1;
+        let oldKoefY = 3;
+        let oldKoefZ = 2;
+
+        let iter = 0;
         let oldTime = 0;
         function render(time) {
-            time *= 0.001;
+            
+            oldTime = time * 0.008;
             twgl.resizeCanvasToDisplaySize(gl.canvas);
             gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-            if ((oldTime | 0) < (time | 0)) {
+            /*if ((oldTime | 0) < (time | 0)) {
                 uniforms.u_faceIndex[randInt(6)] = randInt(slices.length);
-            }
-            oldTime = time;
-
+            }*/
+            
 
             gl.enable(gl.DEPTH_TEST);
             gl.enable(gl.CULL_FACE);
@@ -160,9 +166,16 @@
             const camera = m4.lookAt(eye, target, up);
             const view = m4.inverse(camera);
             const viewProjection = m4.multiply(projection, view);
-            const world = m4.rotationY(time);
+            //const world = m4.rotationY(time);
 
-            uniforms.u_worldViewProjection = m4.multiply(viewProjection, world);
+            //oldKoefX = getKoef(oldTime, oldKoefX);
+            let viewProj2 = m4.multiply(viewProjection, m4.rotationX(oldTime / oldKoefX));
+            //const world2 = m4.rotationY(time / 10);
+            //oldKoefY = getKoef(oldTime, oldKoefY);
+            let viewProj3 = m4.multiply(viewProj2, m4.rotationY(oldTime / oldKoefY));
+            //oldKoefZ = getKoef(oldTime, oldKoefZ);
+
+            uniforms.u_worldViewProjection = m4.multiply(viewProj3, m4.rotationZ(oldTime / oldKoefZ));
 
             gl.useProgram(programInfo.program);
             twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
@@ -171,8 +184,21 @@
 
             requestAnimationFrame(render);
         }
+
+        function getKoef(time1, oldKoef) {
+            var koef2 = oldKoef;
+            if (iter < 180) {
+                iter++;
+            } else {
+                koef2 = randInt(1, 10);
+                iter = 0;
+            }
+            return koef2;
+        }
+
         requestAnimationFrame(render);
     }
+
     main();
 </script>
 </html>

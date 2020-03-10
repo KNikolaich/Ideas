@@ -76,6 +76,7 @@
     <Content Include="package.json" />
     <Content Include="libman.json" />
     <Content Include="webglDice.html" />
+    <Content Include="WebGLDice2.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
