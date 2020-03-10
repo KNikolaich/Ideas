@@ -56,6 +56,12 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="assets\dice\1.png" />
+    <Content Include="assets\dice\2.png" />
+    <Content Include="assets\dice\3.png" />
+    <Content Include="assets\dice\4.png" />
+    <Content Include="assets\dice\5.png" />
+    <Content Include="assets\dice\6.png" />
     <Content Include="assets\dice\dice.css" />
     <Content Include="assets\dice\dice.js" />
     <Content Include="assets\dice\diceGame.html" />
@@ -64,9 +70,12 @@
     <Content Include="assets\walking\CubeGet.html" />
     <Content Include="assets\walking\field1.jpg" />
     <Content Include="assets\walking\StyleSheetCube3D.css" />
+    <Content Include="context\GlDice.js" />
+    <Content Include="context\twgl-full.min.js" />
     <Content Include="example2.html" />
     <Content Include="package.json" />
     <Content Include="libman.json" />
+    <Content Include="webglDice.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
