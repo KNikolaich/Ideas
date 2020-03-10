@@ -1,0 +1,15 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Ходилка №1";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div>
+    <img id="photo" src="/Content/img/game1/field1.jpg" style="display: none">
+
+    <label id="lcoordinat"></label>
+    <br>
+    <canvas id="myCanvas" width="990" height="825" style="border: 1px solid"></canvas>
+    <script src="/Content/src/field1.js"></script>
+</div>

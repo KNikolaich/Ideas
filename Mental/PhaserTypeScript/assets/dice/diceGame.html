@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title></title>
+</head>
+<body>
+<div class="outer">
+    <div class="container">
+
+        <h1>Dice Drinking Game</h1>
+
+        <p id="message"></p>
+
+        <img src="https://studio.code.org/v3/assets/GBhvGLEcbJGFHdJfHkChqw/8TEb9oxGc.gif" width="200" id="rolling-dice-anim">
+
+        <div id="container-init">
+            <div class="form-inner">
+
+                <div class="instructions">
+                    <p><strong>How to play:</strong></p>
+                    <ol style="text-align: left;">
+                        <li>Indicate how many pieces of dice to play with.</li>
+                        <li>Choose a number from 1-6. Then roll the dice.</li>
+                        <li>
+                            <ul>
+                                <li>A) If the number you've chosen appears in the set, any dice that reflects that number will be removed. You don't need to drink. Pass to the next person.</li>
+                                <li>B) If the number you've chosen doesn't appear in the set, you need to drink. You cannot pass to the next person until you guess a number correctly.</li>
+                            </ul>
+                        </li>
+                        <li>Play until there's no more dice left.</li>
+                    </ol>
+                </div>
+
+                <p><strong>How many pieces of dice to play with?</strong></p>
+                <input type="text" id="input-num-dice">
+                <button id="trigger-gen-dice">Generate Dice</button>
+            </div>
+        </div>
+
+        <div id="container-main-game">
+
+            <div class="form-inner">
+                <div id="dice-container">
+                </div>
+
+                <div id="game-controller">
+                    <p><strong>What's your guess?</strong></p>
+
+                    <ul id="choose-dice">
+                        <li class="dice-select" id="dice-1">1</li>
+                        <li class="dice-select" id="dice-2">2</li>
+                        <li class="dice-select" id="dice-3">3</li>
+                        <li class="dice-select" id="dice-4">4</li>
+                        <li class="dice-select" id="dice-5">5</li>
+                        <li class="dice-select" id="dice-6">6</li>
+                    </ul>
+
+                    <button id="trigger-roll-dice">Roll Dice</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../jquery-3.3.1.js"></script>
+<script src="dice.js"></script>
+<link href="dice.css" rel="stylesheet">
+</body>
+</html>

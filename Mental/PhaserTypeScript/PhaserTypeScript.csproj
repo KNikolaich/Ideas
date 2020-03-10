@@ -56,6 +56,14 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="assets\dice\dice.css" />
+    <Content Include="assets\dice\dice.js" />
+    <Content Include="assets\dice\diceGame.html" />
+    <Content Include="assets\jquery-3.3.1.js" />
+    <Content Include="assets\walking\CubeGen3D.html" />
+    <Content Include="assets\walking\CubeGet.html" />
+    <Content Include="assets\walking\field1.jpg" />
+    <Content Include="assets\walking\StyleSheetCube3D.css" />
     <Content Include="example2.html" />
     <Content Include="package.json" />
     <Content Include="libman.json" />

@@ -26,5 +26,13 @@ namespace WebApplication.Controllers
 
             return View();
         }
+
+
+        public ActionResult SimpleGame()
+        {
+            ViewBag.Message = "Your simple game page.";
+
+            return View();
+        }
     }
 }
