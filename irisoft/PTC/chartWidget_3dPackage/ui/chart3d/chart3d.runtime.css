@@ -1,0 +1,25 @@
+.chart3d-content .widget-chart3d {
+    padding: .25em 1em 1em 1em;
+    margin: .25em 1em 1em 1em;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+}
+
+@media screen and (min-width: 0\0
+) {
+    .widget-chart3d {
+        top: -1px;
+    }
+}
+
+.chart3d-content {
+    overflow: hidden;
+}
+
+.widget-chart3d {
+    overflow: hidden;
+}

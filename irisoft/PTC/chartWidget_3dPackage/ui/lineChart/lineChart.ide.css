@@ -1,0 +1,18 @@
+.widget-lineChart-helper {
+    background: url(images/helper.png) no-repeat #d5c8f8 center center;
+    width: 640px;
+    height: 240px;
+}
+
+.widget-lineChart {
+    background-color: #d5c8f8;
+    color: #4e4aa1;
+    font-weight: bold;
+}
+
+.widget-lineChart span {
+    background: url(images/lineChart.ide.png) no-repeat top center;
+    display: inline-block;
+    padding-top: 34px;
+    text-shadow: 1px 1px 1px #fff;
+}

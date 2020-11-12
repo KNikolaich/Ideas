@@ -1,0 +1,18 @@
+.widget-chart3d-helper {
+    background: url(images/helper.png) no-repeat #d5c8f8 center center;
+    width: 640px;
+    height: 240px;
+}
+
+.widget-chart3d {
+    background-color: #d5c8f8;
+    color: #4e4aa1;
+    font-weight: bold;
+}
+
+.widget-chart3d span {
+    background: url(images/chart3d.ide.png) no-repeat top center;
+    display: inline-block;
+    padding-top: 34px;
+    text-shadow: 1px 1px 1px #fff;
+}

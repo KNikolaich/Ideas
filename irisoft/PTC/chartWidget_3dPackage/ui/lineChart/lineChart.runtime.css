@@ -1,0 +1,25 @@
+.lineChart-content .widget-lineChart {
+    padding: .25em 1em 1em 1em;
+    margin: .25em 1em 1em 1em;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+}
+
+@media screen and (min-width: 0\0
+) {
+    .widget-lineChart {
+        top: -1px;
+    }
+}
+
+.lineChart-content {
+    overflow: hidden;
+}
+
+.widget-lineChart {
+    overflow: hidden;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Entities>
+    <ExtensionPackages>
+        <ExtensionPackage dependsOn="" description="Chart 3D Widgets" minimumThingWorxVersion="8.3.0" name="chartWidget_3dPackage" packageVersion="1.0.1" vendor="ThingWorx R+D">
+            
+        </ExtensionPackage>
+    </ExtensionPackages>
+    <Widgets>
+        <Widget name="chart3d">
+            <UIResources>
+                <FileResource description="" file="chart3d.ide.js" isDevelopment="true" isRuntime="false" type="JS"/>
+                <FileResource description="" file="chart3d.ide.css" isDevelopment="true" isRuntime="false" type="CSS"/>
+                <FileResource description="" file="chart3d.runtime.js" isDevelopment="false" isRuntime="true" type="JS"/>
+                <FileResource description="" file="chart3d.runtime.css" isDevelopment="false" isRuntime="true" type="CSS"/>
+		<FileResource type="JS" file="include/plotly/plotly.min.js" description="" isDevelopment="true" isRuntime="true" />
+				
+            </UIResources>
+        </Widget>
+    </Widgets>
+</Entities>
