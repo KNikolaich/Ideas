@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entities>
     <ExtensionPackages>
-        <ExtensionPackage dependsOn="" description="Chart 3D Widgets" minimumThingWorxVersion="8.3.0" name="chartWidget_3dPackage" packageVersion="1.0.1" vendor="ThingWorx R+D">
+        <ExtensionPackage dependsOn="" description="Chart 3D Widgets" minimumThingWorxVersion="8.3.0" name="chartWidget_3dPackage" packageVersion="1.0.8" vendor="ThingWorx R+D">
             
         </ExtensionPackage>
     </ExtensionPackages>
