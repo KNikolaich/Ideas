@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using StaffTimes.SubControls;
+using Configuration.Exceptions;
 
-namespace StaffTimes
+namespace Configuration
 {
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// The main Entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
@@ -15,7 +15,7 @@ namespace StaffTimes
             var exceptionHandler = new IriExceptionHandler();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SubControls.TestForm());
+            Application.Run(new ConfigurationForm());
             if (exceptionHandler == exceptionHandler)
             {
                 exceptionHandler = null;

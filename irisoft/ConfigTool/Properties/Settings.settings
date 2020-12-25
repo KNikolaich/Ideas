@@ -1,0 +1,35 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Configuration.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FolderCfg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\</Value>
+    </Setting>
+    <Setting Name="FolderForSharing" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;c:\&lt;/string&gt;
+  &lt;string&gt;d:\&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="HiddenTags" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;folderExported&lt;/string&gt;
+  &lt;string&gt;folderBackup&lt;/string&gt;
+  &lt;string&gt;netFolderProd&lt;/string&gt;
+  &lt;string&gt;respCheckIntervalProd&lt;/string&gt;
+  &lt;string&gt;netFolderTest&lt;/string&gt;
+  &lt;string&gt;respCheckIntervalTest&lt;/string&gt;
+  &lt;string&gt;ftpServer&lt;/string&gt;
+  &lt;string&gt;ftpPort&lt;/string&gt;
+  &lt;string&gt;ftpUsername&lt;/string&gt;
+  &lt;string&gt;ftpPassword&lt;/string&gt;
+  &lt;string&gt;ftpFolderExport&lt;/string&gt;
+  &lt;string&gt;checksumAlg&lt;/string&gt;
+  &lt;string&gt;signActivity&lt;/string&gt;
+  &lt;string&gt;signVote&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

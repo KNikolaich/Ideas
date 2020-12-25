@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87BC608A-B601-4E3E-9CDC-BCF73719C746}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Configuration</RootNamespace>
+    <AssemblyName>Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>window_gear.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigurationForm.Designer.cs">
+      <DependentUpon>ConfigurationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AbonentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AbonentControl.Designer.cs">
+      <DependentUpon>AbonentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\GridWithLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\GridWithLabelControl.Designer.cs">
+      <DependentUpon>GridWithLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\ContainerConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\ContainerConfigControl.Designer.cs">
+      <DependentUpon>ContainerConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\ContainerConfigGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\ContainerConfigsGroupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\ContainerConfigsGroupControl.Designer.cs">
+      <DependentUpon>ContainerConfigsGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\SmChecksumAlgControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\SmChecksumAlgControl.Designer.cs">
+      <DependentUpon>SmChecksumAlgControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\SmSignedGroupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\SmSignedGroupControl.Designer.cs">
+      <DependentUpon>SmSignedGroupControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\SmTypeDocSpecControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\StringCollectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\StringCollectionControl.Designer.cs">
+      <DependentUpon>StringCollectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\TypeConfigCollectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\TypeConfigCollectionControl.Designer.cs">
+      <DependentUpon>TypeConfigCollectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\TypeConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\TypeConfigControl.Designer.cs">
+      <DependentUpon>TypeConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GeneralTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GeneralTabControl.Designer.cs">
+      <DependentUpon>GeneralTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\BoolEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\BoolEditControl.Designer.cs">
+      <DependentUpon>BoolEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\CheckBoxComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\CheckBoxComboBox.Designer.cs">
+      <DependentUpon>CheckBoxComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ControlForTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ControlForTest.Designer.cs">
+      <DependentUpon>ControlForTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\GripBounds.cs" />
+    <Compile Include="Controls\Editors\NativeMethods.cs" />
+    <Compile Include="Controls\Editors\Popup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\Popup.Designer.cs">
+      <DependentUpon>Popup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\PopupComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\Selection Wrappers\ListSelectionWrapper.cs" />
+    <Compile Include="Controls\Editors\Selection Wrappers\ObjectSelectionWrapper.cs" />
+    <Compile Include="Controls\ElementBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ElementBaseControl.Designer.cs">
+      <DependentUpon>ElementBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GeniralEditCfgControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GeniralEditCfgControl.Designer.cs">
+      <DependentUpon>GeniralEditCfgControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SaveFileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SaveFileControl.Designer.cs">
+      <DependentUpon>SaveFileControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SettingEditControl.Designer.cs">
+      <DependentUpon>SettingEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StateExprPartControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StateExprPartControl.Designer.cs">
+      <DependentUpon>StateExprPartControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\IriExceptionHandler.cs" />
+    <Compile Include="Exceptions\UndeclaredValueException.cs" />
+    <Compile Include="Exceptions\UnuniqueValueException.cs" />
+    <Compile Include="Helpers\Assistant.cs" />
+    <Compile Include="Helpers\CheckComboBoxItem.cs" />
+    <Compile Include="Helpers\ControlCreator.cs" />
+    <Compile Include="Helpers\DinamicExtensions.cs" />
+    <Compile Include="Helpers\DynamicXAttribute.cs" />
+    <Compile Include="Helpers\DynamicXElementBase.cs" />
+    <Compile Include="Helpers\DynamicXElementReader.cs" />
+    <Compile Include="Helpers\DynamicXElementWriter.cs" />
+    <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Helpers\SharedFolder.cs" />
+    <Compile Include="Helpers\ElementHelper.cs" />
+    <Compile Include="Models\Attribute.cs" />
+    <Compile Include="Models\ComparerQueue.cs" />
+    <Compile Include="Models\entry.cs" />
+    <Compile Include="Models\SmTypesDocSpec.cs" />
+    <Compile Include="Models\SpecProgTypeConfig.cs" />
+    <Compile Include="Models\TypeConfig.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConfigurationForm.resx">
+      <DependentUpon>ConfigurationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\GridWithLabelControl.resx">
+      <DependentUpon>GridWithLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\ContainerConfigControl.resx">
+      <DependentUpon>ContainerConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\ContainerConfigGridControl.resx">
+      <DependentUpon>ContainerConfigGridControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\ContainerConfigsGroupControl.resx">
+      <DependentUpon>ContainerConfigsGroupControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\SmChecksumAlgControl.resx">
+      <DependentUpon>SmChecksumAlgControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\SmSignedGroupControl.resx">
+      <DependentUpon>SmSignedGroupControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\StringCollectionControl.resx">
+      <DependentUpon>StringCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\TypeConfigCollectionControl.resx">
+      <DependentUpon>TypeConfigCollectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\TypeConfigControl.resx">
+      <DependentUpon>TypeConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GeneralTabControl.resx">
+      <DependentUpon>GeneralTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ControlForTest.resx">
+      <DependentUpon>ControlForTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ElementBaseControl.resx">
+      <DependentUpon>ElementBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GeniralEditCfgControl.resx">
+      <DependentUpon>GeniralEditCfgControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SaveFileControl.resx">
+      <DependentUpon>SaveFileControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SettingEditControl.resx">
+      <DependentUpon>SettingEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StateExprPartControl.resx">
+      <DependentUpon>StateExprPartControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\DataSources\Configuration.Properties.Settings.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\row_add_after.png" />
+    <None Include="Resources\arrow_up_green.png" />
+    <None Include="Resources\arrow_down_green.png" />
+    <None Include="Resources\data_delete.png" />
+    <None Include="Resources\row_delete.png" />
+    <None Include="Resources\delete_x_24.png" />
+    <None Include="Resources\BO_Validation_32x32.png" />
+    <None Include="Resources\column_preferences.bmp" />
+    <None Include="Resources\column_preferences.png" />
+    <None Include="Resources\information.png" />
+    <Content Include="window_gear.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+            xcopy $(TargetPath)* c:\Work\Малахит\SyncWS\Distrib\ConfigTool\ /y
+)</PostBuildEvent>
+  </PropertyGroup>
+</Project>

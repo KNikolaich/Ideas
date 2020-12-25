@@ -123,6 +123,7 @@
     <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v17.1, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v17.1.Reporting.Extensions, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v17.1, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v17.1.Core, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v17.1, Version=17.1.15.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -205,6 +206,12 @@
     <Compile Include="SubControls\SummaryGrid.Designer.cs">
       <DependentUpon>SummaryGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubControls\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubControls\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +258,9 @@
     <EmbeddedResource Include="SubControls\SummaryGrid.resx">
       <DependentUpon>SummaryGrid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SubControls\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +268,7 @@
     <None Include="Properties\DataSources\Core.Model.Project.datasource" />
     <None Include="Properties\DataSources\Core.Model.Task.datasource" />
     <None Include="Properties\DataSources\Core.Model.User.datasource" />
+    <None Include="Properties\DataSources\Core.Task.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
