@@ -28,7 +28,7 @@ namespace Trader.Ancillary
         } 
 
         private static BinanceClient _binanceClient;
-        private static Nsi_Exchange _exchangeCurrent;
+
         public static String CurrentName { get { return BurseType().ToString(); } }
         
         /// <summary>

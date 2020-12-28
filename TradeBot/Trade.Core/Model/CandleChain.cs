@@ -174,7 +174,7 @@ namespace Trader.Model
 
                 
                 // были получены предсказания по 
-                if (candle.Predictions.Count > 0)
+                if (candle.Predictions.Count() > 0)
                 {
                     _predictions.AddRange(candle.Predictions);
                 }
