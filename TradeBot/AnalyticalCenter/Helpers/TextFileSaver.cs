@@ -14,7 +14,7 @@ namespace AnalyticalCenter.Helpers
             StringBuilder sb = new StringBuilder();
             foreach(var macD in dataList)
             {
-                sb.AppendLine($"{macD.OpenDateTime}\t {macD.Difference}");
+                sb.AppendLine($"{macD.OpenDateTime}\t {macD.Difference}{Environment.NewLine}");
             }
             SaveData("export.txt", sb.ToString());
         }

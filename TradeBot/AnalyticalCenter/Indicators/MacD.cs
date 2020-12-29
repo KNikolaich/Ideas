@@ -30,7 +30,7 @@ namespace AnalyticalCenter.Indicators
     /// при этом ценой для расчета служит значение закрытия свечи.
     /// При ведении торговли на рост рынка параметры 26 и 12 заменяются на 17 и 8 соответственно.
     /// его стандартные значения 12, 26, 9 изначально разрабатывались именно под дневной таймфрейм.</remarks>
-    public class MacD
+    public class MacD 
     {
         
         internal MacD _previewMacD;
@@ -48,6 +48,7 @@ namespace AnalyticalCenter.Indicators
             Delta = ema12.Value - ema26.Value;
             sma9.CalcByMacD(this);
             Difference = Delta - sma9.Value;
+            
             return Difference;
         }
 
@@ -70,7 +71,7 @@ namespace AnalyticalCenter.Indicators
 
         public override string ToString()
         {
-            return $"delta:{Delta} {sma9.Value} {OpenDateTime.ToLongDateString()}";
+            return $"delta:{Delta:n2} {sma9.Value:n2} {OpenDateTime.ToLongDateString()}";
         }
 
         internal static MacD Create(Candlestick stick, MacD prevMacD)

@@ -1,5 +1,6 @@
 ﻿using AnalyticalCenter;
 using AnalyticalCenter.Helpers;
+using AnalyticalCenter.Strategy;
 using Binance.API.Csharp.Client.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace ConfigurationWinForms
         {
 
             var strategy = new MacDStrategy();
-            var res = await strategy.TestForPeriodAsync(new DateTime(2020, 01, 01), new DateTime(2020, 12, 01), TimeInterval.Days_3);
+            var res = await strategy.TestForPeriodAsync(new DateTime(2019, 01, 01), new DateTime(2020, 12, 01), TimeInterval.Days_3);
             TextFileSaver.SaveData(res);
             panel1.CreateGraphics(res);
         }
