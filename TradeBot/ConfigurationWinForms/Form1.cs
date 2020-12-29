@@ -37,7 +37,7 @@ namespace ConfigurationWinForms
         {
 
             var strategy = new MacDStrategy();
-            var res = await strategy.TestForPeriodAsync(new DateTime(2019, 01, 01), new DateTime(2020, 12, 01), TimeInterval.Days_3);
+            var res = await strategy.TestForPeriodAsync(new DateTime(2019, 12, 31), null, TimeInterval.Days_1);
             TextFileSaver.SaveData(res);
             panel1.CreateGraphics(res);
         }

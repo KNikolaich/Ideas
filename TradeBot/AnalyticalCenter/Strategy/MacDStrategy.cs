@@ -1,6 +1,7 @@
 ﻿using AnalyticalCenter.Helpers;
 using AnalyticalCenter.Indicators;
 using Binance.API.Csharp.Client.Models.Enums;
+using Binance.API.Csharp.Client.Models.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,14 +28,14 @@ namespace AnalyticalCenter.Strategy
         /// <param name="end"></param>
         /// <param name="period"></param>
         /// <returns></returns>
-        public async Task<List<MacD>> TestForPeriodAsync(DateTime start, DateTime end, TimeInterval period)
+        public async Task<List<MacD>> TestForPeriodAsync(DateTime start, DateTime? end, TimeInterval period)
         {
             List<MacD> result = new List<MacD>();
 
             try
             {
                 _period = period;
-                var stiksCandle = await Burse.GetBinanceClient().GetCandleSticks("EthUsdt", _period, start, end);
+                var stiksCandle = await Burse.GetBinanceClient().GetCandleSticks("Usdtrub", _period, start, end);
                 MacD prevMacD = null;
                 foreach (var stick in stiksCandle)
                 {
@@ -55,11 +56,11 @@ namespace AnalyticalCenter.Strategy
             switch (Dequeue())
             {
                 case EnumOrderDirect.Buy:
-                    OnCanBeInteresting($"Куплено за {stick.Open}");
+                    OnCanBeInteresting($"Куплено {Converters.GeDateTime(stick.OpenTime).ToShortDateString()} за {stick.Open}");
                     break;
 
                 case EnumOrderDirect.Sale:
-                    OnCanBeInteresting($"Продано за {stick.Open}");
+                    OnCanBeInteresting($"Продано {Converters.GeDateTime(stick.OpenTime).ToShortDateString()} за {stick.Open}");
                     break;
             }
         }
@@ -71,12 +72,14 @@ namespace AnalyticalCenter.Strategy
             {
                 if (prevMacD.Difference <= 0 && newMacd.Difference > 0)
                 {
-                    OnCanBeInteresting("Рекомендация: покупать.", newMacd);
+                    //OnCanBeInteresting("Рекомендация: покупать.", newMacd);
+
                     OnEnqueue(EnumOrderDirect.Buy);
                 }
                 if (prevMacD.Difference >= 0 && newMacd.Difference < 0)
                 {
-                    OnCanBeInteresting("Рекомендация: продавать.", newMacd);
+                    //OnCanBeInteresting("Рекомендация: продавать.", newMacd);
+                    // при общем восходящем тренде - ходл (при этом надо стоп лосы уметь ставить)
                     OnEnqueue(EnumOrderDirect.Sale);
                 }
             }
