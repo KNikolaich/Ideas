@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticalCenter", "Analyti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationWinForms", "ConfigurationWinForms\ConfigurationWinForms.csproj", "{D997CCE8-1C76-4AB2-B52F-7FAA24E5D141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegaBot", "TelegaBot\TelegaBot.csproj", "{B5F1020A-D59E-458C-A949-11B20E104D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D997CCE8-1C76-4AB2-B52F-7FAA24E5D141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D997CCE8-1C76-4AB2-B52F-7FAA24E5D141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D997CCE8-1C76-4AB2-B52F-7FAA24E5D141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F1020A-D59E-458C-A949-11B20E104D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F1020A-D59E-458C-A949-11B20E104D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F1020A-D59E-458C-A949-11B20E104D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F1020A-D59E-458C-A949-11B20E104D11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{7CF40EB8-D81D-40B5-B849-17E5662175D6} = {E2FB190C-3A3F-4E9B-8141-3852184F106E}
 		{2075E2F5-3870-4D17-B1BD-790369C68572} = {D449BFF4-585E-4C4B-9DCD-7FE10EBC7B21}
 		{6D9F1850-7513-4BC6-9488-C89CEE17159E} = {E2FB190C-3A3F-4E9B-8141-3852184F106E}
+		{B5F1020A-D59E-458C-A949-11B20E104D11} = {5A3077B6-40E8-4F38-8C1C-7BA5D4C6294C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16782E8B-AA3F-49E7-840E-BE93A724D61D}

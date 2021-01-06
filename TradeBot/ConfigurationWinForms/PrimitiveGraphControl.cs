@@ -16,6 +16,8 @@ namespace ConfigurationWinForms
     {
         private List<MacD> _res;
         Speaker _speaker = Speaker.Instance();
+        TelegaBot.BotCore bot = new TelegaBot.BotCore();
+
 
         public PrimitiveGraphControl()
         {
@@ -25,7 +27,8 @@ namespace ConfigurationWinForms
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _speaker.CanBeInteresting += HearMessage;  
+            _speaker.CanBeInteresting += HearMessage;
+            Task.Factory.StartNew(()=>bot.ReadChatsAsync());
         }
 
         private void HearMessage(object sender, MessageEventArg e)
@@ -65,6 +68,11 @@ namespace ConfigurationWinForms
         internal void CreateGraphics(List<MacD> res)
         {
             _res = res;
+        }
+
+        private void _timerForBot_Tick(object sender, EventArgs e)
+        {
+            //Task.Factory.StartNew(() => bot.ReadChatsAsync());
         }
     }
 }

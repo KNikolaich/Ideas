@@ -32,7 +32,9 @@ namespace ConfigurationWinForms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this._timerForBot = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // textBox1
@@ -45,6 +47,11 @@ namespace ConfigurationWinForms
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(935, 229);
             this.textBox1.TabIndex = 0;
+            // 
+            // _timerForBot
+            // 
+            this._timerForBot.Interval = 500;
+            this._timerForBot.Tick += new System.EventHandler(this._timerForBot_Tick);
             // 
             // PrimitiveGraphControl
             // 
@@ -62,5 +69,6 @@ namespace ConfigurationWinForms
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Timer _timerForBot;
     }
 }
