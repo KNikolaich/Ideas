@@ -56,11 +56,11 @@ namespace AnalyticalCenter.Strategy
             switch (Dequeue())
             {
                 case EnumOrderDirect.Buy:
-                    OnCanBeInteresting($"Куплено {Converters.GeDateTime(stick.OpenTime).ToShortDateString()} за {stick.Open}");
+                    OnCanBeInteresting($"Куплено {Converters.GeDateTime(stick.OpenTime).ToShortDateString()} за {stick.Open}", TelegaBot.SubscribeLevelEnum.Warning);
                     break;
 
                 case EnumOrderDirect.Sale:
-                    OnCanBeInteresting($"Продано {Converters.GeDateTime(stick.OpenTime).ToShortDateString()} за {stick.Open}");
+                    OnCanBeInteresting($"Продано {Converters.GeDateTime(stick.OpenTime).ToShortDateString()} за {stick.Open}", TelegaBot.SubscribeLevelEnum.Warning);
                     break;
             }
         }

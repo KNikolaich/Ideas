@@ -30,7 +30,7 @@ namespace ConfigurationWinForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RunStrategy();
+            //RunStrategy();
         }
 
         private async Task RunStrategy()

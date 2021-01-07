@@ -10,9 +10,9 @@ namespace AnalyticalCenter.Strategy
         Queue<EnumOrderDirect> orderQueue = new Queue<EnumOrderDirect>();
         Speaker _speaker = Speaker.Instance(); 
 
-        protected void OnCanBeInteresting(string msg, object reciept = null)
+        protected void OnCanBeInteresting(string msg, TelegaBot.SubscribeLevelEnum level, object reciept = null)
         {
-            _speaker.OnCanBeInteresting(reciept ?? this, msg);
+            _speaker.OnCanBeInteresting(reciept ?? this, new MessageEventArg(msg, level));
         }
 
         protected void OnEnqueue(EnumOrderDirect direct)
@@ -22,7 +22,7 @@ namespace AnalyticalCenter.Strategy
         protected EnumOrderDirect Dequeue()
         {
             var result = orderQueue.Count != 0 ? orderQueue.Dequeue() : EnumOrderDirect.Nothing;
-            while(result != null && orderQueue.Count != 0 && orderQueue.Peek() != result)
+            while (orderQueue.Count != 0 && orderQueue.Peek() != result)
             {
                 orderQueue.Dequeue(); // пропускаем противомоложный сигнал сместе с этим
                 result = orderQueue.Count != 0 ?  orderQueue.Dequeue() : EnumOrderDirect.Nothing;

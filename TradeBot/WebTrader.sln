@@ -25,11 +25,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trader", "Trade.Core\Trader
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HitBtcApi", "HitBtc.Api\HitBtcApi\HitBtcApi.csproj", "{6D9F1850-7513-4BC6-9488-C89CEE17159E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticalCenter", "AnalyticalCenter\AnalyticalCenter.csproj", "{C1CEEC68-F5B6-4EFE-B4B0-2B10C6050DC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyticalCenter", "AnalyticalCenter\AnalyticalCenter.csproj", "{C1CEEC68-F5B6-4EFE-B4B0-2B10C6050DC7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationWinForms", "ConfigurationWinForms\ConfigurationWinForms.csproj", "{D997CCE8-1C76-4AB2-B52F-7FAA24E5D141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegaBot", "TelegaBot\TelegaBot.csproj", "{B5F1020A-D59E-458C-A949-11B20E104D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegaBot", "TelegaBot\TelegaBot.csproj", "{B5F1020A-D59E-458C-A949-11B20E104D11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleStart", "ConsoleStart\ConsoleStart.csproj", "{E4F097DE-FA35-4107-A14F-4B2495B3FFFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{B5F1020A-D59E-458C-A949-11B20E104D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5F1020A-D59E-458C-A949-11B20E104D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5F1020A-D59E-458C-A949-11B20E104D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F097DE-FA35-4107-A14F-4B2495B3FFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F097DE-FA35-4107-A14F-4B2495B3FFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F097DE-FA35-4107-A14F-4B2495B3FFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F097DE-FA35-4107-A14F-4B2495B3FFFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

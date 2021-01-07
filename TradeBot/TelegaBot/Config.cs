@@ -76,7 +76,10 @@ namespace TelegaBot
             if (ss != null)
             {
                 if (ss.Level != level)
+                {
+                    ss.Level = level;
                     result = true;
+                }
             }
             else
             {

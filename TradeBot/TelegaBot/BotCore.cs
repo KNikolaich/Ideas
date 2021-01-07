@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace TelegaBot
 {
@@ -14,6 +17,7 @@ namespace TelegaBot
         private bool _iAmBusy;
         static TelegramBotClient _bot;
         static object o = new object();
+        private static string _prefixLevel = "level_";
 
         public async Task ReadChatsAsync()
         {
@@ -29,6 +33,7 @@ namespace TelegaBot
                 int offset = 0; // отступ по сообщениям
                 while (true)
                 {
+                    Thread.Sleep(100);
                     var updates = await _bot.GetUpdatesAsync(offset); // получаем массив обновлений
 
                     foreach (var update in updates) // Перебираем все обновления
@@ -37,7 +42,7 @@ namespace TelegaBot
                         {
                             try
                             {
-                                ReWorkMessage(update.Message);
+                                await ReWorkMessage(update.Message);
                             }
                             catch (Exception ex)
                             {
@@ -45,6 +50,23 @@ namespace TelegaBot
                             }
                             offset = update.Id + 1;
 
+                        }
+                        else if(update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQuery)
+                        {
+                            var data = update.CallbackQuery.Data;
+                            var message = update.CallbackQuery.Message;
+                            if (data.Contains(_prefixLevel))
+                            {
+                                var levelStr = data.Replace(_prefixLevel, "");
+
+                                if (Enum.TryParse<SubscribeLevelEnum>(levelStr, out var level))
+                                {
+                                    if (SetChatLevel(message.Chat.Id, level))
+                                    {
+                                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Левел изменен на {level}!");
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -60,31 +82,47 @@ namespace TelegaBot
             }
         }
 
+        public void SendMsg(SubscribeLevelEnum level, string message)
+        {
+            var config = Config.Load();
+            foreach(var subscriber in config.Subscribers)
+            {
+                if(subscriber.Level >= level)
+                {
+                    _bot.SendTextMessageAsync(subscriber.ChatId, message);
+                }
+            }
+        }
+
         /// <summary>
         /// обработка сообщений
         /// </summary>
         /// <param name="message"></param>
-        private void ReWorkMessage(Telegram.Bot.Types.Message message)
+        private async Task ReWorkMessage(Telegram.Bot.Types.Message message)
         {
             switch (message.Text)
             {
                 case "/start":
                     if(SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Warning))
 
-                        _bot.SendTextMessageAsync(message.Chat.Id, $"Приветствую тебя, {message.From.FirstName}!");
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Приветствую тебя, {message.From.FirstName}!");
                     break;
 
                 case "/stop":
                     if(SetChatLevel(message.Chat.Id, SubscribeLevelEnum.None))
-                        _bot.SendTextMessageAsync(message.Chat.Id, $"Пока, дружище, {message.From.FirstName}!");
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Пока, дружище, {message.From.FirstName}!");
                     
+                    break;
+
+                case "/level":
+                    await KeyboardOnLevel(message.Chat.Id);
                     break;
                 default:
 
-                    if (message.Text.Contains("/level"))
+                    if (message.Text.Contains("/level_"))
                     {
                         if(SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Debug))
-                            _bot.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");
+                            await _bot.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");
                         
                     }
                     break;
@@ -93,7 +131,20 @@ namespace TelegaBot
 
         }
 
-        private bool SetChatLevel(long idChat, SubscribeLevelEnum level)
+        private async Task KeyboardOnLevel(long chatId)
+        {
+            var text = "Выбери требуемый уровень";
+            var ikm = new List<InlineKeyboardButton>();
+            foreach (SubscribeLevelEnum levelEnum in Enum.GetValues(typeof(SubscribeLevelEnum)))
+            {
+                ikm.Add(InlineKeyboardButton.WithCallbackData(levelEnum.ToString(), _prefixLevel + levelEnum.ToString()));
+            }
+
+            await _bot.SendTextMessageAsync(chatId, text, replyMarkup: new InlineKeyboardMarkup(ikm));
+        
+        }
+
+        private static bool SetChatLevel(long idChat, SubscribeLevelEnum level)
         {
             var config = Config.Load();
             if(level == SubscribeLevelEnum.None)
@@ -108,10 +159,31 @@ namespace TelegaBot
         {
             lock (o)
             {
-                if(_bot == null)
+                if (_bot == null)
+                {
                     _bot = new TelegramBotClient(_token); // инициализируем API
-                return _bot;
+                    /* _bot.OnCallbackQuery += async (object sc, Telegram.Bot.Args.CallbackQueryEventArgs ev) =>
+                     {
+                         var message = ev.CallbackQuery.Message;
+                         var data = ev.CallbackQuery.Data;
+
+                         if (data.Contains(_prefixLevel))
+                         {
+                             var levelStr = data.Replace(_prefixLevel, "");
+
+                             if (Enum.TryParse<SubscribeLevelEnum>(levelStr, out var level))
+                             {
+                                 if (SetChatLevel(message.Chat.Id, level))
+                                 {
+                                     await ((TelegramBotClient)sc).SendTextMessageAsync(message.Chat.Id, $"Левел изменен на {level}!");
+                                 }
+                             }
+                         }
+                     };*/
+                }
             }
+            return _bot;
+
         }
     }
 }

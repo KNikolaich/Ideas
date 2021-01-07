@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using TelegaBot;
 
 namespace AnalyticalCenter.Helpers
 {
@@ -11,10 +13,14 @@ namespace AnalyticalCenter.Helpers
     {
 
         static Speaker _speaker;
-
+        // событие "это может быть интересно"
+        public EventHandler<MessageEventArg> CanBeInteresting;
+        private BotCore _bot;
+        
         private Speaker()
         {
-
+            _bot = new BotCore();
+            Task.Factory.StartNew(() => _bot.ReadChatsAsync());
         }
 
         /// <summary>
@@ -30,26 +36,27 @@ namespace AnalyticalCenter.Helpers
             return _speaker;
         }
 
-                // событие "это может быть интересно"
-        public EventHandler<MessageEventArg> CanBeInteresting;
 
         public void Dispose()
         {
             CanBeInteresting = null;
         }
 
-        public void OnCanBeInteresting(object reciept, string msg)
+        public void OnCanBeInteresting(object reciept, MessageEventArg msg)
         {
-            CanBeInteresting?.Invoke(reciept, new MessageEventArg(msg));
+            _bot.SendMsg(msg.Level, msg.Message);
+            CanBeInteresting?.Invoke(reciept, msg);
         }
     }
 
     public class MessageEventArg : EventArgs
     {
-        public MessageEventArg(string msg)
+        public MessageEventArg(string msg, TelegaBot.SubscribeLevelEnum level)
         {
+            Level = level;
             Message = msg;
         }
         public string Message { get; private set; }
+        public TelegaBot.SubscribeLevelEnum Level { get; private set; }
     }
 }

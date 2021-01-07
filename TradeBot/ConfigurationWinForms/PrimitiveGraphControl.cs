@@ -16,7 +16,6 @@ namespace ConfigurationWinForms
     {
         private List<MacD> _res;
         Speaker _speaker = Speaker.Instance();
-        TelegaBot.BotCore bot = new TelegaBot.BotCore();
 
 
         public PrimitiveGraphControl()
@@ -28,7 +27,6 @@ namespace ConfigurationWinForms
         {
             base.OnLoad(e);
             _speaker.CanBeInteresting += HearMessage;
-            Task.Factory.StartNew(()=>bot.ReadChatsAsync());
         }
 
         private void HearMessage(object sender, MessageEventArg e)
