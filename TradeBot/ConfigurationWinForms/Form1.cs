@@ -37,9 +37,9 @@ namespace ConfigurationWinForms
         {
 
             var strategy = new MacDStrategy();
-            var res = await strategy.TestForPeriodAsync(new DateTime(2019, 12, 31), null, TimeInterval.Days_1);
-            TextFileSaver.SaveData(res);
-            panel1.CreateGraphics(res);
+            //var res = await strategy.TestForPeriodAsync(new DateTime(2019, 12, 31), null, "usdRub", TimeInterval.Days_1);
+            //TextFileSaver.SaveData(res);
+            //panel1.CreateGraphics(res);
         }
     }
 }

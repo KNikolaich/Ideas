@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types.ReplyMarkups;
+using Binance.API.Csharp.Client.Utils;
+using Binance.API.Csharp.Client.Models.Enums;
 
 namespace TelegaBot
 {
@@ -18,6 +20,9 @@ namespace TelegaBot
         static TelegramBotClient _bot;
         static object o = new object();
         private static string _prefixLevel = "level_";
+        private static string _prefixInterval = "interval_";
+
+        public EventHandler<CommandArg> CommandEventHandler;
 
         public async Task ReadChatsAsync()
         {
@@ -38,35 +43,24 @@ namespace TelegaBot
 
                     foreach (var update in updates) // Перебираем все обновления
                     {
-                        if(update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
+                        try
                         {
-                            try
+                            if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
                             {
                                 await ReWorkMessage(update.Message);
                             }
-                            catch (Exception ex)
+                            else if (update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQuery)
                             {
-                                Console.WriteLine(ex.Message);
+                                await ReworkCallbackQuery(update.CallbackQuery);
                             }
-                            offset = update.Id + 1;
-
                         }
-                        else if(update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQuery)
+                        catch (Exception ex)
                         {
-                            var data = update.CallbackQuery.Data;
-                            var message = update.CallbackQuery.Message;
-                            if (data.Contains(_prefixLevel))
-                            {
-                                var levelStr = data.Replace(_prefixLevel, "");
-
-                                if (Enum.TryParse<SubscribeLevelEnum>(levelStr, out var level))
-                                {
-                                    if (SetChatLevel(message.Chat.Id, level))
-                                    {
-                                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Левел изменен на {level}!");
-                                    }
-                                }
-                            }
+                            Console.WriteLine(ex.Message);
+                        }
+                        finally
+                        {
+                            offset = update.Id + 1;
                         }
                     }
 
@@ -79,6 +73,36 @@ namespace TelegaBot
             finally
             {
                 _iAmBusy = false;
+            }
+        }
+
+        private async Task ReworkCallbackQuery(Telegram.Bot.Types.CallbackQuery callbackQuery)
+        {
+            var data = callbackQuery.Data;
+            var message = callbackQuery.Message;
+            if (data.Contains(_prefixLevel))
+            {
+                var levelStr = data.Replace(_prefixLevel, "");
+
+                if (Enum.TryParse<SubscribeLevelEnum>(levelStr, out var level))
+                {
+                    if (SetChatLevel(message.Chat.Id, level))
+                    {
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Левел изменен на {level}!");
+                    }
+                }
+            }
+            else if (data.Contains(_prefixInterval))
+            {
+                var levelStr = data.Replace(_prefixInterval, "");
+
+                if (Enum.TryParse<TimeInterval>(levelStr, out var interval))
+                {
+                    if (Config.Load().SetInterval(message.Chat.Id, interval))
+                    {
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Интервал изменен на {interval}!");
+                    }
+                }
             }
         }
 
@@ -103,26 +127,48 @@ namespace TelegaBot
             switch (message.Text)
             {
                 case "/start":
-                    if(SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Warning))
 
-                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Приветствую тебя, {message.From.FirstName}!");
-                    break;
-
-                case "/stop":
-                    if(SetChatLevel(message.Chat.Id, SubscribeLevelEnum.None))
-                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Пока, дружище, {message.From.FirstName}!");
+                    CommandEventHandler?.Invoke(this, new CommandArg(CommandsEnum.Start, Config.Load().GetSubscribes(message.Chat.Id)));
+                    await _bot.SendTextMessageAsync(message.Chat.Id, $"Запуск стратегии!");
                     
                     break;
 
-                case "/level":
-                    await KeyboardOnLevel(message.Chat.Id);
+                case "/stop":
+
+                    CommandEventHandler?.Invoke(this, new CommandArg(CommandsEnum.Stop));
+                    await _bot.SendTextMessageAsync(message.Chat.Id, $"Остановка стратегии!");
+                    
                     break;
+                case "/info":
+                    var config = Config.Load().Subscribers.Where(ss=>ss.ChatId == message.Chat.Id).FirstOrDefault();
+                    if (config == null)
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Установок пока нет для {message.From.FirstName}!");
+                    else
+                    {
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"{config} для {message.From.FirstName}!");
+                    }
+                    break;
+
+                case "/level":
+                    await KeyboardOnLevel(message.Chat.Id, typeof(SubscribeLevelEnum), "Выбери требуемый уровень", _prefixLevel);
+                    break;
+
+                case "/interval":
+                    await KeyboardOnLevel(message.Chat.Id, typeof(TimeInterval), "Выбери требуемый интервал", _prefixInterval);
+                    break;
+
                 default:
 
-                    if (message.Text.Contains("/level_"))
+                    if (message.Text.Contains("/pair"))
                     {
-                        if(SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Debug))
-                            await _bot.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");
+                        var pairValue = message.Text.Replace("/pair", "").Trim();
+                        if (Config.Load().SetPair(message.Chat.Id, pairValue))
+                        {
+                            if(string.IsNullOrEmpty(pairValue))
+                                await _bot.SendTextMessageAsync(message.Chat.Id, $"Для установки пары наберите /pair value");
+                            else
+                                await _bot.SendTextMessageAsync(message.Chat.Id, $"Пара - {pairValue}!");
+                        }
                         
                     }
                     break;
@@ -131,15 +177,24 @@ namespace TelegaBot
 
         }
 
-        private async Task KeyboardOnLevel(long chatId)
+        private async Task KeyboardOnLevel(long chatId, Type enumType, string text, string prefix)
         {
-            var text = "Выбери требуемый уровень";
-            var ikm = new List<InlineKeyboardButton>();
-            foreach (SubscribeLevelEnum levelEnum in Enum.GetValues(typeof(SubscribeLevelEnum)))
+            var ikm = new List<InlineKeyboardButton[]>();
+            var line = new InlineKeyboardButton[3];
+            short iLine = 0;
+            var values = Enum.GetValues(enumType);
+            foreach (Enum levelEnum in values)
             {
-                ikm.Add(InlineKeyboardButton.WithCallbackData(levelEnum.ToString(), _prefixLevel + levelEnum.ToString()));
+                if(iLine > 2)
+                {
+                    ikm.Add(line);
+                    line = new InlineKeyboardButton[3];
+                    iLine = 0;
+                }
+                line[iLine] = InlineKeyboardButton.WithCallbackData(levelEnum.GetDescription(), prefix + levelEnum.ToString());
+                iLine++;
             }
-
+            ikm.Add(line);
             await _bot.SendTextMessageAsync(chatId, text, replyMarkup: new InlineKeyboardMarkup(ikm));
         
         }
@@ -147,10 +202,10 @@ namespace TelegaBot
         private static bool SetChatLevel(long idChat, SubscribeLevelEnum level)
         {
             var config = Config.Load();
-            if(level == SubscribeLevelEnum.None)
-            {
-                return config.Remove(idChat);
-            }
+            //if(level == SubscribeLevelEnum.None)
+            //{
+            //    return config.Remove(idChat);
+            //}
             // добавляем или правми строку
             return config.SetOrCreate(idChat, level);
         }

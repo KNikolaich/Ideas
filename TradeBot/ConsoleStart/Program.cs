@@ -14,15 +14,18 @@ namespace ConsoleStart
     {
         static void Main(string[] args)
         {
-            Task.Factory.StartNew(RunStrategy);
+            Speaker.Instance().CanBeInteresting += speaker_lauf;
+            //Task.Factory.StartNew(RunStrategy);
             var stopWorld = string.Empty;
+            var strategy = new MacDStrategy();
             while (stopWorld != "stop")
             {
                 Thread.Sleep(500);
-                stopWorld = Console.ReadLine();
-                if(stopWorld == "restart")
+                //stopWorld = Console.ReadLine();
+                //if(stopWorld == "restart")
                 {
-                    Task.Factory.StartNew(RunStrategy);
+                    var str = strategy.ToString();
+                    //Task.Factory.StartNew(RunStrategy);
                 }
             }
         }
@@ -30,9 +33,16 @@ namespace ConsoleStart
 
         private static async Task RunStrategy()
         {
-            Speaker.Instance().CanBeInteresting += speaker_lauf; 
             var strategy = new MacDStrategy();
-            var res = await strategy.TestForPeriodAsync(new DateTime(2019, 12, 31), null, TimeInterval.Days_1);
+            var param = new ParametersForTestStrategy()
+            {
+                start = new DateTime(2020, 12, 1),
+                //end = new DateTime(2019, 01, 1),
+                pair = "EthUsdt",
+                period = TimeInterval.Days_1,
+                FirstVolume = 1
+            };
+            var res = await strategy.TestForPeriodAsync(param);
         }
 
         private static void speaker_lauf(object sender, MessageEventArg e)

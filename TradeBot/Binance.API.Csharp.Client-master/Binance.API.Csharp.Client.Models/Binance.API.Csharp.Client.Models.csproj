@@ -54,6 +54,7 @@
     <Compile Include="Account\WithdrawResponse.cs" />
     <Compile Include="Enums\ApiMethods.cs" />
     <Compile Include="Enums\DepositStatus.cs" />
+    <Compile Include="Enums\EnumExtender.cs" />
     <Compile Include="Enums\OrderSide.cs" />
     <Compile Include="Enums\OrderType.cs" />
     <Compile Include="Enums\TimeInForce.cs" />

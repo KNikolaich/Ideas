@@ -15,12 +15,19 @@ namespace AnalyticalCenter.Helpers
         static Speaker _speaker;
         // событие "это может быть интересно"
         public EventHandler<MessageEventArg> CanBeInteresting;
+
+        public event EventHandler<CommandArg> CommandEventHandler
+        {
+            add { _bot.CommandEventHandler += value; }
+            remove { _bot.CommandEventHandler -= value; }
+        }
         private BotCore _bot;
         
         private Speaker()
         {
             _bot = new BotCore();
             Task.Factory.StartNew(() => _bot.ReadChatsAsync());
+
         }
 
         /// <summary>

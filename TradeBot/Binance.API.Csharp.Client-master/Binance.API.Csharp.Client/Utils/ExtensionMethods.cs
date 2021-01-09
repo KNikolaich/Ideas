@@ -19,10 +19,22 @@ namespace Binance.API.Csharp.Client.Utils
         /// <returns></returns>
         public static string GetDescription(this Enum value)
         {
-            return ((DescriptionAttribute)Attribute.GetCustomAttribute(
-                value.GetType().GetFields(BindingFlags.Public | BindingFlags.Static)
-                    .Single(x => x.GetValue(null).Equals(value)),
-                typeof(DescriptionAttribute)))?.Description ?? value.ToString();
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            string description = value.ToString(); 
+            FieldInfo fieldInfo = value.GetType().GetField(description);
+            DescriptionAttribute[] attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+            if (attributes.Length > 0)
+            {
+                description = attributes[0].Description;
+            }
+            return description;
+            var field = value.GetType().GetFields(BindingFlags.Public | BindingFlags.Static).Single(x => x.GetValue(null).Equals(value));
+            return ((DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)))?.Description ?? value.ToString();
         }
 
         /// <summary>
