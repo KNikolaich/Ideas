@@ -9,7 +9,8 @@ namespace ConsoleBotMiners
     {
         static void Main(string[] args)
         {
-            var monitor = new MinersMonitor();
+            var monitor = new 
+                MinersMonitor();
             while (true)
             {
                 Thread.Sleep(500);

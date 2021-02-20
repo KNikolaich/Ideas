@@ -28,7 +28,7 @@ namespace BotCore
             Task.Factory.StartNew(() => ReadChatsAsync());
         }
 
-        internal void SendMessage(string message)
+        public void SendMessage(string message)
         {
             foreach (var subscriber in Config.Load().Subscribers)
             {

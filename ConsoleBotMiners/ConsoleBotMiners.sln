@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBotMiners", "Console
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCore", "BotCore\BotCore.csproj", "{2CB2296C-5B2C-4C38-ADC2-7E1B06A3A90F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanopoolApi", "..\..\NanopoolApi\NanopoolApi\NanopoolApi.csproj", "{24B0896B-8233-4586-8F5E-56F2BC400EA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2CB2296C-5B2C-4C38-ADC2-7E1B06A3A90F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CB2296C-5B2C-4C38-ADC2-7E1B06A3A90F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CB2296C-5B2C-4C38-ADC2-7E1B06A3A90F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B0896B-8233-4586-8F5E-56F2BC400EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B0896B-8233-4586-8F5E-56F2BC400EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B0896B-8233-4586-8F5E-56F2BC400EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B0896B-8233-4586-8F5E-56F2BC400EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
