@@ -14,7 +14,7 @@ namespace ConsoleBotMiners
             while (true)
             {
                 Thread.Sleep(500);
-                monitor.VelidatePools();
+                monitor.ValidatePools();
             }
 
             Console.ReadLine();

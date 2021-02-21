@@ -34,6 +34,32 @@ namespace ClientPool
             }
         }
 
+        public static string GetStrFromRequiest(string url, string propName)
+        {
+            var serializer = new JavaScriptSerializer();
+            serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
+
+            var json = GetSomeUrlResult(url);
+            if (!string.Equals(json, _error))
+            {
+                dynamic obj = serializer.Deserialize(json, typeof(object));
+
+
+                //(new System.Collections.Generic.Mscorlib_DictionaryDebugView<string, object>(((ClientPool.DynamicJsonConverter.DynamicJsonObject)obj)._dictionary).Items[1]).Value
+                if (obj.status == "OK")
+                {
+                    var dynamicJsonObject = obj.data as DynamicJsonConverter.DynamicJsonObject;
+                    var res = dynamicJsonObject?.GetProperty(propName)?.ToString();
+                    if (!string.IsNullOrEmpty(res))
+                        return res;
+                    else
+                        throw new InvalidCastException($"Невозможно взять свойство {propName} в объекте {obj}");
+                }
+            }
+
+            throw new EntryPointNotFoundException($"Не найдено свойство {propName} или ответ не вернул нам OK {Environment.NewLine} {json}");
+        }
+
         public static T GetValueFromRequiest<T>(string url, string propName)
         {
             var serializer = new JavaScriptSerializer();
