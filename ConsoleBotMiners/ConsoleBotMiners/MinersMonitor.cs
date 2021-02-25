@@ -30,7 +30,10 @@ namespace ConsoleBotMiners
         public MinersMonitor()
         {
             _senderBot = new Sender();
-   
+            Command.CommandEventHandler += (sender, arg) =>
+            {
+                if (arg.Commands == CommandsEnum.Info) GetInfoAboutMiners(true);
+            };
         }
 
         public IConfiguration GetConfiguration()
@@ -51,38 +54,48 @@ namespace ConsoleBotMiners
         /// <summary> Проверка пулов </summary>
         public void ValidatePools()
         {
-            if (_lasTime.AddMinutes(30) > DateTime.Now) // проверка осуществляется не чаще чем раз  впол часа
+
+            Task.Factory.StartNew(() => _senderBot.ReadChatsAsync());
+            if (_lasTime.AddMinutes(30) < DateTime.Now) // проверка осуществляется не чаще чем раз  впол часа
             {
                 _lasTime = DateTime.Now;
 
-                var configuration = GetConfiguration();
-                var xmrWall = configuration["Wallets:xmr"];
-                var hashrate = _nanopoolXmr.GetAverageHashrate(xmrWall);
-                if (Equals(hashrate.Data.H3, 0f))
+                GetInfoAboutMiners();
+            }
+            //Task.Factory.StartNew(() => _senderBot.SendMessage("всем подписавшимся"));
+        }
+
+        private void GetInfoAboutMiners(bool mandatoryRespond = false)
+        {
+            var configuration = GetConfiguration();
+            var xmrWall = configuration["Wallets:xmr"];
+            var hashrate = _nanopoolXmr.GetCurrentHashrate(xmrWall);
+            if (Equals(hashrate.Data, 0f) || mandatoryRespond)
+            {
+                var value = $"xmr {hashrate.Data:F} выработки"; 
+                Task.Factory.StartNew(() => _senderBot.SendMessage(value));
+                Console.WriteLine(value);
+            }
+
+
+            using (Process compiler = new Process())
+            {
+                compiler.StartInfo.FileName = "ClientPool.exe";
+                compiler.StartInfo.Arguments =
+                    "https://api.ethermine.org/miner/0x85cFc2bBb112De8c36401F61041D14b2B97b66c0/currentStats currentHashrate";
+                compiler.StartInfo.UseShellExecute = false;
+                compiler.StartInfo.RedirectStandardOutput = true;
+                compiler.Start();
+
+                var readToEnd = compiler.StandardOutput.ReadToEnd();
+                if (decimal.TryParse(readToEnd, out var res) && res == 0 || mandatoryRespond)
                 {
-                    Task.Factory.StartNew(() => _senderBot.SendMessage("xmr 0 выработки"));
-                    Console.WriteLine("xmr 0 выработки");
+                    var value = $"eth {res:F} выработки";
+                    Task.Factory.StartNew(() => _senderBot.SendMessage(value));
+                    Console.WriteLine(value);
                 }
 
-
-                using (Process compiler = new Process())
-                {
-                    compiler.StartInfo.FileName = "ClientPool.exe";
-                    compiler.StartInfo.Arguments =
-                        "https://api.ethermine.org/miner/0x85cFc2bBb112De8c36401F61041D14b2B97b66c0/currentStats averageHashrate";
-                    compiler.StartInfo.UseShellExecute = false;
-                    compiler.StartInfo.RedirectStandardOutput = true;
-                    compiler.Start();
-
-                    var readToEnd = compiler.StandardOutput.ReadToEnd();
-                    if (decimal.TryParse(readToEnd, out var res) && res == 0)
-                    {
-                        Task.Factory.StartNew(() => _senderBot.SendMessage("eth 0 выработки"));
-                        Console.WriteLine("eth 0 выработки");
-                    }
-
-                    compiler.WaitForExit();
-                }
+                compiler.WaitForExit();
             }
         }
     }

@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace BotCore
@@ -28,11 +29,14 @@ namespace BotCore
             Task.Factory.StartNew(() => ReadChatsAsync());
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(string message, SubscribeLevelEnum level = SubscribeLevelEnum.Debug)
         {
             foreach (var subscriber in Config.Load().Subscribers)
             {
-                _bot.SendTextMessageAsync(subscriber.ChatId, message);
+                if (subscriber.Level >= level)
+                {
+                    _bot.SendTextMessageAsync(subscriber.ChatId, message);
+                }
             }
         }
 
@@ -58,7 +62,7 @@ namespace BotCore
                         {
                             try
                             {
-                                ReWorkMessage(update.Message);
+                                await ReWorkMessage(update.Message);
                             }
                             catch (Exception ex)
                             {
@@ -85,46 +89,12 @@ namespace BotCore
         /// обработка сообщений
         /// </summary>
         /// <param name="message"></param>
-        private void ReWorkMessage(Telegram.Bot.Types.Message message)
+        private async Task ReWorkMessage(Telegram.Bot.Types.Message message)
         {
-            switch (message.Text)
-            {
-                case "/start":
-                    if (SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Warning))
-
-                        _bot.SendTextMessageAsync(message.Chat.Id, $"Приветствую тебя, {message.From.FirstName}!");
-                    break;
-
-                case "/stop":
-                    if (SetChatLevel(message.Chat.Id, SubscribeLevelEnum.None))
-                        _bot.SendTextMessageAsync(message.Chat.Id, $"Пока, дружище, {message.From.FirstName}!");
-
-                    break;
-                default:
-
-                    if (message.Text.Contains("/level"))
-                    {
-                        if (SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Debug))
-                            _bot.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");
-
-                    }
-                    break;
-            }
+            await Command.GetRequest(message);
             Console.WriteLine($"From {message.From.Username} in chatId({message.Chat.Id}): {message.Text}");
-
         }
 
-        private bool SetChatLevel(long idChat, SubscribeLevelEnum level)
-        {
-            //return true;
-            var config = Config.Load();
-            if (level == SubscribeLevelEnum.None)
-            {
-                return config.Remove(idChat);
-            }
-            // добавляем или правми строку
-            return config.SetOrCreate(idChat, level);
-        }
 
         public static TelegramBotClient GetInstance()
         {
