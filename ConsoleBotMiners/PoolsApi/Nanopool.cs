@@ -8,37 +8,60 @@ namespace PoolsApi
 {
 	public class Nanopool : PoolApiBase
 	{
-		private NanopoolStatics.PoolType Type { get; set; }
+        private string _worker;
+
+        private NanopoolStatics.PoolType Type { get; set; }
 		
-        public Nanopool(NanopoolStatics.PoolType type, WebProxy proxy = null) : base(proxy)
+        public Nanopool(NanopoolStatics.PoolType type, string account, WebProxy proxy = null) : base(account, proxy)
 		{
 			Type = type;
 		}
 
-        protected override string ValidAndRestyleUrl<T>(string url)
+        protected override string GetUrl(RequestMethodEnum requestMethodEnum)
         {
-            url = base.ValidAndRestyleUrl<T>(url);
-            return url.Replace(NanopoolStatics.PoolTypeHolder, Enum.GetName(typeof(NanopoolStatics.PoolType), Type).ToLower());
+            var url = "";
+            switch (requestMethodEnum)
+            {
+                case RequestMethodEnum.unpaid:
+                    url = string.Format(NanopoolStatics.AccountBalance, _account);
+					break;
+                case RequestMethodEnum.currentHashrate:
+                    url = string.Format(NanopoolStatics.CurrentHashrate, _account, _worker.UrlPart());
+                    break;
+                case RequestMethodEnum.averageHashrate:
+                    url = string.Format(NanopoolStatics.AverageHashrate, _account, _worker.UrlPart());
+                    break;
+
+
+			}
+
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
+			return url.Replace(NanopoolStatics.PoolTypeHolder, Enum.GetName(typeof(NanopoolStatics.PoolType), Type).ToLower());
         }
 
-        public override float GetAccountBalance(string account)
+        public override float GetAccountBalance()
 		{
 			
-			var result = LoadResponse<FloatValue>(string.Format(NanopoolStatics.AccountBalance, account) );
+			var result = LoadResponse<FloatValue>(RequestMethodEnum.unpaid);
 			return result.Data;
 		}
 
-        public override float GetCurrentHashrate(string account, string worker = null)
+        public override float GetCurrentHashrate(string worker = null)
         {
-            
-            var result = LoadResponse<FloatValue>(string.Format(NanopoolStatics.CurrentHashrate, account, worker.UrlPart()));
+            _worker = worker;
+			var result = LoadResponse<FloatValue>(RequestMethodEnum.currentHashrate);
 			
             return result.Data;
         }
 
-        public override float GetAverageHashrate(string account, DurationTimeEnum duration = DurationTimeEnum.h24, string worker = null)
-		{
-			var response = LoadResponse<AverageHashrate>(string.Format(NanopoolStatics.AverageHashrate, account, worker.UrlPart()));
+        public override float GetAverageHashrate(DurationTimeEnum duration = DurationTimeEnum.h24, string worker = null)
+        {
+            _worker = worker;
+			var response = LoadResponse<AverageHashrate>(RequestMethodEnum.averageHashrate);
 
             var result = 0f;
             switch (duration)
@@ -66,6 +89,7 @@ namespace PoolsApi
 			return result;
 		}
 
+		/*
 		public FloatValue GetAverageHashrateLimited(string account, int hours, string worker = null)
 		{
 			
@@ -254,6 +278,7 @@ namespace PoolsApi
 
 			return result;
 		}
+		*/
 
 	}
 }

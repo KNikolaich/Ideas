@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PoolsApi.Data;
-using PoolsApi.Response;
 
 namespace PoolsApi
 {
     public abstract class PoolApiBase
     {
+        protected string _account;
+
+        protected PoolApiBase(string account, WebProxy proxy = null) : this(proxy)
+        {
+            _account = account;
+
+        }
+
         protected PoolApiBase(WebProxy proxy = null)
         {
             Proxy = proxy;
@@ -19,37 +22,26 @@ namespace PoolsApi
 
         public WebProxy Proxy { get; set; }
 
-        public abstract float GetCurrentHashrate(string account, string worker = null);
+        public abstract float GetCurrentHashrate(string worker = null);
 
-        public abstract float GetAccountBalance(string account);
+        public abstract float GetAccountBalance();
 
-        public abstract float GetAverageHashrate(string account, DurationTimeEnum duration, string worker);
+        public abstract float GetAverageHashrate(DurationTimeEnum duration, string worker);
 
 
-        protected T LoadResponse<T>(string url)
+        protected virtual T LoadResponse<T>(RequestMethodEnum requestMethodEnum)
         {
-            url = ValidAndRestyleUrl<T>(url);
+            var url = GetUrl(requestMethodEnum);
 
             T result = default;
             try
             {
-                using (var client = new WebClient())
+                var response = GetJsonResponse(url);
+
+                if (!string.IsNullOrWhiteSpace(response))
                 {
-                    if (Proxy != null)
-                    {
-                        WebRequest.DefaultWebProxy = Proxy;
-                        client.Proxy = Proxy;
-                    }
-
-                    var response = client.DownloadString(new Uri(url));
-
-                    if (!string.IsNullOrWhiteSpace(response))
-                    {
-                        result = JsonConvert.DeserializeObject<T>(response);
-                        
-
-                        return result;
-                    }
+                    result = JsonConvert.DeserializeObject<T>(response);
+                    return result;
                 }
             }
             catch (Exception e)
@@ -66,16 +58,25 @@ namespace PoolsApi
             return default(T);
         }
 
-
-        protected virtual string ValidAndRestyleUrl<T>(string url)
+        protected string GetJsonResponse(string url)
         {
-            if (string.IsNullOrWhiteSpace(url))
+            string response;
+            using (var client = new WebClient())
             {
-                throw new ArgumentNullException(nameof(url));
+                if (Proxy != null)
+                {
+                    WebRequest.DefaultWebProxy = Proxy;
+                    client.Proxy = Proxy;
+                }
+
+                response = client.DownloadString(new Uri(url));
             }
 
-            return url;
+            return response;
         }
+
+
+        protected abstract string GetUrl(RequestMethodEnum requestMethodEnum);
 
 
         private static T CastToChild<T>(NanopoolApi.Response.Response response)

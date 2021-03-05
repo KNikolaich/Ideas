@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Threading;
+using System.Reflection;
 using System.Threading.Tasks;
 using BotCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
-using Microsoft.Extensions.Configuration.FileExtensions;
-using System.Web.Script.Serialization;
-using NanopoolApi;
 using PoolsApi;
 
 namespace ConsoleBotMiners
@@ -21,9 +14,7 @@ namespace ConsoleBotMiners
     class MinersMonitor
     {
         private Sender _senderBot;
-
-        readonly Nanopool _nanopoolEth = new Nanopool(NanopoolStatics.PoolType.ETH);
-        readonly Nanopool _nanopoolXmr = new Nanopool(NanopoolStatics.PoolType.XMR);
+        
         private IConfigurationRoot _conf;
 
         private DateTime _lasTime = DateTime.Now;
@@ -69,35 +60,75 @@ namespace ConsoleBotMiners
         private void GetInfoAboutMiners(bool mandatoryRespond = false)
         {
             var configuration = GetConfiguration();
-            var xmrWall = configuration["Wallets:xmr"];
-            var hashrate = _nanopoolXmr.GetCurrentHashrate(xmrWall);
-            if (Equals(hashrate, 0f) || mandatoryRespond)
+            string value = "";
+            
+            var wallets = configuration.GetSection("Wallets");
+            foreach (var wallet in wallets.GetChildren())
             {
-                var value = $"xmr {hashrate:F} выработки"; 
+                try
+                {
+                    PoolApiBase poolApiBase = null;
+                    switch (wallet.Key)
+                    {
+                        case "Xmr":
+                            poolApiBase = new Nanopool(NanopoolStatics.PoolType.XMR, wallet.Value);
+
+                            break;
+                        case "Eth":
+                            poolApiBase = new Ethermine(wallet.Value);
+                            break;
+                    }
+
+                    if (poolApiBase != null)
+                    {
+                        var hashrate = poolApiBase.GetCurrentHashrate();
+                        if (Equals(hashrate, 0f) || mandatoryRespond)
+                        {
+                            var zeroStr = $"{wallet.Key} {hashrate:N} выработки";
+                            value += !string.IsNullOrEmpty(value) ? Environment.NewLine + zeroStr : zeroStr;
+                        }
+                        if (mandatoryRespond)
+                        {
+                            var balance = poolApiBase.GetAccountBalance();
+                            var zeroStr = $"баланс: {balance:N6} {wallet.Key}";
+                            value += !string.IsNullOrEmpty(value) ? Environment.NewLine + zeroStr : zeroStr;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    value += Environment.NewLine + ex.Message;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(value))
+            {
                 Task.Factory.StartNew(() => _senderBot.SendMessage(value));
                 Console.WriteLine(value);
             }
+            /*var xmrWall = configuration["Wallets:xmr"];
+            
+            
 
-
-            using (Process compiler = new Process())
+            try
             {
-                 compiler.StartInfo.FileName = "ClientPool.exe";
-                compiler.StartInfo.Arguments =
-                    "https://api.ethermine.org/miner/0x85cFc2bBb112De8c36401F61041D14b2B97b66c0/currentStats currentHashrate";// reportedHashrate
-                compiler.StartInfo.UseShellExecute = false;
-                compiler.StartInfo.RedirectStandardOutput = true;
-                compiler.Start();
+                var ethWall = configuration["Wallets:eth"];
 
-                var readToEnd = compiler.StandardOutput.ReadToEnd();
-                if (decimal.TryParse(readToEnd, out var res) && res == 0 || mandatoryRespond)
+                // вызываем метод, передаем ему значения для параметров и получаем результат
+                Ethermine ethMine = new Ethermine(ethWall);
+                
+                var ethHashrate = ethMine.GetCurrentHashrate();
+                if (Equals(ethHashrate, 0f) || mandatoryRespond)
                 {
-                    var value = $"eth {res:F} выработки";
-                    Task.Factory.StartNew(() => _senderBot.SendMessage(value));
-                    Console.WriteLine(value);
+                    
                 }
-
-                compiler.WaitForExit();
             }
+            catch(Exception ex)
+            {
+                value += Environment.NewLine + ex.Message;
+            }
+            */
+
         }
     }
 }

@@ -39,7 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -49,7 +48,12 @@
     <Compile Include="Data\DurationTimeEnum.cs" />
     <Compile Include="Data\NanopoolApi\Data.cs" />
     <Compile Include="Data\NanopoolApi\Payment.cs" />
+    <Compile Include="Data\RequestMethodEnum.cs" />
+    <Compile Include="Ethermine.cs" />
+    <Compile Include="EthermineStatics.cs" />
     <Compile Include="PoolApiBase.cs" />
+    <Compile Include="Response\EthirmineApi\CurrentStats.cs" />
+    <Compile Include="Response\EthirmineApi\EthireMineResponse.cs" />
     <Compile Include="Response\FloatValue.cs" />
     <Compile Include="Response\NanopoolApi\AverageHashrate.cs" />
     <Compile Include="Data\NanopoolApi\AverageHashrate.cs" />
