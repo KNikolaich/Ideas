@@ -9,8 +9,9 @@ using BotCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration.FileExtensions;
-using NanopoolApi;
 using System.Web.Script.Serialization;
+using NanopoolApi;
+using PoolsApi;
 
 namespace ConsoleBotMiners
 {
@@ -21,8 +22,8 @@ namespace ConsoleBotMiners
     {
         private Sender _senderBot;
 
-        readonly Nanopool _nanopoolEth = new Nanopool(Statics.PoolType.ETH);
-        readonly Nanopool _nanopoolXmr = new Nanopool(Statics.PoolType.XMR);
+        readonly Nanopool _nanopoolEth = new Nanopool(NanopoolStatics.PoolType.ETH);
+        readonly Nanopool _nanopoolXmr = new Nanopool(NanopoolStatics.PoolType.XMR);
         private IConfigurationRoot _conf;
 
         private DateTime _lasTime = DateTime.Now;
@@ -70,9 +71,9 @@ namespace ConsoleBotMiners
             var configuration = GetConfiguration();
             var xmrWall = configuration["Wallets:xmr"];
             var hashrate = _nanopoolXmr.GetCurrentHashrate(xmrWall);
-            if (Equals(hashrate.Data, 0f) || mandatoryRespond)
+            if (Equals(hashrate, 0f) || mandatoryRespond)
             {
-                var value = $"xmr {hashrate.Data:F} выработки"; 
+                var value = $"xmr {hashrate:F} выработки"; 
                 Task.Factory.StartNew(() => _senderBot.SendMessage(value));
                 Console.WriteLine(value);
             }
@@ -80,9 +81,9 @@ namespace ConsoleBotMiners
 
             using (Process compiler = new Process())
             {
-                compiler.StartInfo.FileName = "ClientPool.exe";
+                 compiler.StartInfo.FileName = "ClientPool.exe";
                 compiler.StartInfo.Arguments =
-                    "https://api.ethermine.org/miner/0x85cFc2bBb112De8c36401F61041D14b2B97b66c0/currentStats currentHashrate";
+                    "https://api.ethermine.org/miner/0x85cFc2bBb112De8c36401F61041D14b2B97b66c0/currentStats currentHashrate";// reportedHashrate
                 compiler.StartInfo.UseShellExecute = false;
                 compiler.StartInfo.RedirectStandardOutput = true;
                 compiler.Start();

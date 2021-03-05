@@ -55,7 +55,7 @@ namespace BotCore
 
                 default:
 
-                    if (message.Text.Contains("/level"))
+                    if (!string.IsNullOrEmpty(message.Text) && message.Text.Contains("/level"))
                     {
                         if (SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Debug))
                             botClient.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");

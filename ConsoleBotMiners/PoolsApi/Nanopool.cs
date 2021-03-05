@@ -1,12 +1,10 @@
-﻿using NanopoolApi.Response;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net;
-using PoolsApi;
+using NanopoolApi.Response;
 using PoolsApi.Data;
 using PoolsApi.Response;
 
-namespace NanopoolApi
+namespace PoolsApi
 {
 	public class Nanopool : PoolApiBase
 	{
@@ -23,22 +21,22 @@ namespace NanopoolApi
             return url.Replace(NanopoolStatics.PoolTypeHolder, Enum.GetName(typeof(NanopoolStatics.PoolType), Type).ToLower());
         }
 
-        protected override FloatValue GetAccountBalance(string account)
+        public override float GetAccountBalance(string account)
 		{
 			
 			var result = LoadResponse<FloatValue>(string.Format(NanopoolStatics.AccountBalance, account) );
-			return result;
+			return result.Data;
 		}
 
-        protected override FloatValue GetCurrentHashrate(string account, string worker = null)
+        public override float GetCurrentHashrate(string account, string worker = null)
         {
             
             var result = LoadResponse<FloatValue>(string.Format(NanopoolStatics.CurrentHashrate, account, worker.UrlPart()));
 			
-            return result;
+            return result.Data;
         }
 
-        protected override float GetAverageHashrate(string account, DurationTimeEnum duration = DurationTimeEnum.h24, string worker = null)
+        public override float GetAverageHashrate(string account, DurationTimeEnum duration = DurationTimeEnum.h24, string worker = null)
 		{
 			var response = LoadResponse<AverageHashrate>(string.Format(NanopoolStatics.AverageHashrate, account, worker.UrlPart()));
 

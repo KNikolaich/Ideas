@@ -18,7 +18,7 @@ namespace ClientPool.Tests
         public void GetSomeUrlResult_ethermineCurrentStats_ResultHasCurrentHashrate()
         {
             var strUrl = "https://api.ethermine.org/miner/0x85cFc2bBb112De8c36401F61041D14b2B97b66c0/currentStats";
-            var target = JustGetter.GetValueFromRequiest<decimal>(strUrl, "averageHashrate");
+            var target = JustGetter.GetValueFromRequiest<decimal>(strUrl, "currentHashrate");
             Assert.IsFalse(target == 0);
         }
     }

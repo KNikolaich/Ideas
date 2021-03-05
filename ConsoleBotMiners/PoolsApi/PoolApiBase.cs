@@ -19,11 +19,11 @@ namespace PoolsApi
 
         public WebProxy Proxy { get; set; }
 
-        protected abstract FloatValue GetCurrentHashrate(string account, string worker = null);
+        public abstract float GetCurrentHashrate(string account, string worker = null);
 
-        protected abstract FloatValue GetAccountBalance(string account);
+        public abstract float GetAccountBalance(string account);
 
-        protected abstract float GetAverageHashrate(string account, DurationTimeEnum duration, string worker);
+        public abstract float GetAverageHashrate(string account, DurationTimeEnum duration, string worker);
 
 
         protected T LoadResponse<T>(string url)
