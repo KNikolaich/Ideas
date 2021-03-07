@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ConsoleBotMiners": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

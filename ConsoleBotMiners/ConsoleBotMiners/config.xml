@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Subscribers>
+    <Subscriber>
+      <ChatId>420515519</ChatId>
+      <Level>Warning</Level>
+    </Subscriber>
+  </Subscribers>
+</Config>
