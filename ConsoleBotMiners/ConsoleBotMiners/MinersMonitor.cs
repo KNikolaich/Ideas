@@ -65,27 +65,29 @@ namespace ConsoleBotMiners
             var wallets = configuration.GetSection("Wallets");
             foreach (var wallet in wallets.GetChildren())
             {
-                try
+                PoolApiBase poolApiBase = null;
+                switch (wallet.Key)
                 {
-                    PoolApiBase poolApiBase = null;
-                    switch (wallet.Key)
-                    {
-                        case "Xmr":
-                            poolApiBase = new Nanopool(NanopoolStatics.PoolType.XMR, wallet.Value);
+                    case "Xmr":
+                        poolApiBase = new Nanopool(NanopoolStatics.PoolType.XMR, wallet.Value);
 
-                            break;
-                        case "Eth":
-                            poolApiBase = new Ethermine(wallet.Value);
-                            break;
-                    }
+                        break;
+                    case "Eth":
+                        poolApiBase = new Ethermine(wallet.Value);
+                        break;
+                }
 
-                    if (poolApiBase != null)
+                if (poolApiBase != null)
+                {
+                    try
                     {
                         var hashrate = poolApiBase.GetCurrentHashrate();
                         if (Equals(hashrate, 0f) || mandatoryRespond)
                         {
+
                             var zeroStr = $"{wallet.Key} {hashrate:N} выработки";
                             value += !string.IsNullOrEmpty(value) ? Environment.NewLine + zeroStr : zeroStr;
+
                         }
                         if (mandatoryRespond)
                         {
@@ -94,40 +96,20 @@ namespace ConsoleBotMiners
                             value += !string.IsNullOrEmpty(value) ? Environment.NewLine + zeroStr : zeroStr;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    value += Environment.NewLine + ex.Message;
+                    catch (Exception ex)
+                    {
+                        value += $"{wallet.Key} {0:N} выработки";
+
+                        Task.Factory.StartNew(() => _senderBot.SendMessage(ex.Message, SubscribeLevelEnum.Error));
+                    }
                 }
             }
 
             if (!string.IsNullOrEmpty(value))
             {
-                Task.Factory.StartNew(() => _senderBot.SendMessage(value));
+                Task.Factory.StartNew(() => _senderBot.SendMessage(value, SubscribeLevelEnum.Info));
                 Console.WriteLine(value);
             }
-            /*var xmrWall = configuration["Wallets:xmr"];
-            
-            
-
-            try
-            {
-                var ethWall = configuration["Wallets:eth"];
-
-                // вызываем метод, передаем ему значения для параметров и получаем результат
-                Ethermine ethMine = new Ethermine(ethWall);
-                
-                var ethHashrate = ethMine.GetCurrentHashrate();
-                if (Equals(ethHashrate, 0f) || mandatoryRespond)
-                {
-                    
-                }
-            }
-            catch(Exception ex)
-            {
-                value += Environment.NewLine + ex.Message;
-            }
-            */
 
         }
     }

@@ -58,7 +58,7 @@ namespace BotCore
                     if (!string.IsNullOrEmpty(message.Text) && message.Text.Contains("/level"))
                     {
                         if (SetChatLevel(message.Chat.Id, SubscribeLevelEnum.Debug))
-                            botClient.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");
+                            await botClient.SendTextMessageAsync(message.Chat.Id, $"Левел, {message.From.FirstName}!");
                     }
 
                     break;
@@ -92,6 +92,37 @@ namespace BotCore
 
             return new InlineKeyboardMarkup(ikm);
 
+        }
+
+        internal static async Task ReworkCallbackQuery(CallbackQuery callbackQuery)
+        {
+            TelegramBotClient botClient = Sender.GetInstance();
+            var data = callbackQuery.Data;
+            var message = callbackQuery.Message;
+            if (data.Contains(_prefixLevel))
+            {
+                var levelStr = data.Replace(_prefixLevel, "");
+
+                if (Enum.TryParse<SubscribeLevelEnum>(levelStr, out var level))
+                {
+                    if (SetChatLevel(message.Chat.Id, level))
+                    {
+                        await botClient.SendTextMessageAsync(message.Chat.Id, $"Левел изменен на {level}!");
+                    }
+                }
+            }
+            //else if (data.Contains(_prefixInterval))
+            //{
+            //    var levelStr = data.Replace(_prefixInterval, "");
+
+            //    if (Enum.TryParse<TimeInterval>(levelStr, out var interval))
+            //    {
+            //        if (Config.Load().SetInterval(message.Chat.Id, interval))
+            //        {
+            //            await botClient.SendTextMessageAsync(message.Chat.Id, $"Интервал изменен на {interval}!");
+            //        }
+            //    }
+            //}
         }
 
         private static bool SetChatLevel(long idChat, SubscribeLevelEnum level)

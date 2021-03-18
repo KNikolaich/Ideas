@@ -29,7 +29,7 @@ namespace BotCore
             Task.Factory.StartNew(() => ReadChatsAsync());
         }
 
-        public void SendMessage(string message, SubscribeLevelEnum level = SubscribeLevelEnum.Debug)
+        public void SendMessage(string message, SubscribeLevelEnum level = SubscribeLevelEnum.Info)
         {
             foreach (var subscriber in Config.Load().Subscribers)
             {
@@ -58,19 +58,26 @@ namespace BotCore
 
                     foreach (var update in updates) // Перебираем все обновления
                     {
-                        if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
+
+                        try
                         {
-                            try
+
+                            if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
                             {
                                 await ReWorkMessage(update.Message);
                             }
-                            catch (Exception ex)
+                            else if (update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQuery)
                             {
-                                Console.WriteLine(ex.Message);
+                                await ReworkCallbackQuery(update.CallbackQuery);
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                             offset = update.Id + 1;
 
-                        }
+                        
                     }
 
                 }
@@ -85,6 +92,13 @@ namespace BotCore
             }
         }
 
+        private async Task ReworkCallbackQuery(CallbackQuery callbackQuery)
+        {
+            await Command.ReworkCallbackQuery(callbackQuery);
+            Console.WriteLine($"{DateTime.Now.ToString("G")}:\t From {callbackQuery.Message.From.Username} in chatId({callbackQuery.Message.Chat.Id}): {callbackQuery.Message.Text}");
+            
+        }
+
         /// <summary>
         /// обработка сообщений
         /// </summary>
@@ -92,7 +106,7 @@ namespace BotCore
         private async Task ReWorkMessage(Telegram.Bot.Types.Message message)
         {
             await Command.GetRequest(message);
-            Console.WriteLine($"From {message.From.Username} in chatId({message.Chat.Id}): {message.Text}");
+            Console.WriteLine($"{DateTime.Now.ToString("G")}:\t From {message.From.Username} in chatId({message.Chat.Id}): {message.Text}");
         }
 
 
