@@ -9,18 +9,16 @@ namespace AnalyticalCenter.Indicators
     /// </summary>
     public class Ema : MovingAverage
     {
-        public Ema(short depth) : base(depth)
+        public Ema(int depth) : base(depth)
         {
         }
 
-        public void CalcValue(decimal price, decimal previewEmaValue = 0m)
+        public override decimal CalcThis(decimal price, IIndicator preview)
         {
+            base.CalcThis(price, preview);
             var p = P();
-            Value = (price * p) + (previewEmaValue * (1 - p));
-        }
-        internal void CalcValue(decimal lastPrice, decimal? value)
-        {
-            CalcValue(lastPrice, value ?? 0);
+            Value = (price * p) + (preview != null ? (preview.Value * (1 - p)) : 0);
+            return Value;
         }
 
         private decimal P()

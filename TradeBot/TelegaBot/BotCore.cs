@@ -26,9 +26,13 @@ namespace TelegaBot
 
         public async Task ReadChatsAsync()
         {
-            if (_iAmBusy)
-                return;
-            _iAmBusy = true;
+            lock (o)
+            {
+                if (_iAmBusy)
+                    return;
+                _iAmBusy = true;
+                _bot = null;
+            }
             try
             {
                 GetInstance();
@@ -38,6 +42,7 @@ namespace TelegaBot
                 int offset = 0; // отступ по сообщениям
                 while (true)
                 {
+                    await _bot.SetWebhookAsync("");
                     Thread.Sleep(100);
                     var updates = await _bot.GetUpdatesAsync(offset); // получаем массив обновлений
 
@@ -127,9 +132,17 @@ namespace TelegaBot
             switch (message.Text)
             {
                 case "/start":
+                    var subscriber = Config.Load().GetSubscribes(message.Chat.Id);
+                    if (subscriber.Validate())
+                    {
+                        CommandEventHandler?.Invoke(this, new CommandArg(CommandsEnum.Start, subscriber));
 
-                    CommandEventHandler?.Invoke(this, new CommandArg(CommandsEnum.Start, Config.Load().GetSubscribes(message.Chat.Id)));
-                    await _bot.SendTextMessageAsync(message.Chat.Id, $"Запуск стратегии!");
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Запуск стратегии!"); 
+                    }
+                    else
+                    {
+                        await _bot.SendTextMessageAsync(message.Chat.Id, $"Запуск стратегии невозможен, подписчик не настроен!"); 
+                    }
                     
                     break;
 

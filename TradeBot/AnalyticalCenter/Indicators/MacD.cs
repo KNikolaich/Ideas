@@ -1,9 +1,11 @@
-﻿using Binance.API.Csharp.Client.Models.Helpers;
+﻿using AnalyticalCenter.Helpers;
+using Binance.API.Csharp.Client.Models.Helpers;
 using Binance.API.Csharp.Client.Models.Market;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TelegaBot;
 
 /*Для расчетна нам понадобится минимум 26 значений цен закрытия для периода
  * вычисляем ema медленную и быструю
@@ -30,24 +32,22 @@ namespace AnalyticalCenter.Indicators
     /// при этом ценой для расчета служит значение закрытия свечи.
     /// При ведении торговли на рост рынка параметры 26 и 12 заменяются на 17 и 8 соответственно.
     /// его стандартные значения 12, 26, 9 изначально разрабатывались именно под дневной таймфрейм.</remarks>
-    public class MacD 
+    public class MacD : IIndicator
     {
         
         internal MacD _previewMacD;
 
-        internal MacD(MacD prevMacD)
+        internal MacD()
         {
-            _previewMacD = prevMacD;
         }
 
-        internal decimal CalcThis(decimal lastPrice)
+        public decimal CalcThis(decimal price, IIndicator preview)
         {
-            ema12.CalcValue(lastPrice, _previewMacD?.ema12.Value);
-            ema26.CalcValue(lastPrice, _previewMacD?.ema26.Value);
+            _previewMacD = (MacD)preview;
 
-            Delta = ema12.Value - ema26.Value;
-            sma9.CalcByMacD(this);
-            Difference = Delta - sma9.Value;
+            Delta = ema12.CalcThis(price, _previewMacD?.ema12) - Ema26.CalcThis(price, _previewMacD?.Ema26);
+
+            Difference = Delta - sma9.CalcThis(0m, this);
             
             return Difference;
         }
@@ -69,25 +69,53 @@ namespace AnalyticalCenter.Indicators
         public DateTime OpenDateTime { get; private set; }
         public decimal Difference { get; private set; }
 
+        public decimal Value => Delta;
+
+        public int Depth => 26; // максимальная глубина
+
+        public IIndicator PreviewIndicator => _previewMacD;
+
+        public Ema Ema26 => ema26;
+
         public override string ToString()
         {
             return $"delta:{Delta:n2} {sma9.Value:n2} {OpenDateTime.ToLongDateString()}";
         }
 
-        internal static MacD Create(Candlestick stick, MacD prevMacD)
+        internal static MacD Create(Candlestick stick, IIndicator prevMacD)
         {
-            var macd = new MacD(prevMacD);
+            var macd = new MacD();
 
             try
             {
-                macd.CalcThis(stick.Close);
+                macd.CalcThis(stick.Close, prevMacD);
                 macd.OpenDateTime = Converters.GeDateTime(stick.OpenTime);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Speaker.Instance().CanBeInteresting(macd, new MessageEventArg(ex.Message, SubscribeLevelEnum.Error));
             }
             return macd;
+        }
+
+        public EnumOrderDirect Validate()
+        {
+            if (_previewMacD != null)
+            {
+                if (_previewMacD.Difference <= 0 && Difference > 0)
+                {
+                    //OnCanBeInteresting("Рекомендация: покупать.", newMacd);
+
+                    return EnumOrderDirect.Buy; // покупай 1 валюту из пары 
+                }
+                if (_previewMacD.Difference >= 0 && Difference < 0)
+                {
+                    //OnCanBeInteresting("Рекомендация: продавать.", newMacd);
+                    // при общем восходящем тренде - ходл (при этом надо стоп лосы уметь ставить)
+                    return  EnumOrderDirect.Sale;  // продавай 1 валюту из пары 
+                }
+            }
+            return EnumOrderDirect.Nothing;
         }
     }
 }

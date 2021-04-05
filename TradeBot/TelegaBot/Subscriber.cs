@@ -26,5 +26,14 @@ namespace TelegaBot
         {
             return $"Установки для подписчика: Уровень информации - {Level}; пара - {Pair}; на интервал - {interval.GetDescription()}";
         }
+
+        internal bool Validate()
+        {
+            if (string.IsNullOrEmpty(Pair) || ChatId == 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
