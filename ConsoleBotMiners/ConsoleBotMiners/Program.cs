@@ -9,6 +9,7 @@ namespace ConsoleBotMiners
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Запуск бота");
             var monitor = new MinersMonitor();
             while (true)
             {

@@ -36,7 +36,7 @@ namespace PoolsSelector
 
         public override float GetAverageHashrate(DurationTimeEnum duration, string worker)
         {
-            var response = LoadResponse<float?>(RequestMethodEnum.unpaid);
+            var response = LoadResponse<float?>(RequestMethodEnum.averageHashrate);
             return response ?? 0f;
         }
 

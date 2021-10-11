@@ -3,7 +3,7 @@
   <Subscribers>
     <Subscriber>
       <ChatId>420515519</ChatId>
-      <Level>Warning</Level>
+      <Level>Info</Level>
     </Subscriber>
   </Subscribers>
 </Config>

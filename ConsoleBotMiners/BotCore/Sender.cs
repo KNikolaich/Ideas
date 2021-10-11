@@ -28,6 +28,7 @@ namespace BotCore
 
         public Sender()
         {
+            Console.WriteLine("токен:" + _token.Split(':')[0]);
             Task.Factory.StartNew(() => ReadChatsAsync());
         }
 
