@@ -16,7 +16,7 @@ namespace ConsoleBotMiners
                 monitor.ValidatePools();
             }
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
     }

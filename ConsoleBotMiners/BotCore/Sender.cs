@@ -19,10 +19,12 @@ namespace BotCore
     /// </summary>
     public class Sender
     {
-        static string _token = "882717145:AAENoKNk3xjOgfS3Sm0sutUIcDu117JR3n8"; // smartTrade_kf
+        static string _token = "882717145:AAGTp0uq_-GekQesaqAm_WGpMVAZyyUlswg"; // smartTrade_kf
         private bool _iAmBusy;
         static TelegramBotClient _bot;
         static object o = new object();
+
+        Queue<KeyValuePair<long, string>> _messageCach = new Queue<KeyValuePair<long, string>>();
 
         public Sender()
         {
@@ -35,7 +37,15 @@ namespace BotCore
             {
                 if (subscriber.Level >= level)
                 {
-                    _bot.SendTextMessageAsync(subscriber.ChatId, message);
+                    _messageCach.Enqueue(new KeyValuePair<long, string>(subscriber.ChatId, message));
+                    if(DateTime.Now.TimeOfDay < new TimeSpan(23, 0, 0) && DateTime.Now.TimeOfDay >= new TimeSpan(8, 0, 0))
+                    {
+                        while(_messageCach.Count > 0)
+                        {
+                            var kvp = _messageCach.Dequeue();
+                            _bot.SendTextMessageAsync(kvp.Key, kvp.Value);
+                        }
+                    }
                 }
             }
         }
@@ -58,10 +68,8 @@ namespace BotCore
 
                     foreach (var update in updates) // Перебираем все обновления
                     {
-
                         try
                         {
-
                             if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
                             {
                                 await ReWorkMessage(update.Message);
@@ -75,11 +83,8 @@ namespace BotCore
                         {
                             Console.WriteLine(ex.Message);
                         }
-                            offset = update.Id + 1;
-
-                        
+                            offset = update.Id + 1;                        
                     }
-
                 }
             }
             catch (Telegram.Bot.Exceptions.ApiRequestException ex)
