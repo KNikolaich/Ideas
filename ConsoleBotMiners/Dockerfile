@@ -8,13 +8,13 @@ WORKDIR /src
 COPY ["ConsoleBotMiners/ConsoleBotMiners.csproj", "ConsoleBotMiners/"]
 COPY ["BotCore/BotCore.csproj", "BotCore/"]
 COPY ["PoolsSelector/PoolsSelector.csproj", "PoolsSelector/"]
-RUN dotnet restore "ConsoleBotMiners/ConsoleBotMiners.csproj"
+
 COPY . .
 WORKDIR "/src/ConsoleBotMiners"
-RUN dotnet build "ConsoleBotMiners.csproj" -c Release -o /app/build
+RUN dotnet build "ConsoleBotMiners/ConsoleBotMiners.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ConsoleBotMiners.csproj" -c Release -o /app/publish
+RUN dotnet publish "ConsoleBotMiners/ConsoleBotMiners.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

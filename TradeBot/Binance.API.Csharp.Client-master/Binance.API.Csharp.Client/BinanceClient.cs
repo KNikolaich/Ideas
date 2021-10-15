@@ -89,6 +89,8 @@ namespace Binance.API.Csharp.Client
             }
         }
 
+
+
         private void LoadTradingRules()
         {
             var apiClient = new ApiClient("", "", EndPoints.TradingRules, addDefaultHeaders: false);

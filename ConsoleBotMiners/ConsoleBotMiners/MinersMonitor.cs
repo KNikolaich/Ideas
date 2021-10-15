@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using BotCore;
 using Microsoft.Extensions.Configuration;
@@ -85,7 +84,7 @@ namespace ConsoleBotMiners
                     try
                     {
                         //var hashrate = poolApiBase.GetCurrentHashrate();
-                        var hashrate = poolApiBase.GetAverageHashrate(PoolsSelector.Data.DurationTimeEnum.h1);
+                        var hashrate = poolApiBase.GetAverageHashrate(DurationTimeEnum.h1);
                         if (Equals(hashrate, 0f) || mandatoryRespond)
                         {
 
@@ -111,7 +110,7 @@ namespace ConsoleBotMiners
 
             if (!string.IsNullOrEmpty(value))
             {
-                Task.Factory.StartNew(() => _senderBot.SendMessage(value, SubscribeLevelEnum.Info));
+                Task.Factory.StartNew(() => _senderBot.SendMessage(value));
                 Console.WriteLine(value);
             }
 

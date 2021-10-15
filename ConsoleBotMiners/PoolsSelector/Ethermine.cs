@@ -21,7 +21,7 @@ namespace PoolsSelector
         public override float GetCurrentHashrate(string worker = null)
         {
             var response = LoadResponse<float?>(RequestMethodEnum.currentHashrate).GetValueOrDefault(); 
-            return response;
+            return ConvertToAdecvatValues(response);
         }
 
         public override float GetAccountBalance()
@@ -29,15 +29,26 @@ namespace PoolsSelector
             var response = LoadResponse<long?>(RequestMethodEnum.unpaid);
             if (response.HasValue && response != 0)
             {
-                return response.Value / 1000000000000000000f;
+                return ConvertToAdecvatValues(response);
             }
             return 0f;
+        }
+
+        private static float ConvertToAdecvatValues(float? response)
+        {
+            return response.HasValue ? response.Value / 1000000000000000000f : 0f;
+        }
+
+        private static float ConvertToAdecvatValues(long? response)
+        {
+            var mnoj = (float)Math.Pow(0.1d, 18d);
+            return response.HasValue ? response.Value * mnoj : 0f;
         }
 
         public override float GetAverageHashrate(DurationTimeEnum duration, string worker)
         {
             var response = LoadResponse<float?>(RequestMethodEnum.averageHashrate);
-            return response ?? 0f;
+            return response.HasValue ? (float)(response/(float)Math.Pow(10, 6)) : 0f;
         }
 
         protected override string GetUrl(RequestMethodEnum requestMethodEnum)

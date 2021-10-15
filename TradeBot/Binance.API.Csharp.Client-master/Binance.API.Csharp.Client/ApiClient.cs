@@ -16,6 +16,7 @@ namespace Binance.API.Csharp.Client
     public class ApiClient : ApiClientAbstract, IApiClient
     {
 
+
         /// <summary>
         /// ctor.
         /// </summary>
@@ -186,6 +187,11 @@ namespace Binance.API.Csharp.Client
 
             ws.Connect();
             _openSockets.Add(ws);
+        }
+
+        public static IApiClient CreateEntityForCandlestiks()
+        {
+            return new ApiClient("apiKey", "apiValue");
         }
     }
 }
