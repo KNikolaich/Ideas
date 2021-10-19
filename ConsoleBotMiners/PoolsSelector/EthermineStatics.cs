@@ -17,7 +17,6 @@ namespace PoolsSelector
                 case RequestMethodEnum.averageHashrate:
                 case RequestMethodEnum.unpaid:
                     return UrlMiner.Replace(walletFake, ownWallet) + "currentStats";
-                    break;
             }
 
             return UrlMiner;

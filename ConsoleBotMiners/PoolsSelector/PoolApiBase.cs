@@ -26,7 +26,7 @@ namespace PoolsSelector
 
         public abstract float GetAccountBalance();
 
-        public abstract float GetAverageHashrate(DurationTimeEnum duration, string worker);
+        public abstract float GetAverageHashrate(DurationTimeEnum duration, string worker = null);
 
 
         protected virtual T LoadResponse<T>(RequestMethodEnum requestMethodEnum)

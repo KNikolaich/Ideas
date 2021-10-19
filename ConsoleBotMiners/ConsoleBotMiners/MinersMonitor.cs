@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using BotCore;
 using Microsoft.Extensions.Configuration;
@@ -74,8 +73,9 @@ namespace ConsoleBotMiners
 
                         break;
                     case "Eth":
-                        // poolApiBase = new Ethermine(wallet.Value);
-                        poolApiBase = new Nanopool(NanopoolStatics.PoolType.ETH, wallet.Value);
+
+                        //poolApiBase = new Nanopool(NanopoolStatics.PoolType.ETH, wallet.Value);
+                        poolApiBase = new Ethermine(wallet.Value);
                         break;
                 }
 
@@ -83,7 +83,8 @@ namespace ConsoleBotMiners
                 {
                     try
                     {
-                        var hashrate = poolApiBase.GetAverageHashrate(DurationTimeEnum.h1, "");
+                        //var hashrate = poolApiBase.GetCurrentHashrate();
+                        var hashrate = poolApiBase.GetAverageHashrate(DurationTimeEnum.h1);
                         if (Equals(hashrate, 0f) || mandatoryRespond)
                         {
 
@@ -109,7 +110,7 @@ namespace ConsoleBotMiners
 
             if (!string.IsNullOrEmpty(value))
             {
-                Task.Factory.StartNew(() => _senderBot.SendMessage(value, SubscribeLevelEnum.Info));
+                Task.Factory.StartNew(() => _senderBot.SendMessage(value));
                 Console.WriteLine(value);
             }
 

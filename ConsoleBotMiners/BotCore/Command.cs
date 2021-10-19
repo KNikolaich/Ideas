@@ -13,7 +13,7 @@ namespace BotCore
     {
 
         private static string _prefixLevel = "level_";
-        private static string _prefixInterval = "interval_";
+        //private static string _prefixInterval = "interval_";
 
 
         public static EventHandler<CommandArg> CommandEventHandler;

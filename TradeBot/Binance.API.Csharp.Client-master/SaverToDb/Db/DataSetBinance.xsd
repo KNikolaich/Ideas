@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetBinance" targetNamespace="http://tempuri.org/DataSetBinance.xsd" xmlns:mstns="http://tempuri.org/DataSetBinance.xsd" xmlns="http://tempuri.org/DataSetBinance.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetBinance" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetBinance" msprop:Generator_UserDSName="DataSetBinance">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Candlestick" msprop:Generator_TableClassName="CandlestickDataTable" msprop:Generator_TableVarName="tableCandlestick" msprop:Generator_TablePropName="Candlestick" msprop:Generator_RowDeletingName="CandlestickRowDeleting" msprop:Generator_RowChangingName="CandlestickRowChanging" msprop:Generator_RowEvHandlerName="CandlestickRowChangeEventHandler" msprop:Generator_RowDeletedName="CandlestickRowDeleted" msprop:Generator_UserTableName="Candlestick" msprop:Generator_RowChangedName="CandlestickRowChanged" msprop:Generator_RowEvArgName="CandlestickRowChangeEvent" msprop:Generator_RowClassName="CandlestickRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Volume" msdata:Caption="Объем" msprop:Generator_ColumnVarNameInTable="columnVolume" msprop:Generator_ColumnPropNameInRow="Volume" msprop:Generator_ColumnPropNameInTable="VolumeColumn" msprop:Generator_UserColumnName="Volume" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Low" msdata:Caption="Минимальная цена" msprop:Generator_ColumnVarNameInTable="columnLow" msprop:Generator_ColumnPropNameInRow="Low" msprop:Generator_ColumnPropNameInTable="LowColumn" msprop:Generator_UserColumnName="Low" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Hight" msdata:Caption="Максимальная цена" msprop:Generator_ColumnVarNameInTable="columnHight" msprop:Generator_ColumnPropNameInRow="Hight" msprop:Generator_ColumnPropNameInTable="HightColumn" msprop:Generator_UserColumnName="Hight" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Close" msdata:Caption="Цена закрытия" msprop:Generator_ColumnVarNameInTable="columnClose" msprop:Generator_ColumnPropNameInRow="Close" msprop:Generator_ColumnPropNameInTable="CloseColumn" msprop:Generator_UserColumnName="Close" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Open" msdata:Caption="Цена открытия" msprop:Generator_ColumnVarNameInTable="columnOpen" msprop:Generator_ColumnPropNameInRow="Open" msprop:Generator_ColumnPropNameInTable="OpenColumn" msprop:Generator_UserColumnName="Open" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CloseTime" msdata:Caption="Время закрытия" msprop:Generator_ColumnVarNameInTable="columnCloseTime" msprop:Generator_ColumnPropNameInRow="CloseTime" msprop:Generator_ColumnPropNameInTable="CloseTimeColumn" msprop:Generator_UserColumnName="CloseTime" type="xs:unsignedLong" minOccurs="0" />
+              <xs:element name="OpenTime" msdata:Caption="Время открытия" msprop:Generator_ColumnVarNameInTable="columnOpenTime" msprop:Generator_ColumnPropNameInRow="OpenTime" msprop:Generator_ColumnPropNameInTable="OpenTimeColumn" msprop:Generator_UserColumnName="OpenTime" type="xs:unsignedLong" minOccurs="0" />
+              <xs:element name="QuoteAssetVolume" msprop:Generator_ColumnVarNameInTable="columnQuoteAssetVolume" msprop:Generator_ColumnPropNameInRow="QuoteAssetVolume" msprop:Generator_ColumnPropNameInTable="QuoteAssetVolumeColumn" msprop:Generator_UserColumnName="QuoteAssetVolume" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NumberOfTrades" msprop:Generator_ColumnVarNameInTable="columnNumberOfTrades" msprop:Generator_ColumnPropNameInRow="NumberOfTrades" msprop:Generator_ColumnPropNameInTable="NumberOfTradesColumn" msprop:Generator_UserColumnName="NumberOfTrades" type="xs:int" minOccurs="0" />
+              <xs:element name="TakerBuyBaseAssetVolume" msprop:Generator_ColumnVarNameInTable="columnTakerBuyBaseAssetVolume" msprop:Generator_ColumnPropNameInRow="TakerBuyBaseAssetVolume" msprop:Generator_ColumnPropNameInTable="TakerBuyBaseAssetVolumeColumn" msprop:Generator_UserColumnName="TakerBuyBaseAssetVolume" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TakerBuyQuoteAssetVolume" msprop:Generator_ColumnVarNameInTable="columnTakerBuyQuoteAssetVolume" msprop:Generator_ColumnPropNameInRow="TakerBuyQuoteAssetVolume" msprop:Generator_ColumnPropNameInTable="TakerBuyQuoteAssetVolumeColumn" msprop:Generator_UserColumnName="TakerBuyQuoteAssetVolume" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="CandlestickKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Candlestick" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

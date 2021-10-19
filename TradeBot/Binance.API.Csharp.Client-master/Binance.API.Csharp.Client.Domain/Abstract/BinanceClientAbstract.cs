@@ -13,7 +13,7 @@ namespace Binance.API.Csharp.Client.Domain.Abstract
         /// <summary>
         /// Client to be used to call the API.
         /// </summary>
-        public readonly IApiClient _apiClient;
+        public IApiClient _apiClient;
 
         /// <summary>
         /// Defines the constructor of the Binance client.
