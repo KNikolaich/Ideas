@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="https://portal.rosreestr.ru/xsl/EGRP/Reestr_Extract_Big/ROOM/07/Common.xsl"?>
+
+<KPOKS xmlns="urn://x-artefacts-rosreestr-ru/outgoing/kpoks/4.0.1"
+xmlns:smev="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1"
+xmlns:num="urn://x-artefacts-rosreestr-ru/commons/complex-types/numbers/1.0"
+xmlns:adrs="urn://x-artefacts-rosreestr-ru/commons/complex-types/address-output/4.0.1"
+xmlns:spa="urn://x-artefacts-rosreestr-ru/commons/complex-types/entity-spatial/5.0.1"
+xmlns:param="urn://x-artefacts-rosreestr-ru/commons/complex-types/parameters-oks/2.0.1"
+xmlns:cer="urn://x-artefacts-rosreestr-ru/commons/complex-types/certification-doc/1.0"
+xmlns:doc="urn://x-artefacts-rosreestr-ru/commons/complex-types/document-output/4.0.1"
+xmlns:flat="urn://x-artefacts-rosreestr-ru/commons/complex-types/assignation-flat/1.0.1"
+xmlns:ch="urn://x-artefacts-rosreestr-ru/commons/complex-types/cultural-heritage/2.0.1">
+<Realty>
+<Flat CadastralNumber="78:36:0005320:1410" State="06"
+DateCreated="2013-10-17"
+>
+<CadastralBlock>78:36:0005320</CadastralBlock>
+<ObjectType>002001003000</ObjectType>
+<ParentCadastralNumbers>
+<CadastralNumberOKS>78:36:0005320:1402</CadastralNumberOKS>
+</ParentCadastralNumbers>
+<Assignation>
+<flat:AssignationCode>206002000000</flat:AssignationCode>
+<flat:AssignationType>205001000000</flat:AssignationType>
+</Assignation>
+<Area>74.5</Area>
+<Address>
+<adrs:OKATO>40265562000</adrs:OKATO>
+<adrs:KLADR>78000000000157100</adrs:KLADR>
+<adrs:Region>78</adrs:Region>
+<adrs:Street Name="Ярославский" Type="пр-кт" />
+<adrs:Level1 Type="д" Value="23" />
+<adrs:Level3 Type="литера" Value="А" />
+<adrs:Apartment Type="кв" Value="11" />
+<adrs:Note>г.Санкт-Петербург, Ярославский проспект, дом 23, литера А, квартира 11</adrs:Note>
+</Address>
+<PositionInObject>
+<Levels>
+<Level Number="3" Type="01">
+<Position NumberOnPlan="11">
+</Position>
+</Level>
+</Levels>
+</PositionInObject>
+<CadastralCost Value="8298328.17" Unit="383" />
+</Flat>
+</Realty>
+<CertificationDoc>
+<cer:Organization>ФГИС ЕГРН</cer:Organization>
+<cer:Date>2021-10-14</cer:Date>
+<cer:Number>99/2021/423982432</cer:Number>
+</CertificationDoc>
+<CoordSystems>
+<spa:CoordSystem Name="мск 64" CsId="ID0" />
+</CoordSystems>
+<eDocument CodeType="112" Version="07" Scope="GKN">
+<Sender Kod="00.0.4.195"
+Name="ФГИС ЕГРН"
+Region="99"
+Date_Upload="2021-10-14"
+Appointment="Государственный регистратор"
+/>
+<Recipient Kod="00.0.4.111" Name="Федорова Екатерина Николаевна" />
+</eDocument>
+<ReestrExtract>
+<DeclarAttribute ID_KUVI="0"
+ExtractTypeCode="012000"
+ExtractTypeText="Выписка из Единого государственного реестра недвижимости об объекте недвижимости"
+ExtractNumber="99/2021/423982432"
+ExtractDate="14.10.2021"
+RequeryNumber="80-209418322"
+RequeryDate="14.10.2021"
+ExtractCount="1"
+NoticeCount="0"
+RefuseCount="0"
+Registrator="ФГИС ЕГРН">
+<ReceivName>Федорова Екатерина Николаевна</ReceivName>
+<ReceivAdress>не указан</ReceivAdress>
+</DeclarAttribute>
+<ExtractObjectRight>
+<HeadContent>
+<ID_REC_KUVI>0</ID_REC_KUVI>
+<Title>ФЕДЕРАЛЬНАЯ СЛУЖБА ГОСУДАРСТВЕННОЙ РЕГИСТРАЦИИ, КАДАСТРА И КАРТОГРАФИИ</Title>
+<DeptName>ФГИС ЕГРН</DeptName>
+<ExtractTitle>Выписка из Единого государственного реестра недвижимости об объекте недвижимости</ExtractTitle>
+<Content>На основании запроса от 14.10.2021 г., поступившего на рассмотрение 14.10.2021 г., сообщаем, что согласно записям Единого государственного реестра недвижимости:</Content>
+</HeadContent>
+<ExtractObject>
+<ObjectRight>
+<Right RightNumber="1">
+<Owner >
+<ID_Subject>374019568578</ID_Subject>
+<Person>
+<Code_SP>007003000000</Code_SP>
+<Content>Друзьков Олег Николаевич</Content>
+<FIO>
+<Surname>Друзьков</Surname>
+<First>Олег</First>
+<Patronymic>Николаевич</Patronymic>
+</FIO>
+</Person>
+</Owner>
+<Registration >
+<ID_Record>374019568178</ID_Record>
+<RegNumber>78-78/039-78/077/020/2016-388/2</RegNumber>
+<Type>001001000000</Type>
+<Name>Собственность, № 78-78/039-78/077/020/2016-388/2 от 25.10.2016</Name>
+<RegDate>25.10.2016</RegDate>
+</Registration>
+<NoEncumbrance>не зарегистрировано</NoEncumbrance>
+</Right>
+<NoShareHolding>не зарегистрировано</NoShareHolding>
+</ObjectRight>
+<RightAssert>данные отсутствуют</RightAssert>
+<RightClaim>данные отсутствуют</RightClaim>
+<RightAgainst>данные отсутствуют</RightAgainst>
+<RightSteal>данные отсутствуют</RightSteal>
+<WithoutThirdParty>данные отсутствуют</WithoutThirdParty>
+<InabilityRegWithoutOwner></InabilityRegWithoutOwner>
+<InabilityRegZU></InabilityRegZU>
+</ExtractObject>
+<InfoENK/>
+<InfoPIK/>
+<FootContent>
+<Recipient>Федорова Екатерина Николаевна</Recipient>
+<ExtractDate>14.10.2021</ExtractDate>
+<Content></Content>
+</FootContent>
+</ExtractObjectRight>
+</ReestrExtract>
+</KPOKS>
