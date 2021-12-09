@@ -19,6 +19,11 @@ namespace Binance.API.Csharp.Client.Models.Helpers
             return dateTimeIntoUtc.ToLocalTime();
         }
 
+        public static long GeDateTime(DateTime datetime)
+        {
+            return (long)(datetime.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalMilliseconds;
+        }
+
         /// <summary>
         /// Преобразование интервала в TimeSpan
         /// </summary>
@@ -71,5 +76,6 @@ namespace Binance.API.Csharp.Client.Models.Helpers
             }
             return new TimeSpan(1, 0, 0, 0);
         }
+
     }
 }

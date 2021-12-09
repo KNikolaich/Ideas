@@ -38,5 +38,22 @@ namespace SaverToDb.Db
                 Volume = stick.Volume
             };
         }
+        public Binance.API.Csharp.Client.Models.Market.Candlestick MapToStick()
+        {
+            return new Binance.API.Csharp.Client.Models.Market.Candlestick
+            {
+                Close = Close,
+                Open = Open,
+                CloseTime = CloseTime,
+                High = High,
+                Low = Low,
+                NumberOfTrades = NumberOfTrades,
+                OpenTime = OpenTime,
+                QuoteAssetVolume = QuoteAssetVolume,
+                TakerBuyBaseAssetVolume = TakerBuyBaseAssetVolume,
+                TakerBuyQuoteAssetVolume = TakerBuyQuoteAssetVolume,
+                Volume = Volume
+            };
+        }
     }
 }

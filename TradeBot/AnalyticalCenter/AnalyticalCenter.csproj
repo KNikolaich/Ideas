@@ -6,7 +6,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Binance.API.Csharp.Client-master\Binance.API.Csharp.Client\Binance.API.Csharp.Client.csproj" />
+    <ProjectReference Include="..\Binance.API.Csharp.Client-master\SaverToDb\SaverToDb.csproj" />
     <ProjectReference Include="..\TelegaBot\TelegaBot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

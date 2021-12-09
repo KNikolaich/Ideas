@@ -14,24 +14,38 @@ namespace ConsoleStart
     {
         static void Main(string[] args)
         {
-            Speaker.Instance().CanBeInteresting += speaker_lauf;
-            //Task.Factory.StartNew(RunStrategy);
-            var stopWorld = string.Empty;
+            //Speaker.Instance().CanBeInteresting += speaker_lauf;
+            RunStrategy();
+            //var stopWorld = string.Empty;
+            //var strategy = new MacDStrategy();
+            //while (stopWorld != "stop")
+            //{
+            //    Thread.Sleep(500);
+            //    RunStrategy();
+            //    //stopWorld = Console.ReadLine();
+            //    //if(stopWorld == "restart")
+            //    {
+            //        var str = strategy.ToString();
+            //        //Task.Factory.StartNew(RunStrategy);
+            //    }
+            //}
+        }
+        private static void RunStrategy()
+        {
             var strategy = new MacDStrategy();
-            while (stopWorld != "stop")
+            var param = new ParametersForTestStrategy()
             {
-                Thread.Sleep(500);
-                //stopWorld = Console.ReadLine();
-                //if(stopWorld == "restart")
-                {
-                    var str = strategy.ToString();
-                    //Task.Factory.StartNew(RunStrategy);
-                }
-            }
+                start = new DateTime(2020, 12, 1),
+                end = new DateTime(2021, 01, 1),
+                pair = "EthUsdt",
+                period = TimeInterval.Hours_1,
+                FirstVolume = 1,
+            };
+
+            var res = strategy.TestFromDbForPeriod(param);
         }
 
-
-        private static async Task RunStrategy()
+        private static async Task RunStrategyAsync()
         {
             var strategy = new MacDStrategy();
             var param = new ParametersForTestStrategy()
@@ -39,8 +53,8 @@ namespace ConsoleStart
                 start = new DateTime(2020, 12, 1),
                 //end = new DateTime(2019, 01, 1),
                 pair = "EthUsdt",
-                period = TimeInterval.Days_1,
-                FirstVolume = 1
+                period = TimeInterval.Hours_1,
+                FirstVolume = 1,
             };
             var res = await strategy.TestForPeriodAsync(param);
         }
@@ -49,5 +63,6 @@ namespace ConsoleStart
         {
             Console.WriteLine($"{e.Level.ToString()}: {e.Message}");
         }
+
     }
 }
