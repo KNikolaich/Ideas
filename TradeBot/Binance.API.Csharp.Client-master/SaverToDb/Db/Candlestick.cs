@@ -4,6 +4,9 @@ namespace SaverToDb.Db
 {
     public class Candlestick
     {
+        private Candlestick _previewStick;
+        private decimal _sma4 = 0;
+
         public int Id { get; set; }
         public string Symbol { get; set; }
         public string TimeInterval { get; set; }
@@ -18,8 +21,8 @@ namespace SaverToDb.Db
         public int NumberOfTrades { get; set; }
         public decimal TakerBuyBaseAssetVolume { get; set; }
         public decimal TakerBuyQuoteAssetVolume { get; set; }
-        public int Advice { get; set; }
-        public decimal VectorSMA { get; set; }
+        public int? Advice { get; set; }
+        public decimal? VectorSMA { get; set; }
 
         public static Candlestick CreateFromStick(Binance.API.Csharp.Client.Models.Market.Candlestick stick, string symbol, TimeInterval timeInterval)
         {
@@ -56,6 +59,26 @@ namespace SaverToDb.Db
                 TakerBuyQuoteAssetVolume = TakerBuyQuoteAssetVolume,
                 Volume = Volume
             };
+        }
+
+        public void SetPrevCandle(Candlestick candlestick)
+        {
+            _previewStick = candlestick;
+            var summer = Close;
+            var currentStick = this;
+            int i = 1;
+            for (; i < 4; i++)
+            {
+                if (currentStick?._previewStick == null)
+                {
+                    break;
+                }
+                summer += currentStick._previewStick.Close;
+                currentStick = candlestick._previewStick;
+            }
+
+            _sma4 = summer / i;
+            VectorSMA = _sma4 - _previewStick._sma4;
         }
     }
 }

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdviceEnum.cs" />
     <Compile Include="Db\Candlestick.cs" />
     <Compile Include="Db\DataSetBinance.cs">
       <DependentUpon>DataSetBinance.xsd</DependentUpon>
