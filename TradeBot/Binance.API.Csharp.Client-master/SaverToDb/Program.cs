@@ -26,12 +26,16 @@ namespace SaverToDb
                 var modelBinance = new ModelBinance();
                 modelBinance.Database.CreateIfNotExists();
                 long maxTimeClose = 0;
-                DateTime from = Converters.GeDateTime(1634309999999);//new DateTime(2017, 1, 1);
+                DateTime from = /*Converters.GeDateTime(1634309999999);//*/new DateTime(2012, 1, 1);
 
                 while (DateTime.Today - from > TimeSpan.FromDays(7)) // Если больше недели, берем новый цикл
                 {
                     Console.WriteLine($"Берем интервалы с {from.ToString("F")}");
-                    BinanceClient bc = new BinanceClient(ApiClient.CreateEntityForCandlestiks());
+
+
+                    ApiClient apiClient = new ApiClient("g418u6xsd7KdXLYgWiVQfwQmiY1WH066iWvu2MEWiZSQA2YnXj0npkw3zsSfn1jX", 
+                        "sV6i1af8ygigEh53gpf3zEKxHuwuZHe48TywePHwkodrHlQu0kzUssT8XUN1draI");
+                    BinanceClient bc = new BinanceClient(apiClient);
                     var candleSticks = bc.GetCandleSticks(symbol, TimeInterval.Hours_1, from).Result;
 
                     foreach (var stick in candleSticks)
@@ -43,7 +47,7 @@ namespace SaverToDb
                     from = Converters.GeDateTime(maxTimeClose);
                 }
 
-                Console.WriteLine($"Сохраняем в БД {modelBinance.Candlesticks.Count()} записей" );
+                Console.WriteLine($"Сохраняем в БД {modelBinance.Candlesticks.Count()} записей");
                 modelBinance.SaveChanges();
                 Console.WriteLine("Press any key to exit.");
                 Console.ReadKey();
@@ -52,6 +56,7 @@ namespace SaverToDb
             catch (Exception e)
             {
                 Console.WriteLine(e.Message + e.StackTrace);
+                Console.ReadLine();
             }
         }
     }

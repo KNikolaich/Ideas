@@ -18,6 +18,8 @@ namespace SaverToDb.Db
         public int NumberOfTrades { get; set; }
         public decimal TakerBuyBaseAssetVolume { get; set; }
         public decimal TakerBuyQuoteAssetVolume { get; set; }
+        public int Advice { get; set; }
+        public decimal VectorSMA { get; set; }
 
         public static Candlestick CreateFromStick(Binance.API.Csharp.Client.Models.Market.Candlestick stick, string symbol, TimeInterval timeInterval)
         {
