@@ -33,8 +33,7 @@ namespace SaverToDb
                     Console.WriteLine($"Берем интервалы с {from.ToString("F")}");
 
 
-                    ApiClient apiClient = new ApiClient("g418u6xsd7KdXLYgWiVQfwQmiY1WH066iWvu2MEWiZSQA2YnXj0npkw3zsSfn1jX", 
-                        "sV6i1af8ygigEh53gpf3zEKxHuwuZHe48TywePHwkodrHlQu0kzUssT8XUN1draI");
+                    ApiClient apiClient = new ApiClient("apiKey", "apiValue");
                     BinanceClient bc = new BinanceClient(apiClient);
                     var candleSticks = bc.GetCandleSticks(symbol, TimeInterval.Hours_1, from).Result;
 
