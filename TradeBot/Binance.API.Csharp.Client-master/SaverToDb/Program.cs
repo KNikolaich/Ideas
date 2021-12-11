@@ -113,6 +113,8 @@ namespace SaverToDb
             {
                 var candlestick = queue.Last(c => c.Close == extremum);
                 candlestick.Advice = (int)explorAdviceEnum;
+                var sAction = explorAdviceEnum == AdviceEnum.Buy ? "покупку" : "продажу";
+                Console.WriteLine($"Сингал на {sAction} по цене {candlestick.Close}");
                 for (int j = 0; j < queue.Count; j++)
                 {
                     var candle = queue.Dequeue();
