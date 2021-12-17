@@ -18,63 +18,50 @@ namespace SaverToDb
             try
             {
                 var modelBinance = new ModelBinance();
-                Candlestick previewCandle = null;
-                Queue<Candlestick> queue = new Queue<Candlestick>();
-                AdviceEnum explorAdviceEnum = AdviceEnum.Buy;
-                foreach (var candlestick in GetAllSticks(modelBinance))
+                // Этап 1 Заливка БД
+                // FillDbFromBurse(modelBinance);
+
+
+                // Этап 2 создание советов
+                 CreateAdvices(modelBinance);
+
+                // Этап 3 Test
+                var closeTime = Converters.GeDateTime(new DateTime(2021, 12, 1));
+                var sticks = modelBinance.Candlesticks.
+                    //Where(s => s.CloseTime > closeTime).
+                    OrderBy(c => c.OpenTime);
+                decimal moneyUsd = 100;// даем для теста столько баксов
+                decimal moneyEth = 0;// даем для теста столько баксов
+                var calcPlus = 0;
+                var calcMinus = 0;
+                var prevUsd = moneyUsd;
+                foreach (var stick in sticks)
                 {
-
-                    if(previewCandle != null)
-                        candlestick.SetPrevCandle(previewCandle);
-                    queue.Enqueue(candlestick);
-                    if (queue.Count >= 16 && FindAdviceForQueue(queue, explorAdviceEnum))
+                    if (stick.Advice/100 == (int) AdviceEnum.Buy && moneyUsd > 0)
                     {
-                        explorAdviceEnum = (AdviceEnum) ((int) explorAdviceEnum * -1);
+                        moneyEth = moneyUsd / stick.Close;
+                        // Console.WriteLine("Eth: " + moneyEth.ToString());
                     }
-
-                    previewCandle = candlestick;
-                }
-
-                modelBinance.SaveChanges();
-                Console.ReadLine();
-                //modelBinance.Candlesticks.AddOrUpdate();
-
-                /*
-                /*
-                 * Метода выкачиваем все данные по паре symbol из сети binance
-                 * для интервала времени TimeInterval.Hours_1
-                 * начиная с даты from 
-                 *
-                #1#
-                var symbol = "ETHUSDT";
-                modelBinance.Database.CreateIfNotExists();
-                long maxTimeClose = 0;
-                DateTime from = /*Converters.GeDateTime(1634309999999);//#1#new DateTime(2012, 1, 1);
-
-                while (DateTime.Today - from > TimeSpan.FromDays(7)) // Если больше недели, берем новый цикл
-                {
-                    Console.WriteLine($"Берем интервалы с {from.ToString("F")}");
-
-
-                    ApiClient apiClient = new ApiClient("apiKey", "apiValue");
-                    BinanceClient bc = new BinanceClient(apiClient);
-                    var candleSticks = bc.GetCandleSticks(symbol, TimeInterval.Hours_1, from).Result;
-
-                    foreach (var stick in candleSticks)
+                    if (stick.Advice/100 == (int)AdviceEnum.Sell && moneyEth > 0)
                     {
-                        modelBinance.Candlesticks.Add(Candlestick.CreateFromStick(stick, symbol, TimeInterval.Hours_1));
-                        if (maxTimeClose < stick.CloseTime)
-                            maxTimeClose = stick.CloseTime;
-                    }
-                    from = Converters.GeDateTime(maxTimeClose);
-                }
+                        moneyUsd = moneyEth * stick.Close;
+                        // Console.WriteLine("Usd: " + moneyUsd.ToString());
+                        if(prevUsd < moneyUsd)
+                        {
+                            calcPlus++;
+                        }
+                        else
+                        {
+                            calcMinus++;
+                        }
 
-                Console.WriteLine($"Сохраняем в БД {modelBinance.Candlesticks.Count()} записей");
-                modelBinance.SaveChanges();
+                        prevUsd = moneyUsd;
+                    }
+                }
+                Console.WriteLine("Положительных операций." + calcPlus);
+                Console.WriteLine("Отрицательных операций." + calcMinus);
                 Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-                */
-
+                Console.ReadLine();
             }
             catch (Exception e)
             {
@@ -82,6 +69,72 @@ namespace SaverToDb
                 Console.ReadLine();
             }
         }
+
+        private static void CreateAdvices(ModelBinance modelBinance)
+        {
+            Candlestick previewCandle = null;
+            // Queue<Candlestick> queue = new Queue<Candlestick>();
+            // AdviceEnum explorAdviceEnum = AdviceEnum.Buy;
+            var sticks = modelBinance.Candlesticks /*.Where(c => c.OpenTime > 1638305999999)*/.OrderBy(c => c.OpenTime);
+            foreach (var candlestick in sticks) //GetAllSticks(modelBinance, new DateTime(2021, 12, 1)))
+            {
+                if (previewCandle != null)
+                    candlestick.SetPrevCandle(previewCandle);
+
+                var findExtremumCandle = candlestick.FindExtremumCandle();
+                findExtremumCandle?.Item1.MarkCandlesBeforeExtremum(findExtremumCandle.Item2);
+                /*queue.Enqueue(candlestick);
+                    if (queue.Count >= 16 && FindAdviceForQueue(queue, explorAdviceEnum))
+                    {
+                        explorAdviceEnum = (AdviceEnum) ((int) explorAdviceEnum * -1);
+                    }
+                    */
+
+                previewCandle = candlestick;
+            }
+
+            modelBinance.SaveChanges();
+        }
+
+        private static void FillDbFromBurse(ModelBinance modelBinance)
+        {
+            /*
+                /*
+                 * Метода выкачиваем все данные по паре symbol из сети binance
+                 * для интервала времени TimeInterval.Hours_1
+                 * начиная с даты from 
+                 *
+                #1#
+                */
+            var symbol = "ETHUSDT";
+            modelBinance.Database.CreateIfNotExists();
+            long maxTimeClose = 0;
+            DateTime from = new DateTime(2017, 10, 1);
+
+            while (DateTime.Today - @from > TimeSpan.FromDays(7)) // Если больше недели, берем новый цикл
+            {
+                Console.WriteLine($"Берем интервалы с {@from.ToString("F")}");
+
+
+                ApiClient apiClient = new ApiClient("apiKey", "apiValue");
+                BinanceClient bc = new BinanceClient(apiClient);
+                var candleSticks = bc.GetCandleSticks(symbol, TimeInterval.Hours_1, @from).Result;
+
+                foreach (var stick in candleSticks)
+                {
+                    modelBinance.Candlesticks.Add(Candlestick.CreateFromStick(stick, symbol, TimeInterval.Hours_1));
+                    if (maxTimeClose < stick.CloseTime)
+                        maxTimeClose = stick.CloseTime;
+                }
+
+                @from = Converters.GeDateTime(maxTimeClose);
+            }
+
+            modelBinance.SaveChanges();
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+        }
+
 
         private static bool FindAdviceForQueue(Queue<Candlestick> queue, AdviceEnum explorAdviceEnum)
         {
@@ -127,11 +180,11 @@ namespace SaverToDb
             return find;
         }
 
-        private static IEnumerable<Candlestick> GetAllSticks(ModelBinance modelBinance)
+        private static IEnumerable<Candlestick> GetAllSticks(ModelBinance modelBinance, DateTime fromTime)
         {
             var itemCount = 0;
             var itemTake = 16;
-            var candlesticks = modelBinance.Candlesticks.OrderBy(c => c.OpenTime);
+            var candlesticks = modelBinance.Candlesticks.Where(c => c.OpenTime > 1638305999999).OrderBy(c => c.OpenTime);
             while (true)
             {
                 var take = candlesticks.Skip(itemCount).Take(itemTake);
