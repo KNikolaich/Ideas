@@ -12,8 +12,8 @@ namespace DbWorkerAndML
         {
             try
             {
-                    // Этап 2 создание советов
-                    Controller.TestAdvicesOnPerfectSphere();
+                // Этап 2 создание советов
+                Controller.TestAdvicesOnPerfectSphere();
                 Console.ReadLine();
             }
             catch (Exception e)
