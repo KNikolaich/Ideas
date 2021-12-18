@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using SaverToDb.Db;
 using TelegaBot;
 using Candlestick = Binance.API.Csharp.Client.Models.Market.Candlestick;
 
@@ -47,6 +46,8 @@ namespace AnalyticalCenter.Strategy
             }
             return result;
         }
+
+        /*
         public List<IIndicator> TestFromDbForPeriod(ParametersForTestStrategy param)
         {
             List<IIndicator> result = new List<IIndicator>();
@@ -74,6 +75,7 @@ namespace AnalyticalCenter.Strategy
             }
             return result;
         }
+        */
 
         protected override IIndicator CreateIndicator(Candlestick stick, IIndicator prevIndicator)
         {

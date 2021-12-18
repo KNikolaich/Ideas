@@ -42,7 +42,7 @@ namespace ConsoleStart
                 FirstVolume = 1,
             };
 
-            var res = strategy.TestFromDbForPeriod(param);
+            //var res = strategy.TestFromDbForPeriod(param);
         }
 
         private static async Task RunStrategyAsync()
