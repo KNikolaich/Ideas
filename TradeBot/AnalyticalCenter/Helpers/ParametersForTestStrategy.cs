@@ -19,4 +19,5 @@ namespace AnalyticalCenter.Helpers
 
         public decimal SecondVolume { get; set; }
     }
+
 }

@@ -99,7 +99,7 @@ namespace AnalyticalCenter.Strategy
 
         protected abstract IIndicator CreateIndicator(Candlestick stick, IIndicator prevIndicator);
 
-        internal void ValidateQueue(Binance.API.Csharp.Client.Models.Market.Candlestick stick)
+        internal void ValidateQueue(Candlestick stick)
         {
             var price = stick.Open;
             switch (Dequeue())
