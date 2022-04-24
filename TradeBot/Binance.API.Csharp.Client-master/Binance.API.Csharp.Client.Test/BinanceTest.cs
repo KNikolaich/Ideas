@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading;
 using Binance.API.Csharp.Client.Models.Enums;
+using Binance.API.Csharp.Client.Models.Helpers;
 using Binance.API.Csharp.Client.Models.WebSocket;
 using Binance.API.Csharp.Client.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -55,7 +56,7 @@ namespace Binance.API.Csharp.Client.Test
         [TestMethod]
         public void GetCandleSticks()
         {
-            var candlestick = binanceClient.GetCandleSticks("ethbtc", TimeInterval.Hours_1, DateTime.Today.AddDays(-1)).Result;
+            var candlestick = binanceClient.GetCandleSticks("ETHUSDT", TimeInterval.Hours_1, Converters.GeDateTime(1634309999999)).Result;
             Assert.AreEqual(candlestick.Count() > 0, true);
         }
 

@@ -75,6 +75,36 @@ namespace AnalyticalCenter.Strategy
             return result;
         }
 
+        /*
+        public List<IIndicator> TestFromDbForPeriod(ParametersForTestStrategy param)
+        {
+            List<IIndicator> result = new List<IIndicator>();
+
+            try
+            {
+                _parameters = param;
+
+                foreach (var stick in ModelBinance.GetCandleSticks(param.pair, param.period, param.start, param.end.Value))
+                {
+                    IIndicator prevMacD = null;
+                    
+                    prevMacD = Create(stick, prevMacD);
+
+                    // Вот тут надо посмотреть внимательно, вместо той валидации, замутить проход до экстремума назад по превьюшкам.
+                    // Данные валидации так же записывать в стик с экстремумом или предыдущий ему.
+                    ValidateQueue(stick);
+                    result.Add(prevMacD);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                _speaker.CanBeInteresting(this, new MessageEventArg(ex.Message, SubscribeLevelEnum.Error));
+            }
+            return result;
+        }
+        */
+
         protected override IIndicator CreateIndicator(Candlestick stick, IIndicator prevIndicator)
         {
             return MacD.Create(stick, prevIndicator);

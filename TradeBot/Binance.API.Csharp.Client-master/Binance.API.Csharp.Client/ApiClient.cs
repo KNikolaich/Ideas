@@ -50,46 +50,54 @@ namespace Binance.API.Csharp.Client
                 finalEndpoint = $"{endpoint}?{parameters}&signature={signature}";
             }
 
-            var request = new HttpRequestMessage(Utilities.CreateHttpMethod(method.ToString()), finalEndpoint);
-            var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                // Api return is OK
-                response.EnsureSuccessStatusCode();
-
-                // Get the result
-                var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-                // Serialize and return result
-                var deserializeObject = JsonConvert.DeserializeObject<T>(result);
-                return deserializeObject;
-            }
-
-            // We received an error
-            if (response.StatusCode == HttpStatusCode.GatewayTimeout)
-            {
-                throw new Exception("Api Request Timeout.");
-            }
-
-            // Get te error code and message
-            var e = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            // Error Values
-            var eCode = 0;
-            string eMsg = "";
-            if (e.IsValidJson())
-            {
-                try
+                var request = new HttpRequestMessage(Utilities.CreateHttpMethod(method.ToString()), finalEndpoint);
+                var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
+                if (response.IsSuccessStatusCode)
                 {
-                    var i = JObject.Parse(e);
+                    // Api return is OK
+                    response.EnsureSuccessStatusCode();
 
-                    eCode = i["code"]?.Value<int>() ?? 0;
-                    eMsg = i["msg"]?.Value<string>();
+                    // Get the result
+                    var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                    // Serialize and return result
+                    var deserializeObject = JsonConvert.DeserializeObject<T>(result);
+                    return deserializeObject;
                 }
-                catch { }
+
+                // We received an error
+                if (response.StatusCode == HttpStatusCode.GatewayTimeout)
+                {
+                    throw new Exception("Api Request Timeout.");
+                }
+
+                // Get te error code and message
+                var e = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                // Error Values
+                var eCode = 0;
+                string eMsg = "";
+                if (e.IsValidJson())
+                {
+                    try
+                    {
+                        var i = JObject.Parse(e);
+
+                        eCode = i["code"]?.Value<int>() ?? 0;
+                        eMsg = i["msg"]?.Value<string>();
+                    }
+                    catch { }
+                }
+                throw new Exception(string.Format("Api Error Code: {0} Message: {1}", eCode, eMsg));
+
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
 
-            throw new Exception(string.Format("Api Error Code: {0} Message: {1}", eCode, eMsg)); 
         }
 
         /// <summary>
@@ -187,11 +195,6 @@ namespace Binance.API.Csharp.Client
 
             ws.Connect();
             _openSockets.Add(ws);
-        }
-
-        public static IApiClient CreateEntityForCandlestiks()
-        {
-            return new ApiClient("apiKey", "apiValue");
         }
     }
 }
