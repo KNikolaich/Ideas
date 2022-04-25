@@ -75,7 +75,7 @@ namespace ConsoleBotMiners
                     case "Eth":
 
                         //poolApiBase = new Nanopool(NanopoolStatics.PoolType.ETH, wallet.Value);
-                        poolApiBase = new Ethermine(wallet.Value);
+                        poolApiBase = new Nanopool(NanopoolStatics.PoolType.ETH, wallet.Value);//Ethermine(wallet.Value);
                         break;
                 }
 

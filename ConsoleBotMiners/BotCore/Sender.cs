@@ -19,7 +19,7 @@ namespace BotCore
     /// </summary>
     public class Sender
     {
-        static string _token = "882717145:AAGTp0uq_-GekQesaqAm_WGpMVAZyyUlswg"; // smartTrade_kf
+        static string _token = "882717145:"; // smartTrade_kf
         private bool _iAmBusy;
         static TelegramBotClient _bot;
         static object o = new object();
@@ -28,7 +28,10 @@ namespace BotCore
 
         public Sender()
         {
-            Console.WriteLine("токен:" + _token.Split(':')[0]);
+            var arrFromToken = _token.Split(':');
+            Console.WriteLine("токен:" + arrFromToken[0]);
+            if (string.IsNullOrEmpty(arrFromToken[1]))
+                Console.WriteLine("Спроси токен у фазера");
             Task.Factory.StartNew(() => ReadChatsAsync());
         }
 
