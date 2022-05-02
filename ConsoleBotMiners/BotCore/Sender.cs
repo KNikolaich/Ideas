@@ -37,18 +37,15 @@ namespace BotCore
 
         public void SendMessage(string message, SubscribeLevelEnum level = SubscribeLevelEnum.Info)
         {
-            foreach (var subscriber in Config.Load().Subscribers)
+            foreach (var subscriber in Config.Load().Subscribers.Where(ss=>ss.Level >= level))
             {
-                if (subscriber.Level >= level)
+                _messageCach.Enqueue(new KeyValuePair<long, string>(subscriber.ChatId, message));
+                if(DateTime.Now.TimeOfDay < new TimeSpan(23, 0, 0) && DateTime.Now.TimeOfDay >= new TimeSpan(8, 0, 0))
                 {
-                    _messageCach.Enqueue(new KeyValuePair<long, string>(subscriber.ChatId, message));
-                    if(DateTime.Now.TimeOfDay < new TimeSpan(23, 0, 0) && DateTime.Now.TimeOfDay >= new TimeSpan(8, 0, 0))
+                    while(_messageCach.Count > 0)
                     {
-                        while(_messageCach.Count > 0)
-                        {
-                            var kvp = _messageCach.Dequeue();
-                            _bot.SendTextMessageAsync(kvp.Key, kvp.Value);
-                        }
+                        var kvp = _messageCach.Dequeue();
+                        _bot.SendTextMessageAsync(kvp.Key, kvp.Value);
                     }
                 }
             }
