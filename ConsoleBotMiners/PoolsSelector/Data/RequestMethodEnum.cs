@@ -11,5 +11,6 @@
         averageHashrate,
         // accountBalance,
         unpaid,
+        ShareCoef
     }
 }

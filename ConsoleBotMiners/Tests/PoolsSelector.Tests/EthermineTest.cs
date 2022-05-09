@@ -18,7 +18,7 @@ namespace PoolsSelector.Tests
         public void GetSomeUrlResult_ethermineCurrentHashrate_ResultDoesntEmpty()
         {
             var target = new PoolsSelector.Ethermine("0x85cFc2bBb112De8c36401F61041D14b2B97b66c0");
-            var currentHr = target.GetCurrentHashrate();
+            var currentHr = target.GetShareCoef();
             Assert.NotEqual(0f, currentHr);
         }
     }

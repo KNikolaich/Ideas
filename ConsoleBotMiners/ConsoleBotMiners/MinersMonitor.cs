@@ -12,7 +12,7 @@ namespace ConsoleBotMiners
     /// <summary>
     /// Монитор майнеров
     /// </summary>
-    class MinersMonitor
+    public class MinersMonitor
     {
         private Sender _senderBot;
         
@@ -89,7 +89,7 @@ namespace ConsoleBotMiners
                 {
                     try
                     {
-                        //var hashrate = poolApiBase.GetCurrentHashrate();
+                        //var hashrate = poolApiBase.GetShareCoef();
                         var hashrate = poolApiBase.GetAverageHashrate(DurationTimeEnum.h1);
                         if (Equals(hashrate, 0f) || mandatoryRespond)
                         {
@@ -110,9 +110,7 @@ namespace ConsoleBotMiners
                             }
                             else
                             {
-                                var days = (wallet.Limit - balance) /(hashrate24 / 86400); // Делим хэшрейт на кол-во секунд в сутках
-                                value += Environment.NewLine + ($"Планируемое дата окончания: {(DateTime.Now + TimeSpan.FromDays(days)).ToShortDateString()}");
-                                
+                                value = AddFinishData(wallet, balance, value);
                             }
                             value += Environment.NewLine + "___________________________________________________";
                         }
@@ -132,6 +130,33 @@ namespace ConsoleBotMiners
                 Console.WriteLine(value);
             }
 
+        }
+
+        private static string AddFinishData(Wallet wallet, float balance, string value)
+        {
+            if (wallet.MiningStartTicks.HasValue)
+            {
+                var dateOfFinish = GetDateOfFinish(wallet, balance);
+                value += Environment.NewLine + ($"Планируемое дата окончания: {dateOfFinish.ToString("g")}");
+            }
+
+            return value;
+        }
+
+        public static DateTime GetDateOfFinish(Wallet wallet, float balance, DateTime? now = null)
+        {
+            if (now == null)
+                now = DateTime.Now;
+
+            var ticks = (now.Value - DateTime.MinValue).Ticks; // Сейчас в тиках
+            var tsDelta = ticks - wallet.MiningStartTicks.Value; // прошло с момента начала майнинга тиков
+
+            // для вычисления финиша недо tsDelta * limit / balance;
+
+            var days = TimeSpan.FromTicks(tsDelta *
+                                          (long)(wallet.Limit /
+                                                 balance)); // Делим хэшрейт на кол-во секунд в сутках и на сложность сети shareKoef
+            return DateTime.Now + days;
         }
     }
 }

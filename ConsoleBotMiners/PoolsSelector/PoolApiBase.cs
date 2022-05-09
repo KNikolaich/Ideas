@@ -22,7 +22,7 @@ namespace PoolsSelector
 
         public WebProxy Proxy { get; set; }
 
-        public abstract float GetCurrentHashrate(string worker = null);
+        public abstract float GetShareCoef(string worker = null);
 
         public abstract float GetAccountBalance();
 

@@ -27,6 +27,9 @@ namespace PoolsSelector
 					break;
                 case RequestMethodEnum.currentHashrate:
                     url = string.Format(NanopoolStatics.CurrentHashrate, _account, _worker.UrlPart());
+					break;
+                case RequestMethodEnum.ShareCoef:
+                    url = string.Format(NanopoolStatics.ShareCoef);
                     break;
                 case RequestMethodEnum.averageHashrate:
                     url = string.Format(NanopoolStatics.AverageHashrate, _account, _worker.UrlPart());
@@ -50,15 +53,16 @@ namespace PoolsSelector
 			return result.Data;
 		}
 
-        public override float GetCurrentHashrate(string worker = null)
+        public override float GetShareCoef(string worker = null)
         {
             _worker = worker;
-			var result = LoadResponse<FloatValue>(RequestMethodEnum.currentHashrate);
+			var result = LoadResponse<FloatValue>(RequestMethodEnum.ShareCoef);
 			
             return result.Data;
         }
+		
 
-        public override float GetAverageHashrate(DurationTimeEnum duration = DurationTimeEnum.h24, string worker = null)
+		public override float GetAverageHashrate(DurationTimeEnum duration = DurationTimeEnum.h24, string worker = null)
         {
             _worker = worker;
 			var response = LoadResponse<AverageHashrate>(RequestMethodEnum.averageHashrate);

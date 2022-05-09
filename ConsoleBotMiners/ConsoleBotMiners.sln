@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31005.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleBotMiners", "ConsoleBotMiners\ConsoleBotMiners.csproj", "{3219876B-90C0-47CB-BB73-4F62D6496470}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotCore", "BotCore\BotCore.csproj", "{2CB2296C-5B2C-4C38-ADC2-7E1B06A3A90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoolsSelector", "PoolsSelector\PoolsSelector.csproj", "{32427660-841C-4DEF-99CA-E5CA9216B321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoolsSelector", "PoolsSelector\PoolsSelector.csproj", "{32427660-841C-4DEF-99CA-E5CA9216B321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoolsSelector.Tests", "Tests\PoolsSelector.Tests\PoolsSelector.Tests.csproj", "{1CF1B2E3-87B1-403D-AD64-24D4084A0D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoolsSelector.Tests", "Tests\PoolsSelector.Tests\PoolsSelector.Tests.csproj", "{1CF1B2E3-87B1-403D-AD64-24D4084A0D0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBotMiners.Test", "Tests\ConsoleBotMiners.Test\ConsoleBotMiners.Test.csproj", "{8F4D71AC-FB7A-4662-8959-4F7EBC0BFDFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1CF1B2E3-87B1-403D-AD64-24D4084A0D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF1B2E3-87B1-403D-AD64-24D4084A0D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF1B2E3-87B1-403D-AD64-24D4084A0D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4D71AC-FB7A-4662-8959-4F7EBC0BFDFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4D71AC-FB7A-4662-8959-4F7EBC0BFDFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4D71AC-FB7A-4662-8959-4F7EBC0BFDFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4D71AC-FB7A-4662-8959-4F7EBC0BFDFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

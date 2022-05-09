@@ -19,7 +19,7 @@ namespace BotCore
     /// </summary>
     public class Sender
     {
-        static string _token = "882717145:"; // smartTrade_kf
+        static string _token = "882717145:"; // TODO это не для коммита
         private bool _iAmBusy;
         static TelegramBotClient _bot;
         static object o = new object();
@@ -84,7 +84,7 @@ namespace BotCore
                         {
                             Console.WriteLine(ex.Message);
                         }
-                            offset = update.Id + 1;                        
+                        offset = update.Id + 1;                        
                     }
                 }
             }

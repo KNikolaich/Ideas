@@ -13,6 +13,7 @@
 		public static readonly string ChartData = BaseApiUrl + "hashratechart/{0}{1}"; //address, (optional worker)
 		public static readonly string CheckMinerAccount = BaseApiUrl + "accountexist/{0}"; //address
 		public static readonly string CurrentHashrate = BaseApiUrl + "hashrate/{0}{1}"; //address, (optional worker)
+        public static readonly string ShareCoef = BaseApiUrl + "pool/sharecoef"; // (Returns share coefficient for conversion shares to hashrate)
 		public static readonly string GeneralInfo = BaseApiUrl + "user/{0}"; //address
 		public static readonly string HashrateHistory = BaseApiUrl + "history/{0}{1}"; //address, (optional worker)
 		public static readonly string HashrateAndBalance = BaseApiUrl + "balance_hashrate/{0}"; //address

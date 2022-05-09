@@ -18,7 +18,7 @@ namespace PoolsSelector
             _account = account;
         }
 
-        public override float GetCurrentHashrate(string worker = null)
+        public override float GetShareCoef(string worker = null)
         {
             var response = LoadResponse<float?>(RequestMethodEnum.currentHashrate).GetValueOrDefault(); 
             return ConvertToAdecvatValues(response);
