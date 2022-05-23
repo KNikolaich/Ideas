@@ -1,0 +1,25 @@
+﻿<Window
+    x:Class="WinUiCalculator.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUiCalculator"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="First number:" Margin="0,10,0,0"     HorizontalAlignment="Center"/>
+        <TextBox Name="TbFirst"         Margin =" 10" Width="150"                          HorizontalAlignment="Center"/>
+        <TextBlock Text="Second number:"  Margin="0,10,0,0"   HorizontalAlignment="Center"/>
+        <TextBox Name="TbSecond"        Margin="10" Width="150"                        HorizontalAlignment="Center"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+            <Button Content="+"         Margin ="5" Click="AddBtnClick"></Button>
+            <Button Content="-"         Margin ="5" Click="SubtractBtnClick"></Button>
+            <Button Content="/"         Margin ="5" Click="DivBtnClick"></Button>
+            <Button Content="*"         Margin ="5" Click="MultBtnClick"></Button>
+        </StackPanel>
+        
+        <TextBlock Text="Result: " Name="TbResult" Margin="10" FontSize="20"></TextBlock>
+    </StackPanel>
+</Window>
