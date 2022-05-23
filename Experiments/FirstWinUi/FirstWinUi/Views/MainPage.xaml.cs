@@ -18,7 +18,7 @@ namespace FirstWinUi.Views
             ViewModel = App.GetService<MainViewModel>();
             InitializeComponent();
             webView2.NavigationStarting += EnsureHttps;
-            //txtAddress.KeyDown += AddressBar_KeyDown;
+            txtAddress.KeyDown += AddressBar_KeyDown;
         }
 
         private void AddressBar_KeyDown(object sender, KeyRoutedEventArgs e)
