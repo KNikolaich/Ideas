@@ -29,16 +29,13 @@ namespace WinUiCalculator
             this.InitializeComponent();
         }
         
-        private Tuple<decimal, decimal> GetTupleNums(out decimal secondNum)
+        private Tuple<Double, Double> GetTupleNums()
         {
-            Decimal.TryParse(TbFirst.Text, out var firstNum);
-            Decimal.TryParse(TbSecond.Text, out secondNum);
-            return new Tuple<decimal, decimal>(firstNum, secondNum);
+            Double.TryParse(TbFirst.Text, out var firstNum);
+            Double.TryParse(TbSecond.Text, out var secondNum);
+            return new Tuple<Double, Double>(firstNum, secondNum);
         }
-        private void ShowResult(decimal resultText)
-        {
-            ShowResult($"Result: {resultText} ");
-        }
+
         private void ShowResult(string resultText)
         {
             TbResult.Text = $"{resultText} ";
@@ -46,38 +43,49 @@ namespace WinUiCalculator
 
         private void AddBtnClick(object sender, RoutedEventArgs e)
         {
-            var nums = GetTupleNums(out var secondNum);
-
-            ShowResult(nums.Item1 + nums.Item2);
+            ShowResult((f, s) => f + s);
         }
 
 
         private void SubtractBtnClick(object sender, RoutedEventArgs e)
         {
-
-            var nums = GetTupleNums(out var secondNum);
-
-            ShowResult(nums.Item1 - nums.Item2);
+            ShowResult((f, s) => f - s);
         }
 
         private void DivBtnClick(object sender, RoutedEventArgs e)
         {
 
-            var nums = GetTupleNums(out var secondNum);
+            var nums = GetTupleNums();
             if (nums.Item2 == 0)
             {
                 ShowResult("Devided by Zero");
             }
             else
-                ShowResult(nums.Item1 / nums.Item2);
+                ShowResult((f, s) => f / s);
         }
 
         private void MultBtnClick(object sender, RoutedEventArgs e)
         {
 
-            var nums = GetTupleNums(out var secondNum);
+            ShowResult((f, s)=> f * s);
+        }
 
-            ShowResult(nums.Item1 * nums.Item2);
+        private void PowBtnClick(object sender, RoutedEventArgs e)
+        {
+            ShowResult(Math.Pow);
+        }
+
+        private void ShowResult(Func<double, double, double> func)
+        {
+
+            var nums = GetTupleNums();
+            
+            ShowResult($"Result: {func(nums.Item1, nums.Item2)} ");
+        }
+
+        private void SqrtBtnClick(object sender, RoutedEventArgs e)
+        {
+            ShowResult((f,s)=>Math.Pow(s, 1/f));
         }
     }
 }

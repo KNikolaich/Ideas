@@ -18,6 +18,9 @@
             <Button Content="-"         Margin ="5" Click="SubtractBtnClick"></Button>
             <Button Content="/"         Margin ="5" Click="DivBtnClick"></Button>
             <Button Content="*"         Margin ="5" Click="MultBtnClick"></Button>
+
+            <Button Content="x^y"         Margin ="5" Click="PowBtnClick"></Button>
+            <Button Content="x√y"         Margin ="5" Click="SqrtBtnClick"></Button>
         </StackPanel>
         
         <TextBlock Text="Result: " Name="TbResult" Margin="10" FontSize="20"></TextBlock>
