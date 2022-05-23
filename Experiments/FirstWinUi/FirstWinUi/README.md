@@ -1,16 +1,25 @@
-﻿*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor).*
+﻿
 
-This project was created using [Microsoft Template Studio](https://aka.ms/templatestudio).
+# Тестовая задачка по WinUI3
+## Однооконный простой браузер 
 
-## Getting Started
-This app was built using WinUI 3 and the Windows App SDK.
-Windows UI Library (WinUI) 3 is a native user experience (UX) framework for Windows Desktop apps.
+## Постановка задачи
 
-You're ready to build, deploy, and launch your app hitting F5. You can find the app entry point in the `App.xaml.cs` file. 
-Add a breakpoint in the `OnLaunched` method and debug the code. Step into the `ActivationService` methods to understand the app lifecycle.
+- создать winui 3 приложение из шаблона
+- запретить запуск нескольких копий приложения
+- добавить на основное окно приложения webView и поле ввода для адреса, кнопку перейти
+- по enter открывать введенный адрес в webview
+- если введен некорректный адрес - вывести сообщение о неправильном адресе
+- отступы между элементами и окном, растягивание окна - приложение должно иметь презентабельный вид 
 
-Don't forget to review the `developer TODOs` we've added for you. 
-You can open the Task List using the menu `Views -> Task List`.
+
+## Tech
+
+Dillinger uses a number of open source projects to work properly:
+ - [Создание простого приложения](https://docs.microsoft.com/ru-ru/windows/apps/winui/winui3/create-your-first-winui3-app)
+ - [Однократный создание экземпляров](https://docs.microsoft.com/ru-RU/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/guides/applifecycle#single-instancing-in-main-or-wwinmain)
+- 
+
 
 ## File Structure
 ```

@@ -64,8 +64,19 @@ namespace FirstWinUi
             // For more details, see https://docs.microsoft.com/windows/winui/api/microsoft.ui.xaml.unhandledexceptioneventargs.
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            var mainInstance = Microsoft.Windows.AppLifecycle.AppInstance.FindOrRegisterForKey("main");
+
+            if (!mainInstance.IsCurrent)
+            {
+                // Redirect the activation (and args) to the "main" instance, and exit.
+                //var activatedEventArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
+                //await mainInstance.RedirectActivationToAsync(activatedEventArgs);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             base.OnLaunched(args);
             var activationService = App.GetService<IActivationService>();
             await activationService.ActivateAsync(args);

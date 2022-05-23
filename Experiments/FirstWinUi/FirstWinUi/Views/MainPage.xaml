@@ -7,7 +7,6 @@
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -18,9 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Name="addressBar" Grid.Column="0"/>
-        <Button x:Name="myButton" Grid.Column="1" Click="BtnGoClick">Go</Button>
+        <Button Grid.Column="1" Click="BtnGoClick">Перейти</Button>
 
-        <WebView2 x:Name="MyWebView"  Grid.Row="1" Grid.ColumnSpan="2"
+        <WebView2 x:Name="webView"  Grid.Row="1" Grid.ColumnSpan="2"
                   Source="https://google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
     </Grid>

@@ -17,7 +17,16 @@ namespace FirstWinUi.Views
         {
             ViewModel = App.GetService<MainViewModel>();
             InitializeComponent();
-            MyWebView.NavigationStarting += EnsureHttps;
+            webView.NavigationStarting += EnsureHttps;
+            addressBar.KeyDown += AddressBar_KeyDown;
+        }
+
+        private void AddressBar_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.OriginalKey == VirtualKey.Enter)
+            {
+                Navigate();
+            }
         }
 
         private void EnsureHttps(WebView2 sender, CoreWebView2NavigationStartingEventArgs args)
@@ -26,7 +35,7 @@ namespace FirstWinUi.Views
             if (!uri.StartsWith("https://"))
             {
 
-                MyWebView.ExecuteScriptAsync($"alert('{uri} is not safe, try an https link')");
+                webView.ExecuteScriptAsync($"alert('{uri} не верный url, - попробуйте использовать префикс https')");
                 args.Cancel = true;
             }
             else
@@ -46,19 +55,13 @@ namespace FirstWinUi.Views
             try
             {
                 Uri targetUri = new Uri(addressBar.Text);
-                MyWebView.Source = targetUri;
+                webView.Source = targetUri;
             }
             catch (FormatException ex)
             {
-                MyWebView.NavigateToString(ex.Message);
+                webView.NavigateToString(ex.Message);
             }
         }
-
-        private void MyWebView_CoreProcessFailed(WebView2 sender, CoreWebView2ProcessFailedEventArgs args)
-        {
-
-            MyWebView.NavigateToString(args.Reason + args.ProcessDescription);
-            
-        }
+        
     }
 }
