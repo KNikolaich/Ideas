@@ -17,8 +17,8 @@ namespace FirstWinUi.Views
         {
             ViewModel = App.GetService<MainViewModel>();
             InitializeComponent();
-            webView.NavigationStarting += EnsureHttps;
-            addressBar.KeyDown += AddressBar_KeyDown;
+            webView2.NavigationStarting += EnsureHttps;
+            //txtAddress.KeyDown += AddressBar_KeyDown;
         }
 
         private void AddressBar_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -34,13 +34,12 @@ namespace FirstWinUi.Views
             String uri = args.Uri;
             if (!uri.StartsWith("https://"))
             {
-
-                webView.ExecuteScriptAsync($"alert('{uri} не верный url, - попробуйте использовать префикс https')");
+                webView2.ExecuteScriptAsync($"alert('{uri} не верный url, - попробуйте использовать префикс https')");
                 args.Cancel = true;
             }
             else
             {
-                addressBar.Text = uri;
+                txtAddress.Text = uri;
             }
         }
 
@@ -54,12 +53,11 @@ namespace FirstWinUi.Views
 
             try
             {
-                Uri targetUri = new Uri(addressBar.Text);
-                webView.Source = targetUri;
+                webView2.Source = new Uri(txtAddress.Text);
             }
             catch (FormatException ex)
             {
-                webView.NavigateToString(ex.Message);
+                webView2.ExecuteScriptAsync($"alert('{ex.Message}')");
             }
         }
         

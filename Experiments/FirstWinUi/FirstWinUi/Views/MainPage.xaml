@@ -9,18 +9,20 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBox Name="addressBar" Grid.Column="0"/>
-        <Button Grid.Column="1" Click="BtnGoClick">Перейти</Button>
 
-        <WebView2 x:Name="webView"  Grid.Row="1" Grid.ColumnSpan="2"
-                  Source="https://google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Text="Thomas" x:Name="txtAddress" Margin="10"/>
+            <Button Grid.Column="1" Content="Перейти" Click="BtnGoClick" Margin="0 10 10 10"/>
+        </Grid>
+        <TextBox Grid.Row="1" Text="Thomas" x:Name="txtMessage" Margin="10" Visibility="Collapsed"/>
+        <WebView2 Grid.Row="2" x:Name="webView2" Source="https://google.com" Margin="10"></WebView2>
     </Grid>
 </Page>
