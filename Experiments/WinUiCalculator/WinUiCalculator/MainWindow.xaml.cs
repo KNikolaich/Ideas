@@ -29,6 +29,9 @@ namespace WinUiCalculator
             this.InitializeComponent();
         }
         
+        /// <summary>
+        /// Взятие пары значений из контролов
+        /// </summary>
         private Tuple<Double, Double> GetTupleNums()
         {
             Double.TryParse(TbFirst.Text, out var firstNum);
@@ -36,22 +39,34 @@ namespace WinUiCalculator
             return new Tuple<Double, Double>(firstNum, secondNum);
         }
 
+        /// <summary>
+        /// Показ результата в текстовом контроле
+        /// </summary>
+        /// <param name="resultText"></param>
         private void ShowResult(string resultText)
         {
             TbResult.Text = $"{resultText} ";
         }
 
+        /// <summary>
+        /// Сложение
+        /// </summary>
         private void AddBtnClick(object sender, RoutedEventArgs e)
         {
-            ShowResult((f, s) => f + s);
+            CalcResult((f, s) => f + s);
         }
 
-
+        /// <summary>
+        /// Вычитание
+        /// </summary>
         private void SubtractBtnClick(object sender, RoutedEventArgs e)
         {
-            ShowResult((f, s) => f - s);
+            CalcResult((f, s) => f - s);
         }
 
+        /// <summary>
+        /// Деление
+        /// </summary>
         private void DivBtnClick(object sender, RoutedEventArgs e)
         {
 
@@ -61,31 +76,43 @@ namespace WinUiCalculator
                 ShowResult("Devided by Zero");
             }
             else
-                ShowResult((f, s) => f / s);
+                CalcResult((f, s) => f / s);
         }
 
+        /// <summary>
+        /// Умножение
+        /// </summary>
         private void MultBtnClick(object sender, RoutedEventArgs e)
         {
 
-            ShowResult((f, s)=> f * s);
+            CalcResult((f, s)=> f * s);
         }
 
+        /// <summary>
+        /// Просто возведение в степень
+        /// </summary>
         private void PowBtnClick(object sender, RoutedEventArgs e)
         {
-            ShowResult(Math.Pow);
+            CalcResult(Math.Pow);
         }
 
-        private void ShowResult(Func<double, double, double> func)
-        {
 
-            var nums = GetTupleNums();
-            
-            ShowResult($"Result: {func(nums.Item1, nums.Item2)} ");
-        }
-
+        /// <summary>
+        /// Взять корень размерности первого числа от второго числа
+        /// </summary>
         private void SqrtBtnClick(object sender, RoutedEventArgs e)
         {
-            ShowResult((f,s)=>Math.Pow(s, 1/f));
+            CalcResult((f,s)=>Math.Pow(s, 1/f)); // для того, чтобы взять корень, надо возвести в степень обратно пропорциональную нужному корню
+        }
+
+        /// <summary>
+        /// Общая функция расчета результата,  принимаем функцию, и делаем с числами из входных полей эту функцию
+        /// </summary>
+        /// <param name="func"></param>
+        private void CalcResult(Func<double, double, double> func)
+        {
+            var nums = GetTupleNums();
+            ShowResult($"Result: {func(nums.Item1, nums.Item2)} ");
         }
     }
 }
